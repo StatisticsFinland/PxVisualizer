@@ -1,0 +1,11 @@
+dist
+node_modules
+.vscode
+.vs
+coverage
+junit.xml
+storybook-static
+tmp*
+*.tgz
+package
+reports

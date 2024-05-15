@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`burgerMenu, rendering tests Should render 1`] = `
+<DocumentFragment>
+  .c0 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c1 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c1 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c2 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+<div
+    class="c0"
+  >
+    <button
+      aria-expanded="false"
+      aria-label="Kuvion valikko"
+      class="c1"
+    >
+      <svg
+        aria-hidden="true"
+        height="29.92mm"
+        viewBox="0 0 113.12 84.82"
+        width="39.91mm"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m56.51,14.13c-16.33,0-32.67.01-49,0-5.37,0-8.89-4.83-6.99-9.59C1.63,1.76,3.77.26,6.76.01c.22-.02.44,0,.66,0,32.74,0,65.49,0,98.23,0,4.3,0,7.45,2.99,7.47,7.01.02,4.11-3.15,7.1-7.6,7.11-16.33.01-32.67,0-49,0Z"
+          style="fill: #1A3061;"
+        />
+        <path
+          d="m56.55,49.47c-16.41,0-32.82.01-49.22,0-3.78,0-6.77-2.56-7.26-6.09-.49-3.53,1.78-6.9,5.35-7.81.77-.2,1.6-.21,2.4-.21,32.52,0,65.04-.01,97.57,0,4.51,0,7.69,2.89,7.74,6.97.04,4.19-3.16,7.14-7.79,7.15-16.26,0-32.52,0-48.78,0Z"
+          style="fill: #1A3061;"
+        />
+        <path
+          d="m56.43,84.82c-16.33,0-32.67,0-49,0-3.68,0-6.45-2.17-7.25-5.56-.73-3.09.92-6.54,3.92-7.84,1.04-.45,2.27-.69,3.41-.69,32.74-.04,65.49-.03,98.23-.02,4.27,0,7.41,3.06,7.39,7.09-.02,4.02-3.17,7.02-7.47,7.02-16.41.02-32.82,0-49.22,0Z"
+          style="fill: #1A3061;"
+        />
+      </svg>
+    </button>
+    <div
+      class="c2"
+    />
+  </div>
+</DocumentFragment>
+`;

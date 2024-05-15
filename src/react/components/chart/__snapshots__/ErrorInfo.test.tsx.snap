@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering test renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-aXZVg cjEsic"
+  >
+    <h1>
+      Kuviota ei voitu muodostaa
+    </h1>
+  </div>
+</DocumentFragment>
+`;

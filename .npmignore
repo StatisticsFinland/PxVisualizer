@@ -1,0 +1,7 @@
+.storybook/
+coverage/
+node_modules/
+storybook-static/
+jest.config.ts
+junit.xml
+*.tgz
