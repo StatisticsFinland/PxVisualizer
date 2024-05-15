@@ -40,3 +40,7 @@ jobs:
 
     - name: Run tests
       run: npm run test:ci
+
+    - name: Validate version bump
+      run: npm run version-helper validate
+      if: github.event_name == 'pull_request'
