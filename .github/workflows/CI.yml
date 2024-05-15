@@ -45,5 +45,3 @@ jobs:
     - name: Validate version bump
       run: npm run version-helper validate
       if: github.event_name == 'pull_request'
-
-      # test
