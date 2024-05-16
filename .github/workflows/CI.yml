@@ -1,13 +1,8 @@
-name: PxVisualizer CI
+name: Px.Utils CI
+
+run-name: CI for PR ${{ github.event.pull_request.number }}
 
 on:
-  push:
-    branches:
-      - dev
-      - test
-      - main
-      - feature/*
-      - bugfix/*
   pull_request:
     branches:
       - dev
