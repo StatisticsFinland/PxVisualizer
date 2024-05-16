@@ -1,5 +1,7 @@
 name: PxVisualizer CD
 
+run-name: CD for ${{ github.event.head_commit.message }}
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -11,6 +13,11 @@ on:
       - dev
       - test
       - main
+
+env:
+  ENV: ${{ github.ref == 'refs/heads/dev' && 'd' ||
+    github.ref == 'refs/heads/test' && 't' ||
+    github.ref == 'refs/heads/main' && 'latest' }}
 
 jobs:
   build:
@@ -46,24 +53,11 @@ jobs:
     - name: Validate version bump
       run: npm run version-helper validate
       
-    - name: Set prelease version
+    - name: Set prerelease version
       run: npm run version-helper setpreversion
       if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/test'
 
-    - name: Publish dev version
-      run: npm publish --tag d --git-tag-version false
-      if: github.ref == 'refs/heads/dev'
-      env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    - name: Publish test version
-      run: npm publish --tag t --git-tag-version false
-      if: github.ref == 'refs/heads/test'
-      env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    - name: Publish release
-      run: npm publish --tag latest --git-tag-version false
-      if: github.ref == 'refs/heads/main'
+    - name: Publish
+      run: npm publish --tag ${{ ENV }} --git-tag-version false
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
