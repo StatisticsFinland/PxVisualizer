@@ -12,11 +12,11 @@ if (args.length === 0) {
 
 const packageJsonRaw = fs.readFileSync('./package.json');
 
-const tkNpmFeedVersionsQuery = execSync('npm view @statisticsfinland/pxvisualizer --json');
-const tkNpmFeedVersions = JSON.parse(tkNpmFeedVersionsQuery);
+const npmFeedVersionsQuery = execSync('npm view @statisticsfinland/pxvisualizer --json');
+const npmFeedVersions = JSON.parse(npmFeedVersionsQuery);
 
 const localVersion = JSON.parse(packageJsonRaw).version.trim();
-const latest = tkNpmFeedVersions['dist-tags']?.latest;
+const latest = npmFeedVersions['dist-tags']?.latest;
 const env = process.env.ENV;
 
 if (semver.valid(semver.coerce(localVersion)) !== localVersion) {
@@ -33,7 +33,7 @@ switch (args[0]) {
         break;
     case 'setpreversion':
         if (allowed_envs.includes(env)) {
-            const preversion = tkNpmFeedVersions['dist-tags'][env];
+            const preversion = npmFeedVersions['dist-tags'][env];
             setPreVersion(preversion);
         } else {
             console.error(`setpreversion is allowed only for envs ${allowed_envs.join(',')} provided env was: ${env}`);
