@@ -1,6 +1,6 @@
 {
-  "name": "tk-pxvisualizer",
-  "version": "0.0.35",
+  "name": "@statisticsfinland/pxvisualizer",
+  "version": "0.1.0",
   "description": "Component library for visualizing PxGraf data",
   "main": "./dist/pxv.cjs",
   "jestSonar": {
@@ -41,10 +41,10 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/StatisticsFinland/PxVisualizer"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Statistics Finland",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@storybook/addon-a11y": "^6.5.16",
@@ -90,5 +90,10 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  }
+  },
+  "keywords": [
+    "px-file",
+    "px",
+    "visualization"
+  ]
 }

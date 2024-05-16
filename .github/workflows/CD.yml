@@ -1,0 +1,65 @@
+name: PxVisualizer CD
+
+on:
+  push:
+      branches:
+        - dev
+        - main
+        - test
+  workflow_dispatch:
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [21.x]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+  
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install dependencies
+      run: npm ci --no-audit --quiet --prefer-offline
+
+    - name: Build
+      run: npm run build
+
+    - name: Set current version
+      run: |
+        commitHash=$(git rev-parse HEAD)
+        echo "commitHash=$commitHash" >> $GITHUB_ENV
+        echo $commitHash > dist/version.txt
+        echo $commitHash
+
+    - name: Validate version bump
+      run: npm run version-helper validate
+      
+    - name: Set prelease version
+      run: npm run version-helper setpreversion
+      if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/test'
+
+    - name: Publish dev version
+      run: npm publish --tag d --git-tag-version false
+      if: github.ref == 'refs/heads/dev'
+      env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Publish test version
+      run: npm publish --tag t --git-tag-version false
+      if: github.ref == 'refs/heads/test'
+      env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Publish release
+      run: npm publish --tag latest --git-tag-version false
+      if: github.ref == 'refs/heads/main'
+      env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
