@@ -15,7 +15,9 @@ on:
       - main
 
 env:
-  ENV: ${{ github.ref == 'refs/heads/dev' && 'd' || 't' }}
+  ENV: ${{ github.ref == 'refs/heads/dev' && 'd' ||
+    github.ref == 'refs/heads/test' && 't' ||
+    github.ref == 'refs/heads/main' && 'latest' }}
 
 jobs:
   build:
@@ -55,12 +57,7 @@ jobs:
       run: npm run version-helper setpreversion
       if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/test'
 
-    - name: Publish prerelease version
+    - name: Publish
       run: npm publish --tag ${{ ENV }} --git-tag-version false
-      if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/test'
-
-    - name: Publish release
-      run: npm publish --tag latest --git-tag-version false
-      if: github.ref == 'refs/heads/main'
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
