@@ -37,7 +37,8 @@
     "build-storybook": "set NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
     "prepublishOnly": "npm run build",
     "asd": "npm run build && clean-publish --without-publish && npm --prefix package/ pack",
-    "publish": "clean-publish"
+    "publish": "clean-publish",
+    "version-helper": "node .github/scripts/version-helper.js"
   },
   "repository": {
     "type": "git",

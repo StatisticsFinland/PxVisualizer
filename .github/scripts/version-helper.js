@@ -10,7 +10,7 @@ if (args.length === 0) {
     process.exit(1);
 }
 
-const packageJsonRaw = fs.readFileSync('../../package.json');
+const packageJsonRaw = fs.readFileSync('./package.json');
 
 const tkNpmFeedVersionsQuery = execSync('npm view @statisticsfinland/pxvisualizer --json');
 const tkNpmFeedVersions = JSON.parse(tkNpmFeedVersionsQuery);
