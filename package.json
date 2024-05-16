@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/StatisticsFinland/PxVisualizer"
   },
   "author": "Statistics Finland",
   "license": "Apache-2.0",
