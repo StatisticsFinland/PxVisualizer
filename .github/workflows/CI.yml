@@ -1,4 +1,4 @@
-name: Px.Utils CI
+name: PxVisualizer CI
 
 run-name: CI for PR ${{ github.event.pull_request.number }}
 
