@@ -3,18 +3,16 @@ name: PxVisualizer CI
 on:
   push:
     branches:
-      - master
+      - dev
       - test
+      - main
       - feature/*
       - bugfix/*
-      - develop
   pull_request:
     branches:
-      - master
+      - dev
       - test
-      - feature/*
-      - bugfix/*
-      - develop
+      - main
   workflow_dispatch:
 
 jobs:
