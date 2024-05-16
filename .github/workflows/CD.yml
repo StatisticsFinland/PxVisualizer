@@ -45,13 +45,13 @@ jobs:
       
     - name: Set prelease version
       run: npm run version-helper setpreversion
-      if: github.ref == 'refs/heads/develop' || 'github.ref == refs/heads/test'
+      if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/test'
 
     - name: Publish prelease version
       run:  |
         branchName=${GITHUB_REF##*/}
         npm publish --tag $branchName --git-tag-version false
-      if: github.ref == 'refs/heads/develop' || 'github.ref == refs/heads/test'
+      if: github.ref == 'refs/heads/develop' || 'github.ref == 'refs/heads/test'
 
     - name: Publish release
       run: npm publish --tag latest --git-tag-version false
