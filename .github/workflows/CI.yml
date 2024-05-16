@@ -1,20 +1,13 @@
 name: PxVisualizer CI
 
+run-name: CI for PR ${{ github.event.pull_request.number }}
+
 on:
-  push:
-    branches:
-      - master
-      - test
-      - feature/*
-      - bugfix/*
-      - develop
   pull_request:
     branches:
-      - master
+      - dev
       - test
-      - feature/*
-      - bugfix/*
-      - develop
+      - main
   workflow_dispatch:
 
 jobs:
@@ -22,6 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        node-version: [21.x]
     
     runs-on: ${{ matrix.os }}
 
@@ -31,7 +25,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '21'
+        node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
       run: npm ci
