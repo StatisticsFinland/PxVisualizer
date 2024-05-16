@@ -17,6 +17,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  TEST: 'foo'
+
 jobs:
   build:
     strategy:
@@ -28,6 +31,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+  
+    - name: Test 1
+      run: echo $TEST
+
+    - name: Test 2
+      run: echo ${{ env.TEST }}
 
     - name: Install Node.js
       uses: actions/setup-node@v4
