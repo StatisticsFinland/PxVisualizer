@@ -1,0 +1,58 @@
+name: PxVisualizer CD
+
+on:
+  push:
+      branches:
+        - develop
+        - master
+        - test
+  workflow_dispatch:
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+  
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '21'
+
+    - name: Install dependencies
+      run: npm ci --no-audit --quiet --prefer-offline
+
+    - name: Build
+      run: npm run build
+
+    - name: Set current version
+      run: |
+        commitHash=$(git rev-parse HEAD)
+        echo "commitHash=$commitHash" >> $GITHUB_ENV
+        echo $commitHash > dist/version.txt
+        echo $commitHash
+      
+    - name: Authenticate npm
+      run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+    - name: Validate version bump
+      run: npm run version-helper validate
+      
+    - name: Set prelease version
+      run: npm run version-helper setpreversion
+      if: github.ref == 'refs/heads/develop' || 'github.ref == refs/heads/test'
+
+    - name: Publish prelease version
+      run:  |
+        branchName=${GITHUB_REF##*/}
+        npm publish --tag $branchName --git-tag-version false
+      if: github.ref == 'refs/heads/develop' || 'github.ref == refs/heads/test'
+
+    - name: Publish release
+      run: npm publish --tag latest --git-tag-version false
+      if: github.ref == 'refs/heads/master'
