@@ -46,11 +46,15 @@ jobs:
       run: npm run version-helper setpreversion
       if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/test'
 
-    - name: Publish prelease version
-      run:  |
-        branchName=${GITHUB_REF##*/}
-        npm publish --tag $branchName --git-tag-version false
-      if: github.ref == 'refs/heads/dev' || 'github.ref == 'refs/heads/test'
+    - name: Publish dev version
+      run: npm publish --tag d --git-tag-version false
+      if: github.ref == 'refs/heads/dev'
+      env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Publish test version
+      run: npm publish --tag t --git-tag-version false
+      if: github.ref == 'refs/heads/test'
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
