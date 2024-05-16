@@ -17,9 +17,6 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  TEST: 'foo'
-
 jobs:
   build:
     strategy:
