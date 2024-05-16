@@ -3,8 +3,8 @@ name: PxVisualizer CD
 on:
   push:
       branches:
-        - develop
-        - master
+        - dev
+        - main
         - test
   workflow_dispatch:
   
@@ -55,4 +55,4 @@ jobs:
 
     - name: Publish release
       run: npm publish --tag latest --git-tag-version false
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
