@@ -58,6 +58,6 @@ jobs:
       if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/test'
 
     - name: Publish
-      run: npm publish --tag ${{ ENV }} --git-tag-version false
+      run: npm publish --tag ${{ env.ENV }} --git-tag-version false
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
