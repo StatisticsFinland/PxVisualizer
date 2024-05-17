@@ -37,3 +37,6 @@ jobs:
     - name: Test A Step 5
       run: echo "Test A Step 5 ${{ env.TEST == 'bar' }}"
       if: ${{ env.TEST == 'bar' }}
+
+    - name: Test finished
+      run: echo "Test finished"
