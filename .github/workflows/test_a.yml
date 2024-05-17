@@ -1,5 +1,7 @@
 name: Test A
 
+run-name: Test A for ${{ github.event.workflow_run.head_branch }}
+
 on:
   push:
   workflow_dispatch:
