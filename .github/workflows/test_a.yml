@@ -1,0 +1,19 @@
+name: Test A
+
+on:
+  push:
+  
+jobs:
+  testa:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+     
+     - name: Test A Step 1
+       run: echo "Test A Step 1"
+
+    

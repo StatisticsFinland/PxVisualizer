@@ -1,0 +1,23 @@
+name: Test B
+
+run-name: Test B for ${{ github.event.workflow_run.head_branch }}
+
+on:
+  workflow_run:
+    workflows:
+      - "Test A"
+    types:
+      - completed
+
+jobs:
+  testb:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+     
+     - name: Test A Step 1
+       run: echo "Test A Step 1  ${{ github.event.workflow_run.head_branch }}"
