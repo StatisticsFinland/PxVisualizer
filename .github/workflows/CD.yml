@@ -40,13 +40,6 @@ jobs:
     - name: Install dependencies
       run: npm ci --no-audit --quiet --prefer-offline
 
-    - name: Set current version
-      run: |
-        commitHash=$(git rev-parse HEAD)
-        echo "commitHash=$commitHash" >> $GITHUB_ENV
-        echo $commitHash > dist/version.txt
-        echo $commitHash
-
     - name: Validate version bump
       run: npm run version-helper validate
       
