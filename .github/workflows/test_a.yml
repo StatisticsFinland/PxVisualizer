@@ -1,0 +1,39 @@
+name: Test A
+
+run-name: test-a
+
+env:
+  TEST: 'foo'
+
+on:
+  push:
+  workflow_dispatch:
+  
+jobs:
+  testa:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    
+    - name: Test A Step 1
+      run: echo "Test A Step 1"
+
+    - name: Test A Step 2
+      run: echo "Test A Step 2 env.TEST == 'foo'"
+      if: env.TEST == 'foo'
+
+    - name: Test A Step 3
+      run: echo "Test A Step 3 env.TEST == 'bar'"
+      if: env.TEST == 'bar'
+
+    - name: Test A Step 4
+      run: echo "Test A Step 4 ${{ env.TEST == 'foo' }}"
+      if: ${{ env.TEST == 'foo' }}
+
+    - name: Test A Step 5
+      run: echo "Test A Step 5 ${{ env.TEST == 'bar' }}"
+      if: ${{ env.TEST == 'bar' }}
