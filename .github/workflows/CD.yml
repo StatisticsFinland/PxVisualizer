@@ -1,6 +1,6 @@
 name: PxVisualizer CD
 
-run-name: CD for ${{ github.ref_name }}
+run-name: CD for ${{ github.event.workflow_run.head_branch }}
 
 on:
   workflow_dispatch:
@@ -15,9 +15,9 @@ on:
       - main
 
 env:
-  ENV: ${{ github.ref == 'refs/heads/dev' && 'd' ||
-    github.ref == 'refs/heads/test' && 't' ||
-    github.ref == 'refs/heads/main' && 'latest' }}
+  ENV: ${{ github.event.workflow_run.head_branch == 'dev' && 'd' ||
+    github.event.workflow_run.head_branch == 'test' && 't' ||
+    github.event.workflow_run.head_branch == 'main' && 'latest' }}
 
 jobs:
   build:
@@ -30,6 +30,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.workflow_run.head_branch }}
   
     - name: Install Node.js
       uses: actions/setup-node@v4
@@ -45,7 +47,7 @@ jobs:
       
     - name: Set prerelease version
       run: npm run version-helper setpreversion
-      if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/test'
+      if: ${{ env.ENV }} == 'd' || ${{ env.ENV }} == 't'
 
     - name: Publish
       run: npm publish --tag ${{ env.ENV }} --git-tag-version false
