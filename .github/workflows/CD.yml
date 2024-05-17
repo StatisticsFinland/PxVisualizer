@@ -1,6 +1,6 @@
 name: PxVisualizer CD
 
-run-name: CD for ${{ github.event.head_commit.message }}
+run-name: CD for ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
