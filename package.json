@@ -1,6 +1,6 @@
 {
   "name": "@statisticsfinland/pxvisualizer",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Component library for visualizing PxGraf data",
   "main": "./dist/pxv.cjs",
   "jestSonar": {
@@ -36,8 +36,6 @@
     "storybook_legacy": "start-storybook -p 6006",
     "build-storybook": "set NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
     "prepublishOnly": "npm run build",
-    "asd": "npm run build && clean-publish --without-publish && npm --prefix package/ pack",
-    "publish": "clean-publish",
     "version-helper": "node .github/scripts/version-helper.js"
   },
   "repository": {
