@@ -44,7 +44,11 @@ in the [HighCharts shop](https://shop.highsoft.com/?utm_source=npmjs&utm_medium=
 
 ## Published NPM module
 
-TBA Once the module has been published to NPM registry.
+[PxVisualizer in NPM](https://www.npmjs.com/package/@statisticsfinland/pxvisualizer)
+
+```sh
+npm i @statisticsfinland/pxvisualizer
+```
 
 ## Versioning
 
@@ -74,4 +78,10 @@ Pipeline validates that version you have set is greater than latest already publ
 // d version      0.0.4-d.0
 // t version      0.0.4-t.0
 // Latest version 0.0.4       - now we are here
+```
+
+### View latest available versions
+
+```sh
+npm view @statisticsfinland/pxvisualizer --json
 ```
