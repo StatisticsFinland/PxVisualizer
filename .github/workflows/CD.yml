@@ -40,9 +40,6 @@ jobs:
     - name: Install dependencies
       run: npm ci --no-audit --quiet --prefer-offline
 
-    - name: Build
-      run: npm run build
-
     - name: Set current version
       run: |
         commitHash=$(git rev-parse HEAD)
