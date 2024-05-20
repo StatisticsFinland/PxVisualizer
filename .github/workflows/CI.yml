@@ -18,7 +18,8 @@ on:
 env:
   ENV: ${{ github.event.workflow_run.head_branch == 'dev' && 'd' ||
     github.event.workflow_run.head_branch == 'test' && 't' ||
-    github.event.workflow_run.head_branch == 'main' && 'latest' }}
+    github.event.workflow_run.head_branch == 'main' && 'latest' ||
+    'feature' }}
 
 jobs:
   build:
@@ -30,6 +31,13 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+
+    - uses: actions/checkout@v4
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
     
     - name: Test 1A
       run: echo ${{ github.event.workflow_run.head_branch }}}
@@ -61,12 +69,17 @@ jobs:
       run: echo "Test 2C-2"
       if: ${{ env.ENV == 'latest' || env.ENV == 'd' }}
 
-    - uses: actions/checkout@v4
+    - name: Test 3C-1
+      run: echo "Test 3C-1"
+      if: env.ENV == 'feature' || env.ENV == 'd'
 
-    - name: Install Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+    - name: Test 3C-2
+      run: echo "Test 3C-2"
+      if: ${{ env.ENV == 'feature' || env.ENV == 'd' }}
+
+    - name: Test 4
+      run: echo "This shouldn't run, but if it does, I know what's wrong"
+      if: ${{ env.ENV }} == 'd' || ${{ env.ENV }} == 't'
 
     - name: Install dependencies
       run: npm ci
