@@ -47,7 +47,7 @@ jobs:
       
     - name: Set prerelease version
       run: npm run version-helper setpreversion
-      if: ${{ env.ENV }} == 'd' || ${{ env.ENV }} == 't'
+      if: env.ENV == 'd' || env.ENV == 't'
 
     - name: Publish
       run: npm publish --tag ${{ env.ENV }} --git-tag-version false
