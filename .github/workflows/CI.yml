@@ -78,8 +78,8 @@ jobs:
       if: ${{ env.ENV == 'feature' || env.ENV == 'd' }}
 
     - name: Test 4
-      run: echo "This shouldn't run, but if it does, I know what's wrong"
-      if: ${{ env.ENV }} == 'd' || ${{ env.ENV }} == 't'
+      run: echo "This shouldn't run, and if it does, I am very confused"
+      if: env.ENV == 'd' || env.ENV == 't'
 
     - name: Install dependencies
       run: npm ci
