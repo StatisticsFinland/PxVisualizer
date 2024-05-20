@@ -15,6 +15,11 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  ENV: ${{ github.event.workflow_run.head_branch == 'dev' && 'd' ||
+    github.event.workflow_run.head_branch == 'test' && 't' ||
+    github.event.workflow_run.head_branch == 'main' && 'latest' }}
+
 jobs:
   build:
     strategy:
@@ -25,6 +30,37 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+    
+    - name: Test 1A
+      run: echo ${{ github.event.workflow_run.head_branch }}}
+
+    - name: Test 1B
+      run: echo ${{ ENV.env }}}
+
+    - name: Test 2A-1
+      run: echo "Test 2A-1"
+      if: env.ENV == 'd' || env.ENV == 't'
+
+    - name: Test 2A-2
+      run: echo "Test 2A-2"
+      if: ${{ env.ENV == 'd' || env.ENV == 't' }}
+
+    - name: Test 2B-1
+      run: echo "Test 2B-1"
+      if: env.ENV == 't' || env.ENV == 'latest'
+
+    - name: Test 2B-2
+      run: echo "Test 2B-2"
+      if: ${{ env.ENV == 't' || env.ENV == 'latest' }}
+
+    - name: Test 2C-1
+      run: echo "Test 2C-1"
+      if: env.ENV == 'latest' || env.ENV == 'd'
+
+    - name: Test 2C-2
+      run: echo "Test 2C-2"
+      if: ${{ env.ENV == 'latest' || env.ENV == 'd' }}
+
     - uses: actions/checkout@v4
 
     - name: Install Node.js
