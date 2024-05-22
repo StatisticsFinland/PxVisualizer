@@ -18,7 +18,6 @@ import { TableView } from "./tableView";
 import GlobalStyle from "../globalStyle";
 import { View } from "../../../core/types/view";
 import { ErrorInfo } from "./ErrorInfo";
-import { TExtendedPoint, TExtendedPointOptionsType } from "../../../core/types/highchartsExtensions";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 const initializeHighcharts = (locale: string) => {

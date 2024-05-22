@@ -3,7 +3,6 @@ import { View } from "../types/view";
 import { getFormattedUnits } from "./Utility/formatters";
 import { getTimeSeriesOptions } from "./Utility/timeIntervals";
 import { defaultTheme } from "../highcharts/themes";
-import { TExtendedPoint } from '../types/highchartsExtensions';
 import { commonBasicVerticalBarChartOptions, commonYAxisOptions } from './barChartOptions';
 
 export const basicVerticalBarChartOptions = (view: View, locale: string): Options => {
@@ -23,14 +22,7 @@ export const basicVerticalBarChartOptions = (view: View, locale: string): Option
                 ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
                 dataLabels: {
                     enabled: view.visualizationSettings.showDataPoints,
-                    style: dataValueLabelStyle,
-                    useHTML: true,
-                    formatter: function () {
-                        const point = this.point as TExtendedPoint;
-                        let bg = point.updateNeeded ? 'rgb(255, 255, 255)' : 'rgba(0, 0, 0, 0)';
-                        let bdg = point.updateNeeded ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0)';
-                        return `<span style="background-color: ${bg}; border: 1px solid ${bdg};">${this.y}</span>`
-                    }
+                    style: dataValueLabelStyle
                 }
             }
         },
