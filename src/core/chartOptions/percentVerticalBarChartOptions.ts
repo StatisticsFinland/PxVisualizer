@@ -1,6 +1,6 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonStackedVerticalBarChartOptions } from './barChartOptions';
+import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './barChartOptions';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
 
 export const percentVerticalBarChartOptions = (view: View, locale: string): Options => {
@@ -14,9 +14,12 @@ export const percentVerticalBarChartOptions = (view: View, locale: string): Opti
         },
         plotOptions: {
             column: {
-                stacking: 'percent'
+                stacking: 'percent',
+                dataLabels: {
+                    ...commonDatalabelsOptions(view, locale)
+                }
             },
-            series: getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint)
+            series: getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
         }
     }
     return highChartsOptions;

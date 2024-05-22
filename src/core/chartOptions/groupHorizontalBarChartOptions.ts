@@ -1,6 +1,6 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonBasicHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions } from './barChartOptions';
+import { commonBasicHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions } from './barChartOptions';
 
 export const groupHorizontalBarChartOptions = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
@@ -14,6 +14,11 @@ export const groupHorizontalBarChartOptions = (view: View, locale: string): Opti
             enabled: true,
             layout: 'vertical',
             margin: 30
+        },
+        plotOptions: {
+            series: {
+                dataLabels: [commonDatalabelsOptions(view, locale)]
+            }
         }
     }
     return highChartsOptions;

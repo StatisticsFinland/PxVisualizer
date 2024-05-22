@@ -1,10 +1,11 @@
-import { Options, YAxisOptions } from 'highcharts';
+import { DataLabelsOptions, Options, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction } from './Utility/formatters';
 import Translations from '../conversion/translations';
 import { buildHighchartSeries } from './Utility/seriesDataBuilder';
 import {  getXAxisOptions } from './Utility/timeIntervals';
 import { getLinearAxisTickPositionerFunction } from './Utility/tickPositioners';
+import { defaultTheme } from "../highcharts/themes";
 
 export const commonBarChartOptions = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
@@ -32,6 +33,17 @@ export const commonYAxisOptions: YAxisOptions = {
             width: 1
         }
     ]
+}
+
+export const commonDatalabelsOptions = (view: View, locale: string): DataLabelsOptions => {
+    const theme = defaultTheme(locale);
+    const dataValueLabelStyle = theme.tooltip?.style;
+
+    const dataLabelOptions: DataLabelsOptions = {
+        enabled: view.visualizationSettings.showDataPoints,
+        style: dataValueLabelStyle
+    }
+    return dataLabelOptions;
 }
 
 export const commonBasicHorizontalBarChartYAxisOptions = (view: View, locale: string): YAxisOptions => {

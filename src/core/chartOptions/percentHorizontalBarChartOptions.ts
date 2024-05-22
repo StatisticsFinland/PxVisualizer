@@ -1,6 +1,6 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonStackedHorizontalBarChart } from './barChartOptions';
+import { commonStackedHorizontalBarChart, commonDatalabelsOptions } from './barChartOptions';
 
 export const percentHorizontalBarChartOptions = (view: View, locale: string): Options => {
 
@@ -22,6 +22,9 @@ export const percentHorizontalBarChartOptions = (view: View, locale: string): Op
         plotOptions: {
             bar: {
                 stacking: 'percent'
+            },
+            series: {
+                dataLabels: [commonDatalabelsOptions(view, locale)]
             }
         }
     }

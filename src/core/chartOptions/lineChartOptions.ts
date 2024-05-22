@@ -4,8 +4,11 @@ import { getTimeSeriesOptions, getXAxisOptions } from "./Utility/timeIntervals";
 import { getFormattedUnits, getLegendLabelShorteningFunction, getScreenReaderFormatterCallbackFunction, getToolTipFormatterFunction } from "./Utility/formatters";
 import Translations from "../conversion/translations";
 import { buildHighchartSeries } from "./Utility/seriesDataBuilder";
+import { defaultTheme } from "../highcharts/themes";
 
 export const lineChartOptions = (view: View, locale: string): Options => {
+    const theme = defaultTheme(locale);
+    const dataValueLabelStyle = theme.tooltip?.style;
     const cutValueAxis = !view.visualizationSettings?.cutValueAxis ? 0 : undefined;
 
     const highChartsOptions: Options = {
@@ -39,6 +42,11 @@ export const lineChartOptions = (view: View, locale: string): Options => {
         },
         plotOptions: {
             line: {
+                dataLabels: {
+                    enabled: view.visualizationSettings.showDataPoints,
+                    format: '{point.y}',
+                    style: dataValueLabelStyle
+                },
                 marker: {
                     enabled: false
                 }

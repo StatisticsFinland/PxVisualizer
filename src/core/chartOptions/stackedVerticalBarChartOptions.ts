@@ -1,7 +1,7 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
-import { commonStackedVerticalBarChartOptions } from './barChartOptions';
+import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './barChartOptions';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
 
 export const stackedVerticalBarChartOptions = (view: View, locale: string): Options => {
@@ -16,7 +16,10 @@ export const stackedVerticalBarChartOptions = (view: View, locale: string): Opti
         },
         plotOptions: {
             column: {
-                stacking: 'normal'
+                stacking: 'normal',
+                dataLabels: {
+                    ...commonDatalabelsOptions(view, locale)
+                }
             },
             series: getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint)
         }

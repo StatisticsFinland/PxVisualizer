@@ -2,7 +2,7 @@ import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
 import { getLinearSumAxisTickPositionerFunction } from './Utility/tickPositioners';
-import { commonStackedHorizontalBarChart } from './barChartOptions';
+import { commonStackedHorizontalBarChart, commonDatalabelsOptions } from './barChartOptions';
 
 export const stackedHorizontalBarChartOptions = (view: View, locale: string): Options => {
 
@@ -26,6 +26,9 @@ export const stackedHorizontalBarChartOptions = (view: View, locale: string): Op
         plotOptions: {
             bar: {
                 stacking: 'normal'
+            },
+            series: {
+                dataLabels: [commonDatalabelsOptions(view, locale)]
             }
         }
     };

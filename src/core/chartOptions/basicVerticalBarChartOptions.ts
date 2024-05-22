@@ -2,12 +2,9 @@ import { Options } from "highcharts";
 import { View } from "../types/view";
 import { getFormattedUnits } from "./Utility/formatters";
 import { getTimeSeriesOptions } from "./Utility/timeIntervals";
-import { defaultTheme } from "../highcharts/themes";
-import { commonBasicVerticalBarChartOptions, commonYAxisOptions } from './barChartOptions';
+import { commonBasicVerticalBarChartOptions, commonYAxisOptions, commonDatalabelsOptions } from './barChartOptions';
 
 export const basicVerticalBarChartOptions = (view: View, locale: string): Options => {
-    const theme = defaultTheme(locale);
-    const dataValueLabelStyle = theme.tooltip?.style;
 
     const highChartsOptions: Options = {
         ...commonBasicVerticalBarChartOptions(view, locale),
@@ -20,10 +17,7 @@ export const basicVerticalBarChartOptions = (view: View, locale: string): Option
         plotOptions: {
             series: {
                 ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
-                dataLabels: {
-                    enabled: view.visualizationSettings.showDataPoints,
-                    style: dataValueLabelStyle
-                }
+                dataLabels: [commonDatalabelsOptions(view, locale)]
             }
         },
         exporting: {
