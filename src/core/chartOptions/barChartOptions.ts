@@ -1,4 +1,4 @@
-import { DataLabelsOptions, Options, YAxisOptions } from 'highcharts';
+import { DataLabelsOptions, Options, PlotColumnDataLabelsOptions, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction } from './Utility/formatters';
 import Translations from '../conversion/translations';
@@ -35,11 +35,11 @@ export const commonYAxisOptions: YAxisOptions = {
     ]
 }
 
-export const commonDatalabelsOptions = (view: View, locale: string): DataLabelsOptions => {
+export const commonDatalabelsOptions = (view: View, locale: string) => {
     const theme = defaultTheme(locale);
     const dataValueLabelStyle = theme.tooltip?.style;
 
-    const dataLabelOptions: DataLabelsOptions = {
+    const dataLabelOptions = {
         enabled: view.visualizationSettings.showDataPoints,
         style: dataValueLabelStyle
     }

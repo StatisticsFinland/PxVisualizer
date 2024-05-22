@@ -28,7 +28,9 @@ export const stackedHorizontalBarChartOptions = (view: View, locale: string): Op
                 stacking: 'normal'
             },
             series: {
-                dataLabels: [commonDatalabelsOptions(view, locale)]
+                dataLabels: {
+                    ...commonDatalabelsOptions(view, locale)
+                }
             }
         }
     };

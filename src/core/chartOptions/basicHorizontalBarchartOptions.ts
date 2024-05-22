@@ -14,7 +14,9 @@ export const basicHorizontalBarChartOptions = (view: View, locale: string): Opti
         legend: { enabled: false },
         plotOptions: {
             series: {
-                dataLabels: [commonDatalabelsOptions(view, locale)]
+                dataLabels: {
+                    ...commonDatalabelsOptions(view, locale)
+                }
             }
         }
     }

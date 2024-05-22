@@ -17,7 +17,9 @@ export const groupHorizontalBarChartOptions = (view: View, locale: string): Opti
         },
         plotOptions: {
             series: {
-                dataLabels: [commonDatalabelsOptions(view, locale)]
+                dataLabels: {
+                    ...commonDatalabelsOptions(view, locale)
+                }
             }
         }
     }

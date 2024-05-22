@@ -11,7 +11,9 @@ export const groupVerticalBarChartOptions = (view: View, locale: string): Option
         plotOptions: {
             series: {
                 ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
-                dataLabels: [commonDatalabelsOptions(view, locale)]
+                dataLabels: {
+                    ...commonDatalabelsOptions(view, locale)
+                }
             }
         },
         legend: {

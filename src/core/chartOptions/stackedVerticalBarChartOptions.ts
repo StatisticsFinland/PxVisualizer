@@ -4,6 +4,8 @@ import { getFormattedUnits } from './Utility/formatters';
 import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './barChartOptions';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
 
+
+
 export const stackedVerticalBarChartOptions = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
         ...commonStackedVerticalBarChartOptions(view, locale),

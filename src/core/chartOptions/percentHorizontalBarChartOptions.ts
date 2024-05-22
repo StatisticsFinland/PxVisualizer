@@ -24,7 +24,9 @@ export const percentHorizontalBarChartOptions = (view: View, locale: string): Op
                 stacking: 'percent'
             },
             series: {
-                dataLabels: [commonDatalabelsOptions(view, locale)]
+                dataLabels: {
+                    ...commonDatalabelsOptions(view, locale)
+                }
             }
         }
     }
