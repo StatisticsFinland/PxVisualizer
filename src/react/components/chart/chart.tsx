@@ -136,32 +136,6 @@ const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menu
         }
     }, [chartRef.current]);
 
-    // Iterates through points with dataLabels and checks if they are drawn on top of bars
-    const checkDataLabelOverflow = (chart: Highcharts.Chart) => {
-        if ((pxGraphData.visualizationSettings.visualizationType === EVisualizationType.GroupHorizontalBarChart ||
-            pxGraphData.visualizationSettings.visualizationType === EVisualizationType.GroupVerticalBarChart ||
-            pxGraphData.visualizationSettings.visualizationType === EVisualizationType.HorizontalBarChart ||
-            pxGraphData.visualizationSettings.visualizationType === EVisualizationType.VerticalBarChart ||
-            pxGraphData.visualizationSettings.visualizationType === EVisualizationType.PercentVerticalBarChart ||
-            pxGraphData.visualizationSettings.visualizationType === EVisualizationType.PercentHorizontalBarChart) &&
-            pxGraphData.visualizationSettings.showDataPoints) {
-            let updateChart: boolean = false;
-            chart.series.map(series => (series.data as TExtendedPoint[]).forEach(function (point: TExtendedPoint) {
-                if (point.dataLabel) {
-                    if (point.dataLabel.alignOptions.inside) {
-                        point.update({
-                            updateNeeded: true
-                        } as TExtendedPointOptionsType)
-                        updateChart = true;
-                    }
-                }
-            }));
-            if (updateChart) {
-                chart.redraw();
-            }
-        }
-    }
-
     try {
         // Chart
         if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
@@ -179,10 +153,7 @@ const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menu
                             ref={chartRef}
                             immutable={true}
                             highcharts={Highcharts}
-                            options={highChartOptions}
-                            callback={(chart: Highcharts.Chart) => {
-                                checkDataLabelOverflow(chart);
-                            }} />
+                            options={highChartOptions}/>
                     </ChartContainer>
                     <TableContainer $tableMode={tableMode}>
                         <TableView showTitles={showTableTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={!!showTableSources} view={view} locale={validLocale} />

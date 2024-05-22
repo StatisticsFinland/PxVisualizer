@@ -2,13 +2,10 @@ import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getFormattedUnits, getScreenReaderFormatterCallbackFunction, getToolTipFormatterFunction } from './Utility/formatters';
 import Translations from '../conversion/translations';
-import { defaultTheme } from "../highcharts/themes";
 
 export const pyramidChartOptions = (view: View, locale: string): Options => {
     const categories = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
     const maxValue = Math.max(...view.series.map(s => Math.max(...s.series.map(dataCell => dataCell.value ?? 0))));
-    const theme = defaultTheme(locale);
-    const dataValueLabelStyle = theme.tooltip?.style;
     return (
         {
             accessibility: {
@@ -73,17 +70,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
             credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` },
             plotOptions: {
                 series: {
-                    stacking: 'normal',
-                    dataLabels: {
-                        enabled: view.visualizationSettings.showDataPoints,
-                        style: dataValueLabelStyle,
-                        useHTML: true,
-                        formatter: function () {
-                            let bg = 'rgb(255, 255, 255)';
-                            let bdg = 'rgba(0, 0, 0, 1)';
-                            return `<span style="background-color: ${bg}; border: 1px solid ${bdg};">${this.y}</span>`
-                        }
-                    }
+                    stacking: 'normal'
                 }
             },
             tooltip: {
