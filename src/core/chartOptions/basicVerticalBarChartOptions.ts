@@ -1,37 +1,22 @@
 import { Options } from "highcharts";
 import { View } from "../types/view";
-import { getFormattedUnits, getScreenReaderFormatterCallbackFunction, getToolTipFormatterFunction } from "./Utility/formatters";
-import { getTimeSeriesOptions, getXAxisOptions } from "./Utility/timeIntervals";
-import Translations from "../conversion/translations";
-import { buildHighchartSeries } from "./Utility/seriesDataBuilder";
+import { getFormattedUnits } from "./Utility/formatters";
+import { getTimeSeriesOptions } from "./Utility/timeIntervals";
 import { defaultTheme } from "../highcharts/themes";
 import { TExtendedPoint } from '../types/highchartsExtensions';
+import { commonBasicVerticalBarChartOptions, commonYAxisOptions } from './barChartOptions';
 
 export const basicVerticalBarChartOptions = (view: View, locale: string): Options => {
     const theme = defaultTheme(locale);
     const dataValueLabelStyle = theme.tooltip?.style;
 
     const highChartsOptions: Options = {
-        accessibility: {
-            point: {
-                descriptionFormatter: getScreenReaderFormatterCallbackFunction(view, locale)
-            }
-        },
-        chart: { type: 'column' },
-        title: { text: view.header[locale] },
-        subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
-        xAxis: getXAxisOptions(view, locale),
+        ...commonBasicVerticalBarChartOptions(view, locale),
         yAxis: {
+            ...commonYAxisOptions,
             softMin: 0,
             softMax: 0,
             title: { text: getFormattedUnits(view.units, locale) },
-            plotLines: [
-                {
-                    value: 0,
-                    color: '#000',
-                    width: 1
-                }
-            ]
         },
         plotOptions: {
             series: {
@@ -48,11 +33,6 @@ export const basicVerticalBarChartOptions = (view: View, locale: string): Option
                     }
                 }
             }
-        },
-        credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` },
-        series: buildHighchartSeries(view, 'column', locale),
-        tooltip: {
-            formatter: getToolTipFormatterFunction(view, locale)
         },
         exporting: {
             enabled: false
