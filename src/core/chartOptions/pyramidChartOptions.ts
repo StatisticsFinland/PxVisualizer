@@ -1,14 +1,20 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
-import { commonChartOptions, commonDatalabelsOptions, commonYAxisOptions } from './chartOptions';
+import { CommonChartOptions, commonDatalabelsOptions, commonYAxisOptions } from './chartOptions';
 
 export const pyramidChartOptions = (view: View, locale: string): Options => {
-    const categories = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
-    const maxValue = Math.max(...view.series.map(s => Math.max(...s.series.map(dataCell => dataCell.value ?? 0))));
-    return (
-        {
-            ...commonChartOptions(view, locale),
+    return new PyramidChartOptions(view, locale).getOptions();
+};
+
+class PyramidChartOptions extends CommonChartOptions {
+    getOptions(): Options {
+        const baseOptions = super.getOptions();
+        const locale = this.locale;
+        const categories = this.view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
+        const maxValue = Math.max(...this.view.series.map(s => Math.max(...s.series.map(dataCell => dataCell.value ?? 0))));
+        return {
+            ...baseOptions,
             chart: { type: 'bar' },
             xAxis: {
                 categories: categories,
@@ -24,7 +30,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                 min: -Math.abs(maxValue),
                 max: Math.abs(maxValue),
                 title: {
-                    text: getFormattedUnits(view.units, locale),
+                    text: getFormattedUnits(this.view.units, locale),
                     style: {
                         textAlign: 'center',
                     },
@@ -43,14 +49,14 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                 enabled: true,
                 margin: 30
             },
-            series: view.series.map((s, i) => {
+            series: this.view.series.map((s, i) => {
                 return ({
                     animation: false,
                     type: 'bar',
                     name: s.rowNameGroup.map(n => n[locale]).join(', '),
                     data: s.series.map((dataCell, index) => ({
                         y: i === 0 && dataCell.value ? -dataCell.value : dataCell.value,
-                        name: view.columnNameGroups[index].map(n => n[locale]).join(', '),
+                        name: this.view.columnNameGroups[index].map(n => n[locale]).join(', '),
                         custom: { preliminary: dataCell.preliminary }
                     }))
                 })
@@ -67,5 +73,5 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                 enabled: false
             }
         }
-    )
-};
+    }   
+}

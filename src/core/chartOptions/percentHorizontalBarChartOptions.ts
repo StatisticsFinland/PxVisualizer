@@ -1,34 +1,40 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonStackedHorizontalBarChart, commonDatalabelsOptions } from './chartOptions';
+import { CommonStackedHorizontalBarChartOptions, commonDatalabelsOptions } from './chartOptions';
+
 
 export const percentHorizontalBarChartOptions = (view: View, locale: string): Options => {
+    return new PercentHorizontalBarChartOptions(view, locale).getOptions();
+};
 
-    const highChartsOptions: Options = {
-        ...commonStackedHorizontalBarChart(view, locale),
-        yAxis: {
-            min: 0,
-            title: {
-                text: '%',
-                style: {
-                    textAlign: 'center',
-                },
-                align: 'middle',
-                textAlign: "center",
-                y: 10,
-                x: 0,
-            }
-        },
-        plotOptions: {
-            bar: {
-                stacking: 'percent'
+class PercentHorizontalBarChartOptions extends CommonStackedHorizontalBarChartOptions {
+    getOptions(): Options {
+        const baseOptions = super.getOptions();
+        return {
+            ...baseOptions,
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '%',
+                    style: {
+                        textAlign: 'center',
+                    },
+                    align: 'middle',
+                    textAlign: "center",
+                    y: 10,
+                    x: 0,
+                }
             },
-            series: {
-                dataLabels: {
-                    ...commonDatalabelsOptions(view, locale)
+            plotOptions: {
+                bar: {
+                    stacking: 'percent'
+                },
+                series: {
+                    dataLabels: {
+                        ...commonDatalabelsOptions(this.view, this.locale)
+                    }
                 }
             }
-        }
+        };
     }
-    return highChartsOptions;
-};
+}
