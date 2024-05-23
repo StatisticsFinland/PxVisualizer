@@ -1,6 +1,6 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './barChartOptions';
+import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './chartOptions';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
 
 export const percentVerticalBarChartOptions = (view: View, locale: string): Options => {

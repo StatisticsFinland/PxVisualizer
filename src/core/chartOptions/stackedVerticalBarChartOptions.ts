@@ -1,7 +1,7 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
-import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './barChartOptions';
+import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './chartOptions';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
 
 

@@ -1,4 +1,4 @@
-import { DataLabelsOptions, Options, PlotColumnDataLabelsOptions, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
+import { Options, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction } from './Utility/formatters';
 import Translations from '../conversion/translations';
@@ -7,7 +7,7 @@ import {  getXAxisOptions } from './Utility/timeIntervals';
 import { getLinearAxisTickPositionerFunction } from './Utility/tickPositioners';
 import { defaultTheme } from "../highcharts/themes";
 
-export const commonBarChartOptions = (view: View, locale: string): Options => {
+export const commonChartOptions = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
         accessibility: {
             point: {
@@ -64,9 +64,9 @@ export const commonBasicHorizontalBarChartYAxisOptions = (view: View, locale: st
     return yAxisOptions;
 }
 
-const commonHorizontalBarChartOptions = (view: View, locale: string): Options => {
+export const commonHorizontalBarChartOptions = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
-        ...commonBarChartOptions(view, locale),
+        ...commonChartOptions(view, locale),
         chart: { type: 'bar' },
         xAxis: {
             categories: view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', ')),
@@ -80,14 +80,6 @@ const commonHorizontalBarChartOptions = (view: View, locale: string): Options =>
     }
     return highChartsOptions;
 };
-
-export const commonBasicHorizontalBarChartOptions = (view: View, locale: string): Options => {
-    const highChartsOptions: Options = {
-        ...commonHorizontalBarChartOptions(view, locale),
-        series: buildHighchartSeries(view, 'bar', locale)
-    }
-    return highChartsOptions;
-}
 
 export const commonStackedHorizontalBarChart = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
@@ -105,7 +97,7 @@ export const commonStackedHorizontalBarChart = (view: View, locale: string): Opt
 
 const commonVerticalBarChartOptions = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
-        ...commonBarChartOptions(view, locale),
+        ...commonChartOptions(view, locale),
         chart: { type: 'column' },
         xAxis: getXAxisOptions(view, locale),
     }

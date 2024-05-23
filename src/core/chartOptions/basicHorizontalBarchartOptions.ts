@@ -1,10 +1,12 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonBasicHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions } from './barChartOptions';
+import { commonHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions } from './chartOptions';
+import { buildHighchartSeries } from './Utility/seriesDataBuilder';
 
 export const basicHorizontalBarChartOptions = (view: View, locale: string): Options => {
     const highChartsOptions: Options = {
-        ...commonBasicHorizontalBarChartOptions(view, locale),
+        ...commonHorizontalBarChartOptions(view, locale),
+        series: buildHighchartSeries(view, 'bar', locale),
         chart: { type: 'bar', spacingBottom: 60 },
         yAxis: {
             ...commonBasicHorizontalBarChartYAxisOptions(view, locale),

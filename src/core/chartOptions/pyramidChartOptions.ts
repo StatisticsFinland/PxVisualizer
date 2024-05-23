@@ -1,24 +1,15 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { getFormattedUnits, getScreenReaderFormatterCallbackFunction, getToolTipFormatterFunction } from './Utility/formatters';
-import Translations from '../conversion/translations';
-import { defaultTheme } from "../highcharts/themes";
+import { getFormattedUnits } from './Utility/formatters';
+import { commonChartOptions, commonDatalabelsOptions, commonYAxisOptions } from './chartOptions';
 
 export const pyramidChartOptions = (view: View, locale: string): Options => {
     const categories = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
     const maxValue = Math.max(...view.series.map(s => Math.max(...s.series.map(dataCell => dataCell.value ?? 0))));
-    const theme = defaultTheme(locale);
-    const dataValueLabelStyle = theme.tooltip?.style;
     return (
         {
-            accessibility: {
-                point: {
-                    descriptionFormatter: getScreenReaderFormatterCallbackFunction(view, locale)
-                }
-            },
+            ...commonChartOptions(view, locale),
             chart: { type: 'bar' },
-            title: { text: view.header[locale] },
-            subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
             xAxis: {
                 categories: categories,
                 reversed: false,
@@ -29,6 +20,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                 }
             },
             yAxis: {
+                ...commonYAxisOptions,
                 min: -Math.abs(maxValue),
                 max: Math.abs(maxValue),
                 title: {
@@ -45,14 +37,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                     formatter: function () {
                         return Math.abs(this.value as number).toLocaleString(locale);
                     }
-                },
-                plotLines: [
-                    {
-                        value: 0,
-                        color: '#000',
-                        width: 1
-                    }
-                ]
+                }
             },
             legend: {
                 enabled: true,
@@ -70,18 +55,13 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                     }))
                 })
             }),
-            credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` },
             plotOptions: {
                 series: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: view.visualizationSettings.showDataPoints,
-                        style: dataValueLabelStyle
+                        ...commonDatalabelsOptions
                     }
                 }
-            },
-            tooltip: {
-                formatter: getToolTipFormatterFunction(view, locale)
             },
             exporting: {
                 enabled: false

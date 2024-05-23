@@ -1,26 +1,17 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { getDataLabelShorteningFunction, getFormattedUnits, getScreenReaderFormatterCallbackFunction, getToolTipFormatterFunction } from './Utility/formatters';
-import Translations from '../conversion/translations';
+import { getDataLabelShorteningFunction, getFormattedUnits } from './Utility/formatters';
+import { commonChartOptions } from './chartOptions';
 
 export const pieChartOptions = (view: View, locale: string): Options => ({
-    accessibility: {
-        point: {
-            descriptionFormatter: getScreenReaderFormatterCallbackFunction(view, locale)
-        }
-    },
+    ...commonChartOptions(view, locale),
     chart: { type: 'pie' },
-    title: { text: view.header[locale] },
-    subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
     plotOptions: {
         pie: {
             dataLabels: {
                 formatter: getDataLabelShorteningFunction(view.visualizationSettings.showDataPoints ?? false)
             }
         }
-    },
-    tooltip: {
-        formatter: getToolTipFormatterFunction(view, locale)
     },
     series: view.series.map(s => ({
         animation: false,
@@ -33,5 +24,4 @@ export const pieChartOptions = (view: View, locale: string): Options => ({
             custom: { preliminary: data.preliminary }
         }))
     })),
-    credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` }
 });
