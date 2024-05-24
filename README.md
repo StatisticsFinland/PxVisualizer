@@ -10,22 +10,20 @@ in the [HighCharts shop](https://shop.highsoft.com/?utm_source=npmjs&utm_medium=
 ## Implementation
 Implementing a visualization requires importing either the Chart or drawChart component from the PxVisualizer package and passing required and optional props to it. The Chart component will then render the visualization based on the provided data.
 
-Example of a minimal implementation in React:
+### React
 ````
 import { Chart } from '@statisticsfinland/pxvisualizer';
 <Chart locale={[string]} pxGraphData={[visualizationResponse]} />
 ````
 
-Example of implementation without React:
+- locale: string - Code of the locale to be used in the visualization. The provided locale code must match with the available language codes in the PxVisualizer translations.
+- pxGraphData: object - Visualization response data from the PxGraf API. More details about the visualization response can be found below. The object must implement the IQueryVisualizationResponse interface. A documentation for building this object can be found from PxGraf documentation [here](https://github.com/StatisticsFinland/PxGraf/blob/dev/docs/VISUALIZATION_RESPONSE.md)
+### Non-React implementation
+
 ````
 import { drawChart } from '@statisticsfinland/pxvisualizer';
 drawChart(container, pxGraphData, locale, selectedValueCodes);>
 ````
-
-### Required props
-- locale: string - Code of the locale to be used in the visualization. The provided locale code must match with the available language codes in the PxVisualizer translations.
-- pxGraphData: object - Visualization response data from the PxGraf API. More details about the visualization response can be found below. The object must implement the IQueryVisualizationResponse interface. A documentation for building this object can be found from PxGraf documentation [here](https://github.com/StatisticsFinland/PxGraf/blob/dev/docs/VISUALIZATION_RESPONSE.md)
-#### Non-React implementation
 - container: string - ID of the container element where the visualization will be drawn.
 - selectedValueCodes: [key: string]: string[] - Dictionary of the currently selected value codes for selectable variables.
 
