@@ -15,7 +15,7 @@ export const drawChart = (
     container: string,
     pxGraphData: IQueryVisualizationResponse,
     locale: string,
-    selectedValueCodes: TVariableSelections | null = null) =>
+    selectedVariableCodes: TVariableSelections | null = null) =>
 {
     const validLocale = formatLocale(locale);
 
@@ -26,7 +26,7 @@ export const drawChart = (
         highchartsOfflineExporting(Highcharts);
     }
     Highcharts.setOptions(defaultTheme(validLocale));
-    const variableSelections = extractSelectableVariableValues(pxGraphData.selectableVariableCodes, pxGraphData.metaData, pxGraphData.visualizationSettings.defaultSelectableVariableCodes, selectedValueCodes);
+    const variableSelections = extractSelectableVariableValues(pxGraphData.selectableVariableCodes, pxGraphData.metaData, pxGraphData.visualizationSettings.defaultSelectableVariableCodes, selectedVariableCodes);
     const view = convertPxGrafResponseToView(pxGraphData, variableSelections);
     const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view);
 

@@ -22,10 +22,10 @@ import { Chart } from '@statisticsfinland/pxvisualizer';
 
 ````
 import { drawChart } from '@statisticsfinland/pxvisualizer';
-drawChart(container, pxGraphData, locale, selectedValueCodes);>
+drawChart(container, pxGraphData, locale, selectedVariableCodes);>
 ````
 - container: string - ID of the container element where the visualization will be drawn.
-- selectedValueCodes: [key: string]: string[] - Dictionary of the currently selected value codes for selectable variables.
+- selectedVariableCodes: [key: string]: string[] - Dictionary of the currently selected value codes for selectable variables.
 
 ### Optional props
 - selectedVariableCodes: [key: string]: string[] - Dictionary of the currently selected value codes for selectable variables.
