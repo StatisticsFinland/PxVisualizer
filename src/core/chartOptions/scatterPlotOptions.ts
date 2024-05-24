@@ -1,23 +1,17 @@
 import { Options } from 'highcharts';
 import { IDataSeries, View } from "../types/view";
-import Translations from '../conversion/translations';
-import { getScatterPlotScreenReaderFormatterCallbackFunction, getScatterPlotTooltipFormatterFunction } from './Utility/formatters';
+import { getScatterPlotTooltipFormatterFunction } from './Utility/formatters';
+import { commonChartOptions, commonYAxisOptions } from './chartOptions';
 
 export const scatterPlotOptions = (view: View, locale: string): Options => {
     const X_INDEX = 1; const Y_INDEX = 0;
     const cutValueAxis = !view.visualizationSettings?.cutValueAxis ? 0 : undefined;
-    return ({
-        accessibility: {
-            point: {
-                descriptionFormatter: getScatterPlotScreenReaderFormatterCallbackFunction(view, locale)
-            }
-        },
+    return {
+        ...commonChartOptions(view, locale),
         chart: { type: 'scatter' },
-        title: { text: view.header[locale] },
-        subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
         xAxis: {
             softMin: 0,
-            softMax: 0, 
+            softMax: 0,
             title: {
                 text: view.series[X_INDEX].rowNameGroup.map(s => s[locale]).join(', ')
             },
@@ -32,20 +26,13 @@ export const scatterPlotOptions = (view: View, locale: string): Options => {
             ]
         },
         yAxis: {
+            ...commonYAxisOptions,
             softMin: cutValueAxis,
-            softMax: cutValueAxis,           
+            softMax: cutValueAxis,
             title: {
-                text:  view.series[Y_INDEX].rowNameGroup.map(s => s[locale]).join(', ')
-            },
-            plotLines: [
-                {
-                    value: 0,
-                    color: '#000',
-                    width: 1
-                }
-            ]
+                text: view.series[Y_INDEX].rowNameGroup.map(s => s[locale]).join(', ')
+            }
         },
-        credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` },
         series: [
             {
                 animation: false,
@@ -75,8 +62,8 @@ export const scatterPlotOptions = (view: View, locale: string): Options => {
         exporting: {
             enabled: false
         }
-    })
-};
+    };
+}
 
 const tooltipPointFormat = (series: IDataSeries[], locale: string) => `
     ${series[1].rowNameGroup.map(s => s[locale]).join(', ')}: {point.x}<br/>
