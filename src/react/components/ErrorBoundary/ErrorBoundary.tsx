@@ -24,7 +24,8 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
     }
   
     render() {
-      if (this.state.hasError) {
+        if (this.state.hasError) {
+            console.log('ErrorBoundary: hasError');
         return this.props.fallback;
       }
   

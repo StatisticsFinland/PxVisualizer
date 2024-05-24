@@ -7,7 +7,6 @@ import { commonBasicVerticalBarChartOptions, commonYAxisOptions, commonDatalabel
 export const basicVerticalBarChartOptions = (view: View, locale: string): Options => {
     return {
         ...commonBasicVerticalBarChartOptions(view, locale),
-        series: [],
         yAxis: {
             ...commonYAxisOptions,
             softMin: 0,
