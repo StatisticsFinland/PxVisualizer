@@ -22,7 +22,7 @@ import { Chart } from '@statisticsfinland/pxvisualizer';
 
 ````
 import { drawChart } from '@statisticsfinland/pxvisualizer';
-drawChart(container, pxGraphData, locale, selectedVariableCodes);>
+drawChart(container, pxGraphData, locale);>
 ````
 - container: string - ID of the container element where the visualization will be drawn.
 
