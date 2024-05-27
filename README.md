@@ -7,7 +7,58 @@ The software is provided as is and Statistics Finland will **not** offer any sup
 **IMPORTANT:** PxVisualizer package uses HighCharts for rendering the visualizations. Please note that commercial use of HighCharts requires a commercial license. Non-commercial use may qualify for a free educational or personal license. Read more about licenses 
 in the [HighCharts shop](https://shop.highsoft.com/?utm_source=npmjs&utm_medium=referral&utm_campaign=highchartspage&utm_content=licenseinfo).
 
-## Getting Started
+## Implementation
+Implementing a visualization requires importing either the Chart or drawChart component from the PxVisualizer package and passing required and optional props to it. The Chart component will then render the visualization based on the provided data.
+
+### React
+````
+import { Chart } from '@statisticsfinland/pxvisualizer';
+<Chart locale={[string]} pxGraphData={[visualizationResponse]} />
+````
+
+- locale: string - Code of the locale to be used in the visualization. The provided locale code must match with the available language codes in the PxVisualizer translations.
+- pxGraphData: object - Visualization response data from the PxGraf API. More details about the visualization response can be found below. The object must implement the IQueryVisualizationResponse interface. A documentation for building this object can be found from PxGraf documentation [here](https://github.com/StatisticsFinland/PxGraf/blob/dev/docs/VISUALIZATION_RESPONSE.md)
+### Non-React implementation
+
+````
+import { drawChart } from '@statisticsfinland/pxvisualizer';
+drawChart(container, pxGraphData, locale);>
+````
+- container: string - ID of the container element where the visualization will be drawn.
+
+### Optional props
+- selectedVariableCodes: [key: string]: string[] - Dictionary of the currently selected value codes for selectable variables.
+- showContextMenu: boolean - Flag to show or hide the context menu in the visualization.
+- menuItemDefinitions: object[] - Definitions for custom context menu items. These can be either links or run custom functions. The provided object must implement either the IFunctionalMenuItem or ILinkMenuItem interface.
+- menuIconInheritColor: boolean - Flag to inherit the color of the context menu icons from the parent element.
+- showTableTitles: boolean - Flag to show or hide the titles in the table view.
+- showTableUnits: boolean - Flag to show or hide the units in the table view.
+- showTableSources: boolean - Flag to show or hide the sources in the table view.
+- footnote: string - Custom footnote to be displayed in the visualization.
+
+### IFunctionalMenuItem interface
+IFunctionalMenuItem interface is used to define custom context menu items that execute a function when clicked. The interface extends IBaseMenuItem interface and contains the following property:
+- onClick: () => void - Defines the function to be executed when the menu item is clicked.
+
+### ILinkMenuItem interface
+- url: string - URL to be opened when the menu item is clicked.
+- isExternal (optional): boolean - Flag to indicate if the URL is external.
+- openNewTab (optional): boolean - Flag to open the URL in a new tab.
+
+#### IBaseMenuItem interface
+- text: string - Text to be displayed in the menu item.
+- prefixIcon (optional): TIcon | Exclude<React.ReactNode, string> - Icon to be displayed before the text. Must either implement the TIcon type or be a valid React node.
+- suffixIcon (optional): TIcon | Exclude<React.ReactNode, string> - Icon to be displayed after the text. Must either implement the TIcon type or be a valid React node.
+
+#### TIcon type
+- TIcon type defines the type of an icon. It is a string that must be one of the following values:
+    - 'Bars'
+    - 'Times'
+    - 'Download'
+    - 'ExternalLink'
+    - 'Copy'
+
+## Development
 1.  Installation process
     - npm run build to build a working package, or npm run dev if you intend to develop the package using npm link
     - run npm link in the root folder
@@ -25,7 +76,7 @@ in the [HighCharts shop](https://shop.highsoft.com/?utm_source=npmjs&utm_medium=
 3.	Software dependencies
     - check package.json for dependencies
 
-## Structure
+## Project Structure
 1.  react
     - contains react specific files, mainly components that can be used in a specific react based projects for visualizing pxgraf data. Depends on React and core folder functionality.
 2.  core
