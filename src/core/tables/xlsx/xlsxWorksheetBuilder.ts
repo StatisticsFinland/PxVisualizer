@@ -1,38 +1,44 @@
 import { worksheetProperties } from "./xlsxPropertyConstants";
+import { TCell } from "./xlsxTypes";
 
-export const buildXMLSheet = (cols: IColumn[], rows: ICell[][]) => {
-    const xmlColumns = buildColumns(cols);
+export const buildXMLSheet = (rows: TCell[][]) : string => {
+    const xmlColumns = buildColumns(Math.max(...rows.map(r => r.length)));
     const xmlRows = buildRows(rows);
     return wrapInSheetTemplate(xmlColumns, xmlRows);
 };
 
 // Columns format from: https://msdn.microsoft.com/en-us/library/office/documentformat.openxml.spreadsheet.columns
 // Column format from: https://msdn.microsoft.com/en-us/library/office/documentformat.openxml.spreadsheet.column
-function buildColumns(cols: IColumn[])
+function buildColumns(numOfcols: number) : string
 {
-    const result: string[] = cols && cols.map((col, colIndex) =>
-        `<col min="${colIndex + 1}" max="${colIndex + 1}" width="${col.pixelWidth}" style="${col.style}" />`);
-    return result ? `<cols>${result}</cols>` : '';
+    const cols: string[] = [];
+    for(let i = 1; i <= numOfcols; i++ ) {
+        cols.push(`<col min="${i}" max="${i}" width="20"/>`)
+    }
+    return cols ? `<cols>${cols}</cols>` : '';
 };
 
 // Row format from: https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.spreadsheet.row
-function buildRows(rows: ICell[][])
+function buildRows(rows: TCell[][])
 {
     return rows.map((row, rowIndex) => {
         const rowCells = row
-        .map((cell, cellIndex) => buildCell(cell, cellIndex, rowIndex + 1))
-        .join('');
+            .map((cell, cellIndex) => buildCell(cell, cellIndex, rowIndex + 1))
+            .filter(cell => cell !== null)
+            .join('');
         return `<row r="${rowIndex + 1}">${rowCells}</row>`;
     }).join('');
 }
 
 // Cell format from: https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.spreadsheet.cell
-function buildCell(cell: ICell, columnNumber: number, rowNumber: number)
+function buildCell(cell: TCell, columnNumber: number, rowNumber: number) : string | null
 {    
+    if (cell === null) return null;
+
     return (
-        typeof(cell.value) === 'string'
-        ? `<c r="${getColumnLetter(columnNumber)}${rowNumber}" t="inlineStr"><is><t>${cell.value}</t></is></c>`
-        : `<c r="$${getColumnLetter(columnNumber)}${rowNumber}"><v>${cell.value}</v></c>`
+        typeof(cell) === 'string'
+        ? `<c r="${getColumnLetter(columnNumber)}${rowNumber}" t="inlineStr"><is><t>${cell}</t></is></c>`
+        : `<c r="$${getColumnLetter(columnNumber)}${rowNumber}"><v>${cell}</v></c>`
     );
 }
 

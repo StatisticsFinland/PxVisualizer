@@ -1,11 +1,34 @@
 import { FlateCallback, strToU8, zip } from 'fflate';
-import FileSaver from 'file-saver';
 import { buildXMLSheet } from './xlsxWorksheetBuilder';
 import { contentTypesTemplate, relationsTemplate, workbookRelationsTemplate, workbookTemplate } from './xlsxTemplates';
+import { View } from '../../types/view';
+import { buildCellRows } from './xlsxDataBuilder';
+import Translations from '../../conversion/translations';
+import { generateFilename } from '../exportingUtils';
 
-export async function buildMinimalXlsx(cols: IColumn[], rows: ICell[][], filename: string) {
+export const viewToDownloadXLSOption = (view: View, locale: string): { onClick: () => Promise<void>, text: string } => ({
+    onClick: async () => {
+        const blob = await buildMinimalXlsxBlobAsync(view, locale);
 
-    const worksheet = buildXMLSheet(cols, rows);
+        // Create download link and click it
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', generateFilename(view.tableReferenceName) + '.xlsx');
+
+        // Required for FF
+        document.body.appendChild(link);
+
+        // This will download the CSV file
+        link.click();
+    },
+    text: Translations.downloadXLSX[locale],
+});
+
+export async function buildMinimalXlsxBlobAsync(view : View, locale: string) : Promise<Blob> {
+
+    const rows = buildCellRows(view, locale);
+    const worksheet = buildXMLSheet(rows);
 
     const content = {
         xl: {
@@ -17,9 +40,9 @@ export async function buildMinimalXlsx(cols: IColumn[], rows: ICell[][], filenam
         '[Content_Types].xml': strToU8(contentTypesTemplate),
     };
 
-    const blob_1 = await new Promise<Blob>((resolve, reject) => {
-        const callback: FlateCallback = (err_2, data) => {
-            if (err_2) return reject(err_2);
+    return new Promise<Blob>((resolve, reject) => {
+        const callback: FlateCallback = (err, data) => {
+            if (err) return reject(err);
             const blob = new Blob(
                 [data.buffer],
                 { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
@@ -28,5 +51,4 @@ export async function buildMinimalXlsx(cols: IColumn[], rows: ICell[][], filenam
         };
         zip(content, callback);
     });
-    return FileSaver.saveAs(blob_1, `${filename}.xlsx`);
 };
