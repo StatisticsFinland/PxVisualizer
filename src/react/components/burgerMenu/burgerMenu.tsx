@@ -6,9 +6,9 @@ import { View } from "../../../core/types/view";
 import Translations from "../../../core/conversion/translations";
 import Icon from "../icon/icon";
 import { viewToDownloadCSVOption } from "../../../core/tables/csvTable";
-import { viewToDownloadXLSOption } from "../../../core/tables/xlsxTable";
 import { generateFilename } from "../../../core/tables/exportingUtils";
 import { TIcon } from "../../../core/types/icon";
+import { viewToDownloadXLSOption } from "../../../core/tables/xlsx/xlsxBuilder";
 
 const BurgerWrapper = styled.div`
     width: 2.5rem;
