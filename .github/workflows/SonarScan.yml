@@ -21,11 +21,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Test with coverage and generate report
+        run: npm run test:ci
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -D sonar.organization=statisticsfinland-github
-            -D sonar.projectKey=StatisticsFinland_PxVisualizer
