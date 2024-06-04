@@ -9,3 +9,4 @@ tmp*
 *.tgz
 package
 reports
+doctor-storybook.log

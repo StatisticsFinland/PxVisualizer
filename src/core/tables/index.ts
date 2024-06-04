@@ -3,5 +3,5 @@ export { renderHtmlTable } from "./htmlTable";
 export { generateCsv } from "./csvTable";
 export { viewToDownloadCSVOption } from "./csvTable";
 
-export { generateExcel } from "./xlsxTable";
-export { viewToDownloadXLSOption } from "./xlsxTable";
+export { buildMinimalXlsxBlobAsync } from "./xlsx/xlsxBuilder"
+export { viewToDownloadXLSOption } from "./xlsx/xlsxBuilder";

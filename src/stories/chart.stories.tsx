@@ -1,39 +1,95 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Chart } from '../react';
-import { VERTICAL_BAR_CHART, VERTICAL_BAR_CHART_WITH_PRELIMINARY_DATA, VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS, VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES, VERTICAL_BAR_CHART_WITH_SELECTABLES } from './fixtures/verticalBarChart';
-import { GROUP_HORIZONTAL_BAR_CHART, GROUP_HORIZONTAL_BAR_CHART_WITH_ONLY_NEGATIVE_VALUES, GROUP_HORIZONTAL_BAR_CHART_WITH_SELECTABLES, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING } from './fixtures/groupHorizontalBarChart';
-import { HORIZONTAL_BAR_CHART_ASCENDING, HORIZONTAL_BAR_WITH_LONG_NUMERIC_LABELS, SELECTABLE_HORIZONTAL_BAR_CHART } from './fixtures/horizontalBarChart';
-import { GROUP_VERTICAL_BAR_CHART, GROUP_VERTICAL_BAR_CHART_WITH_SELECTABLES, GROUP_VERTICAL_BAR_CHART_WITH_SELECTABLES_PIVOTED } from './fixtures/groupVerticalBarChart';
-import { PIE_CHART_SELECTABLE_TIME } from './fixtures/pieChart';
-import { LONG_STACKED_VERTICAL_BAR_CHART, STACKED_VERTICAL_BAR_CHART, STACKED_VERTICAL_BAR_CHART_WITH_SELECTABLES } from './fixtures/stackedVerticalBarChart';
-import { STACKED_HORIZONTAL_BAR_CHART, STACKED_HORIZONTAL_BAR_CHART_PIVOTED_WITH_SELECTABLES, STACKED_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './fixtures/stackedHorizontalBarChart';
-import { PERCENT_VERTICAL_BAR_CHART, PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES } from './fixtures/percentVerticalBarChart';
-import { PERCENT_HORIZONTAL_BAR_CHART, PERCENT_HORIZONTAL_BAR_CHART_PIVOTED_WITH_SELECTABLES, PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './fixtures/percentHorizontalBarChart';
-import { PYRAMID_CHART, PYRAMID_CHART_WITH_SELECTABLES, PYRAMID_CHART_LARGE_DATASET } from './fixtures/pyramidChart';
-import { SCATTER_PLOT, SCATTER_PLOT_WITH_SELECTABLES } from './fixtures/scatterPlot';
-import { LINE_CHART_WITH_COMBINATION_SERIES, LINE_CHART_WITH_HALF_YEAR_SERIES, LINE_CHART_WITH_MONTH_SERIES, LINE_CHART_WITH_MULTISELECTABLE_VARIABLE, LINE_CHART_WITH_NEGATIVE_VALUES, LINE_CHART_WITH_NON_TIME_ORDINAL, LINE_CHART_WITH_ORDINAL_VAR, LINE_CHART_WITH_QUARTER_SERIES, LINE_CHART_WITH_YEAR_SERIES } from './fixtures/lineChart';
-import { TABLE_WITH_ONE_CELL, TABLE_WITH_ONLY_COLUMN_VARIABLES, TABLE_WITH_ONLY_ROW_VARIABLES, TABLE_WITH_ROW_AND_COLUMN_VARIABLES } from './fixtures/table';
-import { STACKED_VERTICAL_BAR_CHART_WITH_NOMINAL_AXIS_LONG_LABELS } from '../core/conversion/TestFixtures/stackedVerticalBarChart';
-import { GROUP_VERTICAL_BAR_CHART_WITH_NOMINAL_AXIS_EXTRA_LONG_LABELS } from '../core/conversion/TestFixtures/groupVerticalBarChart';
+import { Chart } from "../react";
+import {
+  VERTICAL_BAR_CHART,
+  VERTICAL_BAR_CHART_WITH_PRELIMINARY_DATA,
+  VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS,
+  VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES,
+  VERTICAL_BAR_CHART_WITH_SELECTABLES,
+} from "./fixtures/verticalBarChart";
+import {
+  GROUP_HORIZONTAL_BAR_CHART,
+  GROUP_HORIZONTAL_BAR_CHART_WITH_ONLY_NEGATIVE_VALUES,
+  GROUP_HORIZONTAL_BAR_CHART_WITH_SELECTABLES,
+  GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,
+} from "./fixtures/groupHorizontalBarChart";
+import {
+  HORIZONTAL_BAR_CHART_ASCENDING,
+  HORIZONTAL_BAR_WITH_LONG_NUMERIC_LABELS,
+  SELECTABLE_HORIZONTAL_BAR_CHART,
+} from "./fixtures/horizontalBarChart";
+import {
+  GROUP_VERTICAL_BAR_CHART,
+  GROUP_VERTICAL_BAR_CHART_WITH_SELECTABLES,
+  GROUP_VERTICAL_BAR_CHART_WITH_SELECTABLES_PIVOTED,
+} from "./fixtures/groupVerticalBarChart";
+import { PIE_CHART_SELECTABLE_TIME } from "./fixtures/pieChart";
+import {
+  LONG_STACKED_VERTICAL_BAR_CHART,
+  STACKED_VERTICAL_BAR_CHART,
+  STACKED_VERTICAL_BAR_CHART_WITH_SELECTABLES,
+} from "./fixtures/stackedVerticalBarChart";
+import {
+  STACKED_HORIZONTAL_BAR_CHART,
+  STACKED_HORIZONTAL_BAR_CHART_PIVOTED_WITH_SELECTABLES,
+  STACKED_HORIZONTAL_BAR_CHART_WITH_SELECTABLES,
+} from "./fixtures/stackedHorizontalBarChart";
+import {
+  PERCENT_VERTICAL_BAR_CHART,
+  PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES,
+} from "./fixtures/percentVerticalBarChart";
+import {
+  PERCENT_HORIZONTAL_BAR_CHART,
+  PERCENT_HORIZONTAL_BAR_CHART_PIVOTED_WITH_SELECTABLES,
+  PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES,
+} from "./fixtures/percentHorizontalBarChart";
+import {
+  PYRAMID_CHART,
+  PYRAMID_CHART_WITH_SELECTABLES,
+  PYRAMID_CHART_LARGE_DATASET,
+} from "./fixtures/pyramidChart";
+import {
+  SCATTER_PLOT,
+  SCATTER_PLOT_WITH_SELECTABLES,
+} from "./fixtures/scatterPlot";
+import {
+  LINE_CHART_WITH_COMBINATION_SERIES,
+  LINE_CHART_WITH_HALF_YEAR_SERIES,
+  LINE_CHART_WITH_MONTH_SERIES,
+  LINE_CHART_WITH_MULTISELECTABLE_VARIABLE,
+  LINE_CHART_WITH_NEGATIVE_VALUES,
+  LINE_CHART_WITH_NON_TIME_ORDINAL,
+  LINE_CHART_WITH_ORDINAL_VAR,
+  LINE_CHART_WITH_QUARTER_SERIES,
+  LINE_CHART_WITH_YEAR_SERIES,
+} from "./fixtures/lineChart";
+import {
+  TABLE_WITH_ONE_CELL,
+  TABLE_WITH_ONLY_COLUMN_VARIABLES,
+  TABLE_WITH_ONLY_ROW_VARIABLES,
+  TABLE_WITH_ROW_AND_COLUMN_VARIABLES,
+} from "./fixtures/table";
+import { STACKED_VERTICAL_BAR_CHART_WITH_NOMINAL_AXIS_LONG_LABELS } from "../core/conversion/TestFixtures/stackedVerticalBarChart";
+import { GROUP_VERTICAL_BAR_CHART_WITH_NOMINAL_AXIS_EXTRA_LONG_LABELS } from "../core/conversion/TestFixtures/groupVerticalBarChart";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Chart',
-    component: Chart,
-    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {
-      locale: { type: 'string', defaultValue: 'fi' },
-      showContextMenu: { type: 'boolean', defaultValue: true },
-      showTableTitles: { type: 'boolean', defaultValue: undefined },
-      showTableUnits: { type: 'boolean', defaultValue: undefined },
-      showTableSources: { type: 'boolean', defaultValue: undefined },
-      footnote: { type: 'string', defaultValue: ''},
-    },
+  title: "Chart",
+  component: Chart,
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  argTypes: {
+    locale: { type: "string", defaultValue: "fi" },
+    showContextMenu: { type: "boolean", defaultValue: true },
+    showTableTitles: { type: "boolean", defaultValue: undefined },
+    showTableUnits: { type: "boolean", defaultValue: undefined },
+    showTableSources: { type: "boolean", defaultValue: undefined },
+    footnote: { type: "string", defaultValue: "" },
+  },
 } as ComponentMeta<typeof Chart>;
-  
-  // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Chart> = (args) => <Chart {...args} />;
 
 export const VerticalBarChart = Template.bind({});
@@ -106,7 +162,9 @@ StackedHorizontalBarChart.args = STACKED_HORIZONTAL_BAR_CHART;
 export const StackedHorizontalBarChartWithSelectables = Template.bind({});
 StackedHorizontalBarChartWithSelectables.args = STACKED_HORIZONTAL_BAR_CHART_WITH_SELECTABLES;
 
-export const StackedHorizontalBarChartPivotedWithSelectables = Template.bind({});
+export const StackedHorizontalBarChartPivotedWithSelectables = Template.bind(
+  {},
+);
 StackedHorizontalBarChartPivotedWithSelectables.args = STACKED_HORIZONTAL_BAR_CHART_PIVOTED_WITH_SELECTABLES;
 
 export const PercentHorizontalBarChart = Template.bind({});
@@ -115,7 +173,9 @@ PercentHorizontalBarChart.args = PERCENT_HORIZONTAL_BAR_CHART;
 export const PercentHorizontalBarChartWithSelectables = Template.bind({});
 PercentHorizontalBarChartWithSelectables.args = PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES;
 
-export const PercentHorizontalBarChartPivotedWithSelectables = Template.bind({});
+export const PercentHorizontalBarChartPivotedWithSelectables = Template.bind(
+  {},
+);
 PercentHorizontalBarChartPivotedWithSelectables.args = PERCENT_HORIZONTAL_BAR_CHART_PIVOTED_WITH_SELECTABLES;
 
 export const GroupVerticalBarChart = Template.bind({});
