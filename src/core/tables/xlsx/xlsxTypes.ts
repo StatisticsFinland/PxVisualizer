@@ -1,0 +1,1 @@
+export type TCell = string | number | null

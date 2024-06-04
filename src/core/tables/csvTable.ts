@@ -3,7 +3,7 @@ import Translations from "../conversion/translations";
 import { convertToRelative } from "../conversion/viewUtils";
 import { EVisualizationType } from "../types";
 import { View } from "../types/view";
-import { BlobDataType, generateBlob, generateFilename } from "./exportingUtils";
+import { generateFilename } from "./exportingUtils";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 
 export const generateCsv = (view: View, locale: string): string => {
@@ -59,7 +59,7 @@ export const generateCsv = (view: View, locale: string): string => {
 export const viewToDownloadCSVOption = (view: View, locale: string): { onClick: () => void, text: string } => ({
     onClick: () => {
         const csv = generateCsv(view, locale);
-        const blob = generateBlob(csv, BlobDataType.Csv);
+        const blob = generateCsvBlob(csv);
 
         // Create download link and click it
         const url = URL.createObjectURL(blob);
@@ -75,6 +75,11 @@ export const viewToDownloadCSVOption = (view: View, locale: string): { onClick: 
     },
     text: Translations.downloadCSV[locale],
 });
+
+function generateCsvBlob(data: string): Blob {
+    const BOM = '\uFEFF';
+    return new Blob([BOM, data], { type: 'text/csv;charset=utf-8;' });
+}
 
 function buildCSVRow(data: string[], startIndex: number, rowLen: number, delimiter: string, lineBrak: string = ''): string {
     let csv = '';
