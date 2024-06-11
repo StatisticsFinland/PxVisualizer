@@ -4,6 +4,7 @@ export const ASCENDING = 'ascending';
 export const DESCENDING = 'descending';
 export const SUM = 'sum';
 export const NO_SORTING = 'no_sorting';
+export const REVERSED = 'reversed';
 
 export const ASCENDING_SORTING_FUNC = (a : IDataCell, b: IDataCell) => (a.value ?? 0) - (b.value ?? 0);
 export const DESCENDING_SORTING_FUNC = (a: IDataCell, b: IDataCell) => (b.value ?? 0) - (a.value ?? 0);
@@ -31,6 +32,13 @@ export function sortViewBasedOnSum(view: View, sortingFunc: (a: IDataCell, b: ID
             };
         });
     return reorderView(view, sumArray, sortingFunc);
+}
+
+export function reverseViewOrder(view: View) {
+    return {
+        ...view,
+        series: [...view.series].reverse()
+    };
 }
 
 function get1DSortingIndexBuffer(series: IDataCell[], sortingFunc: (a: IDataCell, b: IDataCell) => number): number[] {
