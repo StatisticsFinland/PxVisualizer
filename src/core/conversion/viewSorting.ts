@@ -35,9 +35,16 @@ export function sortViewBasedOnSum(view: View, sortingFunc: (a: IDataCell, b: ID
 }
 
 export function reverseViewOrder(view: View) {
+    const reversedSeries = [...view.series].reverse().map(s => ({
+        ...s,
+        series: [...s.series].reverse(),
+        rowNameGroup: [...s.rowNameGroup].reverse()
+    }));
+
     return {
         ...view,
-        series: [...view.series].reverse()
+        series: reversedSeries,
+        columnNameGroups: [...view.columnNameGroups].reverse()
     };
 }
 

@@ -13,7 +13,7 @@ import {
     PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES_VIEW
 } from './TestFixtures/percentVerticalBarChart';
 import { SELECTABLE_TABLE_WITH_MISSING_DATA } from './TestFixtures/tableChart';
-import { ASCENDING, DESCENDING, SUM, REVERSED } from './viewSorting';
+import { ASCENDING, DESCENDING, SUM, REVERSED, NO_SORTING } from './viewSorting';
 import { buildSeries, convertPxGrafResponseToView, convertToRelative } from './viewUtils';
 import { v4 as uuidV4 } from 'uuid'
 
@@ -102,10 +102,17 @@ describe('series metadata', () => {
             ]
         },
         {
-            sorting: REVERSED,
+            sorting: NO_SORTING,
             expectedSeries: [
                 { value: 1.1, precision: 1, preliminary: false },
                 { value: 2.11, precision: 2, preliminary: false }
+            ]
+        },
+        {
+            sorting: REVERSED,
+            expectedSeries: [
+                { value: 2.11, precision: 2, preliminary: false },
+                { value: 1.1, precision: 1, preliminary: false }
             ]
         }
         ])('returns sorted metadata with view', ({
@@ -642,9 +649,9 @@ describe('horizontal bar chart view conversion', () => {
             columnNameGroups: [
                 [
                     {
-                        "en": "Carbon dioxide (CO2)",
-                        "fi": "Hiilidioksidi (CO2)",
-                        "sv": "Koldioksid (CO2)",
+                        "en": "Nitrous oxide (N2O)",
+                        "fi": "Dityppioksidi (N2O)",
+                        "sv": "Dikväveoksid (N2O)",
                     },
                 ],
                 [
@@ -656,9 +663,9 @@ describe('horizontal bar chart view conversion', () => {
                 ],
                 [
                     {
-                        "en": "Nitrous oxide (N2O)",
-                        "fi": "Dityppioksidi (N2O)",
-                        "sv": "Dikväveoksid (N2O)",
+                        "en": "Carbon dioxide (CO2)",
+                        "fi": "Hiilidioksidi (CO2)",
+                        "sv": "Koldioksid (CO2)",
                     },
                 ],
             ],
@@ -684,9 +691,9 @@ describe('horizontal bar chart view conversion', () => {
                         },
                     ],
                     series: [
-                        { value: 748, precision: 0, preliminary: false },
+                        { value: 35, precision: 0, preliminary: false },
                         { value: 155, precision: 0, preliminary: false },
-                        { value: 35, precision: 0, preliminary: false }
+                        { value: 748, precision: 0, preliminary: false }
                     ]
                 },
                 {
@@ -698,9 +705,9 @@ describe('horizontal bar chart view conversion', () => {
                         },
                     ],
                     series: [
-                        { value: 9845, precision: 0, preliminary: false },
+                        { value: 82, precision: 0, preliminary: false },
                         { value: 8, precision: 0, preliminary: false },
-                        { value: 82, precision: 0, preliminary: false }
+                        { value: 9845, precision: 0, preliminary: false }
                     ]
                 },
                 {
@@ -712,9 +719,9 @@ describe('horizontal bar chart view conversion', () => {
                         },
                     ],
                     series: [
-                        { value: 86, precision: 0, preliminary: false },
+                        { value: 1, precision: 0, preliminary: false },
                         { value: 0, precision: 0, preliminary: false },
-                        { value: 1, precision: 0, preliminary: false }
+                        { value: 86, precision: 0, preliminary: false }
                     ]
                 },
             ],
