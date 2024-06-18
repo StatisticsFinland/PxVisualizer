@@ -639,6 +639,17 @@ export const GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING: { pxGraphData: IQueryV
     selectedVariableCodes: undefined
 };
 
+export const GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: { [key: string]: string[] } | undefined } = {
+    pxGraphData: {
+        ...GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING.pxGraphData,
+        visualizationSettings: {
+            ...GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING.pxGraphData.visualizationSettings,
+            sorting: "reversed"
+        }
+    },
+    selectedVariableCodes: undefined
+};
+
 export const GROUP_HORIZONTAL_BAR_CHART_WITH_ONLY_NEGATIVE_VALUES: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: { [key: string]: string[] } | undefined } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
