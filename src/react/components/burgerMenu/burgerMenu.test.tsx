@@ -4,6 +4,7 @@ import { HORIZONTAL_BAR_CHART_ASCENDING } from "../../../core/conversion/TestFix
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
 import React from "react";
 import 'jest-styled-components';
+import { HighchartsReactRefObject } from "highcharts-react-official";
 
 describe('burgerMenu, rendering tests', () => {
     it('Should render', () => {
@@ -14,7 +15,7 @@ describe('burgerMenu, rendering tests', () => {
 });
 
 describe('burgerMenu, functional tests', () => {
-    it('Should open the menu with correct menu elements', async() => {
+    it('Should open the menu with correct menu elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
         render(<BurgerMenu locale="fi" viewData={view} />);
         act(() => {
@@ -27,9 +28,9 @@ describe('burgerMenu, functional tests', () => {
         });
     });
 
-    it('Should open the menu with correct custom elements', async() => {
+    it('Should open the menu with correct custom elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{text: 'Foo', onClick: jest.fn()}, {text: 'Bar', onClick: jest.fn()}, {text: 'Baz', url: 'foobar.com', isExternal: true}, {text: 'Baz2', url: 'foobar2.com', isExternal: false}]} />);
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Foo', onClick: jest.fn() }, { text: 'Bar', onClick: jest.fn() }, { text: 'Baz', url: 'foobar.com', isExternal: true }, { text: 'Baz2', url: 'foobar2.com', isExternal: false }]} />);
         act(() => {
             screen.getByRole('button').click();
         });
@@ -46,11 +47,11 @@ describe('burgerMenu, functional tests', () => {
         });
     });
 
-    it('Should invoke the custom function when clicked', async() => {
+    it('Should invoke the custom function when clicked', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
         const mockFunction = jest.fn();
         const btnText = 'Foo';
-        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{text: btnText, onClick: mockFunction}]} />);
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: btnText, onClick: mockFunction }]} />);
         act(() => {
             screen.getByRole('button').click();
         });
@@ -61,50 +62,91 @@ describe('burgerMenu, functional tests', () => {
     });
 
     it('Should calculate correct export dimensions for compliant input size', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(1200, 800);
+        const mockRef = {
+            chart: {
+                chartWidth: 1200,
+                chartHeight: 800
+            }
+        } as HighchartsReactRefObject;
+
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
+
         expect(finalWidth).toEqual(1200);
         expect(finalHeight).toEqual(800);
     });
 
     it('Should calculate correct export dimensions when aspect ratio is too low', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(2000, 600);
+        const mockRef = {
+            chart: {
+                chartWidth: 2000,
+                chartHeight: 600
+            }
+        } as HighchartsReactRefObject;
+
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
         expect(finalWidth).toEqual(2000);
         expect(finalHeight).toEqual(1000);
     });
 
     it('Should calculate correct export dimensions when aspect ratio is too large', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(600, 2000);
+        const mockRef = {
+            chart: {
+                chartWidth: 600,
+                chartHeight: 2000
+            }
+        } as HighchartsReactRefObject;
+
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
         expect(finalWidth).toEqual(1000);
         expect(finalHeight).toEqual(2000);
     });
 
     it('Should calculate correct export dimensions when width is too low', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(400, 800);
+        const mockRef = {
+            chart: {
+                chartWidth: 400,
+                chartHeight: 800
+            }
+        } as HighchartsReactRefObject;
+
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
         expect(finalWidth).toEqual(600);
         expect(finalHeight).toEqual(1200);
     });
 
     it('Should calculate correct export dimensions when width is too large', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(4000, 2000);
+        const mockRef = {
+            chart: {
+                chartWidth: 4000,
+                chartHeight: 2000
+            }
+        } as HighchartsReactRefObject;
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
         expect(finalWidth).toEqual(3000);
         expect(finalHeight).toEqual(1500);
     });
 
     it('Should calculate correct export dimensions when height is too low', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(800, 400);
+        const mockRef = {
+            chart: {
+                chartWidth: 800,
+                chartHeight: 400
+            }
+        } as HighchartsReactRefObject;
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
         expect(finalWidth).toEqual(1200);
         expect(finalHeight).toEqual(600);
     });
 
     it('Should calculate correct export dimensions when height is too large', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(2000, 4000);
+        const mockRef = {
+            chart: {
+                chartWidth: 2000,
+                chartHeight: 4000
+            }
+        } as HighchartsReactRefObject;
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
         expect(finalWidth).toEqual(1500);
         expect(finalHeight).toEqual(3000);
-    });
-
-    it('Should calculate correct export dimensions width and height are not provided', () => {
-        const { finalWidth, finalHeight } = calculateExportDimensions(undefined, undefined);
-        expect(finalWidth).toEqual(600);
-        expect(finalHeight).toEqual(600);
     });
 });
