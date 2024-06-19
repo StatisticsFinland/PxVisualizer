@@ -59,8 +59,6 @@ export interface IBurgerMenuProps {
     };
     menuItemDefinitions?: (IFunctionalMenuItem | ILinkMenuItem)[];
     menuIconInheritColor?: boolean;
-    exportWidth?: number;
-    exportHeight?: number,
 }
 
 interface IBaseMenuItem {
@@ -120,7 +118,7 @@ export function calculateExportDimensions(inputWidth: number | undefined, inputH
     return { finalWidth, finalHeight };
 }
 
-export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, exportWidth, exportHeight}) => {
+export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false}) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const menuRef = React.useRef<any>(null);
