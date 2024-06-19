@@ -167,7 +167,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                                                 currentChartRef.chart.exportChartLocal({
                                                     filename: `${generateFilename(viewData.tableReferenceName)}`,
                                                     type: "image/svg+xml",
-                                                    sourceWidth: calculateExportDimensions(currentChartRef.chart.chartHeight, currentChartRef.chart.chartHeight).finalWidth,
+                                                    sourceWidth: calculateExportDimensions(currentChartRef.chart.chartWidth, currentChartRef.chart.chartHeight).finalWidth,
                                                     sourceHeight: calculateExportDimensions(currentChartRef.chart.chartWidth, currentChartRef.chart.chartHeight).finalHeight,
                                                     scale: 1
                                                 }, {})
