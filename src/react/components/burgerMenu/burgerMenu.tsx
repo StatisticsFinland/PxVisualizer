@@ -83,11 +83,8 @@ export function calculateExportDimensions(chartRef: HighchartsReactRefObject): {
     const MIN_EXPORT_DIMENSION: number = 600;
     const MAX_EXPORT_DIMENSION: number = 3000;
 
-    let inputWidth: number = chartRef.chart.chartWidth;
-    let inputHeight: number = chartRef.chart.chartHeight;
-
-    inputWidth = inputWidth ?? MIN_EXPORT_DIMENSION;
-    inputHeight = inputHeight ?? MIN_EXPORT_DIMENSION;
+    const inputWidth: number = chartRef.chart.chartWidth;
+    const inputHeight: number = chartRef.chart.chartHeight;
 
     // Aspect ratio is the ratio of width to height clamped between MIN_EXPORT_ASPECT_RATIO and MAX_EXPORT_ASPECT_RATIO.
     let aspectRatio: number = Math.max(
