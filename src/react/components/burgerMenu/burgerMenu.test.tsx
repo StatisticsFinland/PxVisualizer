@@ -1,10 +1,13 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { BurgerMenu, calculateExportDimensions } from "./burgerMenu";
 import { HORIZONTAL_BAR_CHART_ASCENDING } from "../../../core/conversion/TestFixtures/horizontalBarChart";
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
 import React from "react";
 import 'jest-styled-components';
 import { HighchartsReactRefObject } from "highcharts-react-official";
+import { View } from "../../../core/types/view";
+import Translations from "../../../core/conversion/translations";
+import { generateFilename } from "../../../core/tables/exportingUtils";
 
 describe('burgerMenu, rendering tests', () => {
     it('Should render', () => {
@@ -12,6 +15,12 @@ describe('burgerMenu, rendering tests', () => {
         const { asFragment } = render(<BurgerMenu locale="fi" viewData={view} />);
         expect(asFragment()).toMatchSnapshot();
     });
+});
+
+const viewData = { tableReference: "testTable" } as unknown as View;
+const mockExportChartLocal = jest.fn();
+beforeEach(() => {
+    mockExportChartLocal.mockClear();
 });
 
 describe('burgerMenu, functional tests', () => {
@@ -148,5 +157,50 @@ describe('burgerMenu, functional tests', () => {
         const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
         expect(finalWidth).toEqual(1500);
         expect(finalHeight).toEqual(3000);
+    });
+
+    it('should call exportChartLocal with correct parameters for SVG export', () => {
+        const mockRef = {
+            chart: {
+                exportChartLocal: mockExportChartLocal,
+                chartWidth: 800,
+                chartHeight: 400
+            }
+        } as unknown as HighchartsReactRefObject;
+
+        render(<BurgerMenu viewData={viewData} currentChartRef={mockRef} locale={"fi"} />);
+        fireEvent.click(screen.getByLabelText(`${Translations.chartMenuLabel["fi"]}`));
+        fireEvent.click(screen.getByText(Translations.downloadSVG["fi"]));
+
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
+        expect(mockExportChartLocal).toHaveBeenCalledWith({
+            filename: generateFilename(viewData.tableReferenceName),
+            type: "image/svg+xml",
+            sourceWidth: finalWidth,
+            sourceHeight: finalHeight,
+            scale: 1
+        }, {});
+    });
+
+    it('should call exportChartLocal with correct parameters for PNG export', () => {
+        const mockRef = {
+            chart: {
+                exportChartLocal: mockExportChartLocal,
+                chartWidth: 800,
+                chartHeight: 400
+            }
+        } as unknown as HighchartsReactRefObject;
+
+        render(<BurgerMenu viewData={viewData} currentChartRef={mockRef} locale={"fi"} />);
+        fireEvent.click(screen.getByLabelText(`${Translations.chartMenuLabel["fi"]}`));
+        fireEvent.click(screen.getByText(Translations.downloadPNG["fi"]));
+
+        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
+        expect(mockExportChartLocal).toHaveBeenCalledWith({
+            filename: generateFilename(viewData.tableReferenceName),
+            sourceWidth: finalWidth,
+            sourceHeight: finalHeight,
+            scale: 1
+        }, {});
     });
 });
