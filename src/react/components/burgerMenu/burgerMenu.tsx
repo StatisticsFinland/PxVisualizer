@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MenuItem from "./menuItem/menuItem";
-import HighchartsReact from "highcharts-react-official";
+import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
 import { View } from "../../../core/types/view";
 import Translations from "../../../core/conversion/translations";
 import Icon from "../icon/icon";
@@ -59,8 +59,6 @@ export interface IBurgerMenuProps {
     };
     menuItemDefinitions?: (IFunctionalMenuItem | ILinkMenuItem)[];
     menuIconInheritColor?: boolean;
-    exportWidth?: number;
-    exportHeight?: number,
 }
 
 interface IBaseMenuItem {
@@ -79,14 +77,14 @@ export interface ILinkMenuItem extends IBaseMenuItem {
     openNewTab?: boolean;
 }
 
-export function calculateExportDimensions(inputWidth: number | undefined, inputHeight: number | undefined): { finalWidth: number, finalHeight: number } {
+export function calculateExportDimensions(chartRef: HighchartsReactRefObject): { finalWidth: number, finalHeight: number } {
     const MIN_EXPORT_ASPECT_RATIO: number = 0.5;
     const MAX_EXPORT_ASPECT_RATIO: number = 2;
     const MIN_EXPORT_DIMENSION: number = 600;
     const MAX_EXPORT_DIMENSION: number = 3000;
 
-    inputWidth = inputWidth ?? MIN_EXPORT_DIMENSION;
-    inputHeight = inputHeight ?? MIN_EXPORT_DIMENSION;
+    const inputWidth: number = chartRef.chart.chartWidth;
+    const inputHeight: number = chartRef.chart.chartHeight;
 
     // Aspect ratio is the ratio of width to height clamped between MIN_EXPORT_ASPECT_RATIO and MAX_EXPORT_ASPECT_RATIO.
     let aspectRatio: number = Math.max(
@@ -120,7 +118,7 @@ export function calculateExportDimensions(inputWidth: number | undefined, inputH
     return { finalWidth, finalHeight };
 }
 
-export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, exportWidth, exportHeight}) => {
+export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false}) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const menuRef = React.useRef<any>(null);
@@ -167,8 +165,8 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                                                 currentChartRef.chart.exportChartLocal({
                                                     filename: `${generateFilename(viewData.tableReferenceName)}`,
                                                     type: "image/svg+xml",
-                                                    sourceWidth: calculateExportDimensions(currentChartRef.chart.chartHeight, currentChartRef.chart.chartHeight).finalWidth,
-                                                    sourceHeight: calculateExportDimensions(currentChartRef.chart.chartWidth, currentChartRef.chart.chartHeight).finalHeight,
+                                                    sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
+                                                    sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
                                                     scale: 1
                                                 }, {})
                                             } />
@@ -181,8 +179,8 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                                             onClick={() =>
                                                 currentChartRef.chart.exportChartLocal({
                                                     filename: `${generateFilename(viewData.tableReferenceName)}`,
-                                                    sourceWidth: calculateExportDimensions(currentChartRef.chart.chartWidth, currentChartRef.chart.chartHeight).finalWidth,
-                                                    sourceHeight: calculateExportDimensions(currentChartRef.chart.chartWidth, currentChartRef.chart.chartHeight).finalHeight,
+                                                    sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
+                                                    sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
                                                     scale: 1
                                                 }, {})
                                             } />

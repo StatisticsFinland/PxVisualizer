@@ -1,6 +1,6 @@
 import { ETimeVariableInterval, EVariableType, EVisualizationType, IContentComponent, IQueryVisualizationResponse, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from '../types/queryVisualizationResponse';
 import { ESeriesType, TSingleSelections, View } from '../types/view';
-import { GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING } from './TestFixtures/groupHorizontalBarChart';
+import { GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING } from './TestFixtures/groupHorizontalBarChart';
 import { HORIZONTAL_BAR_CHART_ASCENDING, HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './TestFixtures/horizontalBarChart';
 import { LINE_CHART_WITH_COMBINATION_SERIES, LINE_CHART_WITH_MULTISELECTABLE_VARIABLE, LINE_CHART_WITH_QUARTER_SERIES } from './TestFixtures/lineChart';
 import { PERCENT_HORIZONTAL_BAR_CHART, PERCENT_HORIZONTAL_BAR_CHART_VIEW, PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES, PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES_VIEW } from './TestFixtures/percentHorizontalBarChart';
@@ -13,7 +13,7 @@ import {
     PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES_VIEW
 } from './TestFixtures/percentVerticalBarChart';
 import { SELECTABLE_TABLE_WITH_MISSING_DATA } from './TestFixtures/tableChart';
-import { ASCENDING, DESCENDING, SUM } from './viewSorting';
+import { ASCENDING, DESCENDING, SUM, REVERSED, NO_SORTING } from './viewSorting';
 import { buildSeries, convertPxGrafResponseToView, convertToRelative } from './viewUtils';
 import { v4 as uuidV4 } from 'uuid'
 
@@ -85,19 +85,36 @@ describe('series metadata', () => {
             expectedSeries: [
                 { value: 1.1, precision: 1, preliminary: false },
                 { value: 2.11, precision: 2, preliminary: false }
-            ]},
+            ]
+        },
         {
             sorting: DESCENDING,
             expectedSeries: [
                 { value: 2.11, precision: 2, preliminary: false },
                 { value: 1.1, precision: 1, preliminary: false }
-            ]},
+            ]
+        },
         {
             sorting: SUM,
             expectedSeries: [
                 { value: 2.11, precision: 2, preliminary: false },
+                { value: 1.1, precision: 1, preliminary: false }
+            ]
+        },
+        {
+            sorting: NO_SORTING,
+            expectedSeries: [
                 { value: 1.1, precision: 1, preliminary: false },
-            ]}
+                { value: 2.11, precision: 2, preliminary: false }
+            ]
+        },
+        {
+            sorting: REVERSED,
+            expectedSeries: [
+                { value: 2.11, precision: 2, preliminary: false },
+                { value: 1.1, precision: 1, preliminary: false }
+            ]
+        }
         ])('returns sorted metadata with view', ({
             sorting, expectedSeries
         }) => {
@@ -606,6 +623,130 @@ describe('horizontal bar chart view conversion', () => {
                         },
                     }
                 ],
+        };
+        expect(resultView).toEqual(expectedView);
+    });
+
+    it('returns a view with reversed sorting', () => {
+        const resultView: View = convertPxGrafResponseToView(GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING, {});
+        const expectedView: View = {
+            tableReferenceName: "table.px",
+            seriesType: ESeriesType.Nominal,
+            visualizationSettings: {
+                defaultSelectableVariableCodes: null,
+                sorting: "reversed",
+                timeVariableIntervals: ETimeVariableInterval.Year,
+                visualizationType: EVisualizationType.GroupHorizontalBarChart,
+            },
+            selectableVarNames: [],
+            colVarNames: [
+                {
+                    "en": "Greenhouse gas",
+                    "fi": "Kasvihuonekaasu",
+                    "sv": "Växthusgas",
+                },
+            ],
+            columnNameGroups: [
+                [
+                    {
+                        "en": "Nitrous oxide (N2O)",
+                        "fi": "Dityppioksidi (N2O)",
+                        "sv": "Dikväveoksid (N2O)",
+                    },
+                ],
+                [
+                    {
+                        "en": "Methane (CH4)",
+                        "fi": "Metaani (CH4)",
+                        "sv": "Metan (CH4)",
+                    },
+                ],
+                [
+                    {
+                        "en": "Carbon dioxide (CO2)",
+                        "fi": "Hiilidioksidi (CO2)",
+                        "sv": "Koldioksid (CO2)",
+                    },
+                ],
+            ],
+            header: {
+                "en": "Emission, thousand tonnes of CO2 eq. 2020 by Emission category, Greenhouse gas",
+                "fi": "Päästö, tuhatta tonnia CO2-ekv. 2020 muuttujina Päästöluokka, Kasvihuonekaasu",
+                "sv": "Utsläpp, tusen ton CO2-ekv. 2020 efter Utsläppsklass, Växthusgas",
+            },
+            rowVarNames: [
+                {
+                    "en": "Emission category",
+                    "fi": "Päästöluokka",
+                    "sv": "Utsläppsklass",
+                }
+            ],
+            series: [
+                {
+                    rowNameGroup: [
+                        {
+                            "en": "1A4bi Residential, stationary",
+                            "fi": "1A4bi Kotitalouksien lämmitys",
+                            "sv": "1A4bi Hushållen, egen uppvärmning av bostäder och lokaler",
+                        },
+                    ],
+                    series: [
+                        { value: 35, precision: 0, preliminary: false },
+                        { value: 155, precision: 0, preliminary: false },
+                        { value: 748, precision: 0, preliminary: false }
+                    ]
+                },
+                {
+                    rowNameGroup: [
+                        {
+                            "en": "1A3b Road transportation",
+                            "fi": "1A3b Tieliikenne",
+                            "sv": "1A3b Vägtrafik",
+                        },
+                    ],
+                    series: [
+                        { value: 82, precision: 0, preliminary: false },
+                        { value: 8, precision: 0, preliminary: false },
+                        { value: 9845, precision: 0, preliminary: false }
+                    ]
+                },
+                {
+                    rowNameGroup: [
+                        {
+                            "en": "1A3a Domestic aviation",
+                            "fi": "1A3a Kotimaan lentoliikenne",
+                            "sv": "1A3a Inrikes flygtrafik",
+                        },
+                    ],
+                    series: [
+                        { value: 1, precision: 0, preliminary: false },
+                        { value: 0, precision: 0, preliminary: false },
+                        { value: 86, precision: 0, preliminary: false }
+                    ]
+                },
+            ],
+            sources: [
+                {
+                    "en": "PxVisualizer-en",
+                    "fi": "PxVisualizer-fi",
+                    "sv": "PxVisualizer-sv",
+                },
+            ],
+            subheaderValues: [],
+            units: [
+                {
+                    name: {
+                        "en": "Emission, thousand tonnes of CO2 eq.",
+                        "fi": "Päästö, tuhatta tonnia CO2-ekv.",
+                        "sv": "Utsläpp, tusen ton CO2-ekv.",
+                    },
+                    unit: {
+                        "en": "thousand tonnes of CO2 eq.",
+                        "fi": "tuhatta tonnia CO2-ekv.",
+                        "sv": "tusen ton CO2-ekv.",
+                    },
+                }
+            ],
         };
         expect(resultView).toEqual(expectedView);
     });

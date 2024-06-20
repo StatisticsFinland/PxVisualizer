@@ -14,6 +14,7 @@ import {
   GROUP_HORIZONTAL_BAR_CHART_WITH_ONLY_NEGATIVE_VALUES,
   GROUP_HORIZONTAL_BAR_CHART_WITH_SELECTABLES,
   GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,
+  GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING
 } from "./fixtures/groupHorizontalBarChart";
 import {
   HORIZONTAL_BAR_CHART_ASCENDING,
@@ -152,6 +153,9 @@ GroupHorizontalBarChartWithSelectables.args = GROUP_HORIZONTAL_BAR_CHART_WITH_SE
 
 export const GroupHorizontalBarChartWithSumSorting = Template.bind({});
 GroupHorizontalBarChartWithSumSorting.args = GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING;
+
+export const GroupHorizontalBarChartWithReversedSorting = Template.bind({});
+GroupHorizontalBarChartWithReversedSorting.args = GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING;
 
 export const GroupHorizontalBarChartWithOnlyNegativeValues = Template.bind({});
 GroupHorizontalBarChartWithOnlyNegativeValues.args = GROUP_HORIZONTAL_BAR_CHART_WITH_ONLY_NEGATIVE_VALUES;
