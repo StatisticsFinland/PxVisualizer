@@ -81,6 +81,7 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
     const selectableVariables = getSelectableVariables(metaData, selectableVariableCodes);
     const contentVar = getContentVariable(metaData);
     const unsortedSeries = buildSeries(responseObj, selectedValueCodes);
+        // buildSeriesOld_Remove(responseObj, selectedValueCodes);
 
     return {
         header: responseObj.header,
@@ -107,6 +108,75 @@ function getViewSize( responseObj: IQueryVisualizationResponse ) : number {
 }
 
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TSingleSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
+    const valuesInView: Set<string> = new Set(getValuesInView(responseObj, selectedValueCodes).map(v => v.code));
+    const rowVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.rowVariableCodes);
+    const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
+    const selectableValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.selectableVariableCodes);
+    const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
+    const cartesianRowVarValues: IVariableValueMeta[][] = cartesianProduct(rowVarValues);
+    const cartesianSelectableVarValues: IVariableValueMeta[][] = cartesianProduct(selectableValues);
+    const viewPrecision: number | null = getViewPrecision(responseObj, selectedValueCodes);
+
+    let dataIndex: number = 0;
+    const viewSeries: IDataSeries[] = [];
+
+    for (const selectableVarValueGroup of cartesianSelectableVarValues) {
+        for (const rowVarValueGroup of cartesianRowVarValues) {
+            const preliminaryRow: boolean = rowVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'));
+            const rowPrecision: number | null = viewPrecision ?? rowVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? null;
+            const rowSeries: IDataCell[] = [];
+
+            for (const colVarValueGroup of cartesianColumnVarValues) {
+                const combinedValues: IVariableValueMeta[] = [...rowVarValueGroup, ...colVarValueGroup, ...selectableVarValueGroup];
+                const allValuesIncluded: boolean = combinedValues.every(value => valuesInView.has(value.code));
+
+                if (allValuesIncluded) {
+                    const dataCell: IDataCell = {
+                        value: responseObj.data[dataIndex],
+                        precision: rowPrecision ?? colVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
+                        preliminary: preliminaryRow || colVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'))
+                    };
+
+                    if (!dataCell.value) dataCell.missingCode = responseObj.missingDataInfo[dataIndex];
+                    rowSeries.push(dataCell);
+                }
+                dataIndex++;
+            }
+
+            if (rowSeries.length > 0) {
+                viewSeries.push({ rowNameGroup: rowVarValueGroup.map(value => value.name), series: rowSeries });
+            }
+        }
+    }
+
+    return {
+        columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
+        series: viewSeries
+    };
+}
+
+const getValuesInView = (responseObj: IQueryVisualizationResponse, selectedValueCodes: TSingleSelections): IVariableValueMeta[] => {
+    return responseObj.metaData.flatMap(variable => {
+        if (responseObj.selectableVariableCodes.includes(variable.code)) {
+            const values: IVariableValueMeta[] = variable.values.filter(value => selectedValueCodes[variable.code].includes(value.code));
+            if (values.length === 0) throw new Error("Provided selected value code can not be found from the metadata");
+            return values;
+        }
+        else {
+            return variable.values;
+        }
+    });
+};
+
+function getVariableValues(responseObj: IQueryVisualizationResponse, variableCodes: string[]): IVariableValueMeta[][] {
+    return responseObj.metaData
+        .filter(vm => variableCodes.includes(vm.code))
+        .filter(vm => vm.values.length > 1)
+        .map(vm => vm.values);
+}
+
+// TODO: Remove this function after testing
+export function buildSeriesOld_Remove(responseObj: IQueryVisualizationResponse, selectedValueCodes: TSingleSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
 
     const selectableVariables = getSelectableVariables(responseObj.metaData, responseObj.selectableVariableCodes);
 
@@ -190,6 +260,18 @@ function computeViewIndex(selectableVariables: IVariableMeta[], selectedValueCod
     }
 
     return viewIndex;
+}
+
+function computeSelectableValueIndex(selectableVariables: IVariableMeta[], code: string, viewIndex: number): number {
+    let product = 1;
+    let index = 0;
+
+    for (let i = selectableVariables.length - 1; i >= 0; i--) {
+        index += Math.floor(viewIndex / product) % selectableVariables[i].values.length;
+        product *= selectableVariables[i].values.length;
+    }
+
+    return index;
 }
 
 function getSortingIndex(responseObj: IQueryVisualizationResponse): number {
