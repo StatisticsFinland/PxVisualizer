@@ -79,14 +79,6 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
     };
 }
 
-function getViewSize( responseObj: IQueryVisualizationResponse ) : number {
-    const { metaData, selectableVariableCodes } = responseObj;
-    return metaData
-        .filter(varMeta => !selectableVariableCodes.includes(varMeta.code))
-        .map(nonSelectableVariable => nonSelectableVariable.values.length)
-        .reduce((a, b) => a * b, 1);
-}
-
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
     const valuesInView: Set<string> = new Set(getValuesInView(responseObj, selectedValueCodes).map(v => v.code));
     const rowVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.rowVariableCodes);
@@ -125,8 +117,10 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
             });
 
             if (rowSeries.length > 0) {
-                const rowNameGroup: TMultiLanguageString[] = buildRowNameGroup(multiselects, rowVarValueGroup);
-                viewSeries.push({ rowNameGroup: rowNameGroup, series: rowSeries });
+                viewSeries.push({
+                    rowNameGroup: [...multiselects.map(value => value.name), ...rowVarValueGroup.map(value => value.name)],
+                    series: rowSeries
+                });
             }
         });
     });
@@ -159,12 +153,6 @@ function createDataCell(
     else {
         return null;
     }
-}
-
-function buildRowNameGroup(multiselects: IVariableValueMeta[], rowVarValueGroup: IVariableValueMeta[]): TMultiLanguageString[] {
-    return multiselects.length > 0
-        ? [...multiselects.map(value => value.name), ...rowVarValueGroup.map(value => value.name)]
-        : rowVarValueGroup.map(value => value.name);
 }
 
 function getValuesInView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableValueMeta[] {
