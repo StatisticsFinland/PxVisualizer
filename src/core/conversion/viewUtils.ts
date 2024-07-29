@@ -81,7 +81,6 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
     const selectableVariables = getSelectableVariables(metaData, selectableVariableCodes);
     const contentVar = getContentVariable(metaData);
     const unsortedSeries = buildSeries(responseObj, selectedValueCodes);
-        // buildSeriesOld_Remove(responseObj, selectedValueCodes);
 
     return {
         header: responseObj.header,
@@ -155,7 +154,7 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
     };
 }
 
-const getValuesInView = (responseObj: IQueryVisualizationResponse, selectedValueCodes: TSingleSelections): IVariableValueMeta[] => {
+function getValuesInView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TSingleSelections): IVariableValueMeta[] {
     return responseObj.metaData.flatMap(variable => {
         if (responseObj.selectableVariableCodes.includes(variable.code)) {
             const values: IVariableValueMeta[] = variable.values.filter(value => selectedValueCodes[variable.code].includes(value.code));
@@ -166,57 +165,13 @@ const getValuesInView = (responseObj: IQueryVisualizationResponse, selectedValue
             return variable.values;
         }
     });
-};
+}
 
 function getVariableValues(responseObj: IQueryVisualizationResponse, variableCodes: string[]): IVariableValueMeta[][] {
     return responseObj.metaData
         .filter(vm => variableCodes.includes(vm.code))
         .filter(vm => vm.values.length > 1)
         .map(vm => vm.values);
-}
-
-// TODO: Remove this function after testing
-export function buildSeriesOld_Remove(responseObj: IQueryVisualizationResponse, selectedValueCodes: TSingleSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
-
-    const selectableVariables = getSelectableVariables(responseObj.metaData, responseObj.selectableVariableCodes);
-
-    const rowVarValues = responseObj.metaData
-        .filter(vm => responseObj.rowVariableCodes.includes(vm.code))
-        .filter(vm => vm.values.length > 1)
-        .map(vm => vm.values);
-
-    const columnVarValues = responseObj.metaData
-        .filter(vm => responseObj.columnVariableCodes.includes(vm.code))
-        .filter(vm => vm.values.length > 1)
-        .map(vm => vm.values);
-
-    const cartesianColumnVarValues = cartesianProduct(columnVarValues);
-    const cartesianRowVarValues = cartesianProduct(rowVarValues);
-
-    const viewIndex = computeViewIndex(selectableVariables, selectedValueCodes, getViewSize(responseObj));
-    const viewPrecision = getViewPrecision(responseObj, selectedValueCodes);
-    let dataIndex = 0;
-    const viewSeries = cartesianRowVarValues.map((rowVarValueGroup) => {
-        const preliminaryRow = rowVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'));
-        const rowPrecision = viewPrecision ?? rowVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? null
-        const rowSeries: IDataCell[] = cartesianColumnVarValues.map((colVarValueGroup) => {
-            const dataCell: IDataCell = {
-                value: responseObj.data[viewIndex + dataIndex],
-                precision: rowPrecision ?? colVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
-                preliminary: preliminaryRow || colVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'))
-            }
-            if (!dataCell.value) dataCell.missingCode = responseObj.missingDataInfo[viewIndex + dataIndex]; // This has different indexing than viewData
-            dataIndex++;
-            return dataCell;
-        });
-
-        return { rowNameGroup: rowVarValueGroup.map(value => value.name), series: rowSeries };
-    });
-
-    return {
-        columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
-        series: viewSeries
-    };
 }
 
 function getViewPrecision(responseObj: IQueryVisualizationResponse, selectedValueCodes: TSingleSelections): number | null {
@@ -245,33 +200,6 @@ function getVariableNames(varCodes: string[], meta: IVariableMeta[]): TMultiLang
 
 function getSelectableVariables(metaData: IVariableMeta[], selectableVariableCodes: string[]): IVariableMeta[] {
     return metaData.filter(varMeta => selectableVariableCodes.includes(varMeta.code));
-}
-
-function computeViewIndex(selectableVariables: IVariableMeta[], selectedValueCodes: TSingleSelections, viewSize: number): number {
-    let viewIndex = 0;
-    let product = 1;
-
-    // OBS: Loop in reverse order: the last variable in the list affects the index the least and the first one the most.
-    for (let i = selectableVariables.length - 1; i >= 0; i--) {
-        const selectedValueIndex = selectableVariables[i].values.findIndex(value => value.code === selectedValueCodes[selectableVariables[i].code]);
-        if (selectedValueIndex < 0) throw new Error("Provided selected value code can not be found from the metadata");
-        viewIndex += selectedValueIndex * viewSize * product;
-        product *= selectableVariables[i].values.length;
-    }
-
-    return viewIndex;
-}
-
-function computeSelectableValueIndex(selectableVariables: IVariableMeta[], code: string, viewIndex: number): number {
-    let product = 1;
-    let index = 0;
-
-    for (let i = selectableVariables.length - 1; i >= 0; i--) {
-        index += Math.floor(viewIndex / product) % selectableVariables[i].values.length;
-        product *= selectableVariables[i].values.length;
-    }
-
-    return index;
 }
 
 function getSortingIndex(responseObj: IQueryVisualizationResponse): number {
