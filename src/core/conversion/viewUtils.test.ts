@@ -296,6 +296,113 @@ describe('series metadata', () => {
             expect(series1.length).toEqual(1);
             expect(series1[0].precision).toEqual(contentVariable.values[1].contentComponent?.numberOfDecimals);
         });
+
+        it('returns the correct series when there are no selectable variables', () => {
+            const contentVariableValue = createVariableValue({ contentComponent: { numberOfDecimals: 1 } as IContentComponent });
+            const contentVariable = createVariable({
+                type: EVariableType.Content,
+                values: [contentVariableValue]
+            });
+            const timeVariableValue1 = createVariableValue();
+            const timeVariableValue2 = createVariableValue();
+            const timeVariable = createVariable(
+            {
+                type: EVariableType.Time,
+                values: [timeVariableValue1, timeVariableValue2]
+            });
+            const columnVariableValue1 = createVariableValue();
+            const columnVariableValue2 = createVariableValue();
+            const columnVariable = createVariable(
+            {
+                type: EVariableType.OtherClassificatory,
+                values: [columnVariableValue1, columnVariableValue2]
+            });
+            const firstRowVariableValue1 = createVariableValue();
+            const firstRowVariableValue2 = createVariableValue();
+            const firstRowVariable = createVariable(
+            {
+                type: EVariableType.OtherClassificatory,
+                values: [firstRowVariableValue1, firstRowVariableValue2]
+            });
+            const secondRowVariableValue1 = createVariableValue();
+            const secondRowVariableValue2 = createVariableValue();
+            const secondRowVariable = createVariable(
+            {
+                type: EVariableType.OtherClassificatory,
+                values: [secondRowVariableValue1, secondRowVariableValue2]
+            });
+            const pxGrafResponse = createPxGrafResponse({
+                data: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6],
+                metaData: [timeVariable, columnVariable, firstRowVariable, secondRowVariable, contentVariable],
+                columnVariableCodes: [timeVariable.code, columnVariable.code],
+                rowVariableCodes: [firstRowVariable.code, secondRowVariable.code],
+            });
+            const selectedValueCodes1: TSingleSelections = {};
+            const series = buildSeries(pxGrafResponse, selectedValueCodes1);
+            for (let i = 0; i < series.series.length; i++) {
+                for (let j = 0; j < series.series[i].series.length; j++) {
+                    expect(series.series[i].series[j].value).toEqual(pxGrafResponse.data[i * series.series[i].series.length + j]);
+                }
+            }
+        });
+
+        it('returns the correct series when there is a selectable variable', () => {
+            const contentVariableValue = createVariableValue({ contentComponent: { numberOfDecimals: 1 } as IContentComponent });
+            const contentVariable = createVariable({
+                type: EVariableType.Content,
+                values: [contentVariableValue]
+            });
+            const timeVariableValue1 = createVariableValue();
+            const timeVariableValue2 = createVariableValue();
+            const timeVariable = createVariable(
+                {
+                    type: EVariableType.Time,
+                    values: [timeVariableValue1, timeVariableValue2]
+                });
+            const columnVariableValue1 = createVariableValue();
+            const columnVariableValue2 = createVariableValue();
+            const columnVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [columnVariableValue1, columnVariableValue2]
+                });
+            const firstRowVariableValue1 = createVariableValue();
+            const firstRowVariableValue2 = createVariableValue();
+            const firstRowVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [firstRowVariableValue1, firstRowVariableValue2]
+                });
+            const secondRowVariableValue1 = createVariableValue();
+            const secondRowVariableValue2 = createVariableValue();
+            const secondRowVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [secondRowVariableValue1, secondRowVariableValue2]
+                });
+            const selectableVariableValue1 = createVariableValue();
+            const selectableVariableValue2 = createVariableValue();
+            const selectableVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [selectableVariableValue1, selectableVariableValue2]
+                });
+            const pxGrafResponse = createPxGrafResponse({
+                data: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6,
+                    2.7, 2.8, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2],
+                metaData: [timeVariable, columnVariable, firstRowVariable, secondRowVariable, contentVariable, selectableVariable],
+                columnVariableCodes: [timeVariable.code, columnVariable.code],
+                rowVariableCodes: [firstRowVariable.code, secondRowVariable.code],
+                selectableVariableCodes: [selectableVariable.code],
+            });
+            const selectedValueCodes: TSingleSelections = { [selectableVariable.code]: selectableVariableValue2.code };
+            const series = buildSeries(pxGrafResponse, selectedValueCodes);
+            for (let i = 0; i < series.series.length; i++) {
+                for (let j = 0; j < series.series[i].series.length; j++) {
+                    expect(series.series[i].series[j].value).toEqual(pxGrafResponse.data[i * series.series[i].series.length + j + 16]);
+                }
+            }
+        });
     });
 });
 
