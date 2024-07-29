@@ -110,15 +110,15 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
 
             cartesianColumnVarValues.forEach(colVarValueGroup => {
                 const combinedValues: IVariableValueMeta[] = [...rowVarValueGroup, ...colVarValueGroup, ...selectableVarValueGroup];
-                if (combinedValues.every(value => valuesInView.has(value.code))) {
-                    const dataCell: IDataCell = createDataCell(
-                        responseObj,
-                        dataIndex,
-                        rowPrecision,
-                        preliminaryRow,
-                        colVarValueGroup)
-
-                    if (!dataCell.value) dataCell.missingCode = responseObj.missingDataInfo[dataIndex];
+                const dataCell: IDataCell | null = createDataCell(
+                    combinedValues,
+                    valuesInView,
+                    responseObj,
+                    dataIndex,
+                    rowPrecision,
+                    preliminaryRow,
+                    colVarValueGroup);
+                if (dataCell) {
                     rowSeries.push(dataCell);
                 }
                 dataIndex++;
@@ -138,20 +138,27 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
 }
 
 function createDataCell(
+    combinedValues: IVariableValueMeta[],
+    valuesInView: Set<string>,
     responseObj: IQueryVisualizationResponse,
     dataIndex: number,
     rowPrecision: number | null,
     preliminaryRow: boolean,
     colVarValueGroup: IVariableValueMeta[]
-): IDataCell {
-    const dataCell: IDataCell = {
-        value: responseObj.data[dataIndex],
-        precision: rowPrecision ?? colVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
-        preliminary: preliminaryRow || colVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'))
-    };
+): IDataCell | null {
+    if (combinedValues.every(value => valuesInView.has(value.code))) {
+        const dataCell: IDataCell = {
+            value: responseObj.data[dataIndex],
+            precision: rowPrecision ?? colVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
+            preliminary: preliminaryRow || colVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'))
+        };
 
-    if (!dataCell.value) dataCell.missingCode = responseObj.missingDataInfo[dataIndex];
-    return dataCell;
+        if (!dataCell.value) dataCell.missingCode = responseObj.missingDataInfo[dataIndex];
+        return dataCell;
+    }
+    else {
+        return null;
+    }
 }
 
 function buildRowNameGroup(multiselects: IVariableValueMeta[], rowVarValueGroup: IVariableValueMeta[]): TMultiLanguageString[] {
