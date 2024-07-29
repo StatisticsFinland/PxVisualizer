@@ -1,5 +1,6 @@
 import { ETimeVariableInterval, EVariableType, EVisualizationType, IContentComponent, IQueryVisualizationResponse, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from '../types/queryVisualizationResponse';
-import { ESeriesType, TSingleSelections, View } from '../types/view';
+import { TVariableSelections } from '../types/variableSelections';
+import { ESeriesType, View } from '../types/view';
 import { GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING } from './TestFixtures/groupHorizontalBarChart';
 import { HORIZONTAL_BAR_CHART_ASCENDING, HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './TestFixtures/horizontalBarChart';
 import { LINE_CHART_WITH_COMBINATION_SERIES, LINE_CHART_WITH_MULTISELECTABLE_VARIABLE, LINE_CHART_WITH_QUARTER_SERIES } from './TestFixtures/lineChart';
@@ -177,7 +178,7 @@ describe('series metadata', () => {
             });
 
             // Value 1 in selection
-            const selectedValueCodes1: TSingleSelections = { [contentVariable.code]: contentVariableValue1.code };
+            const selectedValueCodes1: TVariableSelections = { [contentVariable.code]: [contentVariableValue1.code] };
             const { series: rows1 } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows1.length).toEqual(1);
 
@@ -187,7 +188,7 @@ describe('series metadata', () => {
             expect(series1[0].precision).toBe(contentVariableValue1.contentComponent?.numberOfDecimals);
 
             // Value 2 in selection
-            const selectedValueCodes2: TSingleSelections = { [contentVariable.code]: contentVariableValue2.code };
+            const selectedValueCodes2: TVariableSelections = { [contentVariable.code]: [contentVariableValue2.code] };
             const { series: rows2 } = buildSeries(pxGrafResponse, selectedValueCodes2);
             expect(rows2.length).toEqual(1);
 
@@ -216,7 +217,7 @@ describe('series metadata', () => {
                 metaData
             });
 
-            const selectedValueCodes1: TSingleSelections = {};
+            const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows.length).toEqual(1);
@@ -247,7 +248,7 @@ describe('series metadata', () => {
                 columnVariableCodes: [browsingVariable.code, contentVariable.code],
             });
 
-            const selectedValueCodes1: TSingleSelections = {};
+            const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows.length).toEqual(1);
@@ -281,7 +282,7 @@ describe('series metadata', () => {
                 rowVariableCodes: [contentVariable.code],
             });
 
-            const selectedValueCodes1: TSingleSelections = {};
+            const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows.length).toEqual(2);
@@ -337,7 +338,7 @@ describe('series metadata', () => {
                 columnVariableCodes: [timeVariable.code, columnVariable.code],
                 rowVariableCodes: [firstRowVariable.code, secondRowVariable.code],
             });
-            const selectedValueCodes1: TSingleSelections = {};
+            const selectedValueCodes1: TVariableSelections = {};
             const series = buildSeries(pxGrafResponse, selectedValueCodes1);
             for (let i = 0; i < series.series.length; i++) {
                 for (let j = 0; j < series.series[i].series.length; j++) {
@@ -395,13 +396,78 @@ describe('series metadata', () => {
                 rowVariableCodes: [firstRowVariable.code, secondRowVariable.code],
                 selectableVariableCodes: [selectableVariable.code],
             });
-            const selectedValueCodes: TSingleSelections = { [selectableVariable.code]: selectableVariableValue2.code };
+            const selectedValueCodes: TVariableSelections = { [selectableVariable.code]: [selectableVariableValue2.code] };
             const series = buildSeries(pxGrafResponse, selectedValueCodes);
             for (let i = 0; i < series.series.length; i++) {
                 for (let j = 0; j < series.series[i].series.length; j++) {
                     expect(series.series[i].series[j].value).toEqual(pxGrafResponse.data[i * series.series[i].series.length + j + 16]);
                 }
             }
+        });
+
+        it('returns correct series with a multiselectable variable', () => {
+            const contentVariableValue = createVariableValue({ contentComponent: { numberOfDecimals: 1 } as IContentComponent });
+            const contentVariable = createVariable({
+                type: EVariableType.Content,
+                values: [contentVariableValue]
+            });
+            const timeVariableValue1 = createVariableValue();
+            const timeVariableValue2 = createVariableValue();
+            const timeVariable = createVariable(
+                {
+                    type: EVariableType.Time,
+                    values: [timeVariableValue1, timeVariableValue2]
+                });
+            const columnVariableValue1 = createVariableValue();
+            const columnVariableValue2 = createVariableValue();
+            const columnVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [columnVariableValue1, columnVariableValue2]
+                });
+            const firstRowVariableValue1 = createVariableValue();
+            const firstRowVariableValue2 = createVariableValue();
+            const firstRowVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [firstRowVariableValue1, firstRowVariableValue2]
+                });
+            const secondRowVariableValue1 = createVariableValue();
+            const secondRowVariableValue2 = createVariableValue();
+            const secondRowVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [secondRowVariableValue1, secondRowVariableValue2],
+                });
+            const selectableVariableValue1 = createVariableValue();
+            const selectableVariableValue2 = createVariableValue();
+            const selectableVariableValue3 = createVariableValue();
+            const selectableVariable = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [selectableVariableValue1, selectableVariableValue2, selectableVariableValue3]
+                });
+            const pxGrafResponse = createPxGrafResponse({
+                data: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6,
+                    2.7, 2.8, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2,
+                    4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8],
+                metaData: [timeVariable, columnVariable, firstRowVariable, secondRowVariable, contentVariable, selectableVariable],
+                columnVariableCodes: [timeVariable.code, columnVariable.code],
+                rowVariableCodes: [firstRowVariable.code, secondRowVariable.code],
+                selectableVariableCodes: [selectableVariable.code],
+                visualizationSettings: {
+                    visualizationType: EVisualizationType.LineChart,
+                    timeVariableIntervals: ETimeVariableInterval.Quarter,
+                    multiselectableVariableCode: selectableVariable.code
+                }
+            });
+            const selectedValueCodes: TVariableSelections = { [selectableVariable.code]: [selectableVariableValue1.code, selectableVariableValue3.code] };
+            const series = buildSeries(pxGrafResponse, selectedValueCodes);
+            const values = series.series.flatMap(s => s.series.map(d => d.value));
+            expect(values).toEqual([
+                1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6,
+                4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8
+            ]);
         });
     });
 });
