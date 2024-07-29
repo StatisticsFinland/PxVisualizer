@@ -101,43 +101,63 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
     let dataIndex: number = 0;
     const viewSeries: IDataSeries[] = [];
 
-    for (const selectableVarValueGroup of cartesianSelectableVarValues) {
+    cartesianSelectableVarValues.forEach(selectableVarValueGroup => {
         const multiselects = selectableVarValueGroup.filter(v => multiselectValues.includes(v));
-        for (const rowVarValueGroup of cartesianRowVarValues) {
+        cartesianRowVarValues.forEach(rowVarValueGroup => {
             const preliminaryRow: boolean = rowVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'));
             const rowPrecision: number | null = viewPrecision ?? rowVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? null;
             const rowSeries: IDataCell[] = [];
 
-            for (const colVarValueGroup of cartesianColumnVarValues) {
+            cartesianColumnVarValues.forEach(colVarValueGroup => {
                 const combinedValues: IVariableValueMeta[] = [...rowVarValueGroup, ...colVarValueGroup, ...selectableVarValueGroup];
-                const allValuesIncluded: boolean = combinedValues.every(value => valuesInView.has(value.code));
-
-                if (allValuesIncluded) {
-                    const dataCell: IDataCell = {
-                        value: responseObj.data[dataIndex],
-                        precision: rowPrecision ?? colVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
-                        preliminary: preliminaryRow || colVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'))
-                    };
+                if (combinedValues.every(value => valuesInView.has(value.code))) {
+                    const dataCell: IDataCell = createDataCell(
+                        responseObj,
+                        dataIndex,
+                        rowPrecision,
+                        preliminaryRow,
+                        colVarValueGroup)
 
                     if (!dataCell.value) dataCell.missingCode = responseObj.missingDataInfo[dataIndex];
                     rowSeries.push(dataCell);
                 }
                 dataIndex++;
-            }
+            });
 
             if (rowSeries.length > 0) {
-                const rowNameGroup: TMultiLanguageString[] = multiselects.length > 0 ?
-                    [...multiselects.map(value => value.name), ...rowVarValueGroup.map(value => value.name)] :
-                    rowVarValueGroup.map(value => value.name)
+                const rowNameGroup: TMultiLanguageString[] = buildRowNameGroup(multiselects, rowVarValueGroup);
                 viewSeries.push({ rowNameGroup: rowNameGroup, series: rowSeries });
             }
-        }
-    }
+        });
+    });
 
     return {
         columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
         series: viewSeries
     };
+}
+
+function createDataCell(
+    responseObj: IQueryVisualizationResponse,
+    dataIndex: number,
+    rowPrecision: number | null,
+    preliminaryRow: boolean,
+    colVarValueGroup: IVariableValueMeta[]
+): IDataCell {
+    const dataCell: IDataCell = {
+        value: responseObj.data[dataIndex],
+        precision: rowPrecision ?? colVarValueGroup.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
+        preliminary: preliminaryRow || colVarValueGroup.some(v => Object.values(v.name)[0].trim().endsWith('*'))
+    };
+
+    if (!dataCell.value) dataCell.missingCode = responseObj.missingDataInfo[dataIndex];
+    return dataCell;
+}
+
+function buildRowNameGroup(multiselects: IVariableValueMeta[], rowVarValueGroup: IVariableValueMeta[]): TMultiLanguageString[] {
+    return multiselects.length > 0
+        ? [...multiselects.map(value => value.name), ...rowVarValueGroup.map(value => value.name)]
+        : rowVarValueGroup.map(value => value.name);
 }
 
 function getValuesInView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableValueMeta[] {
