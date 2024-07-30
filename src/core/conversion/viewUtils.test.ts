@@ -513,6 +513,7 @@ describe('series metadata', () => {
                 metaData: [timeVariable, firstColumnVariable, firstRowVariable, secondRowVariable, contentVariable, secondColumnVariable],
                 columnVariableCodes: [timeVariable.code, firstColumnVariable.code, secondColumnVariable.code],
                 rowVariableCodes: [firstRowVariable.code, secondRowVariable.code],
+                selectableVariableCodes: [secondColumnVariable.code, secondRowVariable.code],
             });
             const selectedValueCodes: TVariableSelections = { [secondColumnVariable.code]: [secondColumnVariableValue2.code], [secondRowVariable.code]: [secondRowVariableValue1.code] };
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =

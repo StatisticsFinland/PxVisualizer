@@ -80,10 +80,11 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
 }
 
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
+    const directionlessSelectables: string[] = responseObj.selectableVariableCodes.filter(code => !responseObj.columnVariableCodes.includes(code) && !responseObj.rowVariableCodes.includes(code));
     const valuesInView: Set<string> = new Set(getValuesInView(responseObj, selectedValueCodes).map(v => v.code));
     const rowVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.rowVariableCodes);
     const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
-    const selectableValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.selectableVariableCodes);
+    const selectableValues: IVariableValueMeta[][] = getVariableValues(responseObj, directionlessSelectables);
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
     const cartesianRowVarValues: IVariableValueMeta[][] = cartesianProduct(rowVarValues);
     const cartesianSelectableVarValues: IVariableValueMeta[][] = cartesianProduct(selectableValues);
