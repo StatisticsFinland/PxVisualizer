@@ -615,7 +615,7 @@ export const TABLE_WITH_ROW_AND_COLUMN_VARIABLES: { pxGraphData: IQueryVisualiza
             "cutValueAxis": false
         }
     },
-    selectedVariableCodes: { 'Vuosineljännes': ['2022Q1', '2022Q2', '2022Q3', '2022Q4'], 'Alue': ['091', '092', '853'], 'Rahoitusmuoto': ['0', '1'] }
+    selectedVariableCodes: { }
 };
 
 export const SELECTABLE_TABLE_WITH_MISSING_DATA: IQueryVisualizationResponse = {
