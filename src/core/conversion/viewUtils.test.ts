@@ -402,7 +402,7 @@ describe('series metadata', () => {
             expect(values).toEqual(expected);
         });
 
-        it('returns correct series with a multiselectable variable', () => {
+        it('returns the correct series with a multiselectable variable', () => {
             const contentVariableValue: IVariableValueMeta = createVariableValue({ contentComponent: { numberOfDecimals: 1 } as IContentComponent });
             const contentVariable: IVariableMeta = createVariable({
                 type: EVariableType.Content,
@@ -463,6 +463,66 @@ describe('series metadata', () => {
             const values: (number | null)[] = series.series.flatMap(s => s.series.map(d => d.value));
             const expected: number[] = [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6,
                 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8];
+            expect(values).toEqual(expected);
+        });
+
+        it('returns the correct series when row and column variables are marked as selectable', () => {
+            const contentVariableValue: IVariableValueMeta = createVariableValue({ contentComponent: { numberOfDecimals: 1 } as IContentComponent });
+            const contentVariable: IVariableMeta = createVariable({
+                type: EVariableType.Content,
+                values: [contentVariableValue]
+            });
+            const timeVariableValue1: IVariableValueMeta = createVariableValue();
+            const timeVariableValue2: IVariableValueMeta = createVariableValue();
+            const timeVariable: IVariableMeta = createVariable(
+                {
+                    type: EVariableType.Time,
+                    values: [timeVariableValue1, timeVariableValue2]
+                });
+            const firstColumnVariableValue1: IVariableValueMeta = createVariableValue();
+            const firstColumnVariableValue2: IVariableValueMeta = createVariableValue();
+            const firstColumnVariable: IVariableMeta = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [firstColumnVariableValue1, firstColumnVariableValue2]
+                });
+            const firstRowVariableValue1: IVariableValueMeta = createVariableValue();
+            const firstRowVariableValue2: IVariableValueMeta = createVariableValue();
+            const firstRowVariable: IVariableMeta = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [firstRowVariableValue1, firstRowVariableValue2]
+                });
+            const secondRowVariableValue1: IVariableValueMeta = createVariableValue();
+            const secondRowVariableValue2: IVariableValueMeta = createVariableValue();
+            const secondRowVariable: IVariableMeta = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [secondRowVariableValue1, secondRowVariableValue2]
+                });
+            const secondColumnVariableValue1: IVariableValueMeta = createVariableValue();
+            const secondColumnVariableValue2: IVariableValueMeta = createVariableValue();
+            const secondColumnVariable: IVariableMeta = createVariable(
+                {
+                    type: EVariableType.OtherClassificatory,
+                    values: [secondColumnVariableValue1, secondColumnVariableValue2]
+                });
+            const pxGrafResponse: IQueryVisualizationResponse = createPxGrafResponse({
+                data: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6,
+                    2.7, 2.8, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2],
+                metaData: [timeVariable, firstColumnVariable, firstRowVariable, secondRowVariable, contentVariable, secondColumnVariable],
+                columnVariableCodes: [timeVariable.code, firstColumnVariable.code, secondColumnVariable.code],
+                rowVariableCodes: [firstRowVariable.code, secondRowVariable.code],
+            });
+            const selectedValueCodes: TVariableSelections = { [secondColumnVariable.code]: [secondColumnVariableValue2.code], [secondRowVariable.code]: [secondRowVariableValue1.code] };
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const values: (number | null)[] = series.series.flatMap(s => s.series.map(d => d.value));
+            const expected: number[] = [
+                1.2, 1.4, 1.6, 1.8,
+                2.8, 3.0, 3.2, 3.4
+            ];
+            console.log(values);
             expect(values).toEqual(expected);
         });
     });

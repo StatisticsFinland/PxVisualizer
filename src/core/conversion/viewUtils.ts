@@ -157,7 +157,8 @@ function createDataCell(
 
 function getValuesInView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableValueMeta[] {
     return responseObj.metaData.flatMap(variable => {
-        if (responseObj.selectableVariableCodes.includes(variable.code)) {
+        if (responseObj.selectableVariableCodes.includes(variable.code) ||
+            Object.keys(selectedValueCodes).includes(variable.code)) {
             const values: IVariableValueMeta[] = variable.values.filter(value => selectedValueCodes[variable.code].includes(value.code));
             if (values.length === 0) throw new Error("Provided selected value code can not be found from the metadata");
             return values;
