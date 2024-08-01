@@ -1,5 +1,5 @@
 import { IQueryVisualizationResponse } from "../types";
-import { IVariableMeta, IVariableValueMeta, TMultiLanguageString } from "../types/queryVisualizationResponse";
+import { EVariableType, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { TVariableSelections } from "../types/variableSelections";
 import { IDataCell, IDataSeries } from "../types/view";
 export class DataIndexer {
@@ -13,48 +13,56 @@ export class DataIndexer {
     private variableOrder: number[];
     private lastCoordinateIndex: number;
     private reverseCumulativeProducts: number[];
+    private contentVariableIndex: number;
+    private timeVariableIndex: number;
+    private targetMap: IVariableMeta[];
 
     constructor(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections) {
         this.responseObj = responseObj;
-        const completeMap: TVariableSelections = this.getCompleteMap(responseObj);
-        const variableSizes: number[] = Object.keys(completeMap).map(v => completeMap[v].length);
-        const targetMap: TVariableSelections = this.getTargetMap(responseObj, selectedValueCodes);
-        this.coordinates = Array.from({ length: Object.keys(targetMap).length });
-        this.variableOrder = this.getVariableOrder(completeMap, targetMap);
-        for (let targetIndex = 0; targetIndex < Object.keys(targetMap).length; targetIndex++) {
+        const completeMap: IVariableMeta[] = responseObj.metaData;
+        const variableSizes: number[] = completeMap.map(v => v.values.length);
+        this.targetMap = this.getTargetMap(responseObj, selectedValueCodes);
+        this.coordinates = Array.from({ length: this.targetMap.length });
+        this.variableOrder = this.getVariableOrder(completeMap, this.targetMap);
+        for (let targetIndex = 0; targetIndex < this.targetMap.length; targetIndex++) {
             const variableIndex: number = this.variableOrder[targetIndex];
-            const targetVariableCode = Object.keys(targetMap)[targetIndex];
-            const variable: string[] = completeMap[targetVariableCode];
-            if (!variable) throw new Error("Provided variable code can not be found from the metadata");
-            this.coordinates[variableIndex] = Array.from({ length: targetMap[targetVariableCode].length });
-            for (let mapIndex = 0; mapIndex < targetMap[targetVariableCode].length; mapIndex++) {
-                for (let valueIndex = 0; valueIndex < variable.length; valueIndex++) {
-                    if (variable[valueIndex] === targetMap[targetVariableCode][mapIndex]) {
+            const targetVariableCode = this.targetMap[targetIndex].code;
+            const values: IVariableValueMeta[] | undefined = completeMap.find(v => v.code === targetVariableCode)?.values;
+            if (!values) throw new Error("Provided variable code can not be found from the metadata");
+            const targetVariable: IVariableMeta | undefined = this.targetMap.find(v => v.code === targetVariableCode);
+            if (!targetVariable) throw new Error("Provided variable code can not be found from the target map");
+            this.coordinates[variableIndex] = Array.from({ length: targetVariable.values.length });
+            for (let mapIndex = 0; mapIndex < targetVariable.values.length; mapIndex++) {
+                for (let valueIndex = 0; valueIndex < values.length; valueIndex++) {
+                    if (values[valueIndex] === targetVariable.values[mapIndex]) {
                         this.coordinates[variableIndex][mapIndex] = valueIndex;
                     }
                 }
             }
         }
-        this.indices = Array.from({ length: Object.keys(completeMap).length }, () => 0);
-        this.lastIndices = Object.keys(targetMap).map(v => targetMap[v].length - 1);
+        this.contentVariableIndex = this.variableOrder.indexOf(this.targetMap.findIndex(v => v.type === EVariableType.Content));
+        this.timeVariableIndex = this.variableOrder.indexOf(this.targetMap.findIndex(v => v.type === EVariableType.Time));
+        this.indices = Array.from({ length: completeMap.length }, () => 0);
+        this.lastIndices = this.targetMap.map(v => v.values.length - 1);
         this.lastCoordinateIndex = this.coordinates.length - 1;
         this.reverseCumulativeProducts = this.generateRCP(variableSizes);
-        this.dataLength = Object.keys(targetMap).map(v => targetMap[v].length).reduce((acc, val) => acc * val, 1);
+        this.dataLength = this.targetMap.map(v => v.values.length).reduce((acc, val) => acc * val, 1);
         this.dataIndex = 0;
         this.setCurrentIndex();
     }
 
-    public getViewSeries(viewPrecision: number | null): IDataSeries[] {
-        const viewSeries: IDataSeries[] = [];
+    public getViewSeries(): IDataSeries[] {
+        let viewSeries: IDataSeries[] = [];
         do {
-            const { rowNameGroup, dataCell } = this.calculateIndex(viewPrecision);
-            const group: IDataSeries | undefined = viewSeries.find(s => s.rowNameGroup.every(g => rowNameGroup.includes(g) && rowNameGroup.every(g => s.rowNameGroup.includes(g))));
+            const dataCell = this.createDataCell();
+            const rowNames: TMultiLanguageString[] = this.getRowNames();
+            const group: IDataSeries | undefined = this.getRowNameGroup(viewSeries, rowNames);
             if (group) {
                 group.series.push(dataCell);
             }
             else {
                 viewSeries.push({
-                    rowNameGroup: rowNameGroup,
+                    rowNameGroup: rowNames,
                     series: [dataCell]
                 })
             }
@@ -78,62 +86,56 @@ export class DataIndexer {
         return false;
     }
 
-    calculateIndex(viewPrecision: number | null): { rowNameGroup: TMultiLanguageString[], dataCell: IDataCell } {
-        let values: IVariableValueMeta[] = [];
-        let rowNameGroup: TMultiLanguageString[] = [];
+    createDataCell(): IDataCell {
+        const timeVal: IVariableValueMeta | undefined = this.getCurrentTimeValue();
+        const dataCell: IDataCell = {
+            value: this.responseObj.data[this.dataIndex],
+            precision: this.getCurrentContentValue().contentComponent?.numberOfDecimals ?? 0,
+            preliminary: timeVal ? Object.values(timeVal.name)[0].trim().endsWith('*') : false
+        };
+        if (!dataCell.value) dataCell.missingCode = this.responseObj.missingDataInfo[this.dataIndex];
+        return dataCell;
+    }
+
+    getRowNames(): TMultiLanguageString[] {
+        let rowNames: TMultiLanguageString[] = [];
         for (let i = 0; i < this.indices.length; i++) {
             const variable: IVariableMeta = this.responseObj.metaData[i];
             const value: IVariableValueMeta = variable.values[this.indices[i]];
-            values.push(value);
             if ((this.responseObj.rowVariableCodes.includes(variable.code) ||
                 this.responseObj.visualizationSettings.multiselectableVariableCode === variable.code) &&
                 variable.values.length > 1) {
-                rowNameGroup.push(value.name);
+                rowNames.push(value.name);
             }
         }
-        const dataCell: IDataCell = {
-            value: this.responseObj.data[this.dataIndex],
-            precision: viewPrecision ?? values.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
-            preliminary: values.some(v => Object.values(v.name)[0].trim().endsWith('*'))
-        };
-        if (!dataCell.value) dataCell.missingCode = this.responseObj.missingDataInfo[this.dataIndex];
-        const item = {
-            rowNameGroup: rowNameGroup,
-            dataCell: dataCell
-        }
-        return item;
+        return rowNames;
     }
 
-
-    getCompleteMap(responseObj: IQueryVisualizationResponse): TVariableSelections {
-        return responseObj.metaData.reduce((acc, variable) => {
-            acc[variable.code] = variable.values.map(v => v.code);
-            return acc;
-        }, {} as TVariableSelections);
+    getRowNameGroup(viewSeries: IDataSeries[], rowNames: TMultiLanguageString[]): IDataSeries | undefined {
+        const group: IDataSeries | undefined = viewSeries.find(s => s.rowNameGroup.every(g => rowNames.includes(g) && rowNames.every(g => s.rowNameGroup.includes(g))));
+        return group;
     }
 
-    getTargetMap(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): TVariableSelections {
-        return responseObj.metaData.reduce((acc, variable) => {
+    getTargetMap(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableMeta[] {
+        const targetMap: IVariableMeta[] = responseObj.metaData.map((variable) => {
             if (responseObj.selectableVariableCodes.includes(variable.code) ||
                 Object.keys(selectedValueCodes).includes(variable.code)) {
-                const values: string[] = variable.values
-                    .filter(value => selectedValueCodes[variable.code]
-                        .includes(value.code))
-                    .map(v => v.code);
-                if (values.length === 0) throw new Error("Provided selected value code can not be found from the metadata");
-                acc[variable.code] = values;
+                const values: IVariableValueMeta[] = variable.values.filter((value) =>
+                    selectedValueCodes[variable.code].includes(value.code)
+                );
+                if (values.length === 0) {
+                    throw new Error("Provided selected value code can not be found from the metadata");
+                }
+                return { ...variable, values };
             }
-            else {
-                const values: string[] = variable.values.map(v => v.code);
-                acc[variable.code] = values;
-            }
-            return acc;
-        }, {} as TVariableSelections);
+            return variable;
+        });
+        return targetMap;
     }
 
-    getVariableOrder(completeMap: TVariableSelections, targetMap: TVariableSelections): number[] {
-        const sourceCodes: string[] = Object.keys(completeMap);
-        return Object.keys(targetMap).map(v => sourceCodes.indexOf(v));
+    getVariableOrder(completeMap: IVariableMeta[], targetMap: IVariableMeta[]): number[] {
+        const sourceCodes: string[] = completeMap.map(v => v.code);
+        return targetMap.map(v => sourceCodes.indexOf(v.code));
     }
 
     generateRCP(variableSizes: number[]): number[] {
@@ -153,5 +155,16 @@ export class DataIndexer {
             const variableIndex: number = this.variableOrder[i];
             this.dataIndex += this.reverseCumulativeProducts[variableIndex] * this.coordinates[variableIndex][this.indices[variableIndex]];
         }
+    }
+
+    getCurrentContentValue(): IVariableValueMeta {
+        return this.targetMap[this.contentVariableIndex].values[this.indices[this.contentVariableIndex]];
+    }
+
+    getCurrentTimeValue(): IVariableValueMeta | undefined {
+        if (this.timeVariableIndex == -1) {
+            return undefined;
+        }
+        return this.targetMap[this.timeVariableIndex].values[this.indices[this.timeVariableIndex]];
     }
 }

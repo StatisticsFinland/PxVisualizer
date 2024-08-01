@@ -82,30 +82,13 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
 
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
     const dataIndexer: DataIndexer = new DataIndexer(responseObj, selectedValueCodes);
-    const viewPrecision: number | null = getViewPrecision(responseObj, selectedValueCodes);
-    const viewSeries: IDataSeries[] = dataIndexer.getViewSeries(viewPrecision);
+    const viewSeries: IDataSeries[] = dataIndexer.getViewSeries();
     const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
     return {
         columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
         series: viewSeries
     };
-}
-
-function getViewPrecision(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): number | null {
-    const contentVar = getContentVariable(responseObj.metaData);
-
-    // Only one content variable value
-    if (contentVar.values.length === 1) {
-        return contentVar.values[0].contentComponent?.numberOfDecimals ?? null
-
-        // Content variable in selection
-    } else if (responseObj.selectableVariableCodes.includes(contentVar.code) && responseObj.visualizationSettings.multiselectableVariableCode !== contentVar.code) {
-        return contentVar.values.find(value => selectedValueCodes[contentVar.code].includes(value.code))?.contentComponent?.numberOfDecimals ?? null;
-
-    } else {
-        return null;
-    }
 }
 
 function getVariableValues(responseObj: IQueryVisualizationResponse, variableCodes: string[]): IVariableValueMeta[][] {
