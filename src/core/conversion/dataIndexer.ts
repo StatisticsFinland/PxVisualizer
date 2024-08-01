@@ -13,6 +13,7 @@ export class DataIndexer {
     private variableOrder: number[];
     private lastCoordinateIndex: number;
     private reverseCumulativeProducts: number[];
+
     constructor(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections) {
         this.responseObj = responseObj;
         const completeMap: TVariableSelections = this.getCompleteMap(responseObj);
@@ -36,7 +37,6 @@ export class DataIndexer {
         }
         this.indices = Array.from({ length: Object.keys(completeMap).length }, () => 0);
         this.lastIndices = Object.keys(targetMap).map(v => targetMap[v].length - 1);
-        console.log('lasts:', this.lastIndices);
         this.lastCoordinateIndex = this.coordinates.length - 1;
         this.reverseCumulativeProducts = this.generateRCP(variableSizes);
         this.dataLength = Object.keys(targetMap).map(v => targetMap[v].length).reduce((acc, val) => acc * val, 1);
@@ -46,7 +46,6 @@ export class DataIndexer {
 
     public getViewSeries(viewPrecision: number | null): IDataSeries[] {
         const viewSeries: IDataSeries[] = [];
-
         do {
             const { rowNameGroup, dataCell } = this.calculateIndex(viewPrecision);
             const group: IDataSeries | undefined = viewSeries.find(s => s.rowNameGroup.every(g => rowNameGroup.includes(g) && rowNameGroup.every(g => s.rowNameGroup.includes(g))));
@@ -61,8 +60,6 @@ export class DataIndexer {
             }
         } while (this.next());
 
-        console.log('series:', viewSeries);
-
         return viewSeries;
     }
 
@@ -71,7 +68,6 @@ export class DataIndexer {
             const variableIndex: number = this.variableOrder[i];
             if (this.indices[variableIndex] < this.lastIndices[i]) {
                 this.indices[variableIndex]++;
-                console.log('indices', this.indices);
                 this.setCurrentIndex();
                 return true;
             }
@@ -95,7 +91,6 @@ export class DataIndexer {
                 rowNameGroup.push(value.name);
             }
         }
-        console.log('handling values:', values.map(val => val.code).join(', '));
         const dataCell: IDataCell = {
             value: this.responseObj.data[this.dataIndex],
             precision: viewPrecision ?? values.find(v => v.contentComponent)?.contentComponent?.numberOfDecimals ?? 0,
@@ -111,7 +106,6 @@ export class DataIndexer {
 
 
     getCompleteMap(responseObj: IQueryVisualizationResponse): TVariableSelections {
-        console.log(responseObj.metaData.map(v => v.code).join(', '));
         return responseObj.metaData.reduce((acc, variable) => {
             acc[variable.code] = variable.values.map(v => v.code);
             return acc;
@@ -159,6 +153,5 @@ export class DataIndexer {
             const variableIndex: number = this.variableOrder[i];
             this.dataIndex += this.reverseCumulativeProducts[variableIndex] * this.coordinates[variableIndex][this.indices[variableIndex]];
         }
-        console.log('dataIndex', this.dataIndex);
     }
 }
