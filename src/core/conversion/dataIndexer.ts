@@ -2,6 +2,9 @@ import { IQueryVisualizationResponse } from "../types";
 import { EVariableType, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { TVariableSelections } from "../types/variableSelections";
 import { IDataCell, IDataSeries } from "../types/view";
+import { cartesianProduct } from "./utilityFunctions";
+import { isEqual } from "lodash";
+
 export class DataIndexer {
     public dataIndex: number;
     public dataLength: number;
@@ -52,22 +55,29 @@ export class DataIndexer {
     }
 
     public getViewSeries(): IDataSeries[] {
-        let viewSeries: IDataSeries[] = [];
+        const viewSeries: IDataSeries[] = this.generateViewSeries();
         do {
             const dataCell = this.createDataCell();
             const rowNames: TMultiLanguageString[] = this.getRowNames();
-            const group: IDataSeries | undefined = this.getRowNameGroup(viewSeries, rowNames);
-            if (group) {
-                group.series.push(dataCell);
-            }
-            else {
-                viewSeries.push({
-                    rowNameGroup: rowNames,
-                    series: [dataCell]
-                })
-            }
+            this.getRowNameGroup(viewSeries, rowNames).series.push(dataCell);
         } while (this.next());
 
+        return viewSeries;
+    }
+
+    generateViewSeries(): IDataSeries[] {
+        const rowValues: IVariableValueMeta[][] = this.targetMap.filter(v =>
+            this.responseObj.rowVariableCodes.includes(v.code) &&
+            (v.values.length > 1)).map(v => v.values);
+        const multiSelectableValues: IVariableValueMeta[][] = this.targetMap.filter(v =>
+            this.responseObj.visualizationSettings.multiselectableVariableCode === v.code).map(v => v.values);
+        const nameGroupValues: IVariableValueMeta[][] = multiSelectableValues.concat(rowValues);
+        const cartesianRowValues: IVariableValueMeta[][] = cartesianProduct(nameGroupValues);
+        const viewSeries: IDataSeries[] = cartesianRowValues.reduce((acc, row) => {
+            const nameGroup: TMultiLanguageString[] = row.map(v => v.name);
+            acc.push({ rowNameGroup: nameGroup, series: [] });
+            return acc;
+        }, [] as IDataSeries[]);
         return viewSeries;
     }
 
@@ -100,7 +110,7 @@ export class DataIndexer {
     getRowNames(): TMultiLanguageString[] {
         let rowNames: TMultiLanguageString[] = [];
         for (let i = 0; i < this.indices.length; i++) {
-            const variable: IVariableMeta = this.responseObj.metaData[i];
+            const variable: IVariableMeta = this.targetMap[i];
             const value: IVariableValueMeta = variable.values[this.indices[i]];
             if ((this.responseObj.rowVariableCodes.includes(variable.code) ||
                 this.responseObj.visualizationSettings.multiselectableVariableCode === variable.code) &&
@@ -111,9 +121,12 @@ export class DataIndexer {
         return rowNames;
     }
 
-    getRowNameGroup(viewSeries: IDataSeries[], rowNames: TMultiLanguageString[]): IDataSeries | undefined {
-        const group: IDataSeries | undefined = viewSeries.find(s => s.rowNameGroup.every(g => rowNames.includes(g) && rowNames.every(g => s.rowNameGroup.includes(g))));
-        return group;
+    getRowNameGroup(viewSeries: IDataSeries[], rowNames: TMultiLanguageString[]): IDataSeries {
+        const match: IDataSeries | undefined = viewSeries.find(vs => isEqual(vs.rowNameGroup, rowNames));
+        if (match) {
+            return match;
+        }
+        throw new Error("Provided row name group can not be found from the view series");
     }
 
     getTargetMap(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableMeta[] {
