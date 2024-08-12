@@ -1,7 +1,7 @@
 import { IQueryVisualizationResponse } from "../types";
 import { EVariableType, EVisualizationType, IContentComponent, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { ESeriesType, IDataCell, IDataSeries, IUnitInfo, TSingleSelections, TValueSelectionAmounts, View } from "../types/view";
-import { ASCENDING, ASCENDING_SORTING_FUNC, DESCENDING, DESCENDING_SORTING_FUNC, NO_SORTING, SUM, sortViewBasedOnSeries, sortViewBasedOnSeriesRelative, sortViewBasedOnSum } from "./viewSorting";
+import { ASCENDING, ASCENDING_SORTING_FUNC, DESCENDING, DESCENDING_SORTING_FUNC, NO_SORTING, SUM, REVERSED, sortViewBasedOnSeries, sortViewBasedOnSeriesRelative, sortViewBasedOnSum, reverseViewOrder } from "./viewSorting";
 import { cartesianProduct, onlyUnique } from "./utilityFunctions";
 import { TVariableSelections } from "../types/variableSelections";
 import Translations from "./translations";
@@ -21,6 +21,7 @@ export function convertPxGrafResponseToView(
         case null: return view;
         case undefined: return view;
         case NO_SORTING: return view;
+        case REVERSED: return reverseViewOrder(view);
         case SUM: return sortViewBasedOnSum(view, DESCENDING_SORTING_FUNC);
         case ASCENDING: return sortViewBasedOnSeries(view, 0, ASCENDING_SORTING_FUNC);
         case DESCENDING: return sortViewBasedOnSeries(view, 0, DESCENDING_SORTING_FUNC);
