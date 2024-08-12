@@ -637,6 +637,14 @@ export const GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING: IQueryVisualizationRes
     }
 };
 
+export const GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING: IQueryVisualizationResponse = {
+    ...GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,
+    visualizationSettings: {
+        ...GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING.visualizationSettings,
+        sorting: "reversed"
+    }
+};
+
 export const GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET: {pxGraphData: IQueryVisualizationResponse} = {
     pxGraphData: {
         "tableReference": { name: "table.px", hierarchy: ["foo", "bar"] },
