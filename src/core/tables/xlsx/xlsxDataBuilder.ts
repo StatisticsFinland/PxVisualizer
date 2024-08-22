@@ -3,7 +3,7 @@ import Translations from "../../conversion/translations";
 import { convertToRelative } from "../../conversion/viewUtils";
 import { EVisualizationType } from "../../types";
 import { View } from "../../types/view";
-import { formatMissingData, formatNumericValue } from "../tableUtils";
+import { formatMissingData } from "../tableUtils";
 import { TCell } from "./xlsxTypes";
 
 // This is a separate function to allow for unit testing
@@ -34,13 +34,13 @@ export const buildCellRows: (view: View, locale: string) => TCell[][] = (view, l
 
     // Add row variables + data
     view.series.forEach((serie) => {
-        let row: string[] = []
+        let row: (string | number)[] = []
         if (serie.rowNameGroup.length > 0) row = serie.rowNameGroup.map(name => name[locale]);
 
         // Set display precision and decimal separator
         row = row.concat(serie.series.map(n => {
             if (n.value === null) return formatMissingData(n.missingCode, locale);
-            else return formatNumericValue(n, locale);
+            else return n.value;
         }));
 
         stringTable.push(buildCellRow(row, 0, gridWidth));
