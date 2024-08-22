@@ -3,7 +3,7 @@ import Translations from "../../conversion/translations";
 import { convertToRelative } from "../../conversion/viewUtils";
 import { EVisualizationType } from "../../types";
 import { View } from "../../types/view";
-import { formatMissingData, formatNumericValue } from "../tableUtils";
+import { formatMissingData } from "../tableUtils";
 import { TCell } from "./xlsxTypes";
 
 // This is a separate function to allow for unit testing
