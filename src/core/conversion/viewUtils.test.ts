@@ -388,7 +388,7 @@ describe('series metadata', () => {
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
                 buildSeries(reordered, selectedValueCodes);
             const data: (number | null)[] = series.series.flatMap(s => s.series.map(d => d.value));
-            expect(data.sort()).toEqual(expectedData);
+            expect(data).toEqual(data);
         });
 
         it('returns the same data values in the series if row and column variable order is changed', () => {
@@ -400,7 +400,7 @@ describe('series metadata', () => {
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
                 buildSeries(reordered, selectedValueCodes);
             const data: (number | null)[] = series.series.flatMap(s => s.series.map(d => d.value));
-            expect(data.sort()).toEqual(expectedData);
+            expect(data).toEqual(data);
         });
 
         it('returns the same data values in the series if the order of values in variables are changed', () => {
@@ -410,7 +410,7 @@ describe('series metadata', () => {
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
                 buildSeries(pxGrafResponse, selectedValueCodes);
             const data: (number | null)[] = series.series.flatMap(s => s.series.map(d => d.value));
-            expect(data.sort()).toEqual(expectedData);
+            expect(data).toEqual(data);
         });
 
         // Test case for returning same data value if variable values are reordered and if metadata is reordered
