@@ -1,6 +1,6 @@
 import { ETimeVariableInterval, EVariableType, EVisualizationType, IContentComponent, IQueryVisualizationResponse, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from '../types/queryVisualizationResponse';
 import { TVariableSelections } from '../types/variableSelections';
-import { ESeriesType, IDataSeries, View } from '../types/view';
+import { ESeriesType, IDataCell, IDataSeries, View } from '../types/view';
 import { GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING } from './TestFixtures/groupHorizontalBarChart';
 import { HORIZONTAL_BAR_CHART_ASCENDING, HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './TestFixtures/horizontalBarChart';
 import { LINE_CHART_WITH_COMBINATION_SERIES, LINE_CHART_WITH_MULTISELECTABLE_VARIABLE, LINE_CHART_WITH_QUARTER_SERIES } from './TestFixtures/lineChart';
@@ -140,7 +140,6 @@ const generateVariable = (variableIndex: number, valuesAmount: number, type: EVa
         if (isContent) value.contentComponent = createContentComponent();
         values.push(value);
     }
-    const id = `var${variableIndex}`;
     const variable = createVariable({type: type, values: values });
     return(variable);
 }
@@ -555,18 +554,30 @@ describe('series metadata', () => {
             expect(values).toEqual(expected);
         });
 
-        it('returns the correct series with a multiselectable variable', () => {
-            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [10], [1], [1], [3]);
-            pxGrafResponse.visualizationSettings.multiselectableVariableCode = pxGrafResponse.selectableVariableCodes[0];
-            const selectableVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.selectableVariableCodes[0]) as IVariableMeta;
-            const selectedValueCodes: TVariableSelections = { [pxGrafResponse.selectableVariableCodes[0]]: [selectableVariable.values[0].code, selectableVariable.values[2].code] };
+        it('returns the correct precisions with two content variable values of different precisions', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([2], [10], [2], [], []);
+            const contentVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.type === EVariableType.Content) as IVariableMeta;
+            contentVariable.values[0].contentComponent = createContentComponent({ numberOfDecimals: 1 });
+            contentVariable.values[1].contentComponent = createContentComponent({ numberOfDecimals: 2 });
+            const selectedValueCodes: TVariableSelections = {};
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } = buildSeries(pxGrafResponse, selectedValueCodes);
-            const values: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
-            const expected: number[][] = [
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+            const precisions: number[][] = series.series.map(s => s.series.map(d => d.precision));
+            const expectedPrecisions: number[][] = [
+                [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2],
+                [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
             ];
-            expect(values).toEqual(expected);
+            expect(precisions).toEqual(expectedPrecisions);
+        });
+
+        it('time variable with some preliminary values returns the correct series', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [4], [], [], []);
+            const selectedValueCodes: TVariableSelections = {};
+            const timeVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.type === EVariableType.Time) as IVariableMeta;
+            timeVariable.values[2].name = { fi: '2024Q3*', en: '2024Q3*', sv: '2024Q3*' };
+            timeVariable.values[3].name = { fi: '2024Q4*', en: '2024Q4*', sv: '2024Q4*' };
+            const preliminary: boolean[] = buildSeries(pxGrafResponse, selectedValueCodes).series[0].series.map(d => d.preliminary);
+            const expected: boolean[] = [false, false, true, true];
+            expect(preliminary).toEqual(expected);
         });
     });
 });

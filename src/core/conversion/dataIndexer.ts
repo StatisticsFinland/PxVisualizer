@@ -18,21 +18,21 @@ export class DataIndexer {
     private reverseCumulativeProducts: number[];
     private contentVariableIndex: number;
     private timeVariableIndex: number;
-    private targetMap: IVariableMeta[];
+    private selectedViewMeta: IVariableMeta[];
 
     constructor(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections) {
         this.responseObj = responseObj;
         const completeMap: IVariableMeta[] = responseObj.metaData;
         const variableSizes: number[] = completeMap.map(v => v.values.length);
-        this.targetMap = this.getTargetMap(responseObj, selectedValueCodes);
-        this.coordinates = Array.from({ length: this.targetMap.length });
-        this.variableOrder = this.getVariableOrder(completeMap, this.targetMap);
-        for (let targetIndex = 0; targetIndex < this.targetMap.length; targetIndex++) {
+        this.selectedViewMeta = this.getTargetMap(responseObj, selectedValueCodes);
+        this.coordinates = Array.from({ length: this.selectedViewMeta.length });
+        this.variableOrder = this.getVariableOrder(completeMap, this.selectedViewMeta);
+        for (let targetIndex = 0; targetIndex < this.selectedViewMeta.length; targetIndex++) {
             const variableIndex: number = this.variableOrder[targetIndex];
-            const targetVariableCode = this.targetMap[targetIndex].code;
+            const targetVariableCode = this.selectedViewMeta[targetIndex].code;
             const values: IVariableValueMeta[] | undefined = completeMap.find(v => v.code === targetVariableCode)?.values;
             if (!values) throw new Error("Provided variable code can not be found from the metadata");
-            const targetVariable: IVariableMeta | undefined = this.targetMap.find(v => v.code === targetVariableCode);
+            const targetVariable: IVariableMeta | undefined = this.selectedViewMeta.find(v => v.code === targetVariableCode);
             if (!targetVariable) throw new Error("Provided variable code can not be found from the target map");
             this.coordinates[variableIndex] = Array.from({ length: targetVariable.values.length });
             for (let mapIndex = 0; mapIndex < targetVariable.values.length; mapIndex++) {
@@ -43,13 +43,13 @@ export class DataIndexer {
                 }
             }
         }
-        this.contentVariableIndex = this.variableOrder.indexOf(this.targetMap.findIndex(v => v.type === EVariableType.Content));
-        this.timeVariableIndex = this.variableOrder.indexOf(this.targetMap.findIndex(v => v.type === EVariableType.Time));
+        this.contentVariableIndex = this.variableOrder.indexOf(this.selectedViewMeta.findIndex(v => v.type === EVariableType.Content));
+        this.timeVariableIndex = this.variableOrder.indexOf(this.selectedViewMeta.findIndex(v => v.type === EVariableType.Time));
         this.indices = Array.from({ length: completeMap.length }, () => 0);
-        this.lastIndices = this.targetMap.map(v => v.values.length - 1);
+        this.lastIndices = this.selectedViewMeta.map(v => v.values.length - 1);
         this.lastCoordinateIndex = this.coordinates.length - 1;
         this.reverseCumulativeProducts = this.generateRCP(variableSizes);
-        this.dataLength = this.targetMap.map(v => v.values.length).reduce((acc, val) => acc * val, 1);
+        this.dataLength = this.selectedViewMeta.map(v => v.values.length).reduce((acc, val) => acc * val, 1);
         this.dataIndex = 0;
         this.setCurrentIndex();
     }
@@ -66,10 +66,10 @@ export class DataIndexer {
     }
 
     generateViewSeries(): IDataSeries[] {
-        const rowValues: IVariableValueMeta[][] = this.targetMap.filter(v =>
+        const rowValues: IVariableValueMeta[][] = this.selectedViewMeta.filter(v =>
             this.responseObj.rowVariableCodes.includes(v.code) &&
             (v.values.length > 1)).map(v => v.values);
-        const multiSelectableValues: IVariableValueMeta[][] = this.targetMap.filter(v =>
+        const multiSelectableValues: IVariableValueMeta[][] = this.selectedViewMeta.filter(v =>
             this.responseObj.visualizationSettings.multiselectableVariableCode === v.code).map(v => v.values);
         const nameGroupValues: IVariableValueMeta[][] = multiSelectableValues.concat(rowValues);
         const cartesianRowValues: IVariableValueMeta[][] = cartesianProduct(nameGroupValues);
@@ -100,7 +100,7 @@ export class DataIndexer {
         const timeVal: IVariableValueMeta | undefined = this.getCurrentTimeValue();
         const dataCell: IDataCell = {
             value: this.responseObj.data[this.dataIndex],
-            precision: this.getCurrentContentValue().contentComponent?.numberOfDecimals ?? 0,
+            precision: this.selectedViewMeta[this.contentVariableIndex].values[this.indices[this.contentVariableIndex]].contentComponent?.numberOfDecimals ?? 0,
             preliminary: timeVal ? Object.values(timeVal.name)[0].trim().endsWith('*') : false
         };
         if (!dataCell.value) dataCell.missingCode = this.responseObj.missingDataInfo[this.dataIndex];
@@ -110,7 +110,7 @@ export class DataIndexer {
     getRowNames(): TMultiLanguageString[] {
         let rowNames: TMultiLanguageString[] = [];
         for (let i = 0; i < this.indices.length; i++) {
-            const variable: IVariableMeta = this.targetMap[i];
+            const variable: IVariableMeta = this.selectedViewMeta[i];
             const value: IVariableValueMeta = variable.values[this.indices[i]];
             if ((this.responseObj.rowVariableCodes.includes(variable.code) ||
                 this.responseObj.visualizationSettings.multiselectableVariableCode === variable.code) &&
@@ -169,14 +169,10 @@ export class DataIndexer {
         }
     }
 
-    getCurrentContentValue(): IVariableValueMeta {
-        return this.targetMap[this.contentVariableIndex].values[this.indices[this.contentVariableIndex]];
-    }
-
     getCurrentTimeValue(): IVariableValueMeta | undefined {
         if (this.timeVariableIndex == -1) {
             return undefined;
         }
-        return this.targetMap[this.timeVariableIndex].values[this.indices[this.timeVariableIndex]];
+        return this.selectedViewMeta[this.timeVariableIndex].values[this.indices[this.timeVariableIndex]];
     }
 }
