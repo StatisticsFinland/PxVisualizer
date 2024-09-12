@@ -131,8 +131,7 @@ export class DataIndexer {
 
     getTargetMap(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableMeta[] {
         const targetMap: IVariableMeta[] = responseObj.metaData.map((variable) => {
-            if (responseObj.selectableVariableCodes.includes(variable.code) ||
-                Object.keys(selectedValueCodes).includes(variable.code)) {
+            if (responseObj.selectableVariableCodes.includes(variable.code)) {
                 const values: IVariableValueMeta[] = variable.values.filter((value) =>
                     selectedValueCodes[variable.code].includes(value.code)
                 );

@@ -540,17 +540,31 @@ describe('series metadata', () => {
             expect(values).toEqual(expected);
         });
 
-        it('returns the correct series when row and column variables are marked as selectable', () => {
-            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [2], [2, 2], [2, 2], []);
-            const secondColumnVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.columnVariableCodes[1]) as IVariableMeta;
-            const secondRowVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.rowVariableCodes[1]) as IVariableMeta;
-            const selectedValueCodes: TVariableSelections = { [secondColumnVariable.code]: [secondColumnVariable.values[1].code], [secondRowVariable.code]: [secondRowVariable.values[0].code] };
+        it('returns the correct series with selectable variables', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [2], [1, 2], [1, 2], [2, 2]);
+            const firstSelectable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.selectableVariableCodes[0]) as IVariableMeta;
+            const secondSelectable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.selectableVariableCodes[1]) as IVariableMeta;
+            const selectedValueCodes: TVariableSelections = { [firstSelectable.code]: [firstSelectable.values[0].code], [secondSelectable.code]: [secondSelectable.values[0].code] };
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
                 buildSeries(pxGrafResponse, selectedValueCodes);
             const values: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expected: number[][] = [
-                [3, 4, 7, 8],
-                [19, 20, 23, 24]
+                [1, 2, 3, 4],
+                [5, 6, 7, 8]
+            ];
+            expect(values).toEqual(expected);
+        });
+
+        it('returns the correct series with a multiselectable variable', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [10], [1], [1], [3]);
+            pxGrafResponse.visualizationSettings.multiselectableVariableCode = pxGrafResponse.selectableVariableCodes[0];
+            const selectableVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.selectableVariableCodes[0]) as IVariableMeta;
+            const selectedValueCodes: TVariableSelections = { [pxGrafResponse.selectableVariableCodes[0]]: [selectableVariable.values[0].code, selectableVariable.values[2].code] };
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } = buildSeries(pxGrafResponse, selectedValueCodes);
+            const values: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            const expected: number[][] = [
+                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
             ];
             expect(values).toEqual(expected);
         });
