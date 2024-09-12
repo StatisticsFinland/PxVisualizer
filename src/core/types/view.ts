@@ -38,5 +38,4 @@ export interface IDataSeries {
     series: IDataCell[]
 }
 
-export type TSingleSelections = { [key: string]: string };
 export type TValueSelectionAmounts = { [key: string]: number };

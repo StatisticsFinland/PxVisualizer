@@ -1,5 +1,6 @@
 import { ETimeVariableInterval, EVariableType, EVisualizationType, IContentComponent, IQueryVisualizationResponse, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from '../types/queryVisualizationResponse';
-import { ESeriesType, TSingleSelections, View } from '../types/view';
+import { TVariableSelections } from '../types/variableSelections';
+import { ESeriesType, IDataCell, IDataSeries, View } from '../types/view';
 import { GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING } from './TestFixtures/groupHorizontalBarChart';
 import { HORIZONTAL_BAR_CHART_ASCENDING, HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './TestFixtures/horizontalBarChart';
 import { LINE_CHART_WITH_COMBINATION_SERIES, LINE_CHART_WITH_MULTISELECTABLE_VARIABLE, LINE_CHART_WITH_QUARTER_SERIES } from './TestFixtures/lineChart';
@@ -22,7 +23,7 @@ const createContentComponent = (overrides?: Partial<IContentComponent>) => {
     const defaultContentComponent = {
         unit: { fi: `test-unit-${id}` },
         source: { fi: `test-source-${id}` },
-        numberOfDecimals: 10,
+        numberOfDecimals: 0,
         lastUpdated: '',
     };
 
@@ -77,6 +78,71 @@ const createPxGrafResponse = (overrides?: Partial<IQueryVisualizationResponse>):
 
     return { ...defaultMetaData, ...overrides };
 };
+
+const generatePxGrafResponse = (
+    contentVariableSizes: number[],
+    timeVariableCounts: number[],
+    rowVariableCounts: number[],
+    columnVariableCounts: number[],
+    selectableVariableCounts: number[],
+): IQueryVisualizationResponse => {
+    let contentVariables: IVariableMeta[] = [];
+    let index = 0;
+    for (const element of contentVariableSizes) {
+        index++;
+        contentVariables.push(generateVariable(index, element, EVariableType.Content, true));
+    }
+    let timeVariables: IVariableMeta[] = [];
+    for (const element of timeVariableCounts) {
+        index++;
+        timeVariables.push(generateVariable(index, element, EVariableType.Time));
+    }
+    let rowVariables: IVariableMeta[] = [];
+    for (const element of rowVariableCounts) {
+        index++;
+        rowVariables.push(generateVariable(index, element, EVariableType.OtherClassificatory));
+    }
+    let columnVariables: IVariableMeta[] = [];
+    for (const element of columnVariableCounts) {
+        index++;
+        columnVariables.push(generateVariable(index, element, EVariableType.OtherClassificatory));
+    }
+    let selectableVariables: IVariableMeta[] = [];
+    for (const element of selectableVariableCounts) {
+        index++;
+        selectableVariables.push(generateVariable(index, element, EVariableType.OtherClassificatory));
+    }
+    const metaData: IVariableMeta[] = [...selectableVariables, ...rowVariables, ...columnVariables, ...timeVariables, ...contentVariables];
+    const rowVariableCodes: string[] = rowVariables.map(variable => variable.code);
+    const columnVariableCodes: string[] = columnVariables.map(variable => variable.code);
+    const selectableVariableCodes: string[] = selectableVariables.map(variable => variable.code);
+    const dataLength = [...selectableVariables, ...rowVariables, ...columnVariables, ...timeVariables, ...contentVariables].map(v => v.values.length).reduce((acc, val) => acc * val, 1);
+    let data: number[] = [dataLength];
+    let currentData: number = 1;
+    for (let i = 0; i < dataLength; i++) {
+        data[i] = currentData;
+        currentData += 1;
+    }
+    return createPxGrafResponse({
+        metaData: metaData,
+        data: data,
+        rowVariableCodes: rowVariableCodes.length > 0 ? rowVariableCodes : [],
+        columnVariableCodes: columnVariableCodes.length > 0 ? columnVariableCodes : [],
+        selectableVariableCodes: selectableVariableCodes.length > 0 ? selectableVariableCodes : []
+    });
+}
+
+const generateVariable = (variableIndex: number, valuesAmount: number, type: EVariableType, isContent: boolean = false): IVariableMeta => {
+    let values: IVariableValueMeta[] = [];
+    for (let j = 0; j < valuesAmount; j++) {
+        const id = `var${variableIndex}-val${j}`
+        const value = createVariableValue({ name: { fi: id }, code: id });
+        if (isContent) value.contentComponent = createContentComponent();
+        values.push(value);
+    }
+    const variable = createVariable({type: type, values: values });
+    return(variable);
+}
 
 describe('series metadata', () => {
     describe('convertPxGrafResponseToView', () => {
@@ -177,7 +243,7 @@ describe('series metadata', () => {
             });
 
             // Value 1 in selection
-            const selectedValueCodes1: TSingleSelections = { [contentVariable.code]: contentVariableValue1.code };
+            const selectedValueCodes1: TVariableSelections = { [contentVariable.code]: [contentVariableValue1.code] };
             const { series: rows1 } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows1.length).toEqual(1);
 
@@ -187,7 +253,7 @@ describe('series metadata', () => {
             expect(series1[0].precision).toBe(contentVariableValue1.contentComponent?.numberOfDecimals);
 
             // Value 2 in selection
-            const selectedValueCodes2: TSingleSelections = { [contentVariable.code]: contentVariableValue2.code };
+            const selectedValueCodes2: TVariableSelections = { [contentVariable.code]: [contentVariableValue2.code] };
             const { series: rows2 } = buildSeries(pxGrafResponse, selectedValueCodes2);
             expect(rows2.length).toEqual(1);
 
@@ -216,7 +282,7 @@ describe('series metadata', () => {
                 metaData
             });
 
-            const selectedValueCodes1: TSingleSelections = {};
+            const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows.length).toEqual(1);
@@ -247,7 +313,7 @@ describe('series metadata', () => {
                 columnVariableCodes: [browsingVariable.code, contentVariable.code],
             });
 
-            const selectedValueCodes1: TSingleSelections = {};
+            const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows.length).toEqual(1);
@@ -281,7 +347,7 @@ describe('series metadata', () => {
                 rowVariableCodes: [contentVariable.code],
             });
 
-            const selectedValueCodes1: TSingleSelections = {};
+            const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
             expect(rows.length).toEqual(2);
@@ -295,6 +361,223 @@ describe('series metadata', () => {
             const { series: series1 } = rows[1];
             expect(series1.length).toEqual(1);
             expect(series1[0].precision).toEqual(contentVariable.values[1].contentComponent?.numberOfDecimals);
+        });
+
+        it('returns the correct data without selectable variables', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [2], [2, 2], [2, 2], []);
+            const expectedData: number[][] =
+                [
+                    [1, 2, 3, 4, 5, 6, 7, 8],
+                    [9, 10, 11, 12, 13, 14, 15, 16],
+                    [17, 18, 19, 20, 21, 22, 23, 24],
+                    [25, 26, 27, 28, 29, 30, 31, 32]
+                ];
+            const selectedValueCodes: TVariableSelections = {};
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            expect(data).toEqual(expectedData);
+        });
+
+        it('returns correct column and row name groups without selectable variables', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [2], [2, 2], [2, 2], []);
+            const selectedValueCodes: TVariableSelections = {};
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const expectedRowNameGroups: TMultiLanguageString[][] = [
+                [
+                    {
+                        "fi": "var3-val0",
+                    },
+                    {
+                        "fi": "var4-val0",
+                    }
+                ],
+                [
+                    {
+                        "fi": "var3-val0",
+                    },
+                    {
+                        "fi": "var4-val1",
+                    }
+                ],
+                [
+                    {
+                        "fi": "var3-val1",
+                    },
+                    {
+                        "fi": "var4-val0",
+                    }
+                ],
+                [
+                    {
+                        "fi": "var3-val1",
+                    },
+                    {
+                        "fi": "var4-val1",
+                    }
+                ],
+            ];
+            const expectedColumnNameGroups: TMultiLanguageString[][] = [
+                [
+                    {
+                        "fi": "var5-val0",
+                    },
+                    {
+                        "fi": "var6-val0",
+                    }
+                ],
+[
+                    {
+                        "fi": "var5-val0",
+                    },
+                    {
+                        "fi": "var6-val1",
+                    }
+                ],
+[
+                    {
+                        "fi": "var5-val1",
+                    },
+                    {
+                        "fi": "var6-val0",
+                    }
+                ],
+                [
+                    {
+                        "fi": "var5-val1",
+                    },
+                    {
+                        "fi": "var6-val1",
+                    }
+                ]
+            ];
+            const rowNameGroups = series.series.map(s => s.rowNameGroup);
+            expect(series.columnNameGroups).toEqual(expectedColumnNameGroups);
+            expect(rowNameGroups).toEqual(expectedRowNameGroups);
+        });
+
+        const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [2], [2, 2], [2], [2]);
+        const selectableVariableCode: string = pxGrafResponse.selectableVariableCodes[0];
+        const selectableVariableValueCode: string = pxGrafResponse.metaData.find(v => v.code === selectableVariableCode)?.values[1].code as string;
+        const selectedValueCodes: TVariableSelections = { [selectableVariableCode]: [selectableVariableValueCode] };
+        const expectedData: number[][] = [
+            [17, 18, 19, 20],
+            [21, 22, 23, 24],
+            [25, 26, 27, 28],
+            [29, 30, 31, 32]
+        ];
+
+        it('returns the correct series when there is a selectable variable', () => {
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            const expectedDataSelectable: number[][] = [
+                [17, 18, 19, 20],
+                [21, 22, 23, 24],
+                [25, 26, 27, 28],
+                [29, 30, 31, 32]
+            ];
+            expect(data).toEqual(expectedDataSelectable);
+        });
+
+        it('returns the right data values in the series after reordering row and column variables', () => {
+            const reordered: IQueryVisualizationResponse = {
+                ...pxGrafResponse,
+                columnVariableCodes: [pxGrafResponse.rowVariableCodes[1], pxGrafResponse.rowVariableCodes[0]],
+                rowVariableCodes: [pxGrafResponse.columnVariableCodes[1], pxGrafResponse.columnVariableCodes[0]]
+            };
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(reordered, selectedValueCodes);
+            const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            const expected: number[][] = [
+                [17, 18, 21, 22, 25, 26, 29, 30],
+                [19, 20, 23, 24, 27, 28, 31, 32]
+            ];
+            expect(data).toEqual(expected);
+        });
+
+        it('returns the same data values in the series if row and column variable order is changed', () => {
+            const reordered: IQueryVisualizationResponse = {
+                ...pxGrafResponse,
+                rowVariableCodes: [pxGrafResponse.rowVariableCodes[1], pxGrafResponse.rowVariableCodes[0]],
+                columnVariableCodes: [pxGrafResponse.columnVariableCodes[1], pxGrafResponse.columnVariableCodes[0]]
+            };
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(reordered, selectedValueCodes);
+            const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            expect(data).toEqual(expectedData);
+        });
+
+        it('returns the same data values in the series if the order of values in variables are changed', () => {
+            pxGrafResponse.metaData[1].values = [pxGrafResponse.metaData[1].values[1], pxGrafResponse.metaData[1].values[0]];
+            pxGrafResponse.metaData[3].values = [pxGrafResponse.metaData[3].values[1], pxGrafResponse.metaData[3].values[0]];
+            pxGrafResponse.metaData[4].values = [pxGrafResponse.metaData[4].values[1], pxGrafResponse.metaData[4].values[0]];
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            expect(data).toEqual(expectedData);
+        });
+
+        it('returns the correct series with a multiselectable variable', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [2], [2, 2], [2], [3]);
+            pxGrafResponse.visualizationSettings.multiselectableVariableCode = pxGrafResponse.selectableVariableCodes[0];
+            const selectableVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.selectableVariableCodes[0]) as IVariableMeta;
+            const selectedValueCodes: TVariableSelections = { [pxGrafResponse.selectableVariableCodes[0]]: [selectableVariable.values[0].code, selectableVariable.values[2].code] };
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } = buildSeries(pxGrafResponse, selectedValueCodes);
+            const values: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            const expected: number[][] = [
+                [1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12],
+                [13, 14, 15, 16],
+                [33, 34, 35, 36],
+                [37, 38, 39, 40],
+                [41, 42, 43, 44],
+                [45, 46, 47, 48]
+            ];
+            expect(values).toEqual(expected);
+        });
+
+        it('returns the correct series with selectable variables', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [2], [1, 2], [1, 2], [2, 2]);
+            const firstSelectable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.selectableVariableCodes[0]) as IVariableMeta;
+            const secondSelectable: IVariableMeta = pxGrafResponse.metaData.find(v => v.code === pxGrafResponse.selectableVariableCodes[1]) as IVariableMeta;
+            const selectedValueCodes: TVariableSelections = { [firstSelectable.code]: [firstSelectable.values[0].code], [secondSelectable.code]: [secondSelectable.values[0].code] };
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const values: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
+            const expected: number[][] = [
+                [1, 2, 3, 4],
+                [5, 6, 7, 8]
+            ];
+            expect(values).toEqual(expected);
+        });
+
+        it('returns the correct precisions with two content variable values of different precisions', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([2], [10], [2], [], []);
+            const contentVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.type === EVariableType.Content) as IVariableMeta;
+            contentVariable.values[0].contentComponent = createContentComponent({ numberOfDecimals: 1 });
+            contentVariable.values[1].contentComponent = createContentComponent({ numberOfDecimals: 2 });
+            const selectedValueCodes: TVariableSelections = {};
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } = buildSeries(pxGrafResponse, selectedValueCodes);
+            const precisions: number[][] = series.series.map(s => s.series.map(d => d.precision));
+            const expectedPrecisions: number[][] = [
+                [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2],
+                [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
+            ];
+            expect(precisions).toEqual(expectedPrecisions);
+        });
+
+        it('time variable with some preliminary values returns the correct series', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse([1], [4], [], [], []);
+            const selectedValueCodes: TVariableSelections = {};
+            const timeVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.type === EVariableType.Time) as IVariableMeta;
+            timeVariable.values[2].name = { fi: '2024Q3*', en: '2024Q3*', sv: '2024Q3*' };
+            timeVariable.values[3].name = { fi: '2024Q4*', en: '2024Q4*', sv: '2024Q4*' };
+            const preliminary: boolean[] = buildSeries(pxGrafResponse, selectedValueCodes).series[0].series.map(d => d.preliminary);
+            const expected: boolean[] = [false, false, true, true];
+            expect(preliminary).toEqual(expected);
         });
     });
 });

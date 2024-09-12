@@ -615,7 +615,7 @@ export const TABLE_WITH_ROW_AND_COLUMN_VARIABLES: { pxGraphData: IQueryVisualiza
             "cutValueAxis": false
         }
     },
-    selectedVariableCodes: { 'Vuosineljännes': ['2015Q1'], 'Alue': ['pks'], 'Rahoitusmuoto': ['1'] }
+    selectedVariableCodes: { }
 };
 
 export const SELECTABLE_TABLE_WITH_MISSING_DATA: IQueryVisualizationResponse = {
