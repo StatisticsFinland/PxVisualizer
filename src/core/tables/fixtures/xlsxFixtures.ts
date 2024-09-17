@@ -318,3 +318,13 @@ export const XLSX_FIXTURES_ONE_CELL: { [key: string]: (string | number | null)[]
             [ "Source: PxVisualizer-en" ]
         ]
 };
+
+export const XLSX_FIXTURES_ONE_CELL_ESCAPE_CHARACTERS: { [key: string]: (string | number | null)[][] } = {
+    'en':
+        [
+            ["& < > ' \" Number, Vantaa, One-room flat, Non subsidised 2022Q4"],
+            [2548],
+            ["Unit: number"],
+            ["Source: PxVisualizer-en"]
+        ]
+};
