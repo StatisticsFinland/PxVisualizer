@@ -125,8 +125,6 @@ export class DataIndexer {
         if (match) {
             return match;
         }
-        console.log("vs", viewSeries);
-        console.log("rn", rowNames);
         throw new Error("Provided row name group can not be found from the view series");
     }
 
