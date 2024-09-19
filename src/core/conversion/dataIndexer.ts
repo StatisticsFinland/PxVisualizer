@@ -112,9 +112,8 @@ export class DataIndexer {
         for (let i = 0; i < this.indices.length; i++) {
             const variable: IVariableMeta = this.selectedViewMeta[i];
             const value: IVariableValueMeta = variable.values[this.indices[i]];
-            if ((this.responseObj.rowVariableCodes.includes(variable.code) ||
-                this.responseObj.visualizationSettings.multiselectableVariableCode === variable.code) &&
-                variable.values.length > 1) {
+            if ((this.responseObj.rowVariableCodes.includes(variable.code) && variable.values.length > 1) ||
+                this.responseObj.visualizationSettings.multiselectableVariableCode === variable.code) {
                 rowNames.push(value.name);
             }
         }
@@ -126,6 +125,8 @@ export class DataIndexer {
         if (match) {
             return match;
         }
+        console.log("vs", viewSeries);
+        console.log("rn", rowNames);
         throw new Error("Provided row name group can not be found from the view series");
     }
 
