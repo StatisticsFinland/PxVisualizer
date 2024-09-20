@@ -1,5 +1,6 @@
 import { worksheetProperties } from "./xlsxPropertyConstants";
 import { TCell } from "./xlsxTypes";
+import { escapeXmlFunctionChars } from "./xlsxUtils";
 
 export const buildXMLSheet = (rows: TCell[][]) : string => {
     const xmlColumns = buildColumns(Math.max(...rows.map(r => r.length)));
@@ -37,7 +38,7 @@ function buildCell(cell: TCell, columnNumber: number, rowNumber: number) : strin
 
     return (
         typeof(cell) === 'string'
-        ? `<c r="${getColumnLetter(columnNumber)}${rowNumber}" t="inlineStr"><is><t>${cell}</t></is></c>`
+            ? `<c r="${getColumnLetter(columnNumber)}${rowNumber}" t="inlineStr"><is><t>${escapeXmlFunctionChars(cell)}</t></is></c>`
         : `<c r="$${getColumnLetter(columnNumber)}${rowNumber}"><v>${cell}</v></c>`
     );
 }
