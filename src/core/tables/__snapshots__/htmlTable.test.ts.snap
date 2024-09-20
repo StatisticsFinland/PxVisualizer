@@ -521,19 +521,19 @@ exports[`Html table render tests should match snapshot: Table with row and colum
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mHelsinki[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0m2022Q1[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mVapaarahoitteinen[0m
@@ -552,12 +552,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 810[0m
         [36m</td>[39m
@@ -576,13 +570,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m11 231[0m
@@ -599,10 +587,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q2[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 552[0m
@@ -622,13 +610,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 269[0m
@@ -644,12 +626,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 249[0m
         [36m</td>[39m
@@ -665,16 +641,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q3[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 272[0m
@@ -690,12 +666,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 323[0m
         [36m</td>[39m
@@ -711,22 +681,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVantaa[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 043[0m
@@ -743,10 +701,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0mVantaa[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m941[0m
@@ -766,13 +730,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 679[0m
@@ -788,12 +746,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m846[0m
         [36m</td>[39m
@@ -809,16 +761,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q2[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 533[0m
@@ -834,12 +786,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m763[0m
         [36m</td>[39m
@@ -858,13 +804,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 548[0m
@@ -881,10 +821,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q4[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m767[0m
@@ -901,22 +841,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mTurku[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m5 534[0m
@@ -932,12 +860,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 292[0m
         [36m</td>[39m
@@ -953,16 +875,22 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"9"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mTurku[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 437[0m
@@ -978,12 +906,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 149[0m
         [36m</td>[39m
@@ -1002,13 +924,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 014[0m
@@ -1025,10 +941,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q3[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 107[0m
@@ -1048,13 +964,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 195[0m
@@ -1070,12 +980,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 161[0m
         [36m</td>[39m
@@ -1159,19 +1063,19 @@ exports[`Html table render tests should match snapshot: Table with row and colum
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mHelsinki[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0m2022Q1[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mVapaarahoitteinen[0m
@@ -1190,12 +1094,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 810[0m
         [36m</td>[39m
@@ -1214,13 +1112,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m11 231[0m
@@ -1237,10 +1129,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q2[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 552[0m
@@ -1260,13 +1152,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 269[0m
@@ -1282,12 +1168,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 249[0m
         [36m</td>[39m
@@ -1303,16 +1183,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q3[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 272[0m
@@ -1328,12 +1208,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 323[0m
         [36m</td>[39m
@@ -1349,22 +1223,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVantaa[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 043[0m
@@ -1381,10 +1243,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0mVantaa[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m941[0m
@@ -1404,13 +1272,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 679[0m
@@ -1426,12 +1288,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m846[0m
         [36m</td>[39m
@@ -1447,16 +1303,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q2[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 533[0m
@@ -1472,12 +1328,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m763[0m
         [36m</td>[39m
@@ -1496,13 +1346,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 548[0m
@@ -1519,10 +1363,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q4[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m767[0m
@@ -1539,22 +1383,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mTurku[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m5 534[0m
@@ -1570,12 +1402,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 292[0m
         [36m</td>[39m
@@ -1591,16 +1417,22 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"9"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mTurku[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 437[0m
@@ -1616,12 +1448,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 149[0m
         [36m</td>[39m
@@ -1640,13 +1466,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 014[0m
@@ -1663,10 +1483,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q3[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 107[0m
@@ -1686,13 +1506,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 195[0m
@@ -1708,12 +1522,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 161[0m
         [36m</td>[39m
@@ -1789,19 +1597,19 @@ exports[`Html table render tests should match snapshot: Table with row and colum
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mHelsinki[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0m2022Q1[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mVapaarahoitteinen[0m
@@ -1820,12 +1628,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 810[0m
         [36m</td>[39m
@@ -1844,13 +1646,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m11 231[0m
@@ -1867,10 +1663,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q2[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 552[0m
@@ -1890,13 +1686,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 269[0m
@@ -1912,12 +1702,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 249[0m
         [36m</td>[39m
@@ -1933,16 +1717,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q3[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 272[0m
@@ -1958,12 +1742,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 323[0m
         [36m</td>[39m
@@ -1979,22 +1757,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVantaa[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 043[0m
@@ -2011,10 +1777,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0mVantaa[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m941[0m
@@ -2034,13 +1806,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 679[0m
@@ -2056,12 +1822,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m846[0m
         [36m</td>[39m
@@ -2077,16 +1837,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q2[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 533[0m
@@ -2102,12 +1862,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m763[0m
         [36m</td>[39m
@@ -2126,13 +1880,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 548[0m
@@ -2149,10 +1897,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q4[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m767[0m
@@ -2169,22 +1917,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mTurku[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m5 534[0m
@@ -2200,12 +1936,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 292[0m
         [36m</td>[39m
@@ -2221,16 +1951,22 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"9"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mTurku[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 437[0m
@@ -2246,12 +1982,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 149[0m
         [36m</td>[39m
@@ -2270,13 +2000,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 014[0m
@@ -2293,10 +2017,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q3[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 107[0m
@@ -2316,13 +2040,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 195[0m
@@ -2338,12 +2056,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 161[0m
         [36m</td>[39m
@@ -2427,19 +2139,19 @@ exports[`Html table render tests should match snapshot: Table with row and colum
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mHelsinki[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0m2022Q1[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mVapaarahoitteinen[0m
@@ -2458,12 +2170,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 810[0m
         [36m</td>[39m
@@ -2482,13 +2188,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m11 231[0m
@@ -2505,10 +2205,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q2[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 552[0m
@@ -2528,13 +2228,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 269[0m
@@ -2550,12 +2244,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 249[0m
         [36m</td>[39m
@@ -2571,16 +2259,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q3[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m10 272[0m
@@ -2596,12 +2284,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 323[0m
         [36m</td>[39m
@@ -2617,22 +2299,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVantaa[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 043[0m
@@ -2649,10 +2319,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"9"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0mVantaa[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m941[0m
@@ -2672,13 +2348,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 679[0m
@@ -2694,12 +2364,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m846[0m
         [36m</td>[39m
@@ -2715,16 +2379,16 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q2[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 533[0m
@@ -2740,12 +2404,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m763[0m
         [36m</td>[39m
@@ -2764,13 +2422,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 548[0m
@@ -2787,10 +2439,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q4[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m767[0m
@@ -2807,22 +2459,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"8"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mTurku[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q1[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m5 534[0m
@@ -2838,12 +2478,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 292[0m
         [36m</td>[39m
@@ -2859,16 +2493,22 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"9"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mTurku[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q1[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 437[0m
@@ -2884,12 +2524,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 149[0m
         [36m</td>[39m
@@ -2908,13 +2542,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 014[0m
@@ -2931,10 +2559,10 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
+          [0m2022Q3[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 107[0m
@@ -2954,13 +2582,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 195[0m
@@ -2976,12 +2598,6 @@ exports[`Html table render tests should match snapshot: Table with row and colum
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 161[0m
         [36m</td>[39m
@@ -3013,25 +2629,31 @@ exports[`Html table render tests should match snapshot: Table with row variables
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"16"[39m
+          [33mrowspan[39m=[32m"17"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mVantaa[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
+          [33mrowspan[39m=[32m"5"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0m2022Q1[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mVapaarahoitteinen[0m
         [36m</th>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"32"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mLukumäärä[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mYksiöt[0m
@@ -3041,12 +2663,6 @@ exports[`Html table render tests should match snapshot: Table with row variables
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m5 261[0m
         [36m</td>[39m
@@ -3056,13 +2672,7 @@ exports[`Html table render tests should match snapshot: Table with row variables
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m941[0m
@@ -3070,10 +2680,10 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mKaksiot[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 083[0m
@@ -3081,22 +2691,10 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mVapaarahoitteinen[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 679[0m
@@ -3104,10 +2702,10 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"5"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mKaksiot[0m
+          [0m2022Q2[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m5 017[0m
@@ -3115,35 +2713,51 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mVapaarahoitteinen[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m846[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 902[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
+          [33mrowspan[39m=[32m"2"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mKaksiot[0m
+        [36m</th>[39m
+        [36m<td>[39m
+          [0m2 533[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mVapaarahoitteinen[0m
+        [36m</th>[39m
+        [36m<td>[39m
+          [0m4 925[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"5"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0m2022Q3[0m
@@ -3152,87 +2766,35 @@ exports[`Html table render tests should match snapshot: Table with row variables
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mVapaarahoitteinen[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
-        [36m</th>[39m
-        [36m<td>[39m
-          [0m2 533[0m
-        [36m</td>[39m
-      [36m</tr>[39m
-      [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
           [0mKaksiot[0m
-        [36m</th>[39m
-        [36m<td>[39m
-          [0m4 925[0m
-        [36m</td>[39m
-      [36m</tr>[39m
-      [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m763[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 778[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q4[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mVapaarahoitteinen[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m2 548[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m4 882[0m
         [36m</td>[39m
@@ -3242,13 +2804,7 @@ exports[`Html table render tests should match snapshot: Table with row variables
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m767[0m
@@ -3256,10 +2812,16 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"5"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mKaksiot[0m
+          [0m2022Q4[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 744[0m
@@ -3267,13 +2829,51 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"16"[39m
+          [33mrowspan[39m=[32m"2"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mKaksiot[0m
+        [36m</th>[39m
+        [36m<td>[39m
+          [0m5 534[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"17"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mTurku[0m
         [36m</th>[39m
+        [36m<td>[39m
+          [0m4 267[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mVapaarahoitteinen[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"2"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mKaksiot[0m
+        [36m</th>[39m
+        [36m<td>[39m
+          [0m1 292[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m1 782[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"5"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0m2022Q1[0m
@@ -3282,75 +2882,7 @@ exports[`Html table render tests should match snapshot: Table with row variables
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mVapaarahoitteinen[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
-        [36m</th>[39m
-        [36m<td>[39m
-          [0m5 534[0m
-        [36m</td>[39m
-      [36m</tr>[39m
-      [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
           [0mKaksiot[0m
-        [36m</th>[39m
-        [36m<td>[39m
-          [0m4 267[0m
-        [36m</td>[39m
-      [36m</tr>[39m
-      [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
-        [36m</th>[39m
-        [36m<td>[39m
-          [0m1 292[0m
-        [36m</td>[39m
-      [36m</tr>[39m
-      [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
-        [36m<td>[39m
-          [0m1 782[0m
-        [36m</td>[39m
-      [36m</tr>[39m
-      [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0m2022Q2[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"2"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mVapaarahoitteinen[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 437[0m
@@ -3358,10 +2890,10 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mKaksiot[0m
+          [0mVapaarahoitteinen[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 666[0m
@@ -3372,47 +2904,29 @@ exports[`Html table render tests should match snapshot: Table with row variables
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 149[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 642[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0m2022Q3[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mVapaarahoitteinen[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 014[0m
@@ -3420,10 +2934,10 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"5"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mKaksiot[0m
+          [0m2022Q3[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m3 329[0m
@@ -3434,13 +2948,7 @@ exports[`Html table render tests should match snapshot: Table with row variables
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 107[0m
@@ -3448,10 +2956,10 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
+          [33mrowspan[39m=[32m"3"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mKaksiot[0m
+          [0mARA[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 554[0m
@@ -3459,62 +2967,44 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
-          [33mrowspan[39m=[32m"4"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0m2022Q4[0m
-        [36m</th>[39m
-        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mVapaarahoitteinen[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m4 195[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m3 414[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
         [36m<th[39m
+          [33mrowspan[39m=[32m"5"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0m2022Q4[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"3"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mVapaarahoitteinen[0m
+        [36m</th>[39m
+        [36m<th[39m
           [33mrowspan[39m=[32m"2"[39m
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
-          [0mARA[0m
-        [36m</th>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mYksiöt[0m
+          [0mKaksiot[0m
         [36m</th>[39m
         [36m<td>[39m
           [0m1 161[0m
         [36m</td>[39m
       [36m</tr>[39m
       [36m<tr>[39m
-        [36m<th[39m
-          [33mrowspan[39m=[32m"1"[39m
-          [33mscope[39m=[32m"row"[39m
-        [36m>[39m
-          [0mKaksiot[0m
-        [36m</th>[39m
         [36m<td>[39m
           [0m1 557[0m
         [36m</td>[39m

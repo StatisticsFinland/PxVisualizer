@@ -85,6 +85,10 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
     const viewSeries: IDataSeries[] = dataIndexer.getViewSeries();
     const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
+
+    console.log('columnNameGroups:', cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),);
+    console.log('viewSeries:', viewSeries);
+
     return {
         columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
         series: viewSeries

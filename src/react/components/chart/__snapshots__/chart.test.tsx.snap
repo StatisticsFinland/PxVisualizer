@@ -83,7 +83,7 @@ exports[`Rendering test renders chart data correctly 1`] = `
           <tbody>
             <tr>
               <th
-                rowspan="1"
+                rowspan="2"
                 scope="row"
               >
                 Vapaarahoitteinen
@@ -96,12 +96,6 @@ exports[`Rendering test renders chart data correctly 1`] = `
               </td>
             </tr>
             <tr>
-              <th
-                rowspan="1"
-                scope="row"
-              >
-                ARA
-              </th>
               <td>
                 4 845
               </td>
@@ -225,19 +219,19 @@ exports[`Rendering test renders table data correctly 1`] = `
         <tbody>
           <tr>
             <th
-              rowspan="8"
+              rowspan="9"
               scope="row"
             >
               Helsinki
             </th>
             <th
-              rowspan="2"
+              rowspan="3"
               scope="row"
             >
               2022Q1
             </th>
             <th
-              rowspan="1"
+              rowspan="2"
               scope="row"
             >
               Vapaarahoitteinen
@@ -256,12 +250,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 810
             </td>
@@ -280,13 +268,7 @@ exports[`Rendering test renders table data correctly 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               11 231
@@ -303,10 +285,10 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q2
             </th>
             <td>
               3 552
@@ -326,13 +308,7 @@ exports[`Rendering test renders table data correctly 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 269
@@ -348,12 +324,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 249
             </td>
@@ -369,16 +339,16 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q3
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 272
@@ -394,12 +364,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 323
             </td>
@@ -415,22 +379,10 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Vantaa
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               3 043
@@ -447,10 +399,16 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="9"
               scope="row"
             >
-              ARA
+              Vantaa
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
             </th>
             <td>
               941
@@ -470,13 +428,7 @@ exports[`Rendering test renders table data correctly 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 679
@@ -492,12 +444,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               846
             </td>
@@ -513,16 +459,16 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q2
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 533
@@ -538,12 +484,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               763
             </td>
@@ -562,13 +502,7 @@ exports[`Rendering test renders table data correctly 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 548
@@ -585,10 +519,10 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q4
             </th>
             <td>
               767
@@ -605,22 +539,10 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Turku
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               5 534
@@ -636,12 +558,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 292
             </td>
@@ -657,16 +573,22 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="9"
+              scope="row"
+            >
+              Turku
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 437
@@ -682,12 +604,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 149
             </td>
@@ -706,13 +622,7 @@ exports[`Rendering test renders table data correctly 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 014
@@ -729,10 +639,10 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q3
             </th>
             <td>
               1 107
@@ -752,13 +662,7 @@ exports[`Rendering test renders table data correctly 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 195
@@ -774,12 +678,6 @@ exports[`Rendering test renders table data correctly 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 161
             </td>
@@ -896,19 +794,19 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
         <tbody>
           <tr>
             <th
-              rowspan="8"
+              rowspan="9"
               scope="row"
             >
               Helsinki
             </th>
             <th
-              rowspan="2"
+              rowspan="3"
               scope="row"
             >
               2022Q1
             </th>
             <th
-              rowspan="1"
+              rowspan="2"
               scope="row"
             >
               Vapaarahoitteinen
@@ -927,12 +825,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 810
             </td>
@@ -951,13 +843,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               11 231
@@ -974,10 +860,10 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q2
             </th>
             <td>
               3 552
@@ -997,13 +883,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 269
@@ -1019,12 +899,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 249
             </td>
@@ -1040,16 +914,16 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q3
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 272
@@ -1065,12 +939,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 323
             </td>
@@ -1086,22 +954,10 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Vantaa
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               3 043
@@ -1118,10 +974,16 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="9"
               scope="row"
             >
-              ARA
+              Vantaa
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
             </th>
             <td>
               941
@@ -1141,13 +1003,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 679
@@ -1163,12 +1019,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               846
             </td>
@@ -1184,16 +1034,16 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q2
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 533
@@ -1209,12 +1059,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               763
             </td>
@@ -1233,13 +1077,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 548
@@ -1256,10 +1094,10 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q4
             </th>
             <td>
               767
@@ -1276,22 +1114,10 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Turku
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               5 534
@@ -1307,12 +1133,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 292
             </td>
@@ -1328,16 +1148,22 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="9"
+              scope="row"
+            >
+              Turku
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 437
@@ -1353,12 +1179,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 149
             </td>
@@ -1377,13 +1197,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 014
@@ -1400,10 +1214,10 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q3
             </th>
             <td>
               1 107
@@ -1423,13 +1237,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 195
@@ -1445,12 +1253,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 161
             </td>
@@ -1570,19 +1372,19 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
         <tbody>
           <tr>
             <th
-              rowspan="8"
+              rowspan="9"
               scope="row"
             >
               Helsinki
             </th>
             <th
-              rowspan="2"
+              rowspan="3"
               scope="row"
             >
               2022Q1
             </th>
             <th
-              rowspan="1"
+              rowspan="2"
               scope="row"
             >
               Vapaarahoitteinen
@@ -1601,12 +1403,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 810
             </td>
@@ -1625,13 +1421,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               11 231
@@ -1648,10 +1438,10 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q2
             </th>
             <td>
               3 552
@@ -1671,13 +1461,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 269
@@ -1693,12 +1477,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 249
             </td>
@@ -1714,16 +1492,16 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q3
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 272
@@ -1739,12 +1517,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 323
             </td>
@@ -1760,22 +1532,10 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Vantaa
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               3 043
@@ -1792,10 +1552,16 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="9"
               scope="row"
             >
-              ARA
+              Vantaa
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
             </th>
             <td>
               941
@@ -1815,13 +1581,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 679
@@ -1837,12 +1597,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               846
             </td>
@@ -1858,16 +1612,16 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q2
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 533
@@ -1883,12 +1637,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               763
             </td>
@@ -1907,13 +1655,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 548
@@ -1930,10 +1672,10 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q4
             </th>
             <td>
               767
@@ -1950,22 +1692,10 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Turku
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               5 534
@@ -1981,12 +1711,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 292
             </td>
@@ -2002,16 +1726,22 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="9"
+              scope="row"
+            >
+              Turku
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 437
@@ -2027,12 +1757,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 149
             </td>
@@ -2051,13 +1775,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 014
@@ -2074,10 +1792,10 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q3
             </th>
             <td>
               1 107
@@ -2097,13 +1815,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 195
@@ -2119,12 +1831,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 161
             </td>
@@ -2249,19 +1955,19 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
         <tbody>
           <tr>
             <th
-              rowspan="8"
+              rowspan="9"
               scope="row"
             >
               Helsinki
             </th>
             <th
-              rowspan="2"
+              rowspan="3"
               scope="row"
             >
               2022Q1
             </th>
             <th
-              rowspan="1"
+              rowspan="2"
               scope="row"
             >
               Vapaarahoitteinen
@@ -2280,12 +1986,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 810
             </td>
@@ -2304,13 +2004,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               11 231
@@ -2327,10 +2021,10 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q2
             </th>
             <td>
               3 552
@@ -2350,13 +2044,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 269
@@ -2372,12 +2060,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 249
             </td>
@@ -2393,16 +2075,16 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q3
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 272
@@ -2418,12 +2100,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 323
             </td>
@@ -2439,22 +2115,10 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Vantaa
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               3 043
@@ -2471,10 +2135,16 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="9"
               scope="row"
             >
-              ARA
+              Vantaa
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
             </th>
             <td>
               941
@@ -2494,13 +2164,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 679
@@ -2516,12 +2180,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               846
             </td>
@@ -2537,16 +2195,16 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q2
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 533
@@ -2562,12 +2220,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               763
             </td>
@@ -2586,13 +2238,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 548
@@ -2609,10 +2255,10 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q4
             </th>
             <td>
               767
@@ -2629,22 +2275,10 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Turku
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               5 534
@@ -2660,12 +2294,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 292
             </td>
@@ -2681,16 +2309,22 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
+              rowspan="9"
+              scope="row"
+            >
+              Turku
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 437
@@ -2706,12 +2340,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 149
             </td>
@@ -2730,13 +2358,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 014
@@ -2753,10 +2375,10 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q3
             </th>
             <td>
               1 107
@@ -2776,13 +2398,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 195
@@ -2798,12 +2414,6 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 161
             </td>
@@ -2920,19 +2530,19 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
         <tbody>
           <tr>
             <th
-              rowspan="8"
+              rowspan="9"
               scope="row"
             >
               Helsinki
             </th>
             <th
-              rowspan="2"
+              rowspan="3"
               scope="row"
             >
               2022Q1
             </th>
             <th
-              rowspan="1"
+              rowspan="2"
               scope="row"
             >
               Vapaarahoitteinen
@@ -2951,12 +2561,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 810
             </td>
@@ -2975,13 +2579,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               11 231
@@ -2998,10 +2596,10 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q2
             </th>
             <td>
               3 552
@@ -3021,13 +2619,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 269
@@ -3043,12 +2635,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 249
             </td>
@@ -3064,16 +2650,16 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q3
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               10 272
@@ -3089,12 +2675,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               3 323
             </td>
@@ -3110,22 +2690,10 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Vantaa
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               3 043
@@ -3142,10 +2710,16 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="9"
               scope="row"
             >
-              ARA
+              Vantaa
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
             </th>
             <td>
               941
@@ -3165,13 +2739,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 679
@@ -3187,12 +2755,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               846
             </td>
@@ -3208,16 +2770,16 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q2
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 533
@@ -3233,12 +2795,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               763
             </td>
@@ -3257,13 +2813,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               2 548
@@ -3280,10 +2830,10 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q4
             </th>
             <td>
               767
@@ -3300,22 +2850,10 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="8"
-              scope="row"
-            >
-              Turku
-            </th>
-            <th
               rowspan="2"
               scope="row"
             >
-              2022Q1
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               5 534
@@ -3331,12 +2869,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 292
             </td>
@@ -3352,16 +2884,22 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
+              rowspan="9"
+              scope="row"
+            >
+              Turku
+            </th>
+            <th
+              rowspan="3"
+              scope="row"
+            >
+              2022Q1
+            </th>
+            <th
               rowspan="2"
               scope="row"
             >
-              2022Q2
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 437
@@ -3377,12 +2915,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 149
             </td>
@@ -3401,13 +2933,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q3
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 014
@@ -3424,10 +2950,10 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </tr>
           <tr>
             <th
-              rowspan="1"
+              rowspan="3"
               scope="row"
             >
-              ARA
+              2022Q3
             </th>
             <td>
               1 107
@@ -3447,13 +2973,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
               rowspan="2"
               scope="row"
             >
-              2022Q4
-            </th>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              Vapaarahoitteinen
+              ARA
             </th>
             <td>
               4 195
@@ -3469,12 +2989,6 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
             </td>
           </tr>
           <tr>
-            <th
-              rowspan="1"
-              scope="row"
-            >
-              ARA
-            </th>
             <td>
               1 161
             </td>
