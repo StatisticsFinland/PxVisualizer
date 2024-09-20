@@ -1,7 +1,10 @@
 export function escapeXmlFunctionChars(input: string): string {
-    return input.replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&apos;");
+    const xmlCharMap: { [key: string]: string } = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&apos;'
+    };
+    return input.replace(/[&<>"']/g, char => xmlCharMap[char]);
 }
