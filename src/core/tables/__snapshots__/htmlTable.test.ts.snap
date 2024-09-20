@@ -382,7 +382,7 @@ exports[`Html table render tests should match snapshot: Table with missing data 
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<td>[39m
-          [0mTieto on puuttuva[0m
+          [0m5 139[0m
         [36m</td>[39m
         [36m<td>[39m
           [0mTieto on puuttuva[0m
@@ -394,7 +394,7 @@ exports[`Html table render tests should match snapshot: Table with missing data 
           [0mTieto on puuttuva[0m
         [36m</td>[39m
         [36m<td>[39m
-          [0mTieto on puuttuva[0m
+          [0m3 641[0m
         [36m</td>[39m
         [36m<td>[39m
           [0mTieto on puuttuva[0m
@@ -406,7 +406,33 @@ exports[`Html table render tests should match snapshot: Table with missing data 
           [0mTieto on puuttuva[0m
         [36m</td>[39m
         [36m<td>[39m
+          [0m5 418[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 662[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 264[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 135[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 237[0m
+        [36m</td>[39m
+        [36m<td>[39m
           [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m3 696[0m
         [36m</td>[39m
         [36m<td>[39m
           [0mTieto on puuttuva[0m
@@ -418,10 +444,468 @@ exports[`Html table render tests should match snapshot: Table with missing data 
           [0mTieto on puuttuva[0m
         [36m</td>[39m
         [36m<td>[39m
+          [0m5 524[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 684[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 407[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 241[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 281[0m
+        [36m</td>[39m
+        [36m<td>[39m
           [0mTieto on puuttuva[0m
         [36m</td>[39m
         [36m<td>[39m
           [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m3 729[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 570[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 807[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 424[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 283[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 308[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m3 730[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 601[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 785[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 483[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 311[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 467[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m3 699[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m5 796[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 994[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 587[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 566[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 607[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m3 882[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 928[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m7 090[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m5 744[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 691[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 588[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m3 957[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 890[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m7 065[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 718[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 641[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m5 635[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m4 047[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 930[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 975[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 782[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 705[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 619[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m4 002[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 914[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 978[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 800[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 679[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 716[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m4 064[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 026[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 940[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 845[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 883[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 521[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m4 051[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 822[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 734[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 509[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 772[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 287[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m4 098[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m5 525[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 264[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 461[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 353[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 379[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m3 756[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 590[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 435[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m5 360[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 466[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 551[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m4 147[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0mTieto on puuttuva[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 765[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m6 424[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 536[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m5 679[0m
         [36m</td>[39m
       [36m</tr>[39m
     [36m</tbody>[39m
@@ -3029,6 +3513,12 @@ exports[`Html table render tests should match snapshot: Table with row variables
           [33mscope[39m=[32m"row"[39m
         [36m>[39m
           [0mVapaarahoitteinen[0m
+        [36m</th>[39m
+        [36m<th[39m
+          [33mrowspan[39m=[32m"32"[39m
+          [33mscope[39m=[32m"row"[39m
+        [36m>[39m
+          [0mLukumäärä[0m
         [36m</th>[39m
         [36m<th[39m
           [33mrowspan[39m=[32m"1"[39m
