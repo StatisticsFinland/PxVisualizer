@@ -56,10 +56,6 @@ export class DataIndexer {
         this.dataLength = this.selectedViewMeta.map(v => v.values.length).reduce((acc, val) => acc * val, 1);
         this.dataIndex = 0;
         this.setCurrentIndex();
-
-        console.log('cmap:', completeMap);
-        console.log('cvi', this.selectedViewContentVariableIndex);
-
     }
 
     public getViewSeries(): IDataSeries[] {
@@ -89,8 +85,6 @@ export class DataIndexer {
         const rowVariableAmount: number = this.responseObj.rowVariableCodes.length + (this.responseObj.visualizationSettings.multiselectableVariableCode ? 1 : 0);
         for (let i = 0; i < rowVariableAmount; i++) {
             const variableIndex = this.variableOrder[i];
-            console.log('this should change', this.indices[variableIndex]);
-            console.log('value is', this.responseObj.metaData[variableIndex].values[this.indices[variableIndex]]);
             rowNames.push(this.responseObj.metaData[variableIndex].values[this.indices[variableIndex]].name);
         }
         return rowNames;
@@ -132,20 +126,18 @@ export class DataIndexer {
             if (values.length === 0) {
                 throw new Error("Provided selected value code can not be found from the metadata");
             }
-            return { ...variable, values };
+            return variable;
         });
         const multiselectedVariables: IVariableMeta[] = selectableVariables.filter(v => selectedValueCodes[v.code].length > 1);
         const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !responseObj.rowVariableCodes.includes(v.code) && !responseObj.columnVariableCodes.includes(v.code) && !multiselectedVariables.includes(v));
         const targetMap: IVariableMeta[] = multiselectedVariables.concat(rowVariables).concat(columnVariables).concat(unassignedVariables);
         this.rowLength = cartesianProduct(columnVariables.map(v => v.values)).length;
-        console.log('targetmap:', targetMap);
         return targetMap;
     }
 
     getVariableOrder(): number[] {
         const sourceCodes: string[] = this.responseObj.metaData.map(v => v.code);
         const codes = this.selectedViewMeta.map(v => sourceCodes.indexOf(v.code));
-        console.log(codes);
         return codes;
     }
 
