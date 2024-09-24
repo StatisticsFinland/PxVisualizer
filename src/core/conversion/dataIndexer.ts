@@ -28,24 +28,9 @@ export class DataIndexer {
         const completeMap: IVariableMeta[] = responseObj.metaData;
         const variableSizes: number[] = completeMap.map(v => v.values.length);
         this.selectedViewMeta = this.getSelectedView(responseObj, selectedValueCodes);
-        this.coordinates = Array.from({ length: this.selectedViewMeta.length });
+        this.coordinates = Array.from({ length: this.selectedViewMeta.length }, () => []);
         this.variableOrder = this.getVariableOrder();
-        for (let targetIndex = 0; targetIndex < this.selectedViewMeta.length; targetIndex++) {
-            const variableIndex: number = this.variableOrder[targetIndex];
-            const targetVariableCode = this.selectedViewMeta[targetIndex].code;
-            const values: IVariableValueMeta[] | undefined = completeMap.find(v => v.code === targetVariableCode)?.values;
-            if (!values) throw new Error("Provided variable code can not be found from the metadata");
-            const targetVariable: IVariableMeta | undefined = this.selectedViewMeta.find(v => v.code === targetVariableCode);
-            if (!targetVariable) throw new Error("Provided variable code can not be found from the target map");
-            this.coordinates[variableIndex] = Array.from({ length: targetVariable.values.length });
-            for (let mapIndex = 0; mapIndex < targetVariable.values.length; mapIndex++) {
-                for (let valueIndex = 0; valueIndex < values.length; valueIndex++) {
-                    if (values[valueIndex] === targetVariable.values[mapIndex]) {
-                        this.coordinates[variableIndex][mapIndex] = valueIndex;
-                    }
-                }
-            }
-        }
+        this.initializeCoordinates(completeMap);
         this.selectedViewContentVariableIndex = this.selectedViewMeta.findIndex(v => v.type === EVariableType.Content);
         this.selectedViewVariableIndex = this.selectedViewMeta.findIndex(v => v.type === EVariableType.Time);
         this.completeViewContentVariableIndex = this.variableOrder[this.selectedViewContentVariableIndex];
@@ -57,6 +42,18 @@ export class DataIndexer {
         this.dataLength = this.selectedViewMeta.map(v => v.values.length).reduce((acc, val) => acc * val, 1);
         this.dataIndex = 0;
         this.setCurrentIndex();
+    }
+
+    private initializeCoordinates(completeMap: IVariableMeta[]): void {
+        for (let targetIndex = 0; targetIndex < this.selectedViewMeta.length; targetIndex++) {
+            const variableIndex: number = this.variableOrder[targetIndex];
+            const targetVariableCode = this.selectedViewMeta[targetIndex].code;
+            const values = completeMap.find(v => v.code === targetVariableCode)?.values;
+            if (!values) throw new Error("Provided variable code can not be found from the metadata");
+            const targetVariable = this.selectedViewMeta.find(v => v.code === targetVariableCode);
+            if (!targetVariable) throw new Error("Provided variable code can not be found from the target map");
+            this.coordinates[variableIndex] = targetVariable.values.map(tv => values.findIndex(v => v === tv));
+        }
     }
 
     public getViewSeries(): IDataSeries[] {
@@ -82,12 +79,9 @@ export class DataIndexer {
     }
 
     generateRowNameGroup(): TMultiLanguageString[] {
-        const rowNames: TMultiLanguageString[] = [];
-        for (let i = 0; i < this.rowAmount; i++) {
-            const variableIndex = this.variableOrder[i];
-            rowNames.push(this.responseObj.metaData[variableIndex].values[this.indices[variableIndex]].name);
-        }
-        return rowNames;
+        return this.variableOrder.slice(0, this.rowAmount).map(variableIndex =>
+            this.responseObj.metaData[variableIndex].values[this.indices[variableIndex]].name
+        );
     }
 
     next(): boolean {
@@ -117,21 +111,22 @@ export class DataIndexer {
     }
 
     getSelectedView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableMeta[] {
-        const rowVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.rowVariableCodes.includes(v.code) && v.values.length > 1);
-        const selectableVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.selectableVariableCodes.includes(v.code)).map((variable) => {
+        const selectableVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.selectableVariableCodes.includes(v.code) || responseObj.visualizationSettings.multiselectableVariableCode == v.code).map((variable) => {
             const values: IVariableValueMeta[] = variable.values.filter((value) =>
                 selectedValueCodes[variable.code].includes(value.code)
             );
             if (values.length === 0) {
                 throw new Error("Provided selected value code can not be found from the metadata");
             }
-            return variable;
+            return { ...variable, values };
         });
-        const multiselectedVariables: IVariableMeta[] = selectableVariables.filter(v => selectedValueCodes[v.code].length > 1);
-        const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !rowVariables.includes(v) && !multiselectedVariables.includes(v));
-        const targetMap: IVariableMeta[] = multiselectedVariables.concat(rowVariables).concat(unassignedVariables);
-        this.rowLength = cartesianProduct(unassignedVariables.map(v => v.values)).length;
-        this.rowAmount = rowVariables.length + multiselectedVariables.length;
+        const multiSelectedVariables: IVariableMeta[] = selectableVariables.filter(v => v.values.length > 1);
+        const singleSelectedVariables: IVariableMeta[] = selectableVariables.filter(v => !multiSelectedVariables.includes(v));
+        const rowVariables: IVariableMeta[] = responseObj.metaData.filter(v => !selectableVariables.some(sv => sv.code == v.code) && responseObj.rowVariableCodes.includes(v.code) && v.values.length > 1);
+        const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !rowVariables.some(rv => rv.code == v.code) && !selectableVariables.some(sv => sv.code == v.code));
+        const targetMap: IVariableMeta[] = [...multiSelectedVariables, ...rowVariables, ...singleSelectedVariables, ...unassignedVariables];
+        this.rowLength = cartesianProduct(responseObj.metaData.filter(v => responseObj.columnVariableCodes.includes(v.code)).map(v => v.values)).length;
+        this.rowAmount = rowVariables.length + multiSelectedVariables.length;
         return targetMap;
     }
 
@@ -142,10 +137,9 @@ export class DataIndexer {
     }
 
     generateRCP(variableSizes: number[]): number[] {
-        let numOfDims: number = variableSizes.length;
-        const cnt: number[] = Array.from({ length: numOfDims });
+        const cnt: number[] = Array.from({ length: variableSizes.length });
         let cumulativeMultiplier: number = 1;
-        for (let i = numOfDims - 1; i >= 0; i--) {
+        for (let i = variableSizes.length - 1; i >= 0; i--) {
             cnt[i] = cumulativeMultiplier;
             cumulativeMultiplier *= variableSizes[i];
         }

@@ -11,7 +11,6 @@ export function convertPxGrafResponseToView(
     responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections
 ): View {
     const view: View = convert(responseObj, selectedValueCodes, getValueSelectAmounts(selectedValueCodes));
-
     const isRelativeChart =
         view.visualizationSettings?.visualizationType === EVisualizationType.PercentHorizontalBarChart
         || view.visualizationSettings?.visualizationType === EVisualizationType.PercentVerticalBarChart;
