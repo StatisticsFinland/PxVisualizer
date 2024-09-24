@@ -21,6 +21,7 @@ export class DataIndexer {
     private completeViewTimeVariableIndex: number;
     private selectedViewMeta: IVariableMeta[];
     private rowLength: number = 0;
+    private rowAmount: number = 0;
 
     constructor(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections) {
         this.responseObj = responseObj;
@@ -82,8 +83,7 @@ export class DataIndexer {
 
     generateRowNameGroup(): TMultiLanguageString[] {
         const rowNames: TMultiLanguageString[] = [];
-        const rowVariableAmount: number = this.responseObj.rowVariableCodes.length + (this.responseObj.visualizationSettings.multiselectableVariableCode ? 1 : 0);
-        for (let i = 0; i < rowVariableAmount; i++) {
+        for (let i = 0; i < this.rowAmount; i++) {
             const variableIndex = this.variableOrder[i];
             rowNames.push(this.responseObj.metaData[variableIndex].values[this.indices[variableIndex]].name);
         }
@@ -117,8 +117,7 @@ export class DataIndexer {
     }
 
     getSelectedView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableMeta[] {
-        const rowVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.rowVariableCodes.includes(v.code));
-        const columnVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.columnVariableCodes.includes(v.code));
+        const rowVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.rowVariableCodes.includes(v.code) && v.values.length > 1);
         const selectableVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.selectableVariableCodes.includes(v.code)).map((variable) => {
             const values: IVariableValueMeta[] = variable.values.filter((value) =>
                 selectedValueCodes[variable.code].includes(value.code)
@@ -129,9 +128,10 @@ export class DataIndexer {
             return variable;
         });
         const multiselectedVariables: IVariableMeta[] = selectableVariables.filter(v => selectedValueCodes[v.code].length > 1);
-        const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !responseObj.rowVariableCodes.includes(v.code) && !responseObj.columnVariableCodes.includes(v.code) && !multiselectedVariables.includes(v));
-        const targetMap: IVariableMeta[] = multiselectedVariables.concat(rowVariables).concat(columnVariables).concat(unassignedVariables);
-        this.rowLength = cartesianProduct(columnVariables.map(v => v.values)).length;
+        const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !rowVariables.includes(v) && !multiselectedVariables.includes(v));
+        const targetMap: IVariableMeta[] = multiselectedVariables.concat(rowVariables).concat(unassignedVariables);
+        this.rowLength = cartesianProduct(unassignedVariables.map(v => v.values)).length;
+        this.rowAmount = rowVariables.length + multiselectedVariables.length;
         return targetMap;
     }
 
