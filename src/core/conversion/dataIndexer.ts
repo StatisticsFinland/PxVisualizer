@@ -47,11 +47,9 @@ export class DataIndexer {
     private initializeCoordinates(completeMap: IVariableMeta[]): void {
         for (let targetIndex = 0; targetIndex < this.selectedViewMeta.length; targetIndex++) {
             const variableIndex: number = this.variableOrder[targetIndex];
-            const targetVariableCode = this.selectedViewMeta[targetIndex].code;
-            const values = completeMap.find(v => v.code === targetVariableCode)?.values;
-            if (!values) throw new Error("Provided variable code can not be found from the metadata");
-            const targetVariable = this.selectedViewMeta.find(v => v.code === targetVariableCode);
-            if (!targetVariable) throw new Error("Provided variable code can not be found from the target map");
+            const targetVariableCode: string = this.selectedViewMeta[targetIndex].code;
+            const values: IVariableValueMeta[] = completeMap.find(v => v.code === targetVariableCode)?.values as IVariableValueMeta[];
+            const targetVariable: IVariableMeta = this.selectedViewMeta.find(v => v.code === targetVariableCode) as IVariableMeta;
             this.coordinates[variableIndex] = targetVariable.values.map(tv => values.findIndex(v => v === tv));
         }
     }
