@@ -381,128 +381,20 @@ describe('series metadata', () => {
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
                 buildSeries(pxGrafResponse, selectedValueCodes);
             const expectedRowNameGroups: TMultiLanguageString[][] = [
-                [
-                    {
-                        "fi": "var3-val0",
-                    },
-                    {
-                        "fi": "var4-val0",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var3-val0",
-                    },
-                    {
-                        "fi": "var4-val1",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var3-val1",
-                    },
-                    {
-                        "fi": "var4-val0",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var3-val1",
-                    },
-                    {
-                        "fi": "var4-val1",
-                    }
-                ],
+                [{ "fi": "var3-val0" }, { "fi": "var4-val0" }],
+                [{ "fi": "var3-val0" }, { "fi": "var4-val1" }],
+                [{ "fi": "var3-val1" }, { "fi": "var4-val0" }],
+                [{ "fi": "var3-val1" }, { "fi": "var4-val1" }],
             ];
             const expectedColumnNameGroups: TMultiLanguageString[][] = [
-                [
-                    {
-                        "fi": "var5-val0",
-                    },
-                    {
-                        "fi": "var6-val0",
-                    },
-                    {
-                        "fi": "var2-val0",
-                    }
-                ],
-[
-                    {
-                        "fi": "var5-val0",
-                    },
-                    {
-                        "fi": "var6-val0",
-                    },
-                    {
-                        "fi": "var2-val1",
-                    }
-                ],
-[
-                    {
-                        "fi": "var5-val0",
-                    },
-                    {
-                        "fi": "var6-val1",
-                    },
-                    {
-                        "fi": "var2-val0",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var5-val0",
-                    },
-                    {
-                        "fi": "var6-val1",
-                    },
-                    {
-                        "fi": "var2-val1",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var5-val1",
-                    },
-                    {
-                        "fi": "var6-val0",
-                    },
-                    {
-                        "fi": "var2-val0",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var5-val1",
-                    },
-                    {
-                        "fi": "var6-val0",
-                    },
-                    {
-                        "fi": "var2-val1",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var5-val1",
-                    },
-                    {
-                        "fi": "var6-val1",
-                    },
-                    {
-                        "fi": "var2-val0",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var5-val1",
-                    },
-                    {
-                        "fi": "var6-val1",
-                    },
-                    {
-                        "fi": "var2-val1",
-                    }
-                ]
+                [{ "fi": "var5-val0" }, { "fi": "var6-val0" }, { "fi": "var2-val0" }],
+                [{ "fi": "var5-val0" }, { "fi": "var6-val0" }, { "fi": "var2-val1" }],
+                [{ "fi": "var5-val0" }, { "fi": "var6-val1" }, { "fi": "var2-val0" }],
+                [{ "fi": "var5-val0" }, { "fi": "var6-val1" }, { "fi": "var2-val1" }],
+                [{ "fi": "var5-val1" }, { "fi": "var6-val0" }, { "fi": "var2-val0" }],
+                [{ "fi": "var5-val1" }, { "fi": "var6-val0" }, { "fi": "var2-val1" }],
+                [{ "fi": "var5-val1" }, { "fi": "var6-val1" }, { "fi": "var2-val0" }],
+                [{ "fi": "var5-val1" }, { "fi": "var6-val1" }, { "fi": "var2-val1" }],
             ];
             const rowNameGroups = series.series.map(s => s.rowNameGroup);
             expect(series.columnNameGroups).toEqual(expectedColumnNameGroups);
@@ -687,38 +579,10 @@ describe('series metadata', () => {
                 [{ fi: 'var5-val1' }, { fi: 'var2-val1' }]
             ];
             const expectedRowNameGroups: TMultiLanguageString[][] = [
-            [
-                    {
-                        "fi": "var3-val0",
-                    },
-                    {
-                        "fi": "var4-val0",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var3-val0",
-                    },
-                    {
-                        "fi": "var4-val1",
-                    }
-                ],
-                [
-                    {
-                        "fi": "var3-val1",
-                    },
-                    {
-                        "fi": "var4-val0",
-                    },
-                ],
-                [
-                    {
-                        "fi": "var3-val1",
-                    },
-                    {
-                        "fi": "var4-val1",
-                    }
-                ]
+                [{ "fi": "var3-val0" }, { "fi": "var4-val0", }],
+                [{ "fi": "var3-val0" }, { "fi": "var4-val1" }],
+                [{ "fi": "var3-val1" }, { "fi": "var4-val0" }],
+                [{ "fi": "var3-val1" }, { "fi": "var4-val1" }]
             ];
             expect(values).toEqual(expected);
             const rowNameGroups = series.series.map(s => s.rowNameGroup);
