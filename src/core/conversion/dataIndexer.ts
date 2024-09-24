@@ -71,10 +71,6 @@ export class DataIndexer {
             }
         } while (this.next());
 
-        if (currentSeries.length > 0) {
-            viewSeries.push({ rowNameGroup: this.generateRowNameGroup(), series: currentSeries });
-        }
-
         return viewSeries;
     }
 

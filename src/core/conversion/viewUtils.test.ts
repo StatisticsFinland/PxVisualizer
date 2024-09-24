@@ -591,16 +591,26 @@ describe('series metadata', () => {
         });
 
         it('returns the correct precisions with two content variable values of different precisions', () => {
-            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse(2, 10, [2], [], []);
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse(2, 4, [], [], []);
             const contentVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.type === EVariableType.Content) as IVariableMeta;
             contentVariable.values[0].contentComponent = createContentComponent({ numberOfDecimals: 1 });
             contentVariable.values[1].contentComponent = createContentComponent({ numberOfDecimals: 2 });
             const selectedValueCodes: TVariableSelections = {};
-            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } = buildSeries(pxGrafResponse, selectedValueCodes);
-            const precisions: number[][] = series.series.map(s => s.series.map(d => d.precision));
+            const precisions: number[][] = buildSeries(pxGrafResponse, selectedValueCodes).series.map(s => s.series.map(d => d.precision));
             const expectedPrecisions: number[][] = [
-                [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2],
-                [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
+                [1, 2, 1, 2, 1, 2, 1, 2]
+            ];
+            expect(precisions).toEqual(expectedPrecisions);
+        });
+
+        it('returns precision of 0 if content variable value has no precision', () => {
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse(1, 4, [], [], []);
+            const contentVariable: IVariableMeta = pxGrafResponse.metaData.find(v => v.type === EVariableType.Content) as IVariableMeta;
+            contentVariable.values[0].contentComponent = null;
+            const selectedValueCodes: TVariableSelections = {};
+            const precisions: number[][] = buildSeries(pxGrafResponse, selectedValueCodes).series.map(s => s.series.map(d => d.precision));
+            const expectedPrecisions: number[][] = [
+                [0, 0, 0, 0]
             ];
             expect(precisions).toEqual(expectedPrecisions);
         });
