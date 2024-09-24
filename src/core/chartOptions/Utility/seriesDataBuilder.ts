@@ -8,11 +8,11 @@ export const buildHighchartSeries = (view: View, type: SeriesType, locale: strin
         animation: false,
         type: type,
         name: s.rowNameGroup.map(n => n[locale]).join(', '),
-        data: s.series.map((dataPoint, dIndex) => {
-            return {
-                y: dataPoint.value,
-                name: view.columnNameGroups[dIndex].map(n => n[locale]).join(', '),
-                custom: { preliminary: dataPoint.preliminary }
-            };
-        })
+        data: s.series.map((dataPoint, dIndex) => ({
+            y: dataPoint.value,
+            name: view.columnNameGroups[dIndex].map(n => n[locale]).join(', '),
+            custom: { preliminary: dataPoint.preliminary }
+        }))
     }));
+
+    

@@ -625,10 +625,6 @@ describe('series metadata', () => {
                 [{ fi: 'var3-val0' }, { fi: 'var4-val0' }],
                 [{ fi: 'var3-val0' }, { fi: 'var4-val1' }]
             ];
-
-            console.log(series.columnNameGroups);
-            console.log(series.series.map(s => s.rowNameGroup));
-
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
             expect(series.series.map(s => s.rowNameGroup)).toEqual(expectedRowNames);
         });

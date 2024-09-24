@@ -11,6 +11,7 @@ export function convertPxGrafResponseToView(
     responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections
 ): View {
     const view: View = convert(responseObj, selectedValueCodes, getValueSelectAmounts(selectedValueCodes));
+
     const isRelativeChart =
         view.visualizationSettings?.visualizationType === EVisualizationType.PercentHorizontalBarChart
         || view.visualizationSettings?.visualizationType === EVisualizationType.PercentVerticalBarChart;
@@ -84,7 +85,6 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
     const viewSeries: IDataSeries[] = dataIndexer.getViewSeries();
     const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
-
     return {
         columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
         series: viewSeries
