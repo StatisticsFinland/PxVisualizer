@@ -105,7 +105,9 @@ export class DataIndexer {
     }
 
     getSelectedView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableMeta[] {
-        const selectableVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.selectableVariableCodes.includes(v.code) || responseObj.visualizationSettings.multiselectableVariableCode == v.code).map((variable) => {
+        const rowVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.rowVariableCodes.includes(v.code) && v.values.length > 1);
+        const columnVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.columnVariableCodes.includes(v.code) && v.values.length > 1);
+        const selectableVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.selectableVariableCodes.includes(v.code)).map((variable) => {
             const values: IVariableValueMeta[] = variable.values.filter((value) =>
                 selectedValueCodes[variable.code].includes(value.code)
             );
@@ -114,13 +116,12 @@ export class DataIndexer {
             }
             return { ...variable, values };
         });
-        const multiSelectedVariables: IVariableMeta[] = selectableVariables.filter(v => v.values.length > 1);
-        const singleSelectedVariables: IVariableMeta[] = selectableVariables.filter(v => !multiSelectedVariables.includes(v));
-        const rowVariables: IVariableMeta[] = responseObj.metaData.filter(v => !selectableVariables.some(sv => sv.code == v.code) && responseObj.rowVariableCodes.includes(v.code) && v.values.length > 1);
-        const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !rowVariables.some(rv => rv.code == v.code) && !selectableVariables.some(sv => sv.code == v.code));
-        const targetMap: IVariableMeta[] = [...multiSelectedVariables, ...rowVariables, ...singleSelectedVariables, ...unassignedVariables];
+        const directionlessMultiselectVariables: IVariableMeta[] = selectableVariables.filter(v => v.values.length > 1 && !rowVariables.some(rv => rv.code == v.code) && !columnVariables.some(cv => cv.code == v.code));
+        const singleSelectedVariables: IVariableMeta[] = selectableVariables.filter(v => v.values.length == 1);
+        const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !rowVariables.some(rv => rv.code == v.code) && !columnVariables.some(cv => cv.code == v.code) && !selectableVariables.some(sv => sv.code == v.code));
+        const targetMap: IVariableMeta[] = [...directionlessMultiselectVariables, ...rowVariables, ...columnVariables,...singleSelectedVariables, ...unassignedVariables];
         this.rowLength = cartesianProduct(responseObj.metaData.filter(v => responseObj.columnVariableCodes.includes(v.code)).map(v => v.values)).length;
-        this.rowAmount = rowVariables.length + multiSelectedVariables.length;
+        this.rowAmount = rowVariables.length + directionlessMultiselectVariables.length;
         return targetMap;
     }
 
