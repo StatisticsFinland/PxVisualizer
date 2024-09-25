@@ -11,6 +11,8 @@ jobs:
  dependabot_version_increment:
     #if: ${{ github.actor = 'dependabot[bot]' }} commented this out for testing
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
