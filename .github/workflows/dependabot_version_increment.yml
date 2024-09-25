@@ -1,6 +1,6 @@
 name: dependabot Version Increment
 
-run-name: format('dependabot Version Increment for PR {0}', github.event.pull_request.number)
+run-name: ${{ format('dependabot Version Increment for PR {0}', github.event.pull_request.number) }}
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - 'dev'
 
 jobs:
- sonar:
+ dependabot_version_increment:
     #if: ${{ github.actor = 'dependabot[bot]' }} commented this out for testing
     runs-on: ubuntu-latest
 
@@ -29,7 +29,7 @@ jobs:
         run: |
           git fetch origin main
           git checkout origin/main -- package.json
-          echo "CURRENT_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV"
+          echo "CURRENT_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
 
       - name: Get version number from PR branch
         run: |
