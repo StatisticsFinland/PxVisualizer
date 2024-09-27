@@ -35,10 +35,14 @@ jobs:
           echo "Current main version is $CURRENT_VERSION"
 
       - name: Checkout PR branch
-        run: git checkout ${{ github.event.pull_request.head.ref }}
+        run: |
+          git checkout ${{ github.event.pull_request.head.ref }}
+          git pull origin ${{ github.event.pull_request.head.ref }}
 
       - name: Get version number from PR branch
         run: |
+          echo "Content of package.json in PR branch:"
+          cat package.json
           PR_VERSION=$(jq -r '.version' package.json)
           echo "PR_VERSION=$PR_VERSION" >> $GITHUB_ENV
           echo "Version in PR branch is $PR_VERSION"
