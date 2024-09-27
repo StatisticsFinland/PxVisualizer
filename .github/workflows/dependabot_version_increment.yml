@@ -32,14 +32,17 @@ jobs:
           git fetch origin main
           git checkout origin/main -- package.json
           echo "CURRENT_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+          echo "Current main version is $CURRENT_VERSION"
 
       - name: Get version number from PR branch
         run: |
           PR_VERSION=$(jq -r '.version' package.json)
           echo "PR_VERSION=$PR_VERSION" >> $GITHUB_ENV
+          echo "Version in PR branch is $PR_VERSION"
 
       - name: Compare and increment version number
         run: |
+          echo "Comparing versions: $CURRENT_VERSION and $PR_VERSION"
           if [ "$CURRENT_VERSION" = "$PR_VERSION" ]; then
             npm version patch --no-git-tag-version
             git config --global user.name "github-actions[bot]"
