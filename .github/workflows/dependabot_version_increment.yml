@@ -9,7 +9,7 @@ on:
 
 jobs:
  dependabot_version_increment:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    # TEST if: ${{ github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -47,4 +47,6 @@ jobs:
             git add package.json
             git commit -m "Version bump from $PR_VERSION to $(jq -r '.version' package.json)"
             git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          else
+            echo "Version number in PR branch is already up-to-date. No action taken."
           fi
