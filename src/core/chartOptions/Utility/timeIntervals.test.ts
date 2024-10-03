@@ -103,10 +103,10 @@ describe('getXAxisOptions tests', () => {
         });
     });
 
-    it('Should return correct options when series type is ordinal', () => {
+    it('Should return correct options when series type is ordinal with non-numeric values', () => {
         const irregularOrdinalView = {
             ...mockView,
-            seriesType: ESeriesType.Nominal,
+            seriesType: ESeriesType.Ordinal,
             visualizationSettings: {
                 ...mockView.visualizationSettings,
                 timeVariableIntervals: ETimeVariableInterval.Irregular
@@ -124,6 +124,25 @@ describe('getXAxisOptions tests', () => {
                 autoRotation: [-45]
             }
         });
+    });
+
+    it('Should return correct options when series type is ordinal with numeric values', () => {
+        const irregularOrdinalView = {
+            ...mockView,
+            seriesType: ESeriesType.Ordinal,
+            visualizationSettings: {
+                ...mockView.visualizationSettings
+            },
+            columnNameGroups: [
+                [{ 'fi': '1', 'en': '1', 'sv': '1' }],
+                [{ 'fi': '2', 'en': '2', 'sv': '2' }]
+            ]
+        };
+
+        const result = getXAxisOptions(irregularOrdinalView, 'fi');
+        expect(result.ordinal).toEqual(true);
+        expect(result.type).toEqual('category');
+        expect(result.categories).toEqual(["1", "2"]);
     });
 
     it('Should return correct options when interval is week', () => {
@@ -202,4 +221,6 @@ describe('getXAxisOptions tests', () => {
             type: 'datetime'
         });
     });
+
+    //TODO: Test with numeric and non-numeric ordinal column name groups
 });
