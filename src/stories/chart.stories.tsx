@@ -7,6 +7,7 @@ import {
   VERTICAL_BAR_CHART_WITH_PRELIMINARY_DATA,
   VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS,
   VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES,
+  VERTICAL_BAR_CHART_WITH_LONG_ORDINAL_LABELS,
   VERTICAL_BAR_CHART_WITH_SELECTABLES,
 } from "./fixtures/verticalBarChart";
 import {
@@ -135,6 +136,9 @@ verticalBarChartWithPreliminaryData.args = VERTICAL_BAR_CHART_WITH_PRELIMINARY_D
 
 export const verticalBarChartWithNegativeValues = Template.bind({});
 verticalBarChartWithNegativeValues.args = VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES;
+
+export const verticalBarChartWithLongOrdinalLabels = Template.bind({});
+verticalBarChartWithLongOrdinalLabels.args = VERTICAL_BAR_CHART_WITH_LONG_ORDINAL_LABELS;
 
 export const HorizontalBarChartAscending = Template.bind({});
 HorizontalBarChartAscending.args = HORIZONTAL_BAR_CHART_ASCENDING;
