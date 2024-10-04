@@ -13,6 +13,6 @@ export const getOrdinalOptions: (view: View, locale: string) => XAxisOptions = (
             Math.max(...view.columnNameGroups.map(cng =>
                 cng.reduce((acc: number, mls: TMultiLanguageString) => {
                     return (acc > 0 ? 1 : 0) + acc + mls[locale].length
-                }, 0)))),
+                }, 0))))
     };
 };

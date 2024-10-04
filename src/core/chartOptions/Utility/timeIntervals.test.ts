@@ -221,6 +221,4 @@ describe('getXAxisOptions tests', () => {
             type: 'datetime'
         });
     });
-
-    //TODO: Test with numeric and non-numeric ordinal column name groups
 });
