@@ -4,7 +4,7 @@ import { TVariableSelections } from "../types/variableSelections";
 import { IDataCell, IDataSeries } from "../types/view";
 import { cartesianProduct } from "./utilityFunctions";
 
-export class DataIndexer {
+export class SeriesBuilder {
     public dataIndex: number;
     public dataLength: number;
 
@@ -16,9 +16,7 @@ export class DataIndexer {
     private lastCoordinateIndex: number;
     private reverseCumulativeProducts: number[];
     private selectedViewContentVariableIndex: number;
-    private selectedViewVariableIndex: number;
-    private completeViewContentVariableIndex: number;
-    private completeViewTimeVariableIndex: number;
+    private selectedViewTimeVariableIndex: number;
     private selectedViewMeta: IVariableMeta[];
     private rowLength: number = 0;
     private rowAmount: number = 0;
@@ -32,9 +30,7 @@ export class DataIndexer {
         this.variableOrder = this.getVariableOrder();
         this.initializeCoordinates(completeMap);
         this.selectedViewContentVariableIndex = this.selectedViewMeta.findIndex(v => v.type === EVariableType.Content);
-        this.selectedViewVariableIndex = this.selectedViewMeta.findIndex(v => v.type === EVariableType.Time);
-        this.completeViewContentVariableIndex = this.variableOrder[this.selectedViewContentVariableIndex];
-        this.completeViewTimeVariableIndex = this.variableOrder[this.selectedViewVariableIndex];
+        this.selectedViewTimeVariableIndex = this.selectedViewMeta.findIndex(v => v.type === EVariableType.Time);
         this.indices = Array.from({ length: completeMap.length }, () => 0);
         this.lastIndices = this.selectedViewMeta.map(v => v.values.length - 1);
         this.lastCoordinateIndex = this.coordinates.length - 1;
@@ -97,7 +93,9 @@ export class DataIndexer {
         const timeVal: IVariableValueMeta | undefined = this.getCurrentTimeValue();
         const dataCell: IDataCell = {
             value: this.responseObj.data[this.dataIndex],
-            precision: this.selectedViewMeta[this.selectedViewContentVariableIndex].values[this.indices[this.completeViewContentVariableIndex]].contentComponent?.numberOfDecimals ?? 0,
+            precision: this.selectedViewMeta[this.selectedViewContentVariableIndex]
+                .values[this.indices[this.variableOrder[this.selectedViewContentVariableIndex]]]
+                .contentComponent?.numberOfDecimals ?? 0,
             preliminary: timeVal ? Object.values(timeVal.name)[0].trim().endsWith('*') : false
         };
         if (!dataCell.value) dataCell.missingCode = this.responseObj.missingDataInfo[this.dataIndex];
@@ -150,9 +148,10 @@ export class DataIndexer {
     }
 
     getCurrentTimeValue(): IVariableValueMeta | undefined {
-        if (this.selectedViewVariableIndex == -1) {
+        if (this.selectedViewTimeVariableIndex == -1) {
             return undefined;
         }
-        return this.selectedViewMeta[this.selectedViewVariableIndex].values[this.indices[this.completeViewTimeVariableIndex]];
+        return this.selectedViewMeta[this.selectedViewTimeVariableIndex]
+            .values[this.indices[this.variableOrder[this.selectedViewTimeVariableIndex]]];
     }
 }

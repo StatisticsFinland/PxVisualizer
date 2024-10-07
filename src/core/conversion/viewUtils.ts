@@ -5,7 +5,7 @@ import { ASCENDING, ASCENDING_SORTING_FUNC, DESCENDING, DESCENDING_SORTING_FUNC,
 import { cartesianProduct, onlyUnique } from "./utilityFunctions";
 import { TVariableSelections } from "../types/variableSelections";
 import Translations from "./translations";
-import { DataIndexer } from "./dataIndexer";
+import { SeriesBuilder } from "./seriesBuilder";
 
 export function convertPxGrafResponseToView(
     responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections
@@ -81,8 +81,8 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
 }
 
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
-    const dataIndexer: DataIndexer = new DataIndexer(responseObj, selectedValueCodes);
-    const viewSeries: IDataSeries[] = dataIndexer.getViewSeries();
+    const seriesBuilder: SeriesBuilder = new SeriesBuilder(responseObj, selectedValueCodes);
+    const viewSeries: IDataSeries[] = seriesBuilder.getViewSeries();
     const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
     return {
