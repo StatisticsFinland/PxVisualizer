@@ -8,16 +8,17 @@ export class SeriesBuilder {
     public dataIndex: number;
     public dataLength: number;
 
-    private responseObj: IQueryVisualizationResponse;
-    private coordinates: number[][];
-    private lastIndices: number[];
-    private indices: number[];
-    private variableOrder: number[];
-    private lastCoordinateIndex: number;
-    private reverseCumulativeProducts: number[];
-    private selectedViewContentVariableIndex: number;
-    private selectedViewTimeVariableIndex: number;
-    private selectedViewMeta: IVariableMeta[];
+    private readonly responseObj: IQueryVisualizationResponse;
+    private readonly coordinates: number[][];
+    private readonly lastIndices: number[];
+    private readonly indices: number[];
+    private readonly variableOrder: number[];
+    private readonly lastCoordinateIndex: number;
+    private readonly reverseCumulativeProducts: number[];
+    private readonly selectedViewContentVariableIndex: number;
+    private readonly selectedViewTimeVariableIndex: number;
+    private readonly selectedViewMeta: IVariableMeta[];
+
     private rowLength: number = 0;
     private rowAmount: number = 0;
 
