@@ -99,7 +99,8 @@ describe('getXAxisOptions tests', () => {
             type: 'category',
             labels: {
                 autoRotation: [-45]
-            }
+            },
+            ordinal: false
         });
     });
 
@@ -122,7 +123,8 @@ describe('getXAxisOptions tests', () => {
             type: 'category',
             labels: {
                 autoRotation: [-45]
-            }
+            },
+            ordinal: true
         });
     });
 

@@ -61,6 +61,7 @@ export function getXAxisOptions(view: View, locale: string): XAxisOptions {
         }
         else { // Nominal or non-numeric ordinal
             return {
+                ordinal: view.seriesType == ESeriesType.Ordinal,
                 type: 'category',
                 categories: labels,
                 labels: {
