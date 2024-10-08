@@ -63,6 +63,7 @@ import {
   LINE_CHART_WITH_MULTISELECTABLE_VARIABLE,
   LINE_CHART_WITH_NEGATIVE_VALUES,
   LINE_CHART_WITH_NON_TIME_ORDINAL,
+  LINE_CHART_WITH_NON_NUMERIC_ORDINAL,
   LINE_CHART_WITH_ORDINAL_VAR,
   LINE_CHART_WITH_QUARTER_SERIES,
   LINE_CHART_WITH_YEAR_SERIES,
@@ -121,6 +122,9 @@ LineChartWithNegativeValues.args = LINE_CHART_WITH_NEGATIVE_VALUES;
 
 export const LineChartWithNonTimeOrdinal = Template.bind({});
 LineChartWithNonTimeOrdinal.args = LINE_CHART_WITH_NON_TIME_ORDINAL;
+
+export const LineChartWithNonNumericOrdinal = Template.bind({});
+LineChartWithNonNumericOrdinal.args = LINE_CHART_WITH_NON_NUMERIC_ORDINAL;
 
 export const LineChartWithOrdinalVariable = Template.bind({});
 LineChartWithOrdinalVariable.args = LINE_CHART_WITH_ORDINAL_VAR;
