@@ -5,7 +5,8 @@ import { ASCENDING, ASCENDING_SORTING_FUNC, DESCENDING, DESCENDING_SORTING_FUNC,
 import { cartesianProduct, onlyUnique } from "./utilityFunctions";
 import { TVariableSelections } from "../types/variableSelections";
 import Translations from "./translations";
-import { DataIndexer } from "./dataIndexer";
+import { SeriesBuilder } from "./seriesBuilder";
+import { getValuesForVariableInView, sortVariables } from "./seriesBuilderUtilities";
 
 export function convertPxGrafResponseToView(
     responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections
@@ -81,21 +82,17 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
 }
 
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
-    const dataIndexer: DataIndexer = new DataIndexer(responseObj, selectedValueCodes);
-    const viewSeries: IDataSeries[] = dataIndexer.getViewSeries();
-    const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
+    const seriesBuilder: SeriesBuilder = new SeriesBuilder(responseObj, selectedValueCodes);
+    const viewSeries: IDataSeries[] = seriesBuilder.getViewSeries();
+    const columnVarValues: IVariableValueMeta[][] = sortVariables(responseObj.metaData
+        .filter(vm => responseObj.columnVariableCodes.includes(vm.code))
+        .filter(vm => vm.values.length > 1), responseObj.columnVariableCodes)
+        .map(vm => getValuesForVariableInView(vm, selectedValueCodes));
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
     return {
         columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
         series: viewSeries
     };
-}
-
-function getVariableValues(responseObj: IQueryVisualizationResponse, variableCodes: string[]): IVariableValueMeta[][] {
-    return responseObj.metaData
-        .filter(vm => variableCodes.includes(vm.code))
-        .filter(vm => vm.values.length > 1)
-        .map(vm => vm.values);
 }
 
 function getVariableNames(varCodes: string[], meta: IVariableMeta[]): TMultiLanguageString[] {
