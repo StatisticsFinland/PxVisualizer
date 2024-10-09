@@ -611,8 +611,8 @@ describe('series metadata', () => {
             const expectedRowNames: TMultiLanguageString[][] = [
                 [{ fi: 'var5-val0' }, { fi: 'var3-val0' }],
                 [{ fi: 'var5-val0' }, { fi: 'var3-val1' }],
-                [{ fi: 'var5-val1' }, { fi: 'var3-val0' }],
-                [{ fi: 'var5-val1' }, { fi: 'var3-val1' }]
+                [{ fi: 'var5-val2' }, { fi: 'var3-val0' }],
+                [{ fi: 'var5-val2' }, { fi: 'var3-val1' }]
             ]
             expect(values).toEqual(expected);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);

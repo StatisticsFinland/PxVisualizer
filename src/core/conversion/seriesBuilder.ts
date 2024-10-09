@@ -70,9 +70,9 @@ export class SeriesBuilder {
     }
 
     generateRowNameGroup(): TMultiLanguageString[] {
-        return this.variableOrder.slice(0, this.rowAmount).map(variableIndex =>
-            this.responseObj.metaData[variableIndex].values[this.indices[variableIndex]].name
-        );
+        return this.selectedViewMeta.slice(0, this.rowAmount).map((rowVariable, index) => {
+            return rowVariable.values[this.indices[this.variableOrder[index]]].name
+        });
     }
 
     next(): boolean {
