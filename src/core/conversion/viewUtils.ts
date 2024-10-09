@@ -6,6 +6,7 @@ import { cartesianProduct, onlyUnique } from "./utilityFunctions";
 import { TVariableSelections } from "../types/variableSelections";
 import Translations from "./translations";
 import { SeriesBuilder } from "./seriesBuilder";
+import { getValuesForVariableInView } from "./seriesBuilderUtilities";
 
 export function convertPxGrafResponseToView(
     responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections
@@ -83,7 +84,7 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
     const seriesBuilder: SeriesBuilder = new SeriesBuilder(responseObj, selectedValueCodes);
     const viewSeries: IDataSeries[] = seriesBuilder.getViewSeries();
-    const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes);
+    const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes, selectedValueCodes);
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
     return {
         columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
@@ -91,11 +92,11 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
     };
 }
 
-function getVariableValues(responseObj: IQueryVisualizationResponse, variableCodes: string[]): IVariableValueMeta[][] {
-    return responseObj.metaData
+function getVariableValues(responseObj: IQueryVisualizationResponse, variableCodes: string[], selectedValueCodes: TVariableSelections): IVariableValueMeta[][] {
+    return  responseObj.metaData
         .filter(vm => variableCodes.includes(vm.code))
         .filter(vm => vm.values.length > 1)
-        .map(vm => vm.values);
+        .map(vm => getValuesForVariableInView(vm, selectedValueCodes));
 }
 
 function getVariableNames(varCodes: string[], meta: IVariableMeta[]): TMultiLanguageString[] {

@@ -637,7 +637,6 @@ describe('series metadata', () => {
             const values: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expected: number[][] = [
                 [1, 2, 7, 8],
-                [3, 4, 9, 10],
                 [5, 6, 11, 12]
             ];
             const expectedColumnNames: TMultiLanguageString[][] = [
@@ -648,7 +647,6 @@ describe('series metadata', () => {
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
                 [{ fi: 'var2-val0' }],
-                [{ fi: 'var2-val1' }],
                 [{ fi: 'var2-val2' }]
             ]
             expect(values).toEqual(expected);
@@ -675,20 +673,22 @@ describe('series metadata', () => {
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } = buildSeries(pxGrafResponse, selectedValueCodes);
             const values: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expected: number[][] = [
-                [1, 2, 3, 7, 8, 9],
-                [4, 5, 6, 10, 11, 12]
+                [1, 3, 7, 9],
+                [4, 6, 10, 12]
             ];
             const expectedColumnNames: TMultiLanguageString[][] = [
                 [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
-                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
                 [{ fi: 'var1-val0' }, { fi: 'var3-val2' }],
                 [{ fi: 'var1-val1' }, { fi: 'var3-val0' }],
-                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }],
                 [{ fi: 'var1-val1' }, { fi: 'var3-val2' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
                 [{ fi: 'var2-val0' }], [{ fi: 'var2-val1' }]
             ];
+            //TODO: Remove this after:
+            console.log('data', values);
+            console.log('rows', series.series.map(s => s.rowNameGroup));
+console.log('columns', series.columnNameGroups);
             expect(values).toEqual(expected);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
             expect(series.series.map(s => s.rowNameGroup)).toEqual(expectedRowNames);
@@ -787,7 +787,6 @@ describe('series metadata', () => {
             timeVariable.values[2].name = { fi: '2024Q3*', en: '2024Q3*', sv: '2024Q3*' };
             timeVariable.values[3].name = { fi: '2024Q4*', en: '2024Q4*', sv: '2024Q4*' };
             const preliminary: boolean[][] = buildSeries(pxGrafResponse, selectedValueCodes).series.map(s => s.series.map(d => d.preliminary));
-            console.log(preliminary);
             const expected: boolean[][] = [
                 [false, false, false, false],
                 [true, true, true, true]

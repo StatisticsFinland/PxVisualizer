@@ -2,6 +2,7 @@ import { IQueryVisualizationResponse } from "../types";
 import { EVariableType, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { TVariableSelections } from "../types/variableSelections";
 import { IDataCell, IDataSeries } from "../types/view";
+import { getValuesForVariableInView } from "./seriesBuilderUtilities";
 import { cartesianProduct } from "./utilityFunctions";
 
 export class SeriesBuilder {
@@ -104,22 +105,17 @@ export class SeriesBuilder {
     }
 
     getSelectedView(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): IVariableMeta[] {
-        const rowVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.rowVariableCodes.includes(v.code) && v.values.length > 1);
-        const columnVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.columnVariableCodes.includes(v.code) && v.values.length > 1);
-        const selectableVariables: IVariableMeta[] = responseObj.metaData.filter(v => responseObj.selectableVariableCodes.includes(v.code)).map((variable) => {
-            const values: IVariableValueMeta[] = variable.values.filter((value) =>
-                selectedValueCodes[variable.code].includes(value.code)
-            );
-            if (values.length === 0) {
-                throw new Error("Provided selected value code can not be found from the metadata");
-            }
-            return { ...variable, values };
+        const filteredVariables: IVariableMeta[] = responseObj.metaData.map((variable) => {
+            return { ...variable, values: getValuesForVariableInView(variable, selectedValueCodes) }
         });
+        const rowVariables: IVariableMeta[] = filteredVariables.filter(v => responseObj.rowVariableCodes.includes(v.code) && v.values.length > 1);
+        const columnVariables: IVariableMeta[] = filteredVariables.filter(v => responseObj.columnVariableCodes.includes(v.code) && v.values.length > 1);
+        const selectableVariables: IVariableMeta[] = filteredVariables.filter(v => responseObj.selectableVariableCodes.includes(v.code));
         const directionlessMultiselectVariables: IVariableMeta[] = selectableVariables.filter(v => v.values.length > 1 && !rowVariables.some(rv => rv.code == v.code) && !columnVariables.some(cv => cv.code == v.code));
         const singleSelectedVariables: IVariableMeta[] = selectableVariables.filter(v => v.values.length == 1);
-        const unassignedVariables: IVariableMeta[] = responseObj.metaData.filter(v => !rowVariables.some(rv => rv.code == v.code) && !columnVariables.some(cv => cv.code == v.code) && !selectableVariables.some(sv => sv.code == v.code));
+        const unassignedVariables: IVariableMeta[] = filteredVariables.filter(v => !rowVariables.some(rv => rv.code == v.code) && !columnVariables.some(cv => cv.code == v.code) && !selectableVariables.some(sv => sv.code == v.code));
         const targetMap: IVariableMeta[] = [...directionlessMultiselectVariables, ...rowVariables, ...columnVariables,...singleSelectedVariables, ...unassignedVariables];
-        this.rowLength = cartesianProduct(responseObj.metaData.filter(v => responseObj.columnVariableCodes.includes(v.code)).map(v => v.values)).length;
+        this.rowLength = cartesianProduct(filteredVariables.filter(v => responseObj.columnVariableCodes.includes(v.code)).map(v => v.values)).length;
         this.rowAmount = rowVariables.length + directionlessMultiselectVariables.length;
         return targetMap;
     }
