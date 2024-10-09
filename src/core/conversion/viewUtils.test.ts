@@ -398,7 +398,7 @@ describe('series metadata', () => {
             expect(rowNameGroups).toEqual(expectedRowNameGroups);
         });
 
-        it('returns correct column and row name groups with single value variable on columns', () => {
+        it('returns correct column and row name groups with single value variable on rows', () => {
             const variableConfigs = [
                 { type: EVariableType.Content, valuesAmount: 1 },
                 { type: EVariableType.Time, valuesAmount: 2 },
