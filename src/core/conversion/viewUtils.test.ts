@@ -167,17 +167,17 @@ describe('series metadata', () => {
                 values: [contentVariableValue1, contentVariableValue2]
             });
 
-            const browsingVariableValue = createVariableValue();
-            const browsingVariable = createVariable({
+            const columnVariableValue = createVariableValue();
+            const columnVariable = createVariable({
                 type: EVariableType.Time,
-                values: [browsingVariableValue]
+                values: [columnVariableValue]
             });
 
-            const metaData: IVariableMeta[] = [browsingVariable, contentVariable];
+            const metaData: IVariableMeta[] = [columnVariable, contentVariable];
             const pxGrafResponse = createPxGrafResponse({
                 data: [1.1, 2.11],
                 metaData,
-                columnVariableCodes: [browsingVariable.code, contentVariable.code],
+                columnVariableCodes: [columnVariable.code, contentVariable.code],
                 visualizationSettings: {
                     visualizationType: EVisualizationType.HorizontalBarChart,
                     timeVariableIntervals: ETimeVariableInterval.Quarter,
@@ -204,13 +204,13 @@ describe('series metadata', () => {
                 values: [contentVariableValue1, contentVariableValue2]
             });
 
-            const browsingVariableValue = createVariableValue();
-            const browsingVariable = createVariable({
+            const singleValue = createVariableValue();
+            const singleValueVariable = createVariable({
                 type: EVariableType.Time,
-                values: [browsingVariableValue]
+                values: [singleValue]
             });
 
-            const metaData: IVariableMeta[] = [browsingVariable, contentVariable];
+            const metaData: IVariableMeta[] = [singleValueVariable, contentVariable];
             const pxGrafResponse = createPxGrafResponse({
                 data: [1.1, 2.11],
                 metaData,
@@ -245,13 +245,13 @@ describe('series metadata', () => {
                 values: [contentVariableValue]
             });
 
-            const browsingVariableValue = createVariableValue();
-            const browsingVariable = createVariable({
+            const singleValue = createVariableValue();
+            const singleValueVariable = createVariable({
                 type: EVariableType.Time,
-                values: [browsingVariableValue]
+                values: [singleValue]
             });
 
-            const metaData: IVariableMeta[] = [contentVariable, browsingVariable];
+            const metaData: IVariableMeta[] = [contentVariable, singleValueVariable];
             const pxGrafResponse = createPxGrafResponse({
                 data: [1.1],
                 metaData
@@ -276,16 +276,16 @@ describe('series metadata', () => {
                 values: [contentVariableValue1, contentVariableValue2]
             });
 
-            const browsingVariableValue = createVariableValue();
-            const browsingVariable = createVariable({
+            const timeVariableValue = createVariableValue();
+            const timeVariable = createVariable({
                 type: EVariableType.Time,
-                values: [browsingVariableValue]
+                values: [timeVariableValue]
             });
 
             const pxGrafResponse = createPxGrafResponse({
                 data: [1.1, 2.11],
-                metaData: [browsingVariable, contentVariable],
-                columnVariableCodes: [browsingVariable.code, contentVariable.code],
+                metaData: [timeVariable, contentVariable],
+                columnVariableCodes: [timeVariable.code, contentVariable.code],
             });
 
             const selectedValueCodes1: TVariableSelections = {};
@@ -309,16 +309,16 @@ describe('series metadata', () => {
                 values: [contentVariableValue1, contentVariableValue2]
             });
 
-            const browsingVariableValue = createVariableValue();
-            const browsingVariable = createVariable({
+            const timeVariableValue = createVariableValue();
+            const timeVariable = createVariable({
                 type: EVariableType.Time,
-                values: [browsingVariableValue]
+                values: [timeVariableValue]
             });
 
             const pxGrafResponse = createPxGrafResponse({
                 data: [1.1, 2.11],
-                metaData: [browsingVariable, contentVariable],
-                columnVariableCodes: [browsingVariable.code],
+                metaData: [timeVariable, contentVariable],
+                columnVariableCodes: [timeVariable.code],
                 rowVariableCodes: [contentVariable.code],
             });
 
@@ -447,20 +447,15 @@ describe('series metadata', () => {
                 { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
             ];
             const rowAndColumnIndexes = {
-                rows: [2],
-                columns: [1, 3]
+                rows: [1, 3],
+                columns: [2]
             };
             const selectableVariableIndexes = [4];
             const response = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes, selectableVariableIndexes);
             const selectedValueCodes: TVariableSelections = { [response.metaData[4].code]: [response.metaData[4].values[1].code] };
 
-            const reordered: IQueryVisualizationResponse = {
-                ...response,
-                columnVariableCodes: [response.rowVariableCodes[0]],
-                rowVariableCodes: [response.columnVariableCodes[0], response.columnVariableCodes[1]]
-            };
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
-                buildSeries(reordered, selectedValueCodes);
+                buildSeries(response, selectedValueCodes);
             const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expected: number[][] = [
                 [2, 6],
@@ -494,20 +489,15 @@ describe('series metadata', () => {
                 { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
             ];
             const rowAndColumnIndexes = {
-                rows: [2, 3],
-                columns: [1, 4, 5]
+                rows: [3, 2],
+                columns: [5, 4, 1]
             };
             const selectableVariableIndexes = [6];
             const response = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes, selectableVariableIndexes);
             const selectedValueCodes: TVariableSelections = { [response.metaData[6].code]: [response.metaData[6].values[1].code] };
 
-            const reordered: IQueryVisualizationResponse = {
-                ...response,
-                rowVariableCodes: [response.rowVariableCodes[1], response.rowVariableCodes[0]],
-                columnVariableCodes: [response.columnVariableCodes[3], response.columnVariableCodes[2], response.columnVariableCodes[1], response.columnVariableCodes[0]]
-            };
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
-                buildSeries(reordered, selectedValueCodes);
+                buildSeries(response, selectedValueCodes);
             const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expectedColumnNames: TMultiLanguageString[][] = [
                 [{ fi: 'var1-val0' }, { fi: 'var4-val0' }, { fi: 'var5-val0' }],
