@@ -84,9 +84,7 @@ const generatePxGrafResponse = (
     rowAndColumnIndexes: { rows?: number[], columns?: number[] } = {},
     selectableVariableIndexes: number[] = []
 ): IQueryVisualizationResponse => {
-    let index = 0;
-    const variables: IVariableMeta[] = variableConfigs.map(config => {
-        index++;
+    const variables: IVariableMeta[] = variableConfigs.map((config, index) => {
         return generateVariable(index, config.valuesAmount, config.type);
     });
     const metaData: IVariableMeta[] = [...variables];
@@ -386,14 +384,14 @@ describe('series metadata', () => {
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
                 buildSeries(pxGrafResponse, selectedValueCodes);
             const expectedRowNameGroups: TMultiLanguageString[][] = [
-                [{ "fi": "var3-val0" }, { "fi": "var4-val0" }],
-                [{ "fi": "var3-val0" }, { "fi": "var4-val1" }],
-                [{ "fi": "var3-val1" }, { "fi": "var4-val0" }],
-                [{ "fi": "var3-val1" }, { "fi": "var4-val1" }],
+                [{ "fi": "var2-val0" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val0" }, { "fi": "var3-val1" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val1" }],
             ];
             const expectedColumnNameGroups: TMultiLanguageString[][] = [
-                [{ "fi": "var2-val0" }],
-                [{"fi": "var2-val1"}]
+                [{ "fi": "var1-val0" }],
+                [{"fi": "var1-val1"}]
             ];
             const rowNameGroups = series.series.map(s => s.rowNameGroup);
             expect(series.columnNameGroups).toEqual(expectedColumnNameGroups);
@@ -426,14 +424,14 @@ describe('series metadata', () => {
                 [8, 16]
             ];
             const expectedRows: TMultiLanguageString[][] = [
-                [{ "fi": "var3-val0" }, { "fi": "var4-val0" }],
-                [{ "fi": "var3-val0" }, { "fi": "var4-val1" }],
-                [{ "fi": "var3-val1" }, { "fi": "var4-val0" }],
-                [{ "fi": "var3-val1" }, { "fi": "var4-val1" }],
+                [{ "fi": "var2-val0" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val0" }, { "fi": "var3-val1" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val1" }],
             ];
             const expectedColumns: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }],
-                [{ fi: 'var2-val1' }]
+                [{ fi: 'var1-val0' }],
+                [{ fi: 'var1-val1' }]
             ];
             expect(data).toEqual(expectedDataSelectable);
             expect(series.columnNameGroups).toEqual(expectedColumns);
@@ -471,14 +469,14 @@ describe('series metadata', () => {
                 [12, 16]
             ];
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var3-val0' }],
-                [{ fi: 'var3-val1' }]
+                [{ fi: 'var2-val0' }],
+                [{ fi: 'var2-val1' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val1' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }],
             ];
             expect(data).toEqual(expected);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
@@ -512,20 +510,20 @@ describe('series metadata', () => {
                 buildSeries(reordered, selectedValueCodes);
             const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var5-val0' }, { fi: 'var6-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var5-val0' }, { fi: 'var6-val1' }],
-                [{ fi: 'var2-val0' }, { fi: 'var5-val1' }, { fi: 'var6-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var5-val1' }, { fi: 'var6-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var5-val0' }, { fi: 'var6-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var5-val0' }, { fi: 'var6-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var5-val1' }, { fi: 'var6-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var5-val1' }, { fi: 'var6-val1' }]
+                [{ fi: 'var1-val0' }, { fi: 'var4-val0' }, { fi: 'var5-val0' }],
+                [{ fi: 'var1-val0' }, { fi: 'var4-val0' }, { fi: 'var5-val1' }],
+                [{ fi: 'var1-val0' }, { fi: 'var4-val1' }, { fi: 'var5-val0' }],
+                [{ fi: 'var1-val0' }, { fi: 'var4-val1' }, { fi: 'var5-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var4-val0' }, { fi: 'var5-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var4-val0' }, { fi: 'var5-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var4-val1' }, { fi: 'var5-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var4-val1' }, { fi: 'var5-val1' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var3-val0' }, { fi: 'var4-val0' }],
-                [{ fi: 'var3-val0' }, { fi: 'var4-val1' }],
-                [{ fi: 'var3-val1' }, { fi: 'var4-val0' }],
-                [{ fi: 'var3-val1' }, { fi: 'var4-val1' }]
+                [{ fi: 'var2-val0' }, { fi: 'var3-val0' }],
+                [{ fi: 'var2-val0' }, { fi: 'var3-val1' }],
+                [{ fi: 'var2-val1' }, { fi: 'var3-val0' }],
+                [{ fi: 'var2-val1' }, { fi: 'var3-val1' }]
             ];
             const expectedData: number[][] = [
                 [2, 4, 6, 8, 34, 36, 38, 40],
@@ -560,13 +558,13 @@ describe('series metadata', () => {
                 buildSeries(response, selectedValueCodes);
             const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val0' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val0' }]
+                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val0' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var3-val1' }], [{ fi: 'var3-val0' }]
+                [{ fi: 'var2-val1' }], [{ fi: 'var2-val0' }]
             ];
             const expectedData: number[][] = [
                 [2, 4, 10, 12],
@@ -603,16 +601,16 @@ describe('series metadata', () => {
                 [9, 12, 21, 24]
             ];
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val1' }]
+                [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var5-val0' }, { fi: 'var3-val0' }],
-                [{ fi: 'var5-val0' }, { fi: 'var3-val1' }],
-                [{ fi: 'var5-val2' }, { fi: 'var3-val0' }],
-                [{ fi: 'var5-val2' }, { fi: 'var3-val1' }]
+                [{ fi: 'var4-val0' }, { fi: 'var2-val0' }],
+                [{ fi: 'var4-val0' }, { fi: 'var2-val1' }],
+                [{ fi: 'var4-val2' }, { fi: 'var2-val0' }],
+                [{ fi: 'var4-val2' }, { fi: 'var2-val1' }]
             ]
             expect(values).toEqual(expected);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
@@ -643,15 +641,15 @@ describe('series metadata', () => {
                 [5, 6, 11, 12]
             ];
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val1' }]
+                [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var3-val0' }],
-                [{ fi: 'var3-val1' }],
-                [{ fi: 'var3-val2' }]
+                [{ fi: 'var2-val0' }],
+                [{ fi: 'var2-val1' }],
+                [{ fi: 'var2-val2' }]
             ]
             expect(values).toEqual(expected);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
@@ -681,15 +679,15 @@ describe('series metadata', () => {
                 [4, 5, 6, 10, 11, 12]
             ];
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val0' }, { fi: 'var4-val2' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val2' }]
+                [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val2' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val2' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var3-val0' }], [{ fi: 'var3-val1' }]
+                [{ fi: 'var2-val0' }], [{ fi: 'var2-val1' }]
             ];
             expect(values).toEqual(expected);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
@@ -720,13 +718,13 @@ describe('series metadata', () => {
                 [7, 10, 19, 22]
             ];
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var4-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var4-val1' }]
+                [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val0' }],
+                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }]
             ];
             const expectedRowNameGroups: TMultiLanguageString[][] = [
-                [{ fi: 'var3-val0' }], [{ fi: 'var3-val1' }]
+                [{ fi: 'var2-val0' }], [{ fi: 'var2-val1' }]
             ];
             expect(values).toEqual(expected);
             const rowNameGroups = series.series.map(s => s.rowNameGroup);
