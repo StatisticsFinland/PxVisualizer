@@ -366,6 +366,70 @@ describe('series metadata', () => {
             expect(data).toEqual(expectedData);
         });
 
+        it('returns correct column and row name groups with single value variable on columns', () => {
+            const variableConfigs = [
+                { type: EVariableType.Content, valuesAmount: 1 },
+                { type: EVariableType.Time, valuesAmount: 2 },
+                { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
+                { type: EVariableType.OtherClassificatory, valuesAmount: 2 }
+            ];
+
+            const rowAndColumnIndexes = {
+                rows: [2, 3],
+                columns: [0, 1]
+            };
+
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes);
+            const selectedValueCodes: TVariableSelections = {};
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const expectedRowNameGroups: TMultiLanguageString[][] = [
+                [{ "fi": "var2-val0" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val0" }, { "fi": "var3-val1" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val1" }],
+            ];
+            const expectedColumnNameGroups: TMultiLanguageString[][] = [
+                [{ "fi": "var1-val0" }],
+                [{"fi": "var1-val1"}]
+            ];
+            const rowNameGroups = series.series.map(s => s.rowNameGroup);
+            expect(series.columnNameGroups).toEqual(expectedColumnNameGroups);
+            expect(rowNameGroups).toEqual(expectedRowNameGroups);
+        });
+
+        it('returns correct column and row name groups with single value variable on columns', () => {
+            const variableConfigs = [
+                { type: EVariableType.Content, valuesAmount: 1 },
+                { type: EVariableType.Time, valuesAmount: 2 },
+                { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
+                { type: EVariableType.OtherClassificatory, valuesAmount: 2 }
+            ];
+
+            const rowAndColumnIndexes = {
+                rows: [0, 2, 3],
+                columns: [1]
+            };
+
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes);
+            const selectedValueCodes: TVariableSelections = {};
+            const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
+                buildSeries(pxGrafResponse, selectedValueCodes);
+            const expectedRowNameGroups: TMultiLanguageString[][] = [
+                [{ "fi": "var2-val0" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val0" }, { "fi": "var3-val1" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val1" }],
+            ];
+            const expectedColumnNameGroups: TMultiLanguageString[][] = [
+                [{ "fi": "var1-val0" }],
+                [{ "fi": "var1-val1" }]
+            ];
+            const rowNameGroups = series.series.map(s => s.rowNameGroup);
+            expect(series.columnNameGroups).toEqual(expectedColumnNameGroups);
+            expect(rowNameGroups).toEqual(expectedRowNameGroups);
+        });
+
         it('returns correct column and row name groups without selectable variables', () => {
             const variableConfigs = [
                 { type: EVariableType.Content, valuesAmount: 1 },
@@ -391,7 +455,7 @@ describe('series metadata', () => {
             ];
             const expectedColumnNameGroups: TMultiLanguageString[][] = [
                 [{ "fi": "var1-val0" }],
-                [{"fi": "var1-val1"}]
+                [{ "fi": "var1-val1" }]
             ];
             const rowNameGroups = series.series.map(s => s.rowNameGroup);
             expect(series.columnNameGroups).toEqual(expectedColumnNameGroups);
@@ -675,10 +739,6 @@ describe('series metadata', () => {
             const expectedRowNames: TMultiLanguageString[][] = [
                 [{ fi: 'var2-val0' }], [{ fi: 'var2-val1' }]
             ];
-            //TODO: Remove this after:
-            console.log('data', values);
-            console.log('rows', series.series.map(s => s.rowNameGroup));
-console.log('columns', series.columnNameGroups);
             expect(values).toEqual(expected);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
             expect(series.series.map(s => s.rowNameGroup)).toEqual(expectedRowNames);
