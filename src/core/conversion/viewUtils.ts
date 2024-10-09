@@ -6,7 +6,7 @@ import { cartesianProduct, onlyUnique } from "./utilityFunctions";
 import { TVariableSelections } from "../types/variableSelections";
 import Translations from "./translations";
 import { SeriesBuilder } from "./seriesBuilder";
-import { getValuesForVariableInView } from "./seriesBuilderUtilities";
+import { getValuesForVariableInView, sortVariables } from "./seriesBuilderUtilities";
 
 export function convertPxGrafResponseToView(
     responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections
@@ -84,19 +84,15 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
 export function buildSeries(responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections): { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } {
     const seriesBuilder: SeriesBuilder = new SeriesBuilder(responseObj, selectedValueCodes);
     const viewSeries: IDataSeries[] = seriesBuilder.getViewSeries();
-    const columnVarValues: IVariableValueMeta[][] = getVariableValues(responseObj, responseObj.columnVariableCodes, selectedValueCodes);
+    const columnVarValues: IVariableValueMeta[][] = sortVariables(responseObj.metaData
+        .filter(vm => responseObj.columnVariableCodes.includes(vm.code))
+        .filter(vm => vm.values.length > 1), responseObj.columnVariableCodes)
+        .map(vm => getValuesForVariableInView(vm, selectedValueCodes));
     const cartesianColumnVarValues: IVariableValueMeta[][] = cartesianProduct(columnVarValues);
     return {
         columnNameGroups: cartesianColumnVarValues.map(columnVarValueGroup => columnVarValueGroup.map(value => value.name)),
         series: viewSeries
     };
-}
-
-function getVariableValues(responseObj: IQueryVisualizationResponse, variableCodes: string[], selectedValueCodes: TVariableSelections): IVariableValueMeta[][] {
-    return  responseObj.metaData
-        .filter(vm => variableCodes.includes(vm.code))
-        .filter(vm => vm.values.length > 1)
-        .map(vm => getValuesForVariableInView(vm, selectedValueCodes));
 }
 
 function getVariableNames(varCodes: string[], meta: IVariableMeta[]): TMultiLanguageString[] {

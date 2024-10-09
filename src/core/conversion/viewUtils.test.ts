@@ -507,39 +507,37 @@ describe('series metadata', () => {
                 { type: EVariableType.Content, valuesAmount: 1 },
                 { type: EVariableType.Time, valuesAmount: 2 },
                 { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
-                { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
-                { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
+                { type: EVariableType.OtherClassificatory, valuesAmount: 2 }
             ];
-            const rowAndColumnIndexes = {
-                rows: [1, 3],
-                columns: [2]
-            };
-            const selectableVariableIndexes = [4];
-            const response = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes, selectableVariableIndexes);
-            const selectedValueCodes: TVariableSelections = { [response.metaData[4].code]: [response.metaData[4].values[1].code] };
 
+            const rowAndColumnIndexes = {
+                rows: [1],
+                columns: [2, 3]
+            };
+
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes);
+            const selectedValueCodes: TVariableSelections = {};
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
-                buildSeries(response, selectedValueCodes);
+                buildSeries(pxGrafResponse, selectedValueCodes);
+
             const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expected: number[][] = [
-                [2, 6],
-                [4, 8],
-                [10, 14],
-                [12, 16]
+                [1, 2, 3, 4],
+                [5, 6, 7, 8]
             ];
-            const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }],
-                [{ fi: 'var2-val1' }]
+            const expectedRowNameGroups: TMultiLanguageString[][] = [
+                [{ "fi": "var1-val0" }],
+                [{ "fi": "var1-val1" }]
             ];
-            const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var1-val0' }, { fi: 'var3-val0' }],
-                [{ fi: 'var1-val0' }, { fi: 'var3-val1' }],
-                [{ fi: 'var1-val1' }, { fi: 'var3-val0' }],
-                [{ fi: 'var1-val1' }, { fi: 'var3-val1' }],
+            const expectedColumnNameGroups: TMultiLanguageString[][] = [
+                [{ "fi": "var2-val0" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val0" }, { "fi": "var3-val1" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val0" }],
+                [{ "fi": "var2-val1" }, { "fi": "var3-val1" }],
             ];
             expect(data).toEqual(expected);
-            expect(series.columnNameGroups).toEqual(expectedColumnNames);
-            expect(series.series.map(s => s.rowNameGroup)).toEqual(expectedRowNames);
+            expect(series.columnNameGroups).toEqual(expectedColumnNameGroups);
+            expect(series.series.map(s => s.rowNameGroup)).toEqual(expectedRowNameGroups);
         });
 
         it('returns correct series if the order of row and column variables is changed', () => {
@@ -548,43 +546,39 @@ describe('series metadata', () => {
                 { type: EVariableType.Time, valuesAmount: 2 },
                 { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
                 { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
-                { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
-                { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
-                { type: EVariableType.OtherClassificatory, valuesAmount: 2 },
+                { type: EVariableType.OtherClassificatory, valuesAmount: 2 }
             ];
+
             const rowAndColumnIndexes = {
                 rows: [3, 2],
-                columns: [5, 4, 1]
+                columns: [4, 1]
             };
-            const selectableVariableIndexes = [6];
-            const response = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes, selectableVariableIndexes);
-            const selectedValueCodes: TVariableSelections = { [response.metaData[6].code]: [response.metaData[6].values[1].code] };
 
+            const pxGrafResponse: IQueryVisualizationResponse = generatePxGrafResponse(variableConfigs, rowAndColumnIndexes);
+            const selectedValueCodes: TVariableSelections = {};
             const series: { columnNameGroups: TMultiLanguageString[][], series: IDataSeries[] } =
-                buildSeries(response, selectedValueCodes);
+                buildSeries(pxGrafResponse, selectedValueCodes);
+
             const data: (number | null)[][] = series.series.map(s => s.series.map(d => d.value));
             const expectedColumnNames: TMultiLanguageString[][] = [
-                [{ fi: 'var1-val0' }, { fi: 'var4-val0' }, { fi: 'var5-val0' }],
-                [{ fi: 'var1-val0' }, { fi: 'var4-val0' }, { fi: 'var5-val1' }],
-                [{ fi: 'var1-val0' }, { fi: 'var4-val1' }, { fi: 'var5-val0' }],
-                [{ fi: 'var1-val0' }, { fi: 'var4-val1' }, { fi: 'var5-val1' }],
-                [{ fi: 'var1-val1' }, { fi: 'var4-val0' }, { fi: 'var5-val0' }],
-                [{ fi: 'var1-val1' }, { fi: 'var4-val0' }, { fi: 'var5-val1' }],
-                [{ fi: 'var1-val1' }, { fi: 'var4-val1' }, { fi: 'var5-val0' }],
-                [{ fi: 'var1-val1' }, { fi: 'var4-val1' }, { fi: 'var5-val1' }]
+                [{ fi: 'var4-val0' }, { fi: 'var1-val0' }],
+                [{ fi: 'var4-val0' }, { fi: 'var1-val1' }],
+                [{ fi: 'var4-val1' }, { fi: 'var1-val0' }],
+                [{ fi: 'var4-val1' }, { fi: 'var1-val1' }]
             ];
             const expectedRowNames: TMultiLanguageString[][] = [
-                [{ fi: 'var2-val0' }, { fi: 'var3-val0' }],
-                [{ fi: 'var2-val0' }, { fi: 'var3-val1' }],
-                [{ fi: 'var2-val1' }, { fi: 'var3-val0' }],
-                [{ fi: 'var2-val1' }, { fi: 'var3-val1' }]
+                [{ fi: 'var3-val0' }, { fi: 'var2-val0' }],
+                [{ fi: 'var3-val0' }, { fi: 'var2-val1' }],
+                [{ fi: 'var3-val1' }, { fi: 'var2-val0' }],
+                [{ fi: 'var3-val1' }, { fi: 'var2-val1' }]
             ];
             const expectedData: number[][] = [
-                [2, 4, 6, 8, 34, 36, 38, 40],
-                [10, 12, 14, 16, 42, 44, 46, 48],
-                [18, 20, 22, 24, 50, 52, 54, 56],
-                [26, 28, 30, 32, 58, 60, 62, 64]
+                [1, 9, 2, 10],
+                [5, 13, 6, 14],
+                [3, 11, 4, 12],
+                [7, 15, 8, 16]
             ];
+
             expect(data).toEqual(expectedData);
             expect(series.columnNameGroups).toEqual(expectedColumnNames);
             expect(series.series.map(s => s.rowNameGroup)).toEqual(expectedRowNames);

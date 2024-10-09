@@ -10,3 +10,14 @@ export function getValuesForVariableInView(variable: IVariableMeta, selectedValu
         return variable.values;
     }
 }
+
+export function sortVariables(variables: IVariableMeta[], codes: string[]): IVariableMeta[] {
+    let sorted: IVariableMeta[] = [];
+    for (const code of codes) {
+        const variable = variables.find(v => v.code === code);
+        if (variable) {
+            sorted.push(variable);
+        }
+    }
+    return sorted;
+}

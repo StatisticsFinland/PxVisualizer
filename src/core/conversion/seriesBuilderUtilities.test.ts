@@ -1,7 +1,7 @@
 import { EVariableType } from "../types";
 import { IVariableMeta } from "../types/queryVisualizationResponse";
 import { TVariableSelections } from "../types/variableSelections";
-import { getValuesForVariableInView } from "./seriesBuilderUtilities";
+import { getValuesForVariableInView, sortVariables } from "./seriesBuilderUtilities";
 
 describe('assertion tests', () => {
     it('should return all values for a non-selectable variable', () => {
@@ -65,5 +65,16 @@ describe('assertion tests', () => {
         };
         const selectedValueCodes: TVariableSelections = { foo: ['3'] };
         expect(() => getValuesForVariableInView(variable, selectedValueCodes)).toThrow('Provided selected value code can not be found from the metadata');
+    });
+
+    it('sorts variables based on codes', () => {
+const variables: IVariableMeta[] = [
+            { code: 'foo', name: {}, type: EVariableType.OtherClassificatory, values: [], note: null },
+            { code: 'bar', name: {}, type: EVariableType.OtherClassificatory, values: [], note: null },
+            { code: 'baz', name: {}, type: EVariableType.OtherClassificatory, values: [], note: null }
+        ];
+        const codes: string[] = ['bar', 'baz', 'foo'];
+        const result = sortVariables(variables, codes);
+        expect(result).toEqual([variables[1], variables[2], variables[0]]);
     });
 });
