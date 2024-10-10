@@ -677,6 +677,160 @@ export const VERTICAL_BAR_CHART_WITH_PRELIMINARY_DATA: {
     selectedVariableCodes: undefined
 }
 
+export const VERTICAL_BAR_CHART_WITH_LONG_ORDINAL_LABELS: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+    pxGraphData: {
+        tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
+        "data": [28.1, 50.2, 66.7, 73.9],
+        "dataNotes": {},
+        "missingDataInfo": {},
+        "metaData": [
+            {
+                "code": "Vuosi",
+                "name": {
+                    "fi": "Vuosi", "sv": "År", "en": "Year"
+                },
+                "note": null,
+                "type": EVariableType.Time,
+                "values": [
+                    {
+                        "code": "2018", "name": {
+                            "fi": "2018", "sv": "2018", "en": "2018"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    }
+                ]
+            },
+            {
+                "code": "Sukupuoli",
+                "name": {
+                    "fi": "Sukupuoli", "sv": "Kön", "en": "Gender"
+                },
+                "note": null,
+                "type": EVariableType.OtherClassificatory,
+                "values": [
+                    {
+                        "code": "SSS", "name": {
+                            "fi": "Yhteensä", "sv": "Totalt", "en": "Total"
+                        },
+                        "note": null,
+                        "isSum": true,
+                        "contentComponent": null
+                    }
+                ]
+            },
+            {
+                "code": "Koulutusaste",
+                "name": {
+                    "fi": "Koulutusaste", "sv": "Utbildningsnivå", "en": "Level of education"
+                },
+                "note": null,
+                "type": EVariableType.OtherClassificatory,
+                "values": [
+                    {
+                        "code": "SSS", "name": {
+                            "fi": "Yhteensä", "sv": "Totalt", "en": "Total"
+                        },
+                        "note": null,
+                        "isSum": true,
+                        "contentComponent": null
+                    }
+                ]
+            },
+            {
+                "code": "Tiedot", "name": {
+                    "fi": "Tiedot",
+                    "sv": "Uppgifter",
+                    "en": "Information"
+                },
+                "note": null,
+                "type": EVariableType.Content,
+                "values": [
+                    {
+                        "code": "opisk_pro",
+                        "name": {
+                            "fi": "Tilastovuonna valmistuneet ylioppilaat, %", "sv": "Studenter som utexaminerats under statistikåret, %", "en": "Passers of the matriculation examination in the statistical reference year, %"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": {
+                            "unit": {
+                                "fi": "prosentti", "sv": "procent", "en": "per cent"
+                            },
+                            "source": {
+                                "fi": "Tilastokeskus, koulutukseen hakeutuminen", "sv": "Statistikcentralen, sökande till utbildning", "en": "Statistics Finland, entrance to education"
+                            },
+                            "numberOfDecimals": 1,
+                            "lastUpdated": "2022-12-08T06:00:00Z"
+                        }
+                    }
+                ]
+            },
+            {
+                "code": "Opiskelutilanne",
+                "name": {
+                    "fi": "Opiskelutilanne", "sv": "Mellanår", "en": "Studying situation"
+                },
+                "note": null,
+                "type": EVariableType.Ordinal,
+                "values": [
+                    {
+                        "code": "0",
+                        "name": {
+                            "fi": "Opiskelemassa valmistumisvuonna",
+                            "sv": "Studerar omedelbart under examensåret",
+                            "en": "Studying immediately in the year of graduation"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "1",
+                        "name": {
+                            "fi": "Opiskelemassa 1 vuosi valmistumisen jälkeen", "sv": "Studerar 1 år efter utexaminering", "en": "Studying one year after graduation"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "2",
+                        "name": {
+                            "fi": "Opiskelemassa 2 vuotta valmistumisen jälkeen", "sv": "Studerar 2 år efter utexaminering", "en": "Studying two years after graduation"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "3",
+                        "name": {
+                            "fi": "Opiskelemassa 3 vuotta valmistumisen jälkeen", "sv": "Studerar 3 år efter utexaminering", "en": "Studying three years after graduation"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    }
+                ]
+            }],
+        "selectableVariableCodes": [],
+        "rowVariableCodes": [],
+        "columnVariableCodes": ["Opiskelutilanne"],
+        "header": { "fi": "Vuonna 2018 ylioppilaaksi valmistuneiden jatkokoulutukseen pääsy vuosina 2018–2021, %", "sv": "Studenter som utexaminerats under statistikåret, %, 2018", "en": "Passers of the matriculation examination in the statistical reference year, %, 2018" },
+        "visualizationSettings": {
+            "visualizationType": EVisualizationType.VerticalBarChart,
+            "timeVariableIntervals": ETimeVariableInterval.Year,
+            "timeSeriesStartingPoint": "2018-01-01T00:00:00Z",
+            "cutValueAxis": false,
+            "showLastLabel": true,
+            "showDataPoints": false
+        }
+    },
+    selectedVariableCodes: undefined
+}
+
 export const VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES: {
     pxGraphData: IQueryVisualizationResponse,
     selectedVariableCodes: TVariableSelections | undefined,

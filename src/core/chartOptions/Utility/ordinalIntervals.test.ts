@@ -9,8 +9,8 @@ describe('ordinalOptions tests', () => {
         units: [],
         sources: [],
         columnNameGroups: [
-            [{ 'fi': 'test_1_fi', 'en': 'test_1_en', 'sv': 'test_1_sv' }],
-            [{ 'fi': 'test_2_fi', 'en': 'test_2_en', 'sv': 'test_2_sv' }]
+            [{ 'fi': '1', 'en': '1', 'sv': '1' }],
+            [{ 'fi': '2', 'en': '2', 'sv': '2' }]
         ],
         series: [],
         colVarNames: [],
@@ -37,8 +37,8 @@ describe('ordinalOptions tests', () => {
         const result = getOrdinalOptions(irregularTimeView, 'fi');
         expect(result.categories).toEqual(
             [
-                "test_1_fi",
-                "test_2_fi",
+                "1",
+                "2",
             ]);
         expect(result.type).toEqual('category');
         expect(result.ordinal).toEqual(true);
