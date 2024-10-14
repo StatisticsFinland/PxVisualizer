@@ -59,7 +59,7 @@ export function getXAxisOptions(view: View, locale: string): XAxisOptions {
         const decimalDelimeter = Translations.decimalPoint[locale];
         const thousandsSeparator = Translations.thousandsSep[locale];
         const allowedCharacters = new RegExp(`^[0-9\\-\\${decimalDelimeter}\\${thousandsSeparator}]+$`);
-        const numeric: boolean = labels.every(l => !allowedCharacters.test(l));
+        const numeric: boolean = labels.every(l => allowedCharacters.test(l));
         if (view.seriesType === ESeriesType.Ordinal && numeric) {
             return getOrdinalOptions(view, locale);
         }
