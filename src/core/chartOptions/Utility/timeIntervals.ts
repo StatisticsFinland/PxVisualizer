@@ -3,6 +3,7 @@ import Highcharts, { PlotSeriesOptions, XAxisOptions } from "highcharts";
 import { ESeriesType, View } from "../../types/view";
 import { getBiannualSeriesTickPositionerFunction, getQuarterlySeriesTickPositionerFunction } from "./tickPositioners";
 import { getOrdinalOptions } from "./ordinalIntervals";
+import Translations from "../../conversion/translations";
 
 export function getTimeSeriesOptions(interval: ETimeVariableInterval, startingPoint: string | null | undefined): PlotSeriesOptions | undefined {
     if (!startingPoint) return undefined;
@@ -55,7 +56,10 @@ export function getXAxisOptions(view: View, locale: string): XAxisOptions {
     }
     else {
         const labels: string[] = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
-        const numeric: boolean = !labels.some(l => /[a-zA-Z]/.test(l));
+        const decimalDelimeter = Translations.decimalPoint[locale];
+        const thousandsSeparator = Translations.thousandsSep[locale];
+        const allowedCharacters = new RegExp(`^[0-9\\-\\${decimalDelimeter}\\${thousandsSeparator}]+$`);
+        const numeric: boolean = !labels.some(l => !allowedCharacters.test(l));
         if (view.seriesType === ESeriesType.Ordinal && numeric) {
             return getOrdinalOptions(view, locale);
         }
