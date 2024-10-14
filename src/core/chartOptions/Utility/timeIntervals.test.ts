@@ -1,4 +1,4 @@
-import { ETimeVariableInterval } from "../../types";
+﻿import { ETimeVariableInterval } from "../../types";
 import { EVisualizationType } from "../../types/queryVisualizationResponse";
 import { ESeriesType, View } from "../../types/view";
 import { getTimeSeriesOptions, getXAxisOptions } from "./timeIntervals";
@@ -99,14 +99,15 @@ describe('getXAxisOptions tests', () => {
             type: 'category',
             labels: {
                 autoRotation: [-45]
-            }
+            },
+            ordinal: false
         });
     });
 
-    it('Should return correct options when series type is ordinal', () => {
+    it('Should return correct options when series type is ordinal with non-numeric values', () => {
         const irregularOrdinalView = {
             ...mockView,
-            seriesType: ESeriesType.Nominal,
+            seriesType: ESeriesType.Ordinal,
             visualizationSettings: {
                 ...mockView.visualizationSettings,
                 timeVariableIntervals: ETimeVariableInterval.Irregular
@@ -122,8 +123,62 @@ describe('getXAxisOptions tests', () => {
             type: 'category',
             labels: {
                 autoRotation: [-45]
-            }
+            },
+            ordinal: true
         });
+    });
+
+    it('Should return correct options when series type is ordinal with cyrillic value names', () => {
+        const irregularOrdinalView = {
+            ...mockView,
+            columnNameGroups: [
+                [{ 'fi': 'Фообар-1', 'en': 'test_1_en', 'sv': 'test_1_sv' }],
+                [{ 'fi': 'Фообар-2', 'en': 'test_2_en', 'sv': 'test_2_sv' }]
+            ],
+            seriesType: ESeriesType.Ordinal,
+            visualizationSettings: {
+                ...mockView.visualizationSettings,
+                timeVariableIntervals: ETimeVariableInterval.Irregular
+            }
+        };
+
+        const result = getXAxisOptions(irregularOrdinalView, 'fi');
+        expect(result).toEqual({
+            categories: [
+                // foobar in cyrillic
+                'Фообар-1',
+                'Фообар-2'
+            ],
+            type: 'category',
+            labels: {
+                autoRotation: [-45]
+            },
+            ordinal: true
+        });
+    });
+
+
+    it('Should return correct options when series type is ordinal with numeric values', () => {
+        const irregularOrdinalView = {
+            ...mockView,
+            seriesType: ESeriesType.Ordinal,
+            visualizationSettings: {
+                ...mockView.visualizationSettings
+            },
+            columnNameGroups: [
+                [{ 'fi': '1 234 567,8', 'en': '1,234,567.8', 'sv': '1' }],
+                [{ 'fi': '-2 345 678,9', 'en': '-2,345,678.9', 'sv': '2' }]
+            ]
+        };
+
+        const resultFi = getXAxisOptions(irregularOrdinalView, 'fi');
+        const resultEn = getXAxisOptions(irregularOrdinalView, 'en');
+        expect(resultFi.ordinal).toEqual(true);
+        expect(resultFi.type).toEqual('category');
+        expect(resultFi.categories).toEqual(['1 234 567,8', '-2 345 678,9']);
+        expect(resultEn.ordinal).toEqual(true);
+        expect(resultEn.type).toEqual('category');
+        expect(resultEn.categories).toEqual(['1,234,567.8', '-2,345,678.9']);
     });
 
     it('Should return correct options when interval is week', () => {

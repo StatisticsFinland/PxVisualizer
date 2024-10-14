@@ -3,6 +3,7 @@ import Highcharts, { PlotSeriesOptions, XAxisOptions } from "highcharts";
 import { ESeriesType, View } from "../../types/view";
 import { getBiannualSeriesTickPositionerFunction, getQuarterlySeriesTickPositionerFunction } from "./tickPositioners";
 import { getOrdinalOptions } from "./ordinalIntervals";
+import Translations from "../../conversion/translations";
 
 export function getTimeSeriesOptions(interval: ETimeVariableInterval, startingPoint: string | null | undefined): PlotSeriesOptions | undefined {
     if (!startingPoint) return undefined;
@@ -52,17 +53,26 @@ export function getXAxisOptions(view: View, locale: string): XAxisOptions {
                     categories: view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '))
                 };
         }
-    } else if (view.seriesType === ESeriesType.Ordinal) {
-        return getOrdinalOptions(view, locale);
     }
-    else { // Nominal
-        return {
-            type: 'category',
-            categories: view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', ')),
-            labels: {
-                autoRotation: [-45]
-            }
-        };
+    else {
+        const labels: string[] = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
+        const decimalDelimeter = Translations.decimalPoint[locale];
+        const thousandsSeparator = Translations.thousandsSep[locale];
+        const allowedCharacters = new RegExp(`^[0-9\\-\\${decimalDelimeter}\\${thousandsSeparator}]+$`);
+        const numeric: boolean = labels.every(l => allowedCharacters.test(l));
+        if (view.seriesType === ESeriesType.Ordinal && numeric) {
+            return getOrdinalOptions(view, locale);
+        }
+        else { // Nominal or non-numeric ordinal
+            return {
+                ordinal: view.seriesType == ESeriesType.Ordinal,
+                type: 'category',
+                categories: labels,
+                labels: {
+                    autoRotation: [-45]
+                }
+            };
+        }
     }
 }
 

@@ -5946,6 +5946,250 @@ export const LINE_CHART_WITH_NON_TIME_ORDINAL: { pxGraphData: IQueryVisualizatio
     selectedVariableCodes: undefined
 }
 
+export const LINE_CHART_WITH_NON_NUMERIC_ORDINAL: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+    pxGraphData: {
+        tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
+        data: [
+            178936.0,
+            162358.0,
+            174856.0,
+            183465.0,
+            175134.0,
+            169845.0,
+            165833.0,
+            103742.0,
+            65005.0,
+            49799.0
+        ],
+        missingDataInfo: {},
+        dataNotes: {},
+        metaData: [
+            {
+                "code": "Vuosi",
+                "name": {
+                    "fi": "Vuosi",
+                    "sv": "År",
+                    "en": "Year"
+                },
+                "note": null,
+                "type": EVariableType.Time,
+                "values": [
+                    {
+                        "code": "2020",
+                        "name": {
+                            "fi": "2020",
+                            "sv": "2020",
+                            "en": "2020"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    }
+                ]
+            },
+            {
+                "code": "Sukupuoli",
+                "name": {
+                    "fi": "Sukupuoli",
+                    "sv": "Kön",
+                    "en": "Sex"
+                },
+                "note": null,
+                "type": EVariableType.OtherClassificatory,
+                "values": [
+                    {
+                        "code": "1",
+                        "name": {
+                            "fi": "Miehet",
+                            "sv": "Män",
+                            "en": "Males"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    }
+                ]
+            },
+            {
+                "code": "Tiedot",
+                "name": {
+                    "fi": "Tiedot",
+                    "sv": "Uppgifter",
+                    "en": "Information"
+                },
+                "note": null,
+                "type": EVariableType.Content,
+                "values": [
+                    {
+                        "code": "vaesto",
+                        "name": {
+                            "fi": "Väestö 31.12.",
+                            "sv": "Befolkning 31.12.",
+                            "en": "Population 31 Dec"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": {
+                            "unit": {
+                                "fi": "Lukumäärä",
+                                "sv": "Antal",
+                                "en": "Number"
+                            },
+                            "source": {
+                                "fi": "PxVisualizer-fi",
+                                "sv": "PxVisualizer-sv",
+                                "en": "PxVisualizer-en"
+                            },
+                            "numberOfDecimals": 0,
+                            "lastUpdated": "2023-03-31T05:00:00Z"
+                        }
+                    }
+                ]
+            },
+            {
+                "code": "Ikä",
+                "name": {
+                    "fi": "Ikä",
+                    "sv": "Ålder",
+                    "en": "Age"
+                },
+                "note": null,
+                "type": EVariableType.Ordinal,
+                "values": [
+                    {
+                        "code": "40-44",
+                        "name": {
+                            "fi": "foo",
+                            "sv": "foo.en",
+                            "en": "foo.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "45-49",
+                        "name": {
+                            "fi": "bar",
+                            "sv": "bar.en",
+                            "en": "bar.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "50-54",
+                        "name": {
+                            "fi": "baz",
+                            "sv": "baz.en",
+                            "en": "baz.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "55-59",
+                        "name": {
+                            "fi": "qux",
+                            "sv": "qux.en",
+                            "en": "qux.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "60-64",
+                        "name": {
+                            "fi": "quux",
+                            "sv": "quux.en",
+                            "en": "quux.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "65-69",
+                        "name": {
+                            "fi": "corge",
+                            "sv": "corge.en",
+                            "en": "corge.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "70-74",
+                        "name": {
+                            "fi": "grault",
+                            "sv": "grault.en",
+                            "en": "grault.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "75-79",
+                        "name": {
+                            "fi": "garply",
+                            "sv": "garply.en",
+                            "en": "garply.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "80-84",
+                        "name": {
+                            "fi": "waldo",
+                            "sv": "waldo.en",
+                            "en": "waldo.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    },
+                    {
+                        "code": "85-",
+                        "name": {
+                            "fi": "fred",
+                            "sv": "fred.en",
+                            "en": "fred.sv"
+                        },
+                        "note": null,
+                        "isSum": false,
+                        "contentComponent": null
+                    }
+                ]
+            }
+        ],
+        "selectableVariableCodes": [],
+        "rowVariableCodes": [],
+        "columnVariableCodes": [
+            "Ikä"
+        ],
+        "header": {
+            "fi": "Väestö 31.12., Miehet 2020 muuttujana Ikä",
+            "sv": "Befolkning 31.12., Män 2020 efter Ålder",
+            "en": "Population 31 Dec, Males 2020 by Age"
+        },
+        "visualizationSettings": {
+            "visualizationType": EVisualizationType.LineChart,
+            "timeVariableIntervals": ETimeVariableInterval.Year,
+            "timeSeriesStartingPoint": "2020-01-01T00:00:00",
+            "cutValueAxis": false,
+            "showLastLabel": false
+        }
+    },
+    selectedVariableCodes: undefined
+}
+
 export const LINE_CHART_WITH_HALF_YEAR_SERIES: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
