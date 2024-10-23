@@ -192,8 +192,8 @@ function getDataFormattedForChartType(view: View, point: TooltipFormatterContext
         return Math.abs(value).toLocaleString(locale);
     }
     else if (view.visualizationSettings.visualizationType == EVisualizationType.PercentHorizontalBarChart ||
-            view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
-        return `${point.percentage?.toFixed(1)} (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
+        view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
+        return `${formatNumericValue(point.percentage ?? null, precision, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
     } 
     else {
         return value.toLocaleString(locale) ?? '';
