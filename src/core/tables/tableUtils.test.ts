@@ -66,6 +66,16 @@ describe('formatNumericValue', () => {
         // Intl.NumberFormat uses a non-breaking space "\xa0" as a thousand separator
         expect(formatNumericValue(input.value, input.precision, 'sv', true)).toEqual("1\xa0234,57");
     });
+
+    it('should throw an error when the value is null', () => {
+        const input: IDataCell = {
+            value: null,
+            precision: 0,
+            preliminary: false,
+            missingCode: 1
+        }
+        expect(() => formatNumericValue(input.value, input.precision, 'fi')).toThrow('Can not produce a localized numeric formatting for missing data');
+    });
 });
 
 describe('formatMissingData', () => {
