@@ -50,7 +50,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                 data: s.series.map((dataCell, index) => ({
                     y: i === 0 && dataCell.value ? -dataCell.value : dataCell.value,
                     name: view.columnNameGroups[index].map(n => n[locale]).join(', '),
-                    custom: { preliminary: dataCell.preliminary }
+                    custom: { preliminary: dataCell.preliminary, precision: dataCell.precision }
                 }))
             })
         }),

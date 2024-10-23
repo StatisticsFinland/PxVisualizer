@@ -11,8 +11,6 @@ export const buildHighchartSeries = (view: View, type: SeriesType, locale: strin
         data: s.series.map((dataPoint, dIndex) => ({
             y: dataPoint.value,
             name: view.columnNameGroups[dIndex].map(n => n[locale]).join(', '),
-            custom: { preliminary: dataPoint.preliminary }
+            custom: { preliminary: dataPoint.preliminary, precision: dataPoint.precision },
         }))
     }));
-
-    

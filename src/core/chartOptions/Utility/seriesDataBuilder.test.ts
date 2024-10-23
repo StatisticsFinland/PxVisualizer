@@ -10,67 +10,67 @@ describe('Highcharts series builder tests', () => {
                 animation: false,
                 data: [
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2020Q1",
                         "y": 0.6
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2020Q2",
                         y: 0.6
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2020Q3",
                         y: -0.3
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2020Q4",
                         y: 3.3
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2021Q1",
                         y: 1.5
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2021Q2",
                         y: 2.1
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2021Q3",
                         y: -0.4
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2021Q4",
                         y: 0.7
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2022Q1",
                         y: 3.3
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2022Q2",
                         y: 0
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2022Q3",
                         y: 1.9,
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2022Q4",
                         y: -3.4,
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 1, "preliminary": false },
                         name: "2023Q1",
                         y: -0.5,
                     }
@@ -90,12 +90,12 @@ describe('Highcharts series builder tests', () => {
                 animation: false,
                 data: [
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 0, "preliminary": false },
                         name: "Vapaarahoitteinen",
                         "y": 11096
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 0, "preliminary": false },
                         name: "ARA",
                         y: 4845
                     }
@@ -108,12 +108,12 @@ describe('Highcharts series builder tests', () => {
                 animation: false,
                 data: [
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 0, "preliminary": false },
                         name: "Vapaarahoitteinen",
                         "y": 11625
                     },
                     {
-                        custom: { "preliminary": false },
+                        custom: { "precision": 0, "preliminary": false },
                         name: "ARA",
                         y: 5174
                     }

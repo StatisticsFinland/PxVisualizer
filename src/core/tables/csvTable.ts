@@ -41,7 +41,7 @@ export const generateCsv = (view: View, locale: string): string => {
         // Set display precision and decimal separator
         row = row.concat(serie.series.map(n => {
             if (n.value === null) return formatMissingData(n.missingCode, locale);
-            else return formatNumericValue(n, locale);
+            else return formatNumericValue(n.value, n.precision, locale);
         }));
 
         csv += buildCSVRow(row, 0, gridWidth, delimiter, lineBreak);
