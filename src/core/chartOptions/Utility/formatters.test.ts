@@ -1,5 +1,5 @@
-import { Tooltip, TooltipFormatterContextObject } from "highcharts";
-import { formatLocale, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
+import { Point, Tooltip, TooltipFormatterContextObject } from "highcharts";
+import { formatLocale, getDataLabelFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
 import { simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
 import { simpleHorizontalBarchartViewFixture } from "./testFixtures/horizontalbarchartViews";
 import { simpleGroupHorizontalBarchartViewFixture } from "./testFixtures/grouphorizontalbarchartViews";
@@ -208,5 +208,52 @@ describe('getToolTipFormatterFunction tests', () => {
         const formatter = getToolTipFormatterFunction(simpleGroupHorizontalBarchartViewFixture, 'fi');
         const expectedtooltipString = "Vuosineljännes: testSeriesName<br/>Rahoitusmuoto: testPointName<br/>";
         expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
+    });
+
+    it('Returns correctly formatted data label based on fi locale and precision', () => {
+        const mockPoint = {
+            y: 1234.567,
+            options: {
+                custom: {
+                    "precision": 2
+                }
+            }
+        } as unknown as Point;
+        const mockDataLabelObject = {
+            point: mockPoint,
+            key: 'y',
+            series: {
+                userOptions: {
+                    data: [mockPoint]
+                }
+            }
+        } as unknown as TooltipFormatterContextObject;
+        const formatter = getDataLabelFormatterFunction('fi');
+        const result = formatter.apply(mockDataLabelObject, [mockPoint]);
+        // Intl.NumberFormat uses a non-breaking space "\xa0" as a thousand separator
+        expect(result).toBe('1\xa0234,57');
+    });
+
+    it('Returns correctly formatted data label based on en locale and precision', () => {
+        const mockPoint = {
+            y: 1234.567,
+            options: {
+                custom: {
+                    "precision": 2
+                }
+            }
+        } as unknown as Point;
+        const mockDataLabelObject = {
+            point: mockPoint,
+            key: 'y',
+            series: {
+                userOptions: {
+                    data: [mockPoint]
+                }
+            }
+        } as unknown as TooltipFormatterContextObject;
+        const formatter = getDataLabelFormatterFunction('en');
+        const result = formatter.apply(mockDataLabelObject, [mockPoint]);
+        expect(result).toBe('1,234.57');
     });
 });
