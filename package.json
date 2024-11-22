@@ -9,13 +9,21 @@
     "indent": 4
   },
   "types": "./dist/types/index.d.ts",
-  "module": "./dist/pxv.module.js",
+  "module": "./dist/pxv.module.mjs",
   "unpkg": "./dist/pxv.umd.js",
   "type": "module",
   "source": "src/index.ts",
   "exports": {
-    "require": "./dist/pxv.cjs",
-    "default": "./dist/pxv.modern.js"
+    ".": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/pxv.module.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/pxv.cjs"
+      }
+    }
   },
   "files": [
     "dist"
