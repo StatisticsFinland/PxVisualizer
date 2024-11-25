@@ -1,4 +1,4 @@
-import Translations from "../conversion/translations";
+import { Translations } from "../conversion/translations";
 import { IDataCell } from "../types/view";
 
 const indexedDotCodes = [

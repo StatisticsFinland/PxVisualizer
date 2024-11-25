@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import MenuItem from "./menuItem/menuItem";
+import { MenuItem } from "./menuItem/menuItem";
 import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
 import { View } from "../../../core/types/view";
-import Translations from "../../../core/conversion/translations";
-import Icon from "../icon/icon";
+import { Translations } from "../../../core/conversion/translations";
+import { Icon } from "../icon/icon";
 import { viewToDownloadCSVOption } from "../../../core/tables/csvTable";
 import { generateFilename } from "../../../core/tables/exportingUtils";
 import { TIcon } from "../../../core/types/icon";
@@ -197,5 +197,3 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
         </BurgerWrapper>
     );
 }
-
-export default BurgerMenu;

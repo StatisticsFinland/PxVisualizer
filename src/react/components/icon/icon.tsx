@@ -8,7 +8,7 @@ interface IIconProps {
 
 /* no need for tests for icon svg markups */
 /* istanbul ignore next */
-const Icon: React.FC<IIconProps> = ({icon, inheritColor=false}) => { // NOSONAR
+export const Icon: React.FC<IIconProps> = ({icon, inheritColor=false}) => { // NOSONAR
     switch(icon) { //NOSONAR
         case "Bars":
             return (
@@ -57,6 +57,3 @@ const Icon: React.FC<IIconProps> = ({icon, inheritColor=false}) => { // NOSONAR
             );
     }
 }
-    
-
-export default Icon;

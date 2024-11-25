@@ -4,7 +4,7 @@ import { ESeriesType, IDataCell, IDataSeries, IUnitInfo, TValueSelectionAmounts,
 import { ASCENDING, ASCENDING_SORTING_FUNC, DESCENDING, DESCENDING_SORTING_FUNC, NO_SORTING, SUM, REVERSED, sortViewBasedOnSeries, sortViewBasedOnSeriesRelative, sortViewBasedOnSum, reverseViewOrder } from "./viewSorting";
 import { cartesianProduct, onlyUnique } from "./utilityFunctions";
 import { TVariableSelections } from "../types/variableSelections";
-import Translations from "./translations";
+import { Translations } from "./translations";
 import { SeriesBuilder } from "./seriesBuilder";
 import { getValuesForVariableInView, sortVariables } from "./seriesBuilderUtilities";
 
