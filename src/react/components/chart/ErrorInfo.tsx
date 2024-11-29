@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Translations from "../../../core/conversion/translations";
+import { Translations } from "../../../core/conversion/translations";
 
 const ErrorSection = styled.div`
     width: 100%;

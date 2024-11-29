@@ -1,5 +1,5 @@
 import { getFormattedUnits } from "../chartOptions/Utility/formatters";
-import Translations from "../conversion/translations";
+import { Translations } from "../conversion/translations";
 import { TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { IDataSeries, View } from "../types/view";
 import { formatMissingData, formatNumericValue } from "./tableUtils";

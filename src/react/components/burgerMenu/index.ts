@@ -1,1 +1,2 @@
-export { default } from './burgerMenu';
+export * from './burgerMenu';
+export * from './menuItem';

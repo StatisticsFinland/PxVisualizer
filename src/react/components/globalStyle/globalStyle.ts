@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
  
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     /* @font-face {
         font-family: 'Barlow Semi Condensed';
         font-style: normal;
@@ -61,5 +61,3 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
 `;
- 
-export default GlobalStyle;

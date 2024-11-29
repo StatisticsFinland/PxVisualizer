@@ -1,5 +1,5 @@
 import { AxisLabelsFormatterCallbackFunction, DataLabelsFormatterCallbackFunction, FormatterCallbackFunction, Point, ScreenReaderFormatterCallbackFunction, Series, TooltipFormatterCallbackFunction, TooltipFormatterContextObject } from "highcharts";
-import Translations, { GetAllLanguages, ArrayTranslations } from "../../conversion/translations";
+import { Translations, GetAllLanguages, ArrayTranslations } from "../../conversion/translations";
 import { IUnitInfo, View } from "../../types/view";
 import { EVisualizationType } from "../../types";
 import { onlyUnique } from "../../conversion/utilityFunctions";
