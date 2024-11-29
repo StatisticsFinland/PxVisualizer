@@ -1,7 +1,7 @@
 import { Options, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction } from './Utility/formatters';
-import Translations from '../conversion/translations';
+import { Translations } from '../conversion/translations';
 import { buildHighchartSeries } from './Utility/seriesDataBuilder';
 import {  getXAxisOptions } from './Utility/timeIntervals';
 import { getLinearAxisTickPositionerFunction } from './Utility/tickPositioners';

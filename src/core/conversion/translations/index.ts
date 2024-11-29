@@ -14,5 +14,3 @@ export const GetAllLanguages = Manager.GetAllLanguages;
 export function AddTranslations(newTranslations: TTranslationPackage) {
     Manager.AddTranslations(newTranslations);
 }
-
-export default Translations;

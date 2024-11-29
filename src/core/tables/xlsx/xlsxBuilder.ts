@@ -3,7 +3,7 @@ import { buildXMLSheet } from './xlsxWorksheetBuilder';
 import { contentTypesTemplate, relationsTemplate, workbookRelationsTemplate, workbookTemplate } from './xlsxTemplates';
 import { View } from '../../types/view';
 import { buildCellRows } from './xlsxDataBuilder';
-import Translations from '../../conversion/translations';
+import { Translations } from '../../conversion/translations';
 import { generateFilename } from '../exportingUtils';
 
 export const viewToDownloadXLSOption = (view: View, locale: string): { onClick: () => Promise<void>, text: string } => ({

@@ -1,5 +1,5 @@
 import { getFormattedUnits } from "../../chartOptions/Utility/formatters";
-import Translations from "../../conversion/translations";
+import { Translations } from "../../conversion/translations";
 import { convertToRelative } from "../../conversion/viewUtils";
 import { EVisualizationType } from "../../types";
 import { View } from "../../types/view";

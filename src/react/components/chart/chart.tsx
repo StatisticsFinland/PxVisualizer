@@ -10,15 +10,15 @@ import highchartsAccessibility from "highcharts/modules/accessibility.js";
 import highchartsExporting from 'highcharts/modules/exporting.js';
 import highchartsExportData from 'highcharts/modules/export-data.js';
 import highchartsOfflineExporting from 'highcharts/modules/offline-exporting.js';
-import BurgerMenu, { IFunctionalMenuItem, ILinkMenuItem } from "../burgerMenu/burgerMenu";
+import { BurgerMenu, IFunctionalMenuItem, ILinkMenuItem } from "../burgerMenu/burgerMenu";
 import { extractSelectableVariableValues } from "../../../core/conversion/helpers";
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
 import { formatLocale } from "../../../core/chartOptions/Utility/formatters"; 
 import { TableView } from "./tableView";
-import GlobalStyle from "../globalStyle";
+import { GlobalStyle } from "../globalStyle";
 import { View } from "../../../core/types/view";
 import { ErrorInfo } from "./ErrorInfo";
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 
 const initializeHighcharts = (locale: string) => {
     if (typeof Highcharts === 'object') {
@@ -184,7 +184,7 @@ const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menu
     return <ErrorInfo locale={validLocale} />;
 };
 
-const Chart: React.FC<IChartProps> = (props) => {
+export const Chart: React.FC<IChartProps> = (props) => {
     const validLocale = formatLocale(props.locale);
     return (
         <ErrorBoundary fallback={<ErrorInfo locale={validLocale} />}>
@@ -193,5 +193,3 @@ const Chart: React.FC<IChartProps> = (props) => {
         </ErrorBoundary>
     );
 };
-
-export default Chart;
