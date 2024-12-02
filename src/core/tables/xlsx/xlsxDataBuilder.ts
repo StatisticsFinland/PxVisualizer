@@ -1,5 +1,5 @@
 import { getFormattedUnits } from "../../chartOptions/Utility/formatters";
-import Translations from "../../conversion/translations";
+import { Translations } from "../../conversion/translations";
 import { convertToRelative } from "../../conversion/viewUtils";
 import { EVisualizationType } from "../../types";
 import { View } from "../../types/view";
@@ -40,7 +40,7 @@ export const buildCellRows: (view: View, locale: string) => TCell[][] = (view, l
         // Set display precision and decimal separator
         row = row.concat(serie.series.map(n => {
             if (n.value === null) return formatMissingData(n.missingCode, locale);
-            else return n.value;
+            else return Number(n.value.toFixed(n.precision));
         }));
 
         stringTable.push(buildCellRow(row, 0, gridWidth));

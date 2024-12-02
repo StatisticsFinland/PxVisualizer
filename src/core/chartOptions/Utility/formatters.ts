@@ -1,8 +1,9 @@
 import { AxisLabelsFormatterCallbackFunction, DataLabelsFormatterCallbackFunction, FormatterCallbackFunction, Point, ScreenReaderFormatterCallbackFunction, Series, TooltipFormatterCallbackFunction, TooltipFormatterContextObject } from "highcharts";
-import Translations, { GetAllLanguages, ArrayTranslations } from "../../conversion/translations";
+import { Translations, GetAllLanguages, ArrayTranslations } from "../../conversion/translations";
 import { IUnitInfo, View } from "../../types/view";
 import { EVisualizationType } from "../../types";
 import { onlyUnique } from "../../conversion/utilityFunctions";
+import { formatNumericValue } from "../../tables/tableUtils";
 
 export function getToolTipFormatterFunction(view: View, locale: string): TooltipFormatterCallbackFunction {
     return function () {
@@ -16,7 +17,8 @@ export function getToolTipFormatterFunction(view: View, locale: string): Tooltip
             tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${this.point.name}`);
         }
 
-        tooltipLines.push(getDataFormattedForChartType(view, this, locale))
+        const precision: number = this.point.options.custom?.['precision'] ?? 0;
+        tooltipLines.push(getDataFormattedForChartType(view, this, locale, precision))
 
         if (this.point.options.custom?.['preliminary']) {
             tooltipLines.push(Translations.preliminaryData[locale]);
@@ -42,7 +44,8 @@ export function getScreenReaderFormatterCallbackFunction(view: View, locale: str
             tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${parseScreenReaderFriendlyTimePeriods(point.name, locale)}`);
         }
 
-        tooltipLines.push(getDataFormattedForChartType(view, point, locale))
+        const precision: number = point.options.custom?.['precision'] ?? 0;
+        tooltipLines.push(getDataFormattedForChartType(view, point, locale, precision))
 
         if (point.options.custom?.['preliminary']) {
             tooltipLines.push(Translations.preliminaryData[locale]);
@@ -83,6 +86,15 @@ export function getDataLabelShorteningFunction(showData: boolean): DataLabelsFor
     }
 }
 /* c8 ignore end */
+
+export function getDataLabelFormatterFunction(locale: string): DataLabelsFormatterCallbackFunction {
+    return function () {
+        if (!this.point.y) return '';
+
+        const precision: number = this.point.options.custom?.['precision'] ?? 0;
+        return formatNumericValue(this.point.y, precision, locale, true);
+    }
+}
 
 /* c8 ignore start */
 export function getLegendLabelShorteningFunction(): FormatterCallbackFunction<Series | Point> {
@@ -172,16 +184,19 @@ export function getFormattedUnits(unitInfos: IUnitInfo[], locale: string): strin
 }
 
 /* c8 ignore start */
-function getDataFormattedForChartType(view: View, point: TooltipFormatterContextObject | Point, locale: string) : string {
+function getDataFormattedForChartType(view: View, point: TooltipFormatterContextObject | Point, locale: string, precision: number): string {
+    if (point.y === null || point.y === undefined) return '';
+    const value = Number(point.y.toFixed(precision));
+
     if (view.visualizationSettings.visualizationType === EVisualizationType.PyramidChart) {
-        return Math.abs(point.y as number).toLocaleString(locale);
+        return Math.abs(value).toLocaleString(locale);
     }
     else if (view.visualizationSettings.visualizationType == EVisualizationType.PercentHorizontalBarChart ||
-            view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
-        return `${point.percentage?.toFixed(1)} (${point.y?.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
+        view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
+        return `${formatNumericValue(point.percentage ?? null, precision, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
     } 
     else {
-        return point.y?.toLocaleString(locale) ?? '';
+        return value.toLocaleString(locale) ?? '';
     }
 }
 /* c8 ignore end */
