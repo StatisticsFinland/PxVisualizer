@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import MenuItem from "./menuItem";
+import { MenuItem } from "./menuItem";
 import React from "react";
 import 'jest-styled-components';
 

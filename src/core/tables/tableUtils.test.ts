@@ -7,8 +7,8 @@ describe('formatNumericValue', () => {
             value: 123.12345,
             precision: 2,
             preliminary: false
-        } 
-        expect(formatNumericValue(input, 'fi')).toEqual('123,12');
+        }
+        expect(formatNumericValue(input.value, input.precision, 'fi')).toEqual('123,12');
     });
 
     it('should return a correctly formatted number with two decimals and a swedish decimal separator ","', () => {
@@ -17,7 +17,7 @@ describe('formatNumericValue', () => {
             precision: 2,
             preliminary: false
         }
-        expect(formatNumericValue(input, 'sv')).toEqual('123,12');
+        expect(formatNumericValue(input.value, input.precision, 'sv')).toEqual('123,12');
     });
 
     it('should return a correctly formatted number with two decimals and a default decimal separator "."', () => {
@@ -26,7 +26,7 @@ describe('formatNumericValue', () => {
             precision: 2,
             preliminary: false
         }
-        expect(formatNumericValue(input, 'en')).toEqual('123.12');
+        expect(formatNumericValue(input.value, input.precision, 'en')).toEqual('123.12');
     });
 
     it('should return a correctly formatted number with a 0 added to decimals to match the precision', () => {
@@ -35,7 +35,7 @@ describe('formatNumericValue', () => {
             precision: 2,
             preliminary: false
         }
-        expect(formatNumericValue(input, 'en')).toEqual('123.10');
+        expect(formatNumericValue(input.value, input.precision, 'en')).toEqual('123.10');
     });
 
     it('should return a correctly formatted number with two Finnish thousand separators " "', () => {
@@ -45,7 +45,7 @@ describe('formatNumericValue', () => {
             preliminary: false
         }
         // Intl.NumberFormat uses a non-breaking space "\xa0" as a thousand separator
-        expect(formatNumericValue(input, 'fi', true)).toEqual("123\xa0123\xa0123");
+        expect(formatNumericValue(input.value, input.precision, 'fi', true)).toEqual("123\xa0123\xa0123");
     });
 
     it('should return a correctly formatted number with two default thousand separators ","', () => {
@@ -54,7 +54,7 @@ describe('formatNumericValue', () => {
             precision: 0,
             preliminary: false
         }
-        expect(formatNumericValue(input, 'en', true)).toEqual('123,123,123');
+        expect(formatNumericValue(input.value, input.precision, 'en', true)).toEqual('123,123,123');
     });
 
     it('should return a correctly formatted number with a Swedish thousand separator " " and decimal separator with two decimals', () => {
@@ -64,7 +64,17 @@ describe('formatNumericValue', () => {
             preliminary: false
         }
         // Intl.NumberFormat uses a non-breaking space "\xa0" as a thousand separator
-        expect(formatNumericValue(input, 'sv', true)).toEqual("1\xa0234,57");
+        expect(formatNumericValue(input.value, input.precision, 'sv', true)).toEqual("1\xa0234,57");
+    });
+
+    it('should throw an error when the value is null', () => {
+        const input: IDataCell = {
+            value: null,
+            precision: 0,
+            preliminary: false,
+            missingCode: 1
+        }
+        expect(() => formatNumericValue(input.value, input.precision, 'fi')).toThrow('Can not produce a localized numeric formatting for missing data');
     });
 });
 

@@ -1,5 +1,5 @@
 import { getFormattedUnits } from "../chartOptions/Utility/formatters";
-import Translations from "../conversion/translations";
+import { Translations } from "../conversion/translations";
 import { TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { IDataSeries, View } from "../types/view";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
@@ -132,7 +132,7 @@ function buildDataRows(series: IDataSeries[], locale: string): HTMLTableRowEleme
         for (const dataCell of series[row].series) {
             const td = document.createElement('td');
             if (dataCell.value === null) td.textContent = formatMissingData(dataCell.missingCode, locale, true);
-            else td.textContent = formatNumericValue(dataCell, locale, true);
+            else td.textContent = formatNumericValue(dataCell.value, dataCell.precision, locale, true);
             tableRow.append(td);
         }
 

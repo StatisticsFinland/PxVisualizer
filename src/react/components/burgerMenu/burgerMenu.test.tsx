@@ -6,7 +6,7 @@ import React from "react";
 import 'jest-styled-components';
 import { HighchartsReactRefObject } from "highcharts-react-official";
 import { View } from "../../../core/types/view";
-import Translations from "../../../core/conversion/translations";
+import { Translations } from "../../../core/conversion/translations";
 import { generateFilename } from "../../../core/tables/exportingUtils";
 
 describe('burgerMenu, rendering tests', () => {

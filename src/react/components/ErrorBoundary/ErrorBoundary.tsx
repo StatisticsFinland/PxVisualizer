@@ -9,7 +9,7 @@ interface IErrorBoundaryProps {
     children: ReactNode;
 }
 
-class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> {
+export class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> {
     constructor(props: IErrorBoundaryProps) {
       super(props);
       this.state = { hasError: false };
@@ -31,5 +31,3 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
       return this.props.children;
     }
 }
-
-export default ErrorBoundary;

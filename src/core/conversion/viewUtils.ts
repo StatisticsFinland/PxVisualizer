@@ -4,7 +4,7 @@ import { ESeriesType, IDataCell, IDataSeries, IUnitInfo, TSingleSelections, TVal
 import { ASCENDING, ASCENDING_SORTING_FUNC, DESCENDING, DESCENDING_SORTING_FUNC, NO_SORTING, SUM, REVERSED, sortViewBasedOnSeries, sortViewBasedOnSeriesRelative, sortViewBasedOnSum, reverseViewOrder } from "./viewSorting";
 import { cartesianProduct, onlyUnique } from "./utilityFunctions";
 import { TVariableSelections } from "../types/variableSelections";
-import Translations from "./translations";
+import { Translations } from "./translations";
 
 export function convertPxGrafResponseToView(
     responseObj: IQueryVisualizationResponse, selectedValueCodes: TVariableSelections

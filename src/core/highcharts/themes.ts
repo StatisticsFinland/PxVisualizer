@@ -1,5 +1,5 @@
 import { getAxisLabelFormatterFunction } from "../chartOptions/Utility/formatters";
-import Translations, { ArrayTranslations } from "../conversion/translations";
+import { Translations, ArrayTranslations } from "../conversion/translations";
 
 export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => ({
     accessibility: {

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { TIcon, allIcons } from "../../../../core/types/icon";
-import Icon from "../../icon/icon";
-import Translations from "../../../../core/conversion/translations";
+import { Icon } from "../../icon/icon";
+import { Translations } from "../../../../core/conversion/translations";
 
 interface IButtonProps {
     $separator?: boolean;
@@ -141,5 +141,3 @@ export const MenuItem: React.FC<IMenuItemProps> = ({text, onClick, url, openNewT
     }
     return (<></>);
 };
-
-export default MenuItem
