@@ -22,7 +22,7 @@ export const pieChartOptions = (view: View, locale: string): Options => {
                 y: data.value,
                 name: view.columnNameGroups[index].map(n => n[locale]).join(', '),
                 unit: getFormattedUnits(view.units, locale),
-                custom: { preliminary: data.preliminary }
+                custom: { preliminary: data.preliminary, precision: data.precision }
             }))
         }))
     };

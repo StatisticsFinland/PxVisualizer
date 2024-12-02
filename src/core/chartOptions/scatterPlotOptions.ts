@@ -43,7 +43,10 @@ export const scatterPlotOptions = (view: View, locale: string): Options => {
                     marker: {
                         symbol: 'circle',
                     },
-                    custom: { preliminary: view.series[X_INDEX].series[index].preliminary || view.series[Y_INDEX].series[index].preliminary }
+                    custom: {
+                        preliminary: view.series[X_INDEX].series[index].preliminary || view.series[Y_INDEX].series[index].preliminary,
+                        precision: Math.max(view.series[X_INDEX].series[index].precision, view.series[Y_INDEX].series[index].precision)
+                    }
                 })),
             }
         ],

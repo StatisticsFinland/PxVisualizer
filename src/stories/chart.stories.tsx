@@ -8,6 +8,7 @@ import {
   VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS,
   VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES,
   VERTICAL_BAR_CHART_WITH_SELECTABLES,
+  VERTICAL_BAR_CHART_WITH_EXCESSIVE_PRECISION
 } from "./fixtures/verticalBarChart";
 import {
   GROUP_HORIZONTAL_BAR_CHART,
@@ -126,6 +127,9 @@ LineChartWithOrdinalVariable.args = LINE_CHART_WITH_ORDINAL_VAR;
 
 export const VerticalBarChartWithSelectableVariables = Template.bind({});
 VerticalBarChartWithSelectableVariables.args = VERTICAL_BAR_CHART_WITH_SELECTABLES;
+
+export const VerticalBarChartWithExcessivePrecision = Template.bind({});
+VerticalBarChartWithExcessivePrecision.args = VERTICAL_BAR_CHART_WITH_EXCESSIVE_PRECISION;
 
 export const verticalBarChartWithCustomMenuItem = Template.bind({});
 verticalBarChartWithCustomMenuItem.args = VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS;

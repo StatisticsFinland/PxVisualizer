@@ -490,6 +490,115 @@ export const VERTICAL_BAR_CHART: { pxGraphData: IQueryVisualizationResponse, sel
     selectedVariableCodes: undefined
 };
 
+export const VERTICAL_BAR_CHART_WITH_EXCESSIVE_PRECISION: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+    pxGraphData: {
+        tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
+        columnVariableCodes: ['Vuosi'],
+        data: [2824.123, 2620.456, 2818.789],
+        dataNotes: {},
+        header: {
+            "fi": "Tiedot 1970-1972",
+            "sv": "Uppgifter 1970-1972",
+            "en": "Information 1970-1972"
+        },
+        missingDataInfo: {},
+        metaData: [
+            {
+                code: "Tiedot",
+                name: {
+                    "fi": "Tiedot",
+                    "sv": "Uppgifter",
+                    "en": "Information"
+                },
+                note: null,
+                type: EVariableType.Content,
+                values: [
+                    {
+                        code: "kulutus_t",
+                        name: {
+                            "fi": "Kivihiilen kulutus (1000 t)",
+                            "sv": "Stenkolsförbrukning (1 000 t)",
+                            "en": "Consumption of hard coal (1,000 ton)"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: {
+                            unit: {
+                                "fi": "1000 t",
+                                "sv": "1000 t",
+                                "en": "1000 t"
+                            },
+                            source: {
+                                "fi": "PxVisualizer-fi",
+                                "sv": "PxVisualizer-sv",
+                                "en": "PxVisualizer-en"
+                            },
+                            numberOfDecimals: 2,
+                            lastUpdated: "2023-02-01T06:00:00Z"
+                        }
+                    }
+                ]
+            },
+            {
+                code: "Vuosi",
+                name: {
+                    "fi": "Vuosi",
+                    "sv": "År",
+                    "en": "Year"
+                },
+                note: null,
+                type: EVariableType.Time,
+                values: [
+                    {
+                        code: "1970",
+                        name: {
+                            "fi": "1970",
+                            "sv": "1970",
+                            "en": "1970"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "1971",
+                        name: {
+                            "fi": "1971",
+                            "sv": "1971",
+                            "en": "1971"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "1972",
+                        name: {
+                            "fi": "1972",
+                            "sv": "1972",
+                            "en": "1972"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    }
+                ]
+            }
+        ],
+        rowVariableCodes: [],
+        selectableVariableCodes: [],
+        visualizationSettings: {
+            defaultSelectableVariableCodes: null,
+            showLastLabel: false,
+            visualizationType: EVisualizationType.VerticalBarChart,
+            timeVariableIntervals: ETimeVariableInterval.Year,
+            timeSeriesStartingPoint: '1970-01-01T00:00:00',
+            showDataPoints: true
+        }
+    },
+    selectedVariableCodes: undefined
+};
+
 export const VERTICAL_BAR_CHART_WITH_PRELIMINARY_DATA: {
     pxGraphData: IQueryVisualizationResponse,
     selectedVariableCodes: TVariableSelections | undefined
