@@ -1,6 +1,6 @@
 import { Options, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
-import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction } from './Utility/formatters';
+import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction } from './Utility/formatters';
 import { Translations } from '../conversion/translations';
 import { buildHighchartSeries } from './Utility/seriesDataBuilder';
 import {  getXAxisOptions } from './Utility/timeIntervals';
@@ -40,7 +40,8 @@ export const commonDatalabelsOptions = (view: View, locale: string) => {
 
     const dataLabelOptions = {
         enabled: view.visualizationSettings.showDataPoints,
-        style: dataValueLabelStyle
+        style: dataValueLabelStyle,
+        formatter: getDataLabelFormatterFunction(locale)
     }
     return dataLabelOptions;
 }
