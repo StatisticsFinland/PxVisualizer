@@ -9,7 +9,7 @@ on:
 
 jobs:
  dependabot_version_increment:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+   # if: ${{ github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -33,15 +33,9 @@ jobs:
           echo "PR_VERSION=$PR_VERSION" >> $GITHUB_ENV
           echo "Version in PR branch is $PR_VERSION"
 
-      - name: Get current version number from main branch
-        run: |
-          git fetch origin main
-          git checkout origin/main -- package.json
-          echo "CURRENT_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
-          echo "Current main version is $CURRENT_VERSION"
-
       - name: Compare and increment version number
         run: |
+          CURRENT_VERSION=$(git show origin/main:package.json | jq -r '.version')
           echo "Comparing versions: $CURRENT_VERSION and $PR_VERSION"
           if [ "$CURRENT_VERSION" = "$PR_VERSION" ]; then
             npm version patch --no-git-tag-version
