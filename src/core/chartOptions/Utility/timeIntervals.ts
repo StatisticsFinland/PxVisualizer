@@ -3,7 +3,6 @@ import Highcharts, { PlotSeriesOptions, XAxisOptions } from "highcharts";
 import { ESeriesType, View } from "../../types/view";
 import { getBiannualSeriesTickPositionerFunction, getQuarterlySeriesTickPositionerFunction } from "./tickPositioners";
 import { getOrdinalOptions } from "./ordinalIntervals";
-import Translations from "../../conversion/translations";
 
 export function getTimeSeriesOptions(interval: ETimeVariableInterval, startingPoint: string | null | undefined): PlotSeriesOptions | undefined {
     if (!startingPoint) return undefined;
