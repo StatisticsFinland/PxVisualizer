@@ -7,6 +7,7 @@ import {
   VERTICAL_BAR_CHART_WITH_PRELIMINARY_DATA,
   VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS,
   VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES,
+  VERTICAL_BAR_CHART_WITH_LONG_ORDINAL_LABELS,
   VERTICAL_BAR_CHART_WITH_SELECTABLES,
   VERTICAL_BAR_CHART_WITH_EXCESSIVE_PRECISION
 } from "./fixtures/verticalBarChart";
@@ -63,6 +64,7 @@ import {
   LINE_CHART_WITH_MULTISELECTABLE_VARIABLE,
   LINE_CHART_WITH_NEGATIVE_VALUES,
   LINE_CHART_WITH_NON_TIME_ORDINAL,
+  LINE_CHART_WITH_NON_NUMERIC_ORDINAL,
   LINE_CHART_WITH_ORDINAL_VAR,
   LINE_CHART_WITH_QUARTER_SERIES,
   LINE_CHART_WITH_YEAR_SERIES,
@@ -122,6 +124,9 @@ LineChartWithNegativeValues.args = LINE_CHART_WITH_NEGATIVE_VALUES;
 export const LineChartWithNonTimeOrdinal = Template.bind({});
 LineChartWithNonTimeOrdinal.args = LINE_CHART_WITH_NON_TIME_ORDINAL;
 
+export const LineChartWithNonNumericOrdinal = Template.bind({});
+LineChartWithNonNumericOrdinal.args = LINE_CHART_WITH_NON_NUMERIC_ORDINAL;
+
 export const LineChartWithOrdinalVariable = Template.bind({});
 LineChartWithOrdinalVariable.args = LINE_CHART_WITH_ORDINAL_VAR;
 
@@ -139,6 +144,9 @@ verticalBarChartWithPreliminaryData.args = VERTICAL_BAR_CHART_WITH_PRELIMINARY_D
 
 export const verticalBarChartWithNegativeValues = Template.bind({});
 verticalBarChartWithNegativeValues.args = VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES;
+
+export const verticalBarChartWithLongOrdinalLabels = Template.bind({});
+verticalBarChartWithLongOrdinalLabels.args = VERTICAL_BAR_CHART_WITH_LONG_ORDINAL_LABELS;
 
 export const HorizontalBarChartAscending = Template.bind({});
 HorizontalBarChartAscending.args = HORIZONTAL_BAR_CHART_ASCENDING;
