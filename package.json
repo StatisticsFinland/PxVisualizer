@@ -15,8 +15,8 @@
   "source": "src/index.ts",
   "exports": {
     "require": "./dist/pxv.cjs",
-    "default": "./dist/pxv.modern.js",
-    "types": "./dist/types/index.d.ts"
+    "types": "./dist/types/index.d.ts",
+    "default": "./dist/pxv.modern.js"
   },
   "files": [
     "dist"
