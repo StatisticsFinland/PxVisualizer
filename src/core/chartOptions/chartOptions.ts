@@ -1,4 +1,4 @@
-import { Options, YAxisOptions } from 'highcharts';
+import { Options, SeriesBarOptions, SeriesColumnOptions, SeriesOptions, SeriesPieOptions, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction } from './Utility/formatters';
 import { Translations } from '../conversion/translations';
@@ -124,5 +124,34 @@ export const commonStackedVerticalBarChartOptions = (view: View, locale: string)
             layout: 'vertical'
         }
     };
+}
+
+export const buildDataSeries = (view: View, locale: string, type: string, precision: number | null = null) => {
+    return view.series.map(s => {
+        const seriesOptions = {
+        animation: false,
+        type: type,
+        name: s.rowNameGroup.map(n => n[locale]).join(', '),
+            data: s.series.map((data, index) => {
+                const dataPrecision: number = precision != null ? precision : data.precision;
+                return {
+                    y: data.value,
+                    name: view.columnNameGroups[index].map(n => n[locale]).join(', '),
+                    unit: getFormattedUnits(view.units, locale),
+                    custom: { preliminary: data.preliminary, precision: dataPrecision }
+                };
+            })
+        };
+
+        if (type === 'column') {
+            return seriesOptions as SeriesColumnOptions;
+        } else if (type === 'bar') {
+            return seriesOptions as SeriesBarOptions;
+        } else if (type === 'pie') {
+            return seriesOptions as SeriesPieOptions;
+        } else {
+            throw new Error(`Unsupported chart type: ${type}`);
+        }
+    });
 }
 

@@ -1,7 +1,6 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonStackedHorizontalBarChartOptions, commonDatalabelsOptions } from './chartOptions';
-import { getFormattedUnits } from './Utility/formatters';
+import { commonStackedHorizontalBarChartOptions, commonDatalabelsOptions, buildDataSeries } from './chartOptions';
 
 export const percentHorizontalBarChartOptions = (view: View, locale: string): Options => {
     return {
@@ -19,17 +18,7 @@ export const percentHorizontalBarChartOptions = (view: View, locale: string): Op
                 x: 0,
             }
         },
-        series: view.series.map(s => ({
-            animation: false,
-            type: 'bar',
-            name: s.rowNameGroup.map(n => n[locale]).join(', '),
-            data: s.series.map((data, index) => ({
-                y: data.value,
-                name: view.columnNameGroups[index].map(n => n[locale]).join(', '),
-                unit: getFormattedUnits(view.units, locale),
-                custom: { preliminary: data.preliminary, precision: 1 }
-            }))
-        })),
+        series: buildDataSeries(view, locale, 'bar', 1),
         plotOptions: {
             bar: {
                 stacking: 'percent'
