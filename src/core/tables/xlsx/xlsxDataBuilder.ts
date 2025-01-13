@@ -39,7 +39,7 @@ export const buildCellRows: (view: View, locale: string, precision: number | nul
 
         // Set display precision and decimal separator
         row = row.concat(serie.series.map(n => {
-            const dataPrecision: number = precision != null ? precision : n.precision;
+            const dataPrecision: number = precision ?? n.precision;
             if (n.value === null) return formatMissingData(n.missingCode, locale);
             else return Number(n.value.toFixed(dataPrecision));
         }));

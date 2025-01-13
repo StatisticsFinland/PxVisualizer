@@ -17,6 +17,7 @@ import { IQueryVisualizationResponse } from "../types";
 import { EVariableType, IVariableMeta, IVariableValueMeta } from "../types/queryVisualizationResponse";
 import { IUnitInfo } from "../types/view";
 import { PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/percentHorizontalBarChart";
+import { PointOptionsObject, SeriesBarOptions, SeriesColumnOptions, SeriesPieOptions } from "highcharts";
 
 describe('PxGrafDataConverter tests, convertPxGrafResponseToView', () => {
     const unit1 = { 'fi': 'foo' };
@@ -358,6 +359,12 @@ describe('PxGrafDataConverter tests, StackedHorizontalBarChart', () => {
     });
 });
 
+const checkDataPointPrecision = (data: any) => {
+    data.forEach((point: any) => {
+        expect(point.custom?.precision).toBe(1);
+    });
+};
+
 describe('PxGrafDataConverter tests, PercentVerticalBarChart', () => {
     it('should return correct options object', () => {
         const mockVarSelections = extractSelectableVariableValues(
@@ -373,6 +380,13 @@ describe('PxGrafDataConverter tests, PercentVerticalBarChart', () => {
         expect(result.title?.text).toBe('Lukumäärä 2021Q4 muuttujina Alue, Huoneluku, Rahoitusmuoto');
         expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('2022Q1 | Yksiöt');
+
+        result.series?.forEach((series) => {
+            const columnSeries = series as SeriesColumnOptions;
+            if (columnSeries.data) {
+                checkDataPointPrecision(columnSeries.data);
+            }
+        });
     });
 
     it('should return correct options object on different localisation', () => {
@@ -389,6 +403,13 @@ describe('PxGrafDataConverter tests, PercentVerticalBarChart', () => {
         expect(result.title?.text).toBe('Antal 2021Q4 efter Område, Antal rum, Finansieringssätt');
         expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('2022Q1 | Enrumslägenhet');
+
+        result.series?.forEach((series) => {
+            const columnSeries = series as SeriesColumnOptions;
+            if (columnSeries.data) {
+                checkDataPointPrecision(columnSeries.data);
+            }
+        });
     });
 });
 
@@ -407,6 +428,13 @@ describe('PxGrafDataConverter tests, PercentHorizontalBarChart', () => {
         expect(result.title?.text).toBe('Lukumäärä 2022Q4 muuttujina Alue, Huoneluku, Rahoitusmuoto');
         expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('Kaksiot');
+
+        result.series?.forEach((series) => {
+            const columnSeries = series as SeriesBarOptions;
+            if (columnSeries.data) {
+                checkDataPointPrecision(columnSeries.data);
+            }
+        });
     });
 
     it('should return correct options object on different localisation', () => {
@@ -423,6 +451,13 @@ describe('PxGrafDataConverter tests, PercentHorizontalBarChart', () => {
         expect(result.title?.text).toBe('Antal 2022Q4 efter Område, Antal rum, Finansieringssätt');
         expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('Tvårumslägenhet');
+
+        result.series?.forEach((series) => {
+            const columnSeries = series as SeriesBarOptions;
+            if (columnSeries.data) {
+                checkDataPointPrecision(columnSeries.data);
+            }
+        });
     });
 });
 
