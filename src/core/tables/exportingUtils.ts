@@ -1,3 +1,5 @@
+import { EVisualizationType } from "../types";
+
 export const generateFilename = (tableReference: string): string => {
     const trimmedTableReference = tableReference ? tableReference.split('.')[0] : '';
 
@@ -11,4 +13,9 @@ export const generateFilename = (tableReference: string): string => {
     const seconds = date.getSeconds().toString().padStart(2, '0');
 
     return `${trimmedTableReference}_${year}${month}${day}_${hours}${minutes}${seconds}`;
+}
+
+export const getRelativePrecision = (visualizationType: EVisualizationType): number | null => {
+    return visualizationType == EVisualizationType.PercentHorizontalBarChart || visualizationType == EVisualizationType.PercentVerticalBarChart ?
+        1 : null;
 }

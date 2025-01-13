@@ -7,7 +7,7 @@ import { formatMissingData } from "../tableUtils";
 import { TCell } from "./xlsxTypes";
 
 // This is a separate function to allow for unit testing
-export const buildCellRows: (view: View, locale: string) => TCell[][] = (view, locale) => {
+export const buildCellRows: (view: View, locale: string, precision: number | null) => TCell[][] = (view, locale, precision) => {
 
     const relativeChart =
         view.visualizationSettings?.visualizationType === EVisualizationType.PercentHorizontalBarChart
@@ -39,8 +39,9 @@ export const buildCellRows: (view: View, locale: string) => TCell[][] = (view, l
 
         // Set display precision and decimal separator
         row = row.concat(serie.series.map(n => {
+            const dataPrecision: number = precision != null ? precision : n.precision;
             if (n.value === null) return formatMissingData(n.missingCode, locale);
-            else return Number(n.value.toFixed(n.precision));
+            else return Number(n.value.toFixed(dataPrecision));
         }));
 
         stringTable.push(buildCellRow(row, 0, gridWidth));

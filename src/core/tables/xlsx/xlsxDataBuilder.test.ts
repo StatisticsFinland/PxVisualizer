@@ -5,6 +5,7 @@ import { TABLE_WITH_ONLY_COLUMN_VARIABLES } from "../../conversion/TestFixtures/
 import { TABLE_WITH_ONE_CELL, TABLE_WITH_ONLY_ROW_VARIABLES, TABLE_WITH_ROW_AND_COLUMN_VARIABLES } from "../../../stories/fixtures/table";
 import { XLSX_FIXTURES_COL_VARS, XLSX_FIXTURES_COMPLEX_VIEW_ROW_AND_COL_VARS, XLSX_FIXTURES_ONE_CELL, XLSX_FIXTURES_ROW_AND_COL_VARS, XLSX_FIXTURES_ROW_VARS } from "../fixtures/xlsxFixtures";
 import { buildCellRows } from "./xlsxDataBuilder";
+import { getRelativePrecision } from "../exportingUtils";
 
 const locales = ['fi', 'sv', 'en'];
 
@@ -12,7 +13,8 @@ describe('xlsx', () => {
 
     it.each(locales)('should generate valid output matching the fixture for %p locale', (locale) => {
         const view = VIEW_WITH_COMPLEX_ROW_AND_COLUMN_VARIABLES;
-        const stringTable = buildCellRows(view, locale);
+        const precision = getRelativePrecision(view.visualizationSettings.visualizationType);
+        const stringTable = buildCellRows(view, locale, precision);
 
         expect(stringTable).toEqual(XLSX_FIXTURES_COMPLEX_VIEW_ROW_AND_COL_VARS[locale]);
     });
@@ -24,7 +26,8 @@ describe('xlsx', () => {
             TABLE_WITH_ONLY_COLUMN_VARIABLES.pxGraphData.visualizationSettings.defaultSelectableVariableCodes,
             TABLE_WITH_ONLY_COLUMN_VARIABLES.selectedVariableCodes);
         const view = convertPxGrafResponseToView(TABLE_WITH_ONLY_COLUMN_VARIABLES.pxGraphData, mockVarSelections);
-        const stringTable = buildCellRows(view, locale);
+        const precision = getRelativePrecision(view.visualizationSettings.visualizationType);
+        const stringTable = buildCellRows(view, locale, precision);
 
         expect(stringTable).toEqual(XLSX_FIXTURES_COL_VARS[locale]);
     });
@@ -36,7 +39,8 @@ describe('xlsx', () => {
             TABLE_WITH_ONLY_ROW_VARIABLES.pxGraphData.visualizationSettings.defaultSelectableVariableCodes,
             TABLE_WITH_ONLY_ROW_VARIABLES.selectedVariableCodes);
         const view = convertPxGrafResponseToView(TABLE_WITH_ONLY_ROW_VARIABLES.pxGraphData, mockVarSelections);
-        const stringTable = buildCellRows(view, locale);
+        const precision = getRelativePrecision(view.visualizationSettings.visualizationType);
+        const stringTable = buildCellRows(view, locale, precision);
 
         expect(stringTable).toEqual(XLSX_FIXTURES_ROW_VARS[locale]);
     });
@@ -48,7 +52,8 @@ describe('xlsx', () => {
             TABLE_WITH_ROW_AND_COLUMN_VARIABLES.pxGraphData.visualizationSettings.defaultSelectableVariableCodes,
             TABLE_WITH_ROW_AND_COLUMN_VARIABLES.selectedVariableCodes);
         const view = convertPxGrafResponseToView(TABLE_WITH_ROW_AND_COLUMN_VARIABLES.pxGraphData, mockVarSelections);
-        const stringTable = buildCellRows(view, locale);
+        const precision = getRelativePrecision(view.visualizationSettings.visualizationType);
+        const stringTable = buildCellRows(view, locale, precision);
 
         expect(stringTable).toEqual(XLSX_FIXTURES_ROW_AND_COL_VARS[locale]);
     });
@@ -60,7 +65,8 @@ describe('xlsx', () => {
             TABLE_WITH_ONE_CELL.pxGraphData.visualizationSettings.defaultSelectableVariableCodes,
             TABLE_WITH_ONE_CELL.selectedVariableCodes);
         const view = convertPxGrafResponseToView(TABLE_WITH_ONE_CELL.pxGraphData, mockVarSelections);
-        const stringTable = buildCellRows(view, locale);
+        const precision = getRelativePrecision(view.visualizationSettings.visualizationType);
+        const stringTable = buildCellRows(view, locale, precision);
 
         expect(stringTable).toEqual(XLSX_FIXTURES_ONE_CELL[locale]);
     });

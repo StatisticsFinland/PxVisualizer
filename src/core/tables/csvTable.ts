@@ -3,10 +3,10 @@ import { Translations } from "../conversion/translations";
 import { convertToRelative } from "../conversion/viewUtils";
 import { EVisualizationType } from "../types";
 import { View } from "../types/view";
-import { generateFilename } from "./exportingUtils";
+import { generateFilename, getRelativePrecision } from "./exportingUtils";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 
-export const generateCsv = (view: View, locale: string): string => {
+export const generateCsv = (view: View, locale: string, precision: number | null): string => {
     const relativeChart =
         view.visualizationSettings?.visualizationType === EVisualizationType.PercentHorizontalBarChart
         || view.visualizationSettings?.visualizationType === EVisualizationType.PercentVerticalBarChart;
@@ -40,8 +40,9 @@ export const generateCsv = (view: View, locale: string): string => {
 
         // Set display precision and decimal separator
         row = row.concat(serie.series.map(n => {
+            const dataPrecision: number = precision != null ? precision : n.precision;
             if (n.value === null) return formatMissingData(n.missingCode, locale);
-            else return formatNumericValue(n.value, n.precision, locale);
+            else return formatNumericValue(n.value, dataPrecision, locale);
         }));
 
         csv += buildCSVRow(row, 0, gridWidth, delimiter, lineBreak);
@@ -58,7 +59,8 @@ export const generateCsv = (view: View, locale: string): string => {
 
 export const viewToDownloadCSVOption = (view: View, locale: string): { onClick: () => void, text: string } => ({
     onClick: () => {
-        const csv = generateCsv(view, locale);
+        const precision: number | null = getRelativePrecision(view.visualizationSettings.visualizationType);
+        const csv = generateCsv(view, locale, precision);
         const blob = generateCsvBlob(csv);
 
         // Create download link and click it

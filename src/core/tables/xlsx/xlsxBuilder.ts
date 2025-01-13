@@ -4,11 +4,12 @@ import { contentTypesTemplate, relationsTemplate, workbookRelationsTemplate, wor
 import { View } from '../../types/view';
 import { buildCellRows } from './xlsxDataBuilder';
 import { Translations } from '../../conversion/translations';
-import { generateFilename } from '../exportingUtils';
+import { generateFilename, getRelativePrecision } from '../exportingUtils';
 
 export const viewToDownloadXLSOption = (view: View, locale: string): { onClick: () => Promise<void>, text: string } => ({
     onClick: async () => {
-        const blob = await buildMinimalXlsxBlobAsync(view, locale);
+        const precision: number | null = getRelativePrecision(view.visualizationSettings.visualizationType);
+        const blob = await buildMinimalXlsxBlobAsync(view, locale, precision);
 
         // Create download link and click it
         const url = URL.createObjectURL(blob);
@@ -25,9 +26,9 @@ export const viewToDownloadXLSOption = (view: View, locale: string): { onClick: 
     text: Translations.downloadXLSX[locale],
 });
 
-export async function buildMinimalXlsxBlobAsync(view : View, locale: string) : Promise<Blob> {
+export async function buildMinimalXlsxBlobAsync(view : View, locale: string, precision: number | null) : Promise<Blob> {
 
-    const rows = buildCellRows(view, locale);
+    const rows = buildCellRows(view, locale, precision);
     const worksheet = buildXMLSheet(rows);
 
     const content = {
