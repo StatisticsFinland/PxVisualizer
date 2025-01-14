@@ -143,14 +143,15 @@ export const buildDataSeries = (view: View, locale: string, type: string, precis
             })
         };
 
-        if (type === 'column') {
-            return seriesOptions as SeriesColumnOptions;
-        } else if (type === 'bar') {
-            return seriesOptions as SeriesBarOptions;
-        } else if (type === 'pie') {
-            return seriesOptions as SeriesPieOptions;
-        } else {
-            throw new Error(`Unsupported chart type: ${type}`);
+        switch (type) {
+            case 'column':
+                return seriesOptions as SeriesColumnOptions;
+            case 'bar':
+                return seriesOptions as SeriesBarOptions;
+            case 'pie':
+                return seriesOptions as SeriesPieOptions;
+            default:
+                throw new Error(`Unsupported chart type: ${type}`);
         }
     });
 }
