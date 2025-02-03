@@ -1,8 +1,9 @@
 import { Point, Tooltip, TooltipFormatterContextObject } from "highcharts";
-import { formatLocale, getDataLabelFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
+import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
 import { simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
 import { simpleHorizontalBarchartViewFixture } from "./testFixtures/horizontalbarchartViews";
 import { simpleGroupHorizontalBarchartViewFixture } from "./testFixtures/grouphorizontalbarchartViews";
+import { View } from "../../types/view";
 
 describe('formatLocale tests', () => {
     it('should return fi if not allowed locale', () => {
@@ -255,5 +256,111 @@ describe('getToolTipFormatterFunction tests', () => {
         const formatter = getDataLabelFormatterFunction('en');
         const result = formatter.apply(mockDataLabelObject, [mockPoint]);
         expect(result).toBe('1,234.57');
+    });
+});
+
+describe('getDataFormattedForChartType tests', () => {
+    it('should return formatted data for linechart', () => {
+        const point: Point = {
+            y: 1234.567
+        } as unknown as Point;
+        const view: View =
+            {
+                visualizationSettings:
+                {
+                    visualizationType: 'LineChart'
+                }
+            } as unknown as View;
+        const result: string = getDataFormattedForChartType(view, point, 'fi', 2);
+        expect(result).toBe('1\xa0234,57');
+    });
+
+    it('should return empty data for undefined point.y', () => {
+        const point: Point = {
+            y: undefined
+        } as unknown as Point;
+        const view: View =
+        {
+            visualizationSettings:
+            {
+                visualizationType: 'LineChart'
+            }
+        } as unknown as View;
+        const result: string = getDataFormattedForChartType(view, point, 'fi', 2);
+        expect(result).toBe('');
+    });
+
+    it('should return empty data for null point.y', () => {
+        const point: Point = {
+            y: null
+        } as unknown as Point;
+        const view: View =
+            {
+                visualizationSettings:
+                {
+                    visualizationType: 'LineChart'
+                }
+            } as unknown as View;
+        const result: string = getDataFormattedForChartType(view, point, 'fi', 2);
+        expect(result).toBe('');
+    });
+
+    it('should return absolute value of point.y for pyramid chart in english locale', () => {
+        const point: Point = {
+            y: -1234.567
+        } as unknown as Point;
+        const view: View =
+        {
+            visualizationSettings:
+            {
+                visualizationType: 'PyramidChart'
+            }
+        } as unknown as View;
+        const result: string = getDataFormattedForChartType(view, point, 'en', 2);
+        expect(result).toBe('1,234.57');
+    });
+
+    it('should return relative percentage value of point.y for percent vertical bar chart', () => {
+        const point: Point = {
+            percentage: 12.345,
+            y: 123.456
+        } as unknown as Point;
+        const view: View =
+        {
+            units: [
+                {
+                    name: { fi: 'kg', en: 'kg' },
+                    unit: { fi: 'kg', en: 'kg' }
+                },
+            ],
+            visualizationSettings:
+            {
+                visualizationType: 'PercentVerticalBarChart'
+            }
+        } as unknown as View;
+        const result: string = getDataFormattedForChartType(view, point, 'fi', 2);
+        expect(result).toBe('12,3% (123,46 kg)');
+    });
+
+    it('should return relative percentage value of point.y for percent horizontal bar chart converted to english locale', () => {
+        const point: Point = {
+            percentage: 12,
+            y: 123.456
+        } as unknown as Point;
+        const view: View =
+            {
+            units: [
+                {
+                    name: { fi: 'kg', en: 'kg' },
+                    unit: { fi: 'kg', en: 'kg' }
+                },
+            ],
+            visualizationSettings:
+            {
+                visualizationType: 'PercentHorizontalBarChart'
+            }
+        } as unknown as View;
+        const result: string = getDataFormattedForChartType(view, point, 'en', 2);
+        expect(result).toBe('12.0% (123.46 kg)');
     });
 });

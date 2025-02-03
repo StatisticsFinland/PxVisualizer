@@ -183,8 +183,7 @@ export function getFormattedUnits(unitInfos: IUnitInfo[], locale: string): strin
     else throw new Error('Missing required unit data');
 }
 
-/* c8 ignore start */
-function getDataFormattedForChartType(view: View, point: TooltipFormatterContextObject | Point, locale: string, precision: number): string {
+export function getDataFormattedForChartType(view: View, point: TooltipFormatterContextObject | Point, locale: string, precision: number): string {
     if (point.y === null || point.y === undefined) return '';
     const value = Number(point.y.toFixed(precision));
 
@@ -193,13 +192,12 @@ function getDataFormattedForChartType(view: View, point: TooltipFormatterContext
     }
     else if (view.visualizationSettings.visualizationType == EVisualizationType.PercentHorizontalBarChart ||
         view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
-        return `${formatNumericValue(point.percentage ?? null, precision, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
+        return `${formatNumericValue(point.percentage ?? null, 1, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
     } 
     else {
         return value.toLocaleString(locale) ?? '';
     }
 }
-/* c8 ignore end */
 
 export function parseScreenReaderFriendlyTimePeriods(value: string, locale: string) {
     const generalRegex = /^\d{4}[M,Q]\d{1,2}\*?$/; // regex for checking matching patterns for month series and quarter series strings, including preliminary data

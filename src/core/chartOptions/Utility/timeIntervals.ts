@@ -52,17 +52,23 @@ export function getXAxisOptions(view: View, locale: string): XAxisOptions {
                     categories: view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '))
                 };
         }
-    } else if (view.seriesType === ESeriesType.Ordinal) {
-        return getOrdinalOptions(view, locale);
     }
-    else { // Nominal
-        return {
-            type: 'category',
-            categories: view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', ')),
-            labels: {
-                autoRotation: [-45]
-            }
-        };
+    else {
+        const labels: string[] = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
+        const numeric: boolean = labels.every(l => !isNaN(parseFloat(l)));
+        if (view.seriesType === ESeriesType.Ordinal && numeric) {
+            return getOrdinalOptions(view, locale);
+        }
+        else { // Nominal or non-numeric ordinal
+            return {
+                ordinal: view.seriesType == ESeriesType.Ordinal,
+                type: 'category',
+                categories: labels,
+                labels: {
+                    autoRotation: [-45]
+                }
+            };
+        }
     }
 }
 
