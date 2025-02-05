@@ -1,7 +1,7 @@
 import { Options } from "highcharts";
 import { View } from "../types/view";
 import { getTimeSeriesOptions, getXAxisOptions } from "./Utility/timeIntervals";
-import { getFormattedUnits, getLegendLabelShorteningFunction } from "./Utility/formatters";
+import { getFormattedUnits, getLegendLabelShorteningFunction, getLineChartToolTipFormatterFunction } from "./Utility/formatters";
 import { buildHighchartSeries } from "./Utility/seriesDataBuilder";
 import { commonChartOptions, commonDatalabelsOptions, commonYAxisOptions } from "./chartOptions";
 
@@ -10,6 +10,9 @@ export const lineChartOptions = (view: View, locale: string): Options => {
     return {
         ...commonChartOptions(view, locale),
         chart: { type: 'line' },
+        tooltip: {
+            formatter: getLineChartToolTipFormatterFunction(view, locale)
+        },
         xAxis: {
             ...getXAxisOptions(view, locale),
             gridLineColor: 'hsl(0, 0%, 35%)',

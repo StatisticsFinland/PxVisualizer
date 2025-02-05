@@ -1,6 +1,6 @@
 import { Point, Tooltip, TooltipFormatterContextObject } from "highcharts";
-import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
-import { simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
+import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getLineChartToolTipFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
+import { combinationValuesLinechartViewFixture, simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
 import { simpleHorizontalBarchartViewFixture } from "./testFixtures/horizontalbarchartViews";
 import { simpleGroupHorizontalBarchartViewFixture } from "./testFixtures/grouphorizontalbarchartViews";
 import { View } from "../../types/view";
@@ -256,6 +256,76 @@ describe('getToolTipFormatterFunction tests', () => {
         const formatter = getDataLabelFormatterFunction('en');
         const result = formatter.apply(mockDataLabelObject, [mockPoint]);
         expect(result).toBe('1,234.57');
+    });
+});
+
+describe('getLineChartToolTipFormatterFunction tests', () => {
+
+    it('The returned formatter function should return tooltip test with preliminary indicator', () => {
+
+        const mockTooltip: Tooltip = {} as unknown as Tooltip;
+        const mockContextObject = {
+            series: {
+                name: 'testSeriesName'
+            },
+            point: {
+                name: 'testPointName',
+                options: {
+                    custom: {
+                        "preliminary": true
+                    }
+                }
+            }
+        } as unknown as TooltipFormatterContextObject;
+
+        const formatter = getLineChartToolTipFormatterFunction(simpleQuarterLinechartViewFixture, 'fi');
+        const expectedtooltipString = "Vuosineljännes: testPointName<br/><br/>Ennakko";
+        expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
+    });
+
+    it('The returned formatter function should return tooltip test without preliminary indicator', () => {
+
+        const mockTooltip: Tooltip = {} as unknown as Tooltip;
+        const mockContextObject = {
+            series: {
+                name: 'testSeriesName'
+            },
+            point: {
+                name: 'testPointName',
+                options: {
+                    custom: {
+                        "preliminary": false
+                    }
+                }
+            }
+        } as unknown as TooltipFormatterContextObject;
+
+        const formatter = getLineChartToolTipFormatterFunction(simpleQuarterLinechartViewFixture, 'fi');
+        const expectedtooltipString = "Vuosineljännes: testPointName<br/>";
+        expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
+    });
+
+    it('The returned formatter function should return tooltip where each variable value pair is on its own line', () => {
+
+        const mockTooltip: Tooltip = {} as unknown as Tooltip;
+        const mockContextObject = {
+            series: {
+                name: 'testSeriesName',
+                index: 1
+            },
+            point: {
+                name: 'testPointName',
+                options: {
+                    custom: {
+                        "preliminary": false
+                    }
+                }
+            }
+        } as unknown as TooltipFormatterContextObject;
+
+        const formatter = getLineChartToolTipFormatterFunction(combinationValuesLinechartViewFixture, 'fi');
+        const expectedtooltipString = "Alue: Helsinki<br/>Huoneluku: Kaksiot<br/>Vuosineljännes: testPointName<br/>";
+        expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
     });
 });
 
