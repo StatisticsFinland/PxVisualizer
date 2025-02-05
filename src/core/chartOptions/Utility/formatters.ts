@@ -172,6 +172,33 @@ export function getScatterPlotTooltipFormatterFunction(view: View, locale: strin
 }
 /* c8 ignore end */
 
+export function getLineChartToolTipFormatterFunction(view: View, locale: string): TooltipFormatterCallbackFunction {
+    return function () {
+        const tooltipLines = [];
+
+        if (view.rowVarNames && view.rowVarNames.length > 0) {
+            for (let i = 0; i < view.rowVarNames.length; i++) {
+                const rowVarName = view.rowVarNames[i];
+                const rowVarValue = view.series[this.series.index].rowNameGroup[i];
+                tooltipLines.push(`${rowVarName[locale]}: ${rowVarValue[locale]}`);
+            }
+        }
+
+        if (view.colVarNames && view.colVarNames.length > 0 && this.point.name) {
+            tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${this.point.name}`);
+        }
+
+        const precision: number = this.point.options.custom?.['precision'] ?? 0;
+        tooltipLines.push(getDataFormattedForChartType(view, this, locale, precision))
+
+        if (this.point.options.custom?.['preliminary']) {
+            tooltipLines.push(Translations.preliminaryData[locale]);
+        }
+
+        return tooltipLines.join('<br/>');
+    };
+}
+
 export function getFormattedUnits(unitInfos: IUnitInfo[], locale: string): string {
     const uniqueUnits = unitInfos.map(ui => ui.unit).filter(onlyUnique)
     if(uniqueUnits.length === 1) {
