@@ -1,7 +1,7 @@
-import { VIEW_WITH_COMPLEX_ROW_AND_COLUMN_VARIABLES } from "../../conversion/TestFixtures/exportingUtils";
+import { VIEW_WITH_COMPLEX_ROW_AND_COLUMN_VARIABLES } from "../../conversion/fixtures/exportingUtils";
 import { extractSelectableVariableValues } from "../../conversion";
 import { convertPxGrafResponseToView } from "../../conversion/viewUtils";
-import { TABLE_WITH_ONLY_COLUMN_VARIABLES } from "../../conversion/TestFixtures/tableChart";
+import { TABLE_WITH_ONLY_COLUMN_VARIABLES } from "../../conversion/fixtures/tableChart";
 import { TABLE_WITH_ONE_CELL, TABLE_WITH_ONLY_ROW_VARIABLES, TABLE_WITH_ROW_AND_COLUMN_VARIABLES } from "../../../stories/fixtures/table";
 import { XLSX_FIXTURES_COL_VARS, XLSX_FIXTURES_COMPLEX_VIEW_ROW_AND_COL_VARS, XLSX_FIXTURES_ONE_CELL, XLSX_FIXTURES_ROW_AND_COL_VARS, XLSX_FIXTURES_ROW_VARS } from "../fixtures/xlsxFixtures";
 import { buildCellRows } from "./xlsxDataBuilder";

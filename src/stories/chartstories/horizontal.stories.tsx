@@ -16,7 +16,7 @@ export const Ascending = {
 } satisfies StoryObj<typeof Chart>;
 
 export const Selectable = {
-    name: 'Ascending',
+    name: 'Selectable',
     args: SELECTABLE_HORIZONTAL_BAR_CHART,
 } satisfies StoryObj<typeof Chart>;
 

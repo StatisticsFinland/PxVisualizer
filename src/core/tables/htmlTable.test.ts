@@ -1,6 +1,6 @@
 import { prettyDOM } from "@testing-library/dom";
 import { TABLE_WITH_ONE_CELL, TABLE_WITH_ONLY_ROW_VARIABLES, TABLE_WITH_ROW_AND_COLUMN_VARIABLES } from "../../stories/fixtures/table";
-import { SELECTABLE_TABLE_WITH_MISSING_DATA, TABLE_WITH_ONLY_COLUMN_VARIABLES } from "../conversion/TestFixtures/tableChart";
+import { SELECTABLE_TABLE_WITH_MISSING_DATA, TABLE_WITH_ONLY_COLUMN_VARIABLES } from "../conversion/fixtures/tableChart";
 import { extractSelectableVariableValues } from "../conversion/helpers";
 import { convertPxGrafResponseToView } from "../conversion/viewUtils";
 import { renderHtmlTable } from "./htmlTable";
