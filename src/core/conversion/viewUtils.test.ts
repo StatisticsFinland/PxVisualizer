@@ -1,10 +1,10 @@
 import { ETimeVariableInterval, EVariableType, EVisualizationType, IContentComponent, IQueryVisualizationResponse, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from '../types/queryVisualizationResponse';
 import { TVariableSelections } from '../types/variableSelections';
 import { ESeriesType, IDataSeries, View } from '../types/view';
-import { GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING } from './TestFixtures/groupHorizontalBarChart';
-import { HORIZONTAL_BAR_CHART_ASCENDING, HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './TestFixtures/horizontalBarChart';
-import { LINE_CHART_WITH_COMBINATION_SERIES, LINE_CHART_WITH_MULTISELECTABLE_VARIABLE, LINE_CHART_WITH_QUARTER_SERIES } from './TestFixtures/lineChart';
-import { PERCENT_HORIZONTAL_BAR_CHART, PERCENT_HORIZONTAL_BAR_CHART_VIEW, PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES, PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES_VIEW } from './TestFixtures/percentHorizontalBarChart';
+import { GROUP_HORIZONTAL_BAR_CHART_WITH_PRELIMINARY_DATA_SET, GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING,GROUP_HORIZONTAL_BAR_CHART_WITH_REVERSED_SORTING } from './fixtures/groupHorizontalBarChart';
+import { HORIZONTAL_BAR_CHART_ASCENDING, HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from './fixtures/horizontalBarChart';
+import { LINE_CHART_WITH_COMBINATION_SERIES, LINE_CHART_WITH_MULTISELECTABLE_VARIABLE, LINE_CHART_WITH_QUARTER_SERIES } from './fixtures/lineChart';
+import { PERCENT_HORIZONTAL_BAR_CHART, PERCENT_HORIZONTAL_BAR_CHART_VIEW, PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES, PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES_VIEW } from './fixtures/percentHorizontalBarChart';
 import {
     PERCENT_VERTICAL_BAR_CHART,
     PERCENT_VERTICAL_BAR_CHART_PIVOTED_WITH_SELECTABLES,
@@ -12,8 +12,8 @@ import {
     PERCENT_VERTICAL_BAR_CHART_VIEW,
     PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES,
     PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES_VIEW
-} from './TestFixtures/percentVerticalBarChart';
-import { SELECTABLE_TABLE_WITH_MISSING_DATA } from './TestFixtures/tableChart';
+} from './fixtures/percentVerticalBarChart';
+import { SELECTABLE_TABLE_WITH_MISSING_DATA } from './fixtures/tableChart';
 import { ASCENDING, DESCENDING, SUM, REVERSED, NO_SORTING } from './viewSorting';
 import { buildSeries, convertPxGrafResponseToView, convertToRelative } from './viewUtils';
 import { v4 as uuidV4 } from 'uuid'

@@ -1,22 +1,22 @@
 import { convertPxGraphDataToChartOptions } from "./pxGrafDataConverter";
-import { GROUP_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/groupHorizontalBarChart";
-import { GROUP_VERTICAL_BAR_CHART_WITH_SELECTABLES_PIVOTED } from "./TestFixtures/groupVerticalBarChart";
-import { STACKED_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/stackedHorizontalBarChart";
-import { STACKED_VERTICAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/stackedVerticalBarChart";
-import { HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/horizontalBarChart";
-import { PIE_CHART_ASCENDING } from "./TestFixtures/PieChart";
-import { VERTICAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/verticalBarChart";
-import { PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/percentVerticalBarChart";
-import { PYRAMID_CHART_WITH_SELECTABLES } from "./TestFixtures/pyramidChart";
-import { SCATTER_PLOT_WITH_SELECTABLES } from "./TestFixtures/scatterPlot";
-import { LINE_CHART_WITH_QUARTER_SERIES } from "./TestFixtures/lineChart";
+import { GROUP_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./fixtures/groupHorizontalBarChart";
+import { GROUP_VERTICAL_BAR_CHART_WITH_SELECTABLES_PIVOTED } from "./fixtures/groupVerticalBarChart";
+import { STACKED_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./fixtures/stackedHorizontalBarChart";
+import { STACKED_VERTICAL_BAR_CHART_WITH_SELECTABLES } from "./fixtures/stackedVerticalBarChart";
+import { HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./fixtures/horizontalBarChart";
+import { PIE_CHART_ASCENDING } from "./fixtures/PieChart";
+import { VERTICAL_BAR_CHART_WITH_SELECTABLES } from "./fixtures/verticalBarChart";
+import { PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES } from "./fixtures/percentVerticalBarChart";
+import { PYRAMID_CHART_WITH_SELECTABLES } from "./fixtures/pyramidChart";
+import { SCATTER_PLOT_WITH_SELECTABLES } from "./fixtures/scatterPlot";
+import { LINE_CHART_WITH_QUARTER_SERIES } from "./fixtures/lineChart";
 import { extractSelectableVariableValues } from "./helpers";
 import { convertPxGrafResponseToView } from "./viewUtils";
-import { EMPTY_VISUALIZATION_RESPONSE } from "./TestFixtures/viewUtils";
+import { EMPTY_VISUALIZATION_RESPONSE } from "./fixtures/viewUtils";
 import { IQueryVisualizationResponse } from "../types";
 import { EVariableType, IVariableMeta, IVariableValueMeta } from "../types/queryVisualizationResponse";
 import { IUnitInfo } from "../types/view";
-import { PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./TestFixtures/percentHorizontalBarChart";
+import { PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES } from "./fixtures/percentHorizontalBarChart";
 
 describe('PxGrafDataConverter tests, convertPxGrafResponseToView', () => {
     const unit1 = { 'fi': 'foo' };
