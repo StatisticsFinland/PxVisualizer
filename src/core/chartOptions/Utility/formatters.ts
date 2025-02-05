@@ -172,6 +172,33 @@ export function getScatterPlotTooltipFormatterFunction(view: View, locale: strin
 }
 /* c8 ignore end */
 
+export function getLineChartToolTipFormatterFunction(view: View, locale: string): TooltipFormatterCallbackFunction {
+    return function () {
+        const tooltipLines = [];
+
+        if (view.rowVarNames && view.rowVarNames.length > 0) {
+            for (let i = 0; i < view.rowVarNames.length; i++) {
+                const rowVarName = view.rowVarNames[i];
+                const rowVarValue = view.series[this.series.index].rowNameGroup[i];
+                tooltipLines.push(`${rowVarName[locale]}: ${rowVarValue[locale]}`);
+            }
+        }
+
+        if (view.colVarNames && view.colVarNames.length > 0 && this.point.name) {
+            tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${this.point.name}`);
+        }
+
+        const precision: number = this.point.options.custom?.['precision'] ?? 0;
+        tooltipLines.push(getDataFormattedForChartType(view, this, locale, precision))
+
+        if (this.point.options.custom?.['preliminary']) {
+            tooltipLines.push(Translations.preliminaryData[locale]);
+        }
+
+        return tooltipLines.join('<br/>');
+    };
+}
+
 export function getFormattedUnits(unitInfos: IUnitInfo[], locale: string): string {
     const uniqueUnits = unitInfos.map(ui => ui.unit).filter(onlyUnique)
     if(uniqueUnits.length === 1) {
@@ -183,8 +210,7 @@ export function getFormattedUnits(unitInfos: IUnitInfo[], locale: string): strin
     else throw new Error('Missing required unit data');
 }
 
-/* c8 ignore start */
-function getDataFormattedForChartType(view: View, point: TooltipFormatterContextObject | Point, locale: string, precision: number): string {
+export function getDataFormattedForChartType(view: View, point: TooltipFormatterContextObject | Point, locale: string, precision: number): string {
     if (point.y === null || point.y === undefined) return '';
     const value = Number(point.y.toFixed(precision));
 
@@ -193,13 +219,12 @@ function getDataFormattedForChartType(view: View, point: TooltipFormatterContext
     }
     else if (view.visualizationSettings.visualizationType == EVisualizationType.PercentHorizontalBarChart ||
         view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
-        return `${formatNumericValue(point.percentage ?? null, precision, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
+        return `${formatNumericValue(point.percentage ?? null, 1, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
     } 
     else {
         return value.toLocaleString(locale) ?? '';
     }
 }
-/* c8 ignore end */
 
 export function parseScreenReaderFriendlyTimePeriods(value: string, locale: string) {
     const generalRegex = /^\d{4}[M,Q]\d{1,2}\*?$/; // regex for checking matching patterns for month series and quarter series strings, including preliminary data
