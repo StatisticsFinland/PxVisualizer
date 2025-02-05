@@ -912,3 +912,274 @@ export const LONG_STACKED_VERTICAL_BAR_CHART: { pxGraphData: IQueryVisualization
     },
     selectedVariableCodes: undefined
 }
+
+export const STACKED_VERTICAL_BAR_CHART_WITH_NOMINAL_AXIS_LONG_LABELS: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections } = {
+    pxGraphData: {
+        tableReference: {
+            name: "table.px",
+            hierarchy: [
+                "foo",
+                "bar"
+            ]
+        },
+        data: [
+            23420.0,
+            8620.0,
+            41828.0,
+            1397.0,
+            82310.0,
+            61291.0,
+            196812.0,
+            2973.0,
+            173867.0,
+            92982.0,
+            168305.0,
+            2792.0,
+            716007.0,
+            78581.0,
+            71826.0,
+            3357.0
+        ],
+        missingDataInfo: {},
+        dataNotes: {},
+        metaData: [
+            {
+                code: "Alue",
+                name: {
+                    "fi": "Alue",
+                    "sv": "Område",
+                    "en": "Area"
+                },
+                note: null,
+                type: EVariableType.Geological,
+                values: [
+                    {
+                        code: "SSS",
+                        name: {
+                            "fi": "KOKO MAA",
+                            "sv": "HELA LANDET",
+                            "en": "WHOLE COUNTRY"
+                        },
+                        note: null,
+                        isSum: true,
+                        contentComponent: null
+                    }
+                ]
+            },
+            {
+                code: "Hallintaperuste",
+                name: {
+                    "fi": "Hallintaperuste",
+                    "sv": "Upplåtelseform",
+                    "en": "Tenure status"
+                },
+                note: null,
+                type: EVariableType.OtherClassificatory,
+                values: [
+                    {
+                        code: "1-2",
+                        name: {
+                            "fi": "Kaikki omistusasunnot",
+                            "sv": "Alla ägarbostäder",
+                            "en": "All owner-occupied dwellings"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    }
+                ]
+            },
+            {
+                code: "Vuosi",
+                name: {
+                    "fi": "Vuosi",
+                    "sv": "År",
+                    "en": "Year"
+                },
+                note: null,
+                type: EVariableType.Time,
+                values: [
+                    {
+                        code: "2022",
+                        name: {
+                            "fi": "2022",
+                            "sv": "2022",
+                            "en": "2022"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    }
+                ]
+            },
+            {
+                code: "Tiedot",
+                name: {
+                    "fi": "Tiedot",
+                    "sv": "Uppgifter",
+                    "en": "Information"
+                },
+                note: null,
+                type: EVariableType.Content,
+                values: [
+                    {
+                        code: "Lkm",
+                        name: {
+                            "fi": "Asuntokuntia",
+                            "sv": "Bostadshushåll",
+                            "en": "Household-dwelling units"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: {
+                            unit: {
+                                "fi": "Lukumäärä",
+                                "sv": "Antal",
+                                "en": "Number"
+                            },
+                            source: {
+                                "fi": "PxVisualizer-fi",
+                                "sv": "PxVisualizer-sv",
+                                "en": "PxVisualizer-en"
+                            },
+                            numberOfDecimals: 0,
+                            lastUpdated: "2023-10-12T05:00:00Z"
+                        }
+                    }
+                ]
+            },
+            {
+                code: "Huoneita",
+                name: {
+                    "fi": "Huoneita",
+                    "sv": "Rum",
+                    "en": "Rooms"
+                },
+                note: null,
+                type: EVariableType.Ordinal,
+                values: [
+                    {
+                        code: "1",
+                        name: {
+                            "fi": "1 huone",
+                            "sv": "1 rum",
+                            "en": "1 room"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "2",
+                        name: {
+                            "fi": "2 huonetta",
+                            "sv": "2 rum",
+                            "en": "2 rooms"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "3",
+                        name: {
+                            "fi": "3 huonetta",
+                            "sv": "3 rum",
+                            "en": "3 rooms"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "4+",
+                        name: {
+                            "fi": "4+ huonetta",
+                            "sv": "4+ rum",
+                            "en": "4+ rooms"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    }
+                ]
+            },
+            {
+                code: "Talotyyppi",
+                name: {
+                    "fi": "Talotyyppi",
+                    "sv": "Hustyp",
+                    "en": "Type of building"
+                },
+                note: null,
+                type: EVariableType.OtherClassificatory,
+                values: [
+                    {
+                        code: "1",
+                        name: {
+                            "fi": "Omakoti- ja paritalot",
+                            "sv": "Egnahems- och parhus",
+                            "en": "One-dwelling and two-dwelling houses"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "2",
+                        name: {
+                            "fi": "Rivitalot",
+                            "sv": "Radhus",
+                            "en": "Terraced houses"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "3",
+                        name: {
+                            "fi": "Kerrostalot",
+                            "sv": "Flervåningshus",
+                            "en": "Blocks of flats"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "4",
+                        name: {
+                            "fi": "Muut rakennukset",
+                            "sv": "Övriga byggnader",
+                            "en": "Other buildings"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    }
+                ]
+            }
+        ],
+        selectableVariableCodes: [],
+        rowVariableCodes: [
+            "Huoneita"
+        ],
+        columnVariableCodes: [
+            "Talotyyppi"
+        ],
+        header: {
+            "fi": "Asuntokuntia, Kaikki omistusasunnot 2022 muuttujina Talotyyppi, Huoneita",
+            "sv": "Bostadshushåll, Alla ägarbostäder 2022 efter Hustyp, Rum",
+            "en": "Household-dwelling units, All owner-occupied dwellings 2022 by Type of building, Rooms"
+        },
+        visualizationSettings: {
+            visualizationType: EVisualizationType.StackedVerticalBarChart,
+            timeVariableIntervals: ETimeVariableInterval.Year,
+            timeSeriesStartingPoint: "2022-01-01T00:00:00Z",
+            cutValueAxis: false,
+            showLastLabel: false
+        }
+    },
+    selectedVariableCodes: {}
+};
