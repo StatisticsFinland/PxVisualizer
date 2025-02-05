@@ -1,6 +1,6 @@
 import { act, render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { BurgerMenu, calculateExportDimensions } from "./burgerMenu";
-import { HORIZONTAL_BAR_CHART_ASCENDING } from "../../../core/conversion/TestFixtures/horizontalBarChart";
+import { HORIZONTAL_BAR_CHART_ASCENDING } from "../../../core/conversion/fixtures/horizontalBarChart";
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
 import React from "react";
 import 'jest-styled-components';
