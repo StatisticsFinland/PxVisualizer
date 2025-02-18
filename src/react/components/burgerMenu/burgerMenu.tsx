@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { MenuItem } from "./menuItem/menuItem";
 import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
@@ -125,6 +125,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
     const closeMenu = (e: Event) => {
         if(menuRef.current && isOpen && !menuRef.current.contains(e.target)) {
             setIsOpen(false);
+            buttonRef.current?.focus();
           }
     }
 
@@ -133,7 +134,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
     const exportXLSX = viewToDownloadXLSOption(viewData, locale);
     const customMenuItemArray = menuItemDefinitions?.map((menuItemDefinition, index) => {
         if ('onClick' in menuItemDefinition) {
-            return <MenuItem isFirst={index === 0} bottomSeparator={index + 1 === menuItemDefinitions.length} locale={locale} prefixIcon={menuItemDefinition.prefixIcon} suffixIcon={menuItemDefinition.suffixIcon} key={`customfmenuitem-${index}`} text={menuItemDefinition.text} onClick={menuItemDefinition.onClick} />; // NOSONAR
+            return <MenuItem isFirst={index === 0} bottomSeparator={index + 1 === menuItemDefinitions.length} locale={locale} prefixIcon={menuItemDefinition.prefixIcon} suffixIcon={menuItemDefinition.suffixIcon} key={`customfmenuitem-${index}`} text={menuItemDefinition.text} onClick={() => handleMenuItemClick(menuItemDefinition.onClick)} />; // NOSONAR
         }
 
         if ('url' in menuItemDefinition) {
@@ -141,9 +142,32 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
         }
     });
 
+    useEffect(() => {
+        document.addEventListener('mousedown', closeMenu);
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('mousedown', closeMenu);
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+    }, [isOpen]);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            setIsOpen(false);
+            buttonRef.current?.focus();
+        }
+    }
+
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const handleMenuItemClick = (onClick: () => void) => {
+        onClick();
+        setIsOpen(false);
+        buttonRef.current?.focus();
+    }
+
     return (
         <BurgerWrapper ref={menuRef}>
-            <Hamburger aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => {setIsOpen(!isOpen)}}>
+            <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => {setIsOpen(!isOpen)}}>
                 <Icon inheritColor={menuIconInheritColor} icon={isOpen ? 'Times' : 'Bars'} />
             </Hamburger>
             <MenuAnchor>
@@ -152,8 +176,8 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                     <MenuWrapper>
                         <List>
                             {menuItemDefinitions && customMenuItemArray}
-                            <MenuItem isFirst={!menuItemDefinitions} locale={locale} prefixIcon={'Download'} text={exportXLSX.text} onClick={() => exportXLSX.onClick()} />
-                            <MenuItem isLast={!currentChartRef} bottomSeparator={!!currentChartRef} locale={locale} prefixIcon={'Download'} text={exportCSV.text} onClick={() => exportCSV.onClick()} />
+                            <MenuItem isFirst={!menuItemDefinitions} locale={locale} prefixIcon={'Download'} text={exportXLSX.text} onClick={() => handleMenuItemClick(exportXLSX.onClick) } />
+                            <MenuItem isLast={!currentChartRef} bottomSeparator={!!currentChartRef} locale={locale} prefixIcon={'Download'} text={exportCSV.text} onClick={() => handleMenuItemClick(exportCSV.onClick) } />
                             {
                                     currentChartRef &&
                                     <>
@@ -161,14 +185,14 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                                             locale={locale}
                                             prefixIcon={'Download'}
                                             text={Translations.downloadSVG[locale]}
-                                            onClick={() =>
+                                            onClick={() => handleMenuItemClick(() =>
                                                 currentChartRef.chart.exportChartLocal({
                                                     filename: `${generateFilename(viewData.tableReferenceName)}`,
                                                     type: "image/svg+xml",
                                                     sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
                                                     sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
                                                     scale: 1
-                                                }, {})
+                                                }, {}))
                                             } />
                                         <MenuItem
                                             isLast={!tableToggle}
@@ -176,19 +200,19 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                                             locale={locale}
                                             prefixIcon={'Download'}
                                             text={Translations.downloadPNG[locale]}
-                                            onClick={() =>
+                                            onClick={() => handleMenuItemClick(() =>
                                                 currentChartRef.chart.exportChartLocal({
                                                     filename: `${generateFilename(viewData.tableReferenceName)}`,
                                                     sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
                                                     sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
                                                     scale: 1
-                                                }, {})
+                                                }, {}))
                                             } />
                                     </>
                                 }
                                 {
                                     tableToggle &&
-                                    <MenuItem isLast={true} locale={locale} text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]} onClick={() => tableToggle.toggleHandler()} />
+                                    <MenuItem isLast={true} locale={locale} text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]} onClick={() => handleMenuItemClick(tableToggle.toggleHandler)} />
                                 }
                             </List>
                     </MenuWrapper>
