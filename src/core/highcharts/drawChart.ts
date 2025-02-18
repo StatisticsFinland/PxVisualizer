@@ -4,7 +4,6 @@ import { IQueryVisualizationResponse } from "../types";
 import { defaultTheme } from "./themes";
 import highchartsAccessibility from "highcharts/modules/accessibility.js";
 import highchartsExporting from 'highcharts/modules/exporting.js';
-import highchartsExportData from 'highcharts/modules/export-data.js';
 import highchartsOfflineExporting from 'highcharts/modules/offline-exporting.js';
 import { TVariableSelections } from "../types/variableSelections";
 import { extractSelectableVariableValues } from "../conversion/helpers";
@@ -22,7 +21,6 @@ export const drawChart = (
     if (typeof Highcharts === 'object') {
         highchartsAccessibility(Highcharts);
         highchartsExporting(Highcharts);
-        highchartsExportData(Highcharts);
         highchartsOfflineExporting(Highcharts);
     }
     Highcharts.setOptions(defaultTheme(validLocale));
