@@ -42,10 +42,12 @@ describe('MenuItem, functional tests', () => {
         expect(mockFunction).toBeCalledTimes(2);
     });
 
-    it('should render a link', () => {
+    it('should render a link that calls onclick function when clicked', () => {
         const btnText = 'PRESSME';
-        render(<MenuItem locale={'fi'} text={btnText} url={'foobar.fi'} openNewTab={true} />);
+        render(<MenuItem locale={'fi'} text={btnText} url={'foobar.fi'} openNewTab={true} onClick={mockFunction} />);
         expect(screen.getAllByRole('link').length).toBe(1);
+        screen.getByText(btnText).click();
+        expect(mockFunction).toBeCalledTimes(3);
     });
 
     it('should render nothing if functionality is not declared', () => {

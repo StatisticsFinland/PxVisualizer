@@ -138,7 +138,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
         }
 
         if ('url' in menuItemDefinition) {
-            return <MenuItem isFirst={index === 0} bottomSeparator={index + 1 === menuItemDefinitions.length} locale={locale} prefixIcon={menuItemDefinition.prefixIcon} suffixIcon={menuItemDefinition.suffixIcon} isExternal={menuItemDefinition.isExternal} key={`customlmenuitem-${index}`} text={`${menuItemDefinition.text}`} url={menuItemDefinition.url} openNewTab={menuItemDefinition.openNewTab} />; // NOSONAR
+            return <MenuItem isFirst={index === 0} bottomSeparator={index + 1 === menuItemDefinitions.length} locale={locale} prefixIcon={menuItemDefinition.prefixIcon} suffixIcon={menuItemDefinition.suffixIcon} isExternal={menuItemDefinition.isExternal} key={`customlmenuitem-${index}`} text={`${menuItemDefinition.text}`} url={menuItemDefinition.url} openNewTab={menuItemDefinition.openNewTab} onClick={() => handleMenuItemClick()} />; // NOSONAR
         }
     });
 
@@ -159,10 +159,10 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
     }
 
     const buttonRef = React.useRef<HTMLButtonElement>(null);
-    const handleMenuItemClick = (onClick: () => void) => {
-        onClick();
+    const handleMenuItemClick = (onClick?: () => void) => {
         setIsOpen(false);
         buttonRef.current?.focus();
+        if (onClick) onClick();
     }
 
     return (
