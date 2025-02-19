@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { TIcon, allIcons } from "../../../../core/types/icon";
 import { Icon } from "../../icon/icon";
 import { Translations } from "../../../../core/conversion/translations";
+
 interface IListItemProps {
     $isFirst?: boolean;
     $isLast?: boolean;
@@ -120,17 +121,16 @@ export const MenuItem: React.FC<IMenuItemProps> = ({text, onClick, url, openNewT
         suffixIconContent = (typeof suffixIcon === 'string' && allIcons.includes(suffixIcon as TIcon)) ? <Icon inheritColor={true} icon={suffixIcon as TIcon} /> : prefixIcon;
     }
 
-    const handleLinkActivation = (e: React.MouseEvent | React.KeyboardEvent) => {
-        if (onClick) {
-            onClick();
-        }
-    };
-
     const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
         if (e.key === ' ') {
             e.preventDefault();
-            handleLinkActivation(e);
             (e.target as HTMLAnchorElement).click();
+        }
+    };
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (onClick) {
+            onClick();
         }
     };
 
@@ -152,7 +152,7 @@ export const MenuItem: React.FC<IMenuItemProps> = ({text, onClick, url, openNewT
     if (url) {
         return (
             <ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}>
-                <StyledLink href={url} target={openNewTab ? '_blank' : undefined} onKeyDown={handleKeyDown} onClick={handleLinkActivation}>
+                <StyledLink href={url} target={openNewTab ? '_blank' : undefined} onKeyDown={handleKeyDown} onClick={handleClick}>
                     {content}
                 </StyledLink>
             </ListItem>
@@ -160,7 +160,7 @@ export const MenuItem: React.FC<IMenuItemProps> = ({text, onClick, url, openNewT
     }
 
     if (onClick) {
-        return (<ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}><Button onClick={() => onClick()}>{content}</Button></ListItem>)
+        return (<ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}><Button onClick={onClick}>{content}</Button></ListItem>)
     }
     return (<></>);
 };

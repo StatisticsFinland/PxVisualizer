@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MenuItem } from "./menuItem";
-import React from "react";
+import React, { act } from "react";
 import 'jest-styled-components';
 
 const mockFunction = jest.fn();
@@ -33,13 +33,17 @@ describe('MenuItem, rendering tests', () => {
 });
 
 describe('MenuItem, functional tests', () => {
+    beforeEach(() => {
+        mockFunction.mockClear();
+    });
+
     it('should call onclick function when clicked', () => {
         const btnText = 'PRESSME';
         render(<MenuItem locale={'fi'} text={btnText} onClick={mockFunction} />);
         screen.getByText(btnText).click();
-        expect(mockFunction).toBeCalledTimes(1);
+        expect(mockFunction).toHaveBeenCalledTimes(1);
         screen.getByText(btnText).click();
-        expect(mockFunction).toBeCalledTimes(2);
+        expect(mockFunction).toHaveBeenCalledTimes(2);
     });
 
     it('should render a link that calls onclick function when clicked', () => {
@@ -47,7 +51,17 @@ describe('MenuItem, functional tests', () => {
         render(<MenuItem locale={'fi'} text={btnText} url={'foobar.fi'} openNewTab={true} onClick={mockFunction} />);
         expect(screen.getAllByRole('link').length).toBe(1);
         screen.getByText(btnText).click();
-        expect(mockFunction).toBeCalledTimes(3);
+        expect(mockFunction).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call onclick function when spacebar is pressed', () => {
+        const btnText = 'PRESSME';
+        render(<MenuItem locale={'fi'} text={btnText} url={'foobar.fi'} openNewTab={true} onClick={mockFunction} />);
+        screen.getByText(btnText).focus();
+        act(() => {
+            fireEvent.keyDown(screen.getByText(btnText), { key: ' ' });
+        });
+        expect(mockFunction).toHaveBeenCalledTimes(1);
     });
 
     it('should render nothing if functionality is not declared', () => {

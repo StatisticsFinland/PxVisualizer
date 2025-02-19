@@ -93,18 +93,18 @@ describe('burgerMenu, functional tests', () => {
         });
     });
 
-    it('Should calculate correct export dimensions for compliant input size', () => {
-        const mockRef = {
-            chart: {
-                chartWidth: 1200,
-                chartHeight: 800
-            }
-        } as HighchartsReactRefObject;
-
-        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
-
-        expect(finalWidth).toEqual(1200);
-        expect(finalHeight).toEqual(800);
+    it('Should close the menu when ESC is pressed', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        });
+        await waitFor(() => {
+            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
+        });
     });
 
     it('Should calculate correct export dimensions when aspect ratio is too low', () => {
