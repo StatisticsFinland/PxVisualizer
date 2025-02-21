@@ -10,27 +10,24 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
     if (!container) throw new Error("No container with matching id found in the DOM tree");
 
     try {
-        if (showTitles) {
-            // Headings
-            const title = document.createElement('span');
-            title.classList.add('title');
-            title.append(view.header[locale]);
-            container.append(title);
-
-            if (view.subheaderValues.length > 0) {
-                const subtitle = document.createElement('span');
-                subtitle.classList.add('subtitle');
-                subtitle.append(view.subheaderValues.map(value => value[locale]).join(' | '));
-                container.append(subtitle);
-            }
-        }
-
         // Table content
         const table = generateTable(view, locale);
+
+        if (showTitles) {
+            const title: string = view.header[locale];
+            const caption = document.createElement('caption');
+            if (view.subheaderValues.length > 0) {
+                const subtitle: string = view.subheaderValues.map(value => value[locale]).join(' | ');
+                caption.append(title, document.createElement('br'), subtitle);
+            }
+            caption.className = 'tableChart-caption';
+            table.prepend(caption);
+        }
+
         container.append(table);
 
         // Units
-        if(showUnits) {
+        if (showUnits) {
             const pUnits = document.createElement('p');
             const unitName = getFormattedUnits(view.units, locale);
             const units: string = `${Translations.unit[locale]}: ${unitName}`;
@@ -39,7 +36,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         }
 
         // Sources
-        if(showSources) {
+        if (showSources) {
             const pSources = document.createElement('p');
             const sources: string = `${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`;
             pSources.append(sources);
@@ -47,7 +44,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         }
 
         // Footnote
-        if(footnote) {
+        if (footnote) {
             const pFootnote = document.createElement('p');
             pFootnote.append(footnote);
             container.append(pFootnote);
@@ -66,7 +63,7 @@ export function generateTable(view: View, locale: string): HTMLTableElement {
     const colHeaderRows = view.columnNameGroups[0].length ?? 0;
     const rowHeaderCols = view.series[0].rowNameGroup.length ?? 0;
 
-    const table = document.createElement('table');
+    const table: HTMLTableElement = Object.assign(document.createElement('table'), { tabIndex: 0 });
 
     if (colHeaderRows > 0) {
         const columnHeaders = buildColumnHeaderRows(view.columnNameGroups, locale);

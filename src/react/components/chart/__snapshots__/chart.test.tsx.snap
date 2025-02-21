@@ -54,12 +54,12 @@ exports[`Rendering test renders chart data correctly 1`] = `
         class="tableChart"
         id="foobar"
       >
-        <span
-          class="title"
+        <table
+          tabindex="0"
         >
-          Lukumäärä, Pääkaupunkiseutu (PKS), Yksiöt 2015Q1-2015Q2 muuttujana Rahoitusmuoto
-        </span>
-        <table>
+          <caption
+            class="tableChart-caption"
+          />
           <thead>
             <tr>
               <td
@@ -175,7 +175,9 @@ exports[`Rendering test renders table data correctly 1`] = `
       class="tableChart"
       id="foobar"
     >
-      <table>
+      <table
+        tabindex="0"
+      >
         <thead>
           <tr>
             <td
@@ -846,7 +848,9 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
       class="tableChart"
       id="foobar"
     >
-      <table>
+      <table
+        tabindex="0"
+      >
         <thead>
           <tr>
             <td
@@ -1520,7 +1524,9 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
       class="tableChart"
       id="foobar"
     >
-      <table>
+      <table
+        tabindex="0"
+      >
         <thead>
           <tr>
             <td
@@ -2194,12 +2200,12 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
       class="tableChart"
       id="foobar"
     >
-      <span
-        class="title"
+      <table
+        tabindex="0"
       >
-        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-      </span>
-      <table>
+        <caption
+          class="tableChart-caption"
+        />
         <thead>
           <tr>
             <td
@@ -2870,7 +2876,9 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
       class="tableChart"
       id="foobar"
     >
-      <table>
+      <table
+        tabindex="0"
+      >
         <thead>
           <tr>
             <td

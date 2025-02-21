@@ -378,6 +378,7 @@ export const VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS: {
         {
             url: 'https://www.google.fi',
             text: 'Custom link',
+            
         }
     ]
 };
