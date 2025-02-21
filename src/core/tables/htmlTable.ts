@@ -15,10 +15,12 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
 
         if (showTitles) {
             const title: string = view.header[locale];
-            const subtitle: string = view.subheaderValues.map(value => value[locale]).join(' | ');
             const caption = document.createElement('caption');
+            if (view.subheaderValues.length > 0) {
+                const subtitle: string = view.subheaderValues.map(value => value[locale]).join(' | ');
+                caption.append(title, document.createElement('br'), subtitle);
+            }
             caption.className = 'tableChart-caption';
-            caption.append(title, document.createElement('br'), subtitle);
             table.prepend(caption);
         }
 
