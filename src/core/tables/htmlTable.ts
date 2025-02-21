@@ -14,11 +14,12 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         const table = generateTable(view, locale);
 
         if (showTitles) {
-            const title: string = view.header[locale];
+            
             const caption = document.createElement('caption');
+            caption.textContent = view.header[locale];
             if (view.subheaderValues.length > 0) {
                 const subtitle: string = view.subheaderValues.map(value => value[locale]).join(' | ');
-                caption.append(title, document.createElement('br'), subtitle);
+                caption.append(document.createElement('br'), subtitle);
             }
             caption.className = 'tableChart-caption';
             table.prepend(caption);
