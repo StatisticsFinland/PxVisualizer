@@ -9,11 +9,7 @@ exports[`Html table render tests should match snapshot: Table with column variab
   [36m>[39m
     [36m<caption[39m
       [33mclass[39m=[32m"tableChart-caption"[39m
-    [36m>[39m
-      [0mAdoptiot 1987-1989 muuttujina Syntymävaltio, Ikä[0m
-      [36m<br />[39m
-      [0m[0m
-    [36m</caption>[39m
+    [36m/>[39m
     [36m<thead>[39m
       [36m<tr>[39m
         [36m<th[39m
@@ -447,11 +443,7 @@ exports[`Html table render tests should match snapshot: Table with only one cell
   [36m>[39m
     [36m<caption[39m
       [33mclass[39m=[32m"tableChart-caption"[39m
-    [36m>[39m
-      [0mLukumäärä, Vantaa, Yksiöt, Vapaarahoitteinen 2022Q4[0m
-      [36m<br />[39m
-      [0m[0m
-    [36m</caption>[39m
+    [36m/>[39m
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<td>[39m
@@ -478,11 +470,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
   [36m>[39m
     [36m<caption[39m
       [33mclass[39m=[32m"tableChart-caption"[39m
-    [36m>[39m
-      [0mTiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto[0m
-      [36m<br />[39m
-      [0m[0m
-    [36m</caption>[39m
+    [36m/>[39m
     [36m<thead>[39m
       [36m<tr>[39m
         [36m<td[39m
@@ -1120,11 +1108,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
   [36m>[39m
     [36m<caption[39m
       [33mclass[39m=[32m"tableChart-caption"[39m
-    [36m>[39m
-      [0mTiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto[0m
-      [36m<br />[39m
-      [0m[0m
-    [36m</caption>[39m
+    [36m/>[39m
     [36m<thead>[39m
       [36m<tr>[39m
         [36m<td[39m
@@ -2394,11 +2378,7 @@ exports[`Html table render tests should match snapshot: Table with row and colum
   [36m>[39m
     [36m<caption[39m
       [33mclass[39m=[32m"tableChart-caption"[39m
-    [36m>[39m
-      [0mTiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto[0m
-      [36m<br />[39m
-      [0m[0m
-    [36m</caption>[39m
+    [36m/>[39m
     [36m<thead>[39m
       [36m<tr>[39m
         [36m<td[39m
@@ -3030,11 +3010,7 @@ exports[`Html table render tests should match snapshot: Table with row variables
   [36m>[39m
     [36m<caption[39m
       [33mclass[39m=[32m"tableChart-caption"[39m
-    [36m>[39m
-      [0mLukumäärä 2022Q1-2022Q4 muuttujina Alue, Huoneluku, Rahoitusmuoto[0m
-      [36m<br />[39m
-      [0m[0m
-    [36m</caption>[39m
+    [36m/>[39m
     [36m<tbody>[39m
       [36m<tr>[39m
         [36m<th[39m

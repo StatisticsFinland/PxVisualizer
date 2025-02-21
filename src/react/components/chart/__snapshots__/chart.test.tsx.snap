@@ -59,10 +59,7 @@ exports[`Rendering test renders chart data correctly 1`] = `
         >
           <caption
             class="tableChart-caption"
-          >
-            Lukumäärä, Pääkaupunkiseutu (PKS), Yksiöt 2015Q1-2015Q2 muuttujana Rahoitusmuoto
-            <br />
-          </caption>
+          />
           <thead>
             <tr>
               <td
@@ -2208,10 +2205,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
       >
         <caption
           class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-          <br />
-        </caption>
+        />
         <thead>
           <tr>
             <td
