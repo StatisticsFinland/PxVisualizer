@@ -317,9 +317,9 @@ export const DefaultTranslations: TTranslations = {
         'en': 'quarter'
     },
     dataMissing: {
-        'fi': 'Tieto on puuttuva',
-        'sv': 'Uppgift saknas',
-        'en': 'Data missing'
+        'fi': 'Tieto puuttuu',
+        'sv': 'Data saknas',
+        'en': 'Missing data'
     }
 }
 
