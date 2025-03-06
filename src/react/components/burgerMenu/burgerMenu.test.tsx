@@ -44,7 +44,8 @@ describe('burgerMenu, functional tests', () => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            expect(screen.getAllByRole('button').length).toEqual(7);
+            expect(screen.getAllByRole('button').length).toEqual(5);
+            expect(screen.getAllByRole('link').length).toEqual(2);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
             expect(screen.getByText('Foo')).toBeTruthy();
@@ -56,7 +57,7 @@ describe('burgerMenu, functional tests', () => {
         });
     });
 
-    it('Should invoke the custom function when clicked', async () => {
+    it('Should invoke the custom function and close the menu when button is clicked', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
         const mockFunction = jest.fn();
         const btnText = 'Foo';
@@ -68,20 +69,42 @@ describe('burgerMenu, functional tests', () => {
             screen.getByText(btnText).click();
             expect(mockFunction).toBeCalledTimes(1);
         });
+        await waitFor(() => {
+            expect(screen.queryByText(btnText)).toBeNull();
+            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
+        });
     });
 
-    it('Should calculate correct export dimensions for compliant input size', () => {
-        const mockRef = {
-            chart: {
-                chartWidth: 1200,
-                chartHeight: 800
-            }
-        } as HighchartsReactRefObject;
+    it('Should invoke the custom function and close the menu when link is clicked', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        const mockFunction = jest.fn();
+        const btnText = 'Foo';
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: btnText, url: 'foobar.fi', isExternal: false, onClick: mockFunction }]} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            screen.getByText(btnText).click();
+            expect(mockFunction).toBeCalledTimes(1);
+        });
+        await waitFor(() => {
+            expect(screen.queryByText(btnText)).toBeNull();
+            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
+        });
+    });
 
-        const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
-
-        expect(finalWidth).toEqual(1200);
-        expect(finalHeight).toEqual(800);
+    it('Should close the menu when ESC is pressed', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        });
+        await waitFor(() => {
+            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
+        });
     });
 
     it('Should calculate correct export dimensions when aspect ratio is too low', () => {

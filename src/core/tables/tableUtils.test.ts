@@ -129,23 +129,23 @@ describe('formatMissingData', () => {
         expect(formatMissingData(input.missingCode, 'fi', false)).toEqual('.....');
     });
 
-    it('should return one "Tieto on puuttuva" when the missing code is 1 and html formatting is requested', () => {
+    it('should return one "Tieto puuttuu" when the missing code is 1 and html formatting is requested', () => {
         const input: IDataCell = {
             value: null,
             precision: 2,
             preliminary: false,
             missingCode: 1
         }
-        expect(formatMissingData(input.missingCode, 'fi', true)).toEqual('Tieto on puuttuva');
+        expect(formatMissingData(input.missingCode, 'fi', true)).toEqual('Tieto puuttuu');
     });
 
-    it('should return one "Tieto on puuttuva" when the missing code is 5 and html formatting is requested', () => {
+    it('should return one "Tieto puuttuu" when the missing code is 5 and html formatting is requested', () => {
         const input: IDataCell = {
             value: null,
             precision: 2,
             preliminary: false,
             missingCode: 5
         }
-        expect(formatMissingData(input.missingCode, 'fi', true)).toEqual('Tieto on puuttuva');
+        expect(formatMissingData(input.missingCode, 'fi', true)).toEqual('Tieto puuttuu');
     });
 });

@@ -8,7 +8,6 @@ import Highcharts from 'highcharts';
 import HighchartsReactOfficial, { HighchartsReact } from 'highcharts-react-official';
 import highchartsAccessibility from "highcharts/modules/accessibility.js";
 import highchartsExporting from 'highcharts/modules/exporting.js';
-import highchartsExportData from 'highcharts/modules/export-data.js';
 import highchartsOfflineExporting from 'highcharts/modules/offline-exporting.js';
 import { BurgerMenu, IFunctionalMenuItem, ILinkMenuItem } from "../burgerMenu/burgerMenu";
 import { extractSelectableVariableValues } from "../../../core/conversion/helpers";
@@ -31,7 +30,6 @@ const initializeHighcharts = (locale: string) => {
         });
         highchartsAccessibility(Highcharts);
         highchartsExporting(Highcharts);
-        highchartsExportData(Highcharts);
         highchartsOfflineExporting(Highcharts);
         Highcharts.setOptions(defaultTheme(locale));
     }
