@@ -192,7 +192,7 @@ const mockTranslationPackage: TTranslationPackage = {
             'foo': 'vuosineljännes',
         },
         dataMissing: {
-            'foo': 'Tieto on puuttuva',
+            'foo': 'Tieto puuttuu',
         }
     },
     ArrayTranslations: {

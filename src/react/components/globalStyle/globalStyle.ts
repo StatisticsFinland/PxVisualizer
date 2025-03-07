@@ -60,4 +60,18 @@ export const GlobalStyle = createGlobalStyle`
         width: 90%;
         display: block;
     }
+
+    .tableChart .caption {
+        width: 90%;
+        display: block;
+        caption-side: top;
+    }
+
+    .tableChart-caption {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
 `;
