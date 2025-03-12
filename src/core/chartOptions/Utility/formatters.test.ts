@@ -259,7 +259,6 @@ describe('getLineChartToolTipFormatterFunction tests', () => {
     });
 
     it('The returned formatter function should return tooltip test without preliminary indicator', () => {
-
         const mockTooltip: Tooltip = {} as unknown as Tooltip;
         const mockPoint = {
             series: {
