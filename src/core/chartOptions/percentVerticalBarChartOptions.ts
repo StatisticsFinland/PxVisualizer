@@ -14,12 +14,14 @@ export const percentVerticalBarChartOptions = (view: View, locale: string): Opti
         },
         plotOptions: {
             column: {
-                stacking: 'percent',
+                stacking: 'percent'
+            },
+            series: {
+                ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
                 }
-            },
-            series: getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
+            }
         }
     };
 }

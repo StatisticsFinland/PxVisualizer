@@ -1,4 +1,4 @@
-import { Point, Tooltip, TooltipFormatterContextObject } from "highcharts";
+import { DataLabelsOptions, Point, Tooltip } from "highcharts";
 import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getLineChartToolTipFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
 import { combinationValuesLinechartViewFixture, simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
 import { simpleHorizontalBarchartViewFixture } from "./testFixtures/horizontalbarchartViews";
@@ -127,18 +127,13 @@ describe('getToolTipFormatterFunction tests', () => {
 
         const mockTooltip: Tooltip = {} as unknown as Tooltip;
         const mockContextObject = {
-            series: {
-                name: 'testSeriesName'
-            },
-            point: {
-                name: 'testPointName',
-                options: {
-                    custom: {
-                        "preliminary": true
-                    }
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": true
                 }
             }
-        } as unknown as TooltipFormatterContextObject;
+        } as unknown as Point;
 
         const formatter = getToolTipFormatterFunction(simpleQuarterLinechartViewFixture, 'fi');
         const expectedtooltipString = "Vuosineljännes: testPointName<br/><br/>Ennakko";
@@ -146,21 +141,18 @@ describe('getToolTipFormatterFunction tests', () => {
     });
 
     it('The returned formatter function should return tooltip test without preliminary indicator', () => {
-
         const mockTooltip: Tooltip = {} as unknown as Tooltip;
         const mockContextObject = {
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": false
+                }
+            },
             series: {
                 name: 'testSeriesName'
             },
-            point: {
-                name: 'testPointName',
-                options: {
-                    custom: {
-                        "preliminary": false
-                    }
-                }
-            }
-        } as unknown as TooltipFormatterContextObject;
+        } as unknown as Point;
 
         const formatter = getToolTipFormatterFunction(simpleQuarterLinechartViewFixture, 'fi');
         const expectedtooltipString = "Vuosineljännes: testPointName<br/>";
@@ -174,15 +166,13 @@ describe('getToolTipFormatterFunction tests', () => {
             series: {
                 name: 'testSeriesName'
             },
-            point: {
-                name: 'testPointName',
-                options: {
-                    custom: {
-                        "preliminary": false
-                    }
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": false
                 }
             }
-        } as unknown as TooltipFormatterContextObject;
+        } as unknown as Point;
 
         const formatter = getToolTipFormatterFunction(simpleHorizontalBarchartViewFixture, 'fi');
         const expectedtooltipString = "Alue: testPointName<br/>";
@@ -190,29 +180,33 @@ describe('getToolTipFormatterFunction tests', () => {
     });
 
     it('The returned formatter function for horizontal barchart view should return tooltip test without preliminary indicator', () => {
-
         const mockTooltip: Tooltip = {} as unknown as Tooltip;
-        const mockContextObject = {
+        const mockPoint = {
             series: {
                 name: 'testSeriesName'
             },
-            point: {
-                name: 'testPointName',
-                options: {
-                    custom: {
-                        "preliminary": false
-                    }
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": false
                 }
             }
-        } as unknown as TooltipFormatterContextObject;
+        } as unknown as Point;
 
         const formatter = getToolTipFormatterFunction(simpleGroupHorizontalBarchartViewFixture, 'fi');
         const expectedtooltipString = "Vuosineljännes: testSeriesName<br/>Rahoitusmuoto: testPointName<br/>";
-        expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
+        expect(formatter.apply(mockPoint, [mockTooltip])).toEqual(expectedtooltipString);
     });
 
     it('Returns correctly formatted data label based on fi locale and precision', () => {
+        const mockDataLabelObject = {} as unknown as DataLabelsOptions;
         const mockPoint = {
+            key: 'y',
+            series: {
+                userOptions: {
+                    data: [mockDataLabelObject]
+                }
+            },
             y: 1234.567,
             options: {
                 custom: {
@@ -220,41 +214,25 @@ describe('getToolTipFormatterFunction tests', () => {
                 }
             }
         } as unknown as Point;
-        const mockDataLabelObject = {
-            point: mockPoint,
-            key: 'y',
-            series: {
-                userOptions: {
-                    data: [mockPoint]
-                }
-            }
-        } as unknown as TooltipFormatterContextObject;
         const formatter = getDataLabelFormatterFunction('fi');
-        const result = formatter.apply(mockDataLabelObject, [mockPoint]);
+        const result = formatter.apply(mockPoint, [mockDataLabelObject]);
         // Intl.NumberFormat uses a non-breaking space "\xa0" as a thousand separator
         expect(result).toBe('1\xa0234,57');
     });
 
     it('Returns correctly formatted data label based on en locale and precision', () => {
+        const mockDataLabelObject = {} as unknown as DataLabelsOptions;
         const mockPoint = {
             y: 1234.567,
             options: {
                 custom: {
                     "precision": 2
                 }
-            }
+            },
+            key: 'y'
         } as unknown as Point;
-        const mockDataLabelObject = {
-            point: mockPoint,
-            key: 'y',
-            series: {
-                userOptions: {
-                    data: [mockPoint]
-                }
-            }
-        } as unknown as TooltipFormatterContextObject;
         const formatter = getDataLabelFormatterFunction('en');
-        const result = formatter.apply(mockDataLabelObject, [mockPoint]);
+        const result = formatter.apply(mockPoint, [mockDataLabelObject]);
         expect(result).toBe('1,234.57');
     });
 });
@@ -262,70 +240,61 @@ describe('getToolTipFormatterFunction tests', () => {
 describe('getLineChartToolTipFormatterFunction tests', () => {
 
     it('The returned formatter function should return tooltip test with preliminary indicator', () => {
-
         const mockTooltip: Tooltip = {} as unknown as Tooltip;
-        const mockContextObject = {
+        const mockPoint = {
             series: {
                 name: 'testSeriesName'
             },
-            point: {
-                name: 'testPointName',
-                options: {
-                    custom: {
-                        "preliminary": true
-                    }
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": true
                 }
             }
-        } as unknown as TooltipFormatterContextObject;
+        } as unknown as Point;
 
         const formatter = getLineChartToolTipFormatterFunction(simpleQuarterLinechartViewFixture, 'fi');
         const expectedtooltipString = "Vuosineljännes: testPointName<br/><br/>Ennakko";
-        expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
+        expect(formatter.apply(mockPoint, [mockTooltip])).toEqual(expectedtooltipString);
     });
 
     it('The returned formatter function should return tooltip test without preliminary indicator', () => {
-
         const mockTooltip: Tooltip = {} as unknown as Tooltip;
-        const mockContextObject = {
+        const mockPoint = {
             series: {
                 name: 'testSeriesName'
             },
-            point: {
-                name: 'testPointName',
-                options: {
-                    custom: {
-                        "preliminary": false
-                    }
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": false
                 }
             }
-        } as unknown as TooltipFormatterContextObject;
+        } as unknown as Point;
 
         const formatter = getLineChartToolTipFormatterFunction(simpleQuarterLinechartViewFixture, 'fi');
         const expectedtooltipString = "Vuosineljännes: testPointName<br/>";
-        expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
+        expect(formatter.apply(mockPoint, [mockTooltip])).toEqual(expectedtooltipString);
     });
 
     it('The returned formatter function should return tooltip where each variable value pair is on its own line', () => {
-
         const mockTooltip: Tooltip = {} as unknown as Tooltip;
-        const mockContextObject = {
+        const mockPoint = {
             series: {
                 name: 'testSeriesName',
                 index: 1
             },
-            point: {
-                name: 'testPointName',
-                options: {
-                    custom: {
-                        "preliminary": false
-                    }
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": false
                 }
             }
-        } as unknown as TooltipFormatterContextObject;
+        } as unknown as Point;
 
         const formatter = getLineChartToolTipFormatterFunction(combinationValuesLinechartViewFixture, 'fi');
         const expectedtooltipString = "Alue: Helsinki<br/>Huoneluku: Kaksiot<br/>Vuosineljännes: testPointName<br/>";
-        expect(formatter.apply(mockContextObject, [mockTooltip])).toEqual(expectedtooltipString);
+        expect(formatter.apply(mockPoint, [mockTooltip])).toEqual(expectedtooltipString);
     });
 });
 

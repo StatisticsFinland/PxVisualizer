@@ -1,11 +1,10 @@
-import { Options, YAxisOptions } from 'highcharts';
+import { LegendOptions, Options, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction } from './Utility/formatters';
 import { Translations } from '../conversion/translations';
 import { buildHighchartSeries } from './Utility/seriesDataBuilder';
 import {  getXAxisOptions } from './Utility/timeIntervals';
 import { getLinearAxisTickPositionerFunction } from './Utility/tickPositioners';
-import { defaultTheme } from "../highcharts/themes";
 
 export const commonChartOptions = (view: View, locale: string): Options  => {
     return {
@@ -34,13 +33,14 @@ export const commonYAxisOptions: YAxisOptions = {
     ]
 }
 
-export const commonDatalabelsOptions = (view: View, locale: string) => {
-    const theme = defaultTheme(locale);
-    const dataValueLabelStyle = theme.tooltip?.style;
-
+export const commonDatalabelsOptions = (view: View, locale: string): PlotSeriesDataLabelsOptions => {
     const dataLabelOptions = {
         enabled: view.visualizationSettings.showDataPoints,
-        style: dataValueLabelStyle,
+        style: {
+            color: '#000',
+            fontSize: '1rem',
+            fontWeight: '400',
+        },
         formatter: getDataLabelFormatterFunction(locale)
     }
     return dataLabelOptions;
@@ -85,6 +85,7 @@ export const commonStackedHorizontalBarChartOptions = (view: View, locale: strin
         ...commonHorizontalBarChartOptions(view, locale),
         series: buildHighchartSeries(view, 'bar', locale, true),
         legend: {
+            ...commonLegendStyleOptions,
             enabled: true,
             layout: 'horizontal',
             reversed: true,
@@ -120,9 +121,16 @@ export const commonStackedVerticalBarChartOptions = (view: View, locale: string)
         ...commonVerticalBarChartOptions(view, locale),
         series: buildHighchartSeries(view, 'column', locale, true),
         legend: {
+            ...commonLegendStyleOptions,
             enabled: true,
             layout: 'vertical'
         }
     };
 }
+
+export const commonLegendStyleOptions: LegendOptions = {
+    itemHiddenStyle: {
+        color: 'black',
+    }
+};
 
