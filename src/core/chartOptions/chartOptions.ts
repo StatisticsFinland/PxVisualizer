@@ -130,12 +130,7 @@ export const commonStackedVerticalBarChartOptions = (view: View, locale: string)
 
 export const commonLegendStyleOptions: LegendOptions = {
     itemHiddenStyle: {
-        color: 'hsl(0, 0%, 0%)',
-        textDecoration: 'line-through',
-    },
-    itemStyle: {
-        color: 'hsl(0, 0%, 0%)',
-        textDecoration: 'none',
+        color: 'black',
     }
 };
 
