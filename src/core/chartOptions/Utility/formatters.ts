@@ -172,7 +172,7 @@ export function getScatterPlotTooltipFormatterFunction(view: View, locale: strin
 }
 /* c8 ignore end */
 
-export function getLineChartToolTipFormatterFunction(view: View, locale: string): TooltipFormatterCallbackFunction {
+export function getLineChartToolTipFormatterFunction(view: View, locale: string): Highcharts.TooltipFormatterCallbackFunction {
     return function () {
         const tooltipLines = [];
 

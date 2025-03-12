@@ -6,9 +6,9 @@ import Highcharts from 'highcharts';
 // Named import HighchartsReact was added to get pxvisualiser to work in pxgraf-creator.
 // Could be something to be resolved with microbundle (non-)configuration too?
 import HighchartsReactOfficial, { HighchartsReact } from 'highcharts-react-official';
-import highchartsAccessibility from "highcharts/modules/accessibility.js";
-import highchartsExporting from 'highcharts/modules/exporting.js';
-import highchartsOfflineExporting from 'highcharts/modules/offline-exporting.js';
+import "highcharts/modules/accessibility.js";
+import 'highcharts/modules/exporting.js';
+import 'highcharts/modules/offline-exporting.js';
 import { BurgerMenu, IFunctionalMenuItem, ILinkMenuItem } from "../burgerMenu/burgerMenu";
 import { extractSelectableVariableValues } from "../../../core/conversion/helpers";
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
@@ -28,9 +28,6 @@ const initializeHighcharts = (locale: string) => {
                 this.box.children[0].remove(); // remove hardcoded "<desc>Created with Highcharts {version number}</desc> from the code"
             }
         });
-        highchartsAccessibility(Highcharts);
-        highchartsExporting(Highcharts);
-        highchartsOfflineExporting(Highcharts);
         Highcharts.setOptions(defaultTheme(locale));
     }
 }

@@ -3,7 +3,7 @@ import { View } from "../types/view";
 import { getTimeSeriesOptions, getXAxisOptions } from "./Utility/timeIntervals";
 import { getFormattedUnits, getLegendLabelShorteningFunction, getLineChartToolTipFormatterFunction } from "./Utility/formatters";
 import { buildHighchartSeries } from "./Utility/seriesDataBuilder";
-import { commonChartOptions, commonDatalabelsOptions, commonYAxisOptions } from "./chartOptions";
+import { commonChartOptions, commonDatalabelsOptions, commonLegendStyleOptions, commonYAxisOptions } from "./chartOptions";
 
 export const lineChartOptions = (view: View, locale: string): Options => {
     const cutValueAxis = !view.visualizationSettings?.cutValueAxis ? 0 : undefined;
@@ -36,12 +36,13 @@ export const lineChartOptions = (view: View, locale: string): Options => {
             series: getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint)
         },
         legend: {
+            ...commonLegendStyleOptions,
             enabled: view.series.length > 1,
             labelFormatter: getLegendLabelShorteningFunction()
         },
         series: buildHighchartSeries(view, 'line', locale),
         exporting: {
-            enabled: false
+            enabled: false,
         }
     };
 }

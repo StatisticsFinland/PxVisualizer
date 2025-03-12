@@ -1,6 +1,6 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions } from './chartOptions';
+import { commonHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions, commonLegendStyleOptions } from './chartOptions';
 import { buildHighchartSeries } from './Utility/seriesDataBuilder';
 
 export const groupHorizontalBarChartOptions = (view: View, locale: string): Options => {
@@ -13,6 +13,7 @@ export const groupHorizontalBarChartOptions = (view: View, locale: string): Opti
             softMax: 0
         },
         legend: {
+            ...commonLegendStyleOptions,
             enabled: true,
             layout: 'vertical',
             margin: 30
