@@ -16,12 +16,14 @@ export const stackedVerticalBarChartOptions = (view: View, locale: string): Opti
         },
         plotOptions: {
             column: {
-                stacking: 'normal',
+                stacking: 'normal'
+            },
+            series: {
+                ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
                 }
-            },
-            series: getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint)
+            }
         }
     };
 };
