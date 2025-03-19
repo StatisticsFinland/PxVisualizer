@@ -215,7 +215,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                 }
                                 {
                                     (tableToggle && !tableToggle.tableMode) &&
-                                    <MenuItem isFirst={false} locale={locale} text={rasterChartMode ? Translations.rasterChartOff[locale] : Translations.rasterChartOn[locale]} onClick={toggleRasterChartMode} />
+                                    <MenuItem isFirst={false} locale={locale} text={rasterChartMode ? Translations.rasterChartOff[locale] : Translations.rasterChartOn[locale]} onClick={() => handleMenuItemClick(toggleRasterChartMode)} />
                                 }
                                 {
                                     tableToggle &&
