@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { MenuItem } from "./menuItem/menuItem";
 import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
-import { View } from "../../../core/types/view";
+import { ESeriesType, View } from "../../../core/types/view";
 import { Translations } from "../../../core/conversion/translations";
 import { Icon } from "../icon/icon";
 import { viewToDownloadCSVOption } from "../../../core/tables/csvTable";
 import { generateFilename } from "../../../core/tables/exportingUtils";
 import { TIcon } from "../../../core/types/icon";
 import { viewToDownloadXLSOption } from "../../../core/tables/xlsx/xlsxBuilder";
+import { EVisualizationType } from "../../../core";
 
 const BurgerWrapper = styled.div`
     width: 2.5rem;
@@ -168,6 +169,11 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         if (onClick) onClick();
     }
 
+    const showRasterChartToggle: boolean =
+        !!tableToggle &&
+        !tableToggle.tableMode &&
+        viewData.visualizationSettings.visualizationType != EVisualizationType.ScatterPlot;
+
     return (
         <BurgerWrapper ref={menuRef}>
             <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => {setIsOpen(!isOpen)}}>
@@ -214,7 +220,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                     </>
                                 }
                                 {
-                                    (tableToggle && !tableToggle.tableMode) &&
+                                    showRasterChartToggle &&
                                     <MenuItem isFirst={false} locale={locale} text={rasterChartMode ? Translations.rasterChartOff[locale] : Translations.rasterChartOn[locale]} onClick={() => handleMenuItemClick(toggleRasterChartMode)} />
                                 }
                                 {
