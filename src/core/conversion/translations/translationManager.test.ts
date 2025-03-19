@@ -193,6 +193,12 @@ const mockTranslationPackage: TTranslationPackage = {
         },
         dataMissing: {
             'foo': 'Tieto puuttuu',
+        },
+        rasterChartOn: {
+            'foo': 'Näytä kuviossa symbolit',
+        },
+        rasterChartOff: {
+            'foo': 'Piilota kuviosta symbolit',
         }
     },
     ArrayTranslations: {
