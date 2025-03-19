@@ -59,6 +59,8 @@ export interface IBurgerMenuProps {
     };
     menuItemDefinitions?: (IFunctionalMenuItem | ILinkMenuItem)[];
     menuIconInheritColor?: boolean;
+    toggleRasterChartMode?: () => void;
+    rasterChartMode?: boolean;
 }
 
 interface IBaseMenuItem {
@@ -118,7 +120,8 @@ export function calculateExportDimensions(chartRef: HighchartsReactRefObject): {
     return { finalWidth, finalHeight };
 }
 
-export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false}) => {
+
+export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, toggleRasterChartMode, rasterChartMode }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const menuRef = React.useRef<any>(null);
@@ -209,6 +212,10 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                                                 }, {}))
                                             } />
                                     </>
+                                }
+                                {
+                                    (tableToggle && !tableToggle.tableMode) &&
+                                    <MenuItem isFirst={false} locale={locale} text={rasterChartMode ? Translations.rasterChartOff[locale] : Translations.rasterChartOn[locale]} onClick={toggleRasterChartMode} />
                                 }
                                 {
                                     tableToggle &&

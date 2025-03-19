@@ -320,6 +320,16 @@ export const DefaultTranslations: TTranslations = {
         'fi': 'Tieto puuttuu',
         'sv': 'Data saknas',
         'en': 'Missing data'
+    },
+    rasterChartOn: {
+        'fi': 'Näytä kuviossa symbolit',
+        'sv': 'Visa symboler i diagrammet',
+        'en': 'Show symbols in the figure'
+    },
+    rasterChartOff: {
+        'fi': 'Poista kuviosta symbolit',
+        'sv': 'Ta bort symbolerna från diagrammet',
+        'en': 'Remove symbols from the figure'
     }
 }
 

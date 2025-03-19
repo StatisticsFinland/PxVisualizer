@@ -92,6 +92,7 @@ const ReactChart: React.FC<IChartProps> = ({
 
     const [currentChartRef, setCurrentChartRef] = React.useState(chartRef.current);
     const [tableMode, setTableMode] = React.useState(false);
+    const [rasterChartOn, setRasterChartOn] = React.useState(false);
     const [width, setWidth] = React.useState(0);
 
     const variableSelections = useMemo(() => {
@@ -135,6 +136,10 @@ const ReactChart: React.FC<IChartProps> = ({
         setTableMode(!tableMode);
     }
 
+    const toggleRasterChartOn = () => {
+        setRasterChartOn(!rasterChartOn);
+    }
+
     React.useEffect(() => {
         if (chartRef.current) {
             setCurrentChartRef(chartRef.current);
@@ -150,7 +155,7 @@ const ReactChart: React.FC<IChartProps> = ({
                     {
                         showContextMenu &&
                         <MenuContainer>
-                            <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} />
+                                <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} rasterChartMode={rasterChartOn} toggleRasterChartMode={toggleRasterChartOn} />
                         </MenuContainer>
                     }
                     <ChartContainer $tableMode={tableMode}>

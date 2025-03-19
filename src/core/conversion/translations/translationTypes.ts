@@ -65,6 +65,8 @@ export type TTranslations = {
     externalLink: TMultiLanguageString;
     quarter: TMultiLanguageString;
     dataMissing: TMultiLanguageString;
+    rasterChartOn: TMultiLanguageString;
+    rasterChartOff: TMultiLanguageString;
 }
 
 export type TArrayTranslations = {
