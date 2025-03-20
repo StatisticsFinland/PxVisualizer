@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { MenuItem } from "./menuItem/menuItem";
 import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
-import { ESeriesType, View } from "../../../core/types/view";
+import { View } from "../../../core/types/view";
 import { Translations } from "../../../core/conversion/translations";
 import { Icon } from "../icon/icon";
 import { viewToDownloadCSVOption } from "../../../core/tables/csvTable";
