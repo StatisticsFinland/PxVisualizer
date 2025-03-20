@@ -1,6 +1,7 @@
-import { buildHighchartSeries } from "./seriesDataBuilder";
+import { buildLineChartSeries, buildBarChartSeries, buildColumnChartSeries } from "./seriesDataBuilder";
 import { simpleGroupHorizontalBarchartViewFixture } from "./testFixtures/grouphorizontalbarchartViews";
 import { simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
+import { simpleQuarterVerticalBarchartViewFixture } from "./testFixtures/verticalbarchartViews";
 
 describe('Highcharts series builder tests', () => {
 
@@ -81,10 +82,124 @@ describe('Highcharts series builder tests', () => {
             }
         ];
 
-        expect(buildHighchartSeries(simpleQuarterLinechartViewFixture, 'line', 'fi')).toEqual(expectedSeries);
+        expect(buildLineChartSeries(simpleQuarterLinechartViewFixture, 'fi')).toEqual(expectedSeries);
     });
 
-    it('Should return valid series for group horizontal bar charts', () => {
+    it('Should return valid series for group horizontal bar charts with accessibility patterns', () => {
+        const expectedSeries = [
+            {
+                animation: false,
+                color: {
+                    pattern: {
+                        backgroundColor: "#1a56ec",
+                        height: 10,
+                        path: {
+                            d: "M -2 -2 L 12 12 M -12 -2 L 2 12 M -2 -12 L 12 2",
+                            stroke: "white",
+                            strokeWidth: 2,
+                        },
+                        width: 10,
+                    }
+                },
+                data: [
+                    {
+                        custom: { "precision": 0, "preliminary": false },
+                        name: "Vapaarahoitteinen",
+                        "y": 11096
+                    },
+                    {
+                        custom: { "precision": 0, "preliminary": false },
+                        name: "ARA",
+                        y: 4845
+                    }
+                ],
+                index: 0,
+                name: "2015Q1",
+                type: "bar"
+            },
+            {
+                animation: false,
+                color: {
+                    pattern: {
+                        backgroundColor: "#f2644c",
+                        height: 10,
+                        path: {
+                            d: "M -2 12 L 12 -2 M -12 12 L 2 -2 M -2 22 L 12 8",
+                            stroke: "white",
+                            strokeWidth: 2,
+                        },
+                        width: 10,
+                    },
+                },
+                data: [
+                    {
+                        custom: { "precision": 0, "preliminary": false },
+                        name: "Vapaarahoitteinen",
+                        "y": 11625
+                    },
+                    {
+                        custom: { "precision": 0, "preliminary": false },
+                        name: "ARA",
+                        y: 5174
+                    }
+                ],
+                index: 1,
+                name: "2015Q2",
+                type: "bar"
+            }
+        ];
+
+        expect(buildBarChartSeries(simpleGroupHorizontalBarchartViewFixture, 'fi', false, true)).toEqual(expectedSeries);
+    });
+
+    it('Should return valid series for vertical bar chart with accesibility patterns', () => {
+        const expectedSeries = [
+            {
+                animation: false,
+                color: {
+                    pattern: {
+                        backgroundColor: "#1a56ec",
+                        height: 10,
+                        path: {
+                            d: "M -2 -2 L 12 12 M -12 -2 L 2 12 M -2 -12 L 12 2",
+                            stroke: "white",
+                            strokeWidth: 2,
+                        },
+                        width: 10,
+                    },
+                },
+                data: [
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q1",
+                        "y": 1.2
+                    },
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q2",
+                        y: -0.8
+                    },
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q3",
+                        y: 2.5
+                    },
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q4",
+                        y: 0.3
+                    }
+                ],
+                index: 0,
+                name: "",
+                type: "column"
+            }
+        ];
+
+        expect(buildColumnChartSeries(simpleQuarterVerticalBarchartViewFixture, 'fi', false, true)).toEqual(expectedSeries);
+    });
+    
+    it('Should return valid series for group horizontal bar charts without patterns', () => {
         const expectedSeries = [
             {
                 animation: false,
@@ -124,6 +239,41 @@ describe('Highcharts series builder tests', () => {
             }
         ];
 
-        expect(buildHighchartSeries(simpleGroupHorizontalBarchartViewFixture, 'bar', 'fi')).toEqual(expectedSeries);
+        expect(buildBarChartSeries(simpleGroupHorizontalBarchartViewFixture, 'fi')).toEqual(expectedSeries);
+    });
+
+    it('Should return valid series for vertical bar chart without patterns', () => {
+        const expectedSeries = [
+            {
+                animation: false,
+                data: [
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q1",
+                        "y": 1.2
+                    },
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q2",
+                        y: -0.8
+                    },
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q3",
+                        y: 2.5
+                    },
+                    {
+                        custom: { "precision": 1, "preliminary": false },
+                        name: "2023Q4",
+                        y: 0.3
+                    }
+                ],
+                index: 0,
+                name: "",
+                type: "column"
+            }
+        ];
+
+        expect(buildColumnChartSeries(simpleQuarterVerticalBarchartViewFixture, 'fi')).toEqual(expectedSeries);
     });
 });

@@ -73,7 +73,17 @@ export interface IChartProps {
     footnote?: string;
 }
 
-const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menuItemDefinitions, selectedVariableCodes = null, showContextMenu = true, menuIconInheritColor = false, showTableTitles, showTableUnits, showTableSources}) => {
+const ReactChart: React.FC<IChartProps> = ({
+    pxGraphData,
+    footnote,
+    locale,
+    menuItemDefinitions,
+    selectedVariableCodes = null,
+    showContextMenu = true,
+    menuIconInheritColor = false,
+    showTableTitles,
+    showTableUnits,
+    showTableSources}) => {
     const validLocale = formatLocale(locale);
     initializeHighcharts(validLocale);
 
