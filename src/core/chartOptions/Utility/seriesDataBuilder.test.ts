@@ -1,7 +1,7 @@
 import { buildLineChartSeries, buildBarChartSeries, buildColumnChartSeries } from "./seriesDataBuilder";
-import { simpleGroupHorizontalBarchartViewFixture } from "./testFixtures/grouphorizontalbarchartViews";
-import { simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
-import { simpleQuarterVerticalBarchartViewFixture } from "./testFixtures/verticalbarchartViews";
+import { simpleGroupHorizontalBarchartViewFixture } from "./fixtures/grouphorizontalbarchartViews";
+import { simpleQuarterLinechartViewFixture } from "./fixtures/linechartViews";
+import { simpleQuarterVerticalBarchartViewFixture } from "./fixtures/verticalbarchartViews";
 
 describe('Highcharts series builder tests', () => {
 
