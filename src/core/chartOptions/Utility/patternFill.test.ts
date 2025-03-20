@@ -45,7 +45,7 @@ describe("buildPatternObject", () => {
         expect(patternObj.path).toHaveProperty('d', defaultFillPatterns[0]);
     });
 
-    it("should throw an error if index is out of bounds for defaultColors", () => {
+    it("if the index exceeds the number of items in the default colors, start again from the beginning of the list", () => {
         const result = buildPatternObject(defaultColors.length);
         const patternObj = result.color.pattern as PatternOptionsObject;
         expect(patternObj.backgroundColor).toBe(defaultColors[0]);

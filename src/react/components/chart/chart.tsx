@@ -9,6 +9,7 @@ import HighchartsReactOfficial, { HighchartsReact } from 'highcharts-react-offic
 import "highcharts/modules/accessibility.js";
 import 'highcharts/modules/exporting.js';
 import 'highcharts/modules/offline-exporting.js';
+import 'highcharts/modules/pattern-fill.js';
 import { BurgerMenu, IFunctionalMenuItem, ILinkMenuItem } from "../burgerMenu/burgerMenu";
 import { extractSelectableVariableValues } from "../../../core/conversion/helpers";
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
