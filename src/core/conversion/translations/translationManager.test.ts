@@ -194,10 +194,10 @@ const mockTranslationPackage: TTranslationPackage = {
         dataMissing: {
             'foo': 'Tieto puuttuu',
         },
-        rasterChartOn: {
+        toggleAccessibilityModeOn: {
             'foo': 'Näytä kuviossa symbolit',
         },
-        rasterChartOff: {
+        toggleAccessibilityModeOff: {
             'foo': 'Piilota kuviosta symbolit',
         }
     },

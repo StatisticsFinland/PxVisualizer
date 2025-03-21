@@ -31,7 +31,7 @@ const mockTableToggle = {
 describe('burgerMenu, functional tests', () => {
     it('Should open the menu with correct menu elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        render(<BurgerMenu locale="fi" viewData={view} tableToggle={mockTableToggle} rasterChartMode={false} toggleRasterChartMode={jest.fn()} />);
+        render(<BurgerMenu locale="fi" viewData={view} tableToggle={mockTableToggle} accessibilityMode={false} toggleAccessibilityMode={jest.fn()} />);
         act(() => {
             screen.getByRole('button').click();
         });
@@ -46,7 +46,7 @@ describe('burgerMenu, functional tests', () => {
 
     it('Should open the menu with correct custom elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Foo', onClick: jest.fn() }, { text: 'Bar', onClick: jest.fn() }, { text: 'Baz', url: 'foobar.com', isExternal: true }, { text: 'Baz2', url: 'foobar2.com', isExternal: false }]} rasterChartMode={false} toggleRasterChartMode={jest.fn()} tableToggle={mockTableToggle} />);
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Foo', onClick: jest.fn() }, { text: 'Bar', onClick: jest.fn() }, { text: 'Baz', url: 'foobar.com', isExternal: true }, { text: 'Baz2', url: 'foobar2.com', isExternal: false }]} accessibilityMode={false} toggleAccessibilityMode={jest.fn()} tableToggle={mockTableToggle} />);
         act(() => {
             screen.getByRole('button').click();
         });
@@ -66,9 +66,9 @@ describe('burgerMenu, functional tests', () => {
         });
     });
 
-    it('Should trigger the toggleRasterChartMode function when the menu item is clicked', async () => {
+    it('Should trigger the accessibilityMode function when the menu item is clicked', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        const mockToggleRasterChartMode = jest.fn();
+        const mockToggleAccessibilityModeFunction = jest.fn();
         const mockTableToggle = {
             toggleHandler: jest.fn(),
             tableMode: false
@@ -78,17 +78,17 @@ describe('burgerMenu, functional tests', () => {
                 locale="fi"
                 viewData={view}
                 tableToggle={mockTableToggle}
-                rasterChartMode={false}
-                toggleRasterChartMode={mockToggleRasterChartMode}
+                accessibilityMode={false}
+                toggleAccessibilityMode={mockToggleAccessibilityModeFunction}
             />
         );
         act(() => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            const menuItem = screen.getByText(Translations.rasterChartOn["fi"]);
+            const menuItem = screen.getByText(Translations.toggleAccessibilityModeOn["fi"]);
             fireEvent.click(menuItem);
-            expect(mockToggleRasterChartMode).toHaveBeenCalledTimes(1);
+            expect(mockToggleAccessibilityModeFunction).toHaveBeenCalledTimes(1);
         });
     });
 

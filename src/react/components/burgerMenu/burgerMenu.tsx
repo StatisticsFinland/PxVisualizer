@@ -60,8 +60,8 @@ export interface IBurgerMenuProps {
     };
     menuItemDefinitions?: (IFunctionalMenuItem | ILinkMenuItem)[];
     menuIconInheritColor?: boolean;
-    toggleRasterChartMode?: () => void;
-    rasterChartMode?: boolean;
+    toggleAccessibilityMode?: () => void;
+    accessibilityMode?: boolean;
 }
 
 interface IBaseMenuItem {
@@ -122,7 +122,7 @@ export function calculateExportDimensions(chartRef: HighchartsReactRefObject): {
 }
 
 
-export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, toggleRasterChartMode, rasterChartMode }) => {
+export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, toggleAccessibilityMode, accessibilityMode }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const menuRef = React.useRef<any>(null);
@@ -169,7 +169,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         if (onClick) onClick();
     }
 
-    const showRasterChartToggle: boolean =
+    const showAccessibilityModeToggle: boolean =
         !!tableToggle &&
         !tableToggle.tableMode &&
         viewData.visualizationSettings.visualizationType != EVisualizationType.ScatterPlot;
@@ -220,8 +220,8 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                     </>
                                 }
                                 {
-                                    showRasterChartToggle &&
-                                    <MenuItem isFirst={false} locale={locale} text={rasterChartMode ? Translations.rasterChartOff[locale] : Translations.rasterChartOn[locale]} onClick={() => handleMenuItemClick(toggleRasterChartMode)} />
+                                    showAccessibilityModeToggle &&
+                                    <MenuItem isFirst={false} locale={locale} text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]} onClick={() => handleMenuItemClick(toggleAccessibilityMode)} />
                                 }
                                 {
                                     tableToggle &&

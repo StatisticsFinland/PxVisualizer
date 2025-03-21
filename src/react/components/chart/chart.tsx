@@ -92,7 +92,7 @@ const ReactChart: React.FC<IChartProps> = ({
 
     const [currentChartRef, setCurrentChartRef] = React.useState(chartRef.current);
     const [tableMode, setTableMode] = React.useState(false);
-    const [rasterChartOn, setRasterChartOn] = React.useState(false);
+    const [accessibilityMode, setAccessibilityMode] = React.useState(false);
     const [width, setWidth] = React.useState(0);
 
     const variableSelections = useMemo(() => {
@@ -136,8 +136,8 @@ const ReactChart: React.FC<IChartProps> = ({
         setTableMode(!tableMode);
     }
 
-    const toggleRasterChartOn = () => {
-        setRasterChartOn(!rasterChartOn);
+    const toggleAccessibilityMode = () => {
+        setAccessibilityMode(!accessibilityMode);
     }
 
     React.useEffect(() => {
@@ -155,7 +155,7 @@ const ReactChart: React.FC<IChartProps> = ({
                     {
                         showContextMenu &&
                         <MenuContainer>
-                                <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} rasterChartMode={rasterChartOn} toggleRasterChartMode={toggleRasterChartOn} />
+                                <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} accessibilityMode={accessibilityMode} toggleAccessibilityMode={toggleAccessibilityMode} />
                         </MenuContainer>
                     }
                     <ChartContainer $tableMode={tableMode}>
