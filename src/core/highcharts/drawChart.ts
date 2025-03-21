@@ -1,4 +1,5 @@
 import * as Highcharts from "highcharts";
+import 'highcharts/modules/pattern-fill';
 import { convertPxGraphDataToChartOptions } from "../conversion";
 import { IQueryVisualizationResponse } from "../types";
 import { defaultTheme } from "./themes";
