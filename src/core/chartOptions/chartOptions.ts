@@ -1,4 +1,4 @@
-import { LegendOptions, Options, PlotBarOptions, PlotColumnOptions, PlotOptions, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
+import { LegendOptions, Options, PlotBarOptions, PlotColumnOptions, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction } from './Utility/formatters';
 import { Translations } from '../conversion/translations';
