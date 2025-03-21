@@ -2,7 +2,7 @@ import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getLegendLabelShorteningFunction } from './Utility/formatters';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
-import { commonBasicVerticalBarChartOptions, commonDatalabelsOptions, commonLegendStyleOptions } from './chartOptions';
+import { commonBarOptions, commonBasicVerticalBarChartOptions, commonDatalabelsOptions, commonLegendStyleOptions } from './chartOptions';
 import { IChartOptions } from '../types/chartOptions';
 
 export const groupVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
@@ -14,6 +14,9 @@ export const groupVerticalBarChartOptions = (view: View, locale: string, options
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
                 }
+            },
+            column: {
+                ...commonBarOptions,
             }
         },
         legend: {

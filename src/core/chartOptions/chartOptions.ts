@@ -1,4 +1,4 @@
-import { LegendOptions, Options, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
+import { LegendOptions, Options, PlotBarOptions, PlotColumnOptions, PlotOptions, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
 import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction } from './Utility/formatters';
 import { Translations } from '../conversion/translations';
@@ -31,7 +31,7 @@ export const commonYAxisOptions: YAxisOptions = {
             color: '#000',
             width: 1
         }
-    ]
+    ],
 }
 
 export const commonDatalabelsOptions = (view: View, locale: string): PlotSeriesDataLabelsOptions => {
@@ -136,3 +136,6 @@ export const commonLegendStyleOptions: LegendOptions = {
     }
 };
 
+export const commonBarOptions: PlotBarOptions | PlotColumnOptions = {
+    borderWidth: 0,
+}

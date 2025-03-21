@@ -1,7 +1,7 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
-import { commonChartOptions, commonDatalabelsOptions, commonLegendStyleOptions, commonYAxisOptions } from './chartOptions';
+import { commonBarOptions, commonChartOptions, commonDatalabelsOptions, commonLegendStyleOptions, commonYAxisOptions } from './chartOptions';
 import { IChartOptions } from '../types/chartOptions';
 import { buildPatternObject } from './Utility/patternFill';
 
@@ -64,6 +64,9 @@ export const pyramidChartOptions = (view: View, locale: string, options?: IChart
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
                 }
+            },
+            bar: {
+                ...commonBarOptions
             }
         },
         exporting: {

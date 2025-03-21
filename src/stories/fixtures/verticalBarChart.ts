@@ -952,7 +952,7 @@ export const VERTICAL_BAR_CHART_WITH_NEGATIVE_VALUES: {
             -0.4,
             -1.0,
             1.4,
-            1.8,
+            0,
             1.2,
             2.5,
             4.5

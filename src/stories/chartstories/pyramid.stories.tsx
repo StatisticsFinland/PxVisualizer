@@ -3,7 +3,7 @@ import { Chart } from '../../react';
 import {
     PYRAMID_CHART,
     PYRAMID_CHART_LARGE_DATASET,
-    PYRAMID_CHART_WITH_SELECTABLES
+    PYRAMID_CHART_WITH_SELECTABLES,
 } from '../fixtures/pyramidChart';
 
 export default {
