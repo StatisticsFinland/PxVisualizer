@@ -3,10 +3,11 @@ import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
 import { commonStackedVerticalBarChartOptions, commonDatalabelsOptions } from './chartOptions';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
+import { IChartOptions } from '../types/chartOptions';
 
-export const stackedVerticalBarChartOptions = (view: View, locale: string): Options => {
+export const stackedVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonStackedVerticalBarChartOptions(view, locale),
+        ...commonStackedVerticalBarChartOptions(view, locale, options),
         yAxis: {
             softMin: 0,
             softMax: 0,

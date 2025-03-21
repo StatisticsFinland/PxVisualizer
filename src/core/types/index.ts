@@ -7,3 +7,4 @@ export {
     EVariableType,
     TVariableType
 } from './queryVisualizationResponse';
+export { IChartOptions } from './chartOptions';

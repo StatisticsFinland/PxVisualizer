@@ -1,8 +1,8 @@
 import { DataLabelsOptions, Point, Tooltip } from "highcharts";
 import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getLineChartToolTipFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
-import { combinationValuesLinechartViewFixture, simpleQuarterLinechartViewFixture } from "./testFixtures/linechartViews";
-import { simpleHorizontalBarchartViewFixture } from "./testFixtures/horizontalbarchartViews";
-import { simpleGroupHorizontalBarchartViewFixture } from "./testFixtures/grouphorizontalbarchartViews";
+import { combinationValuesLinechartViewFixture, simpleQuarterLinechartViewFixture } from "./fixtures/linechartViews";
+import { simpleHorizontalBarchartViewFixture } from "./fixtures/horizontalbarchartViews";
+import { simpleGroupHorizontalBarchartViewFixture } from "./fixtures/grouphorizontalbarchartViews";
 import { View } from "../../types/view";
 
 describe('formatLocale tests', () => {

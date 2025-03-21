@@ -1,12 +1,13 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { commonHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions, commonLegendStyleOptions } from './chartOptions';
-import { buildHighchartSeries } from './Utility/seriesDataBuilder';
+import { buildBarChartSeries } from './Utility/seriesDataBuilder';
+import { IChartOptions } from '../types/chartOptions';
 
-export const groupHorizontalBarChartOptions = (view: View, locale: string): Options => {
+export const groupHorizontalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
         ...commonHorizontalBarChartOptions(view, locale),
-        series: buildHighchartSeries(view, 'bar', locale),
+        series: buildBarChartSeries(view, locale, false, options?.accessibilityMode),
         yAxis: {
             ...commonBasicHorizontalBarChartYAxisOptions(view, locale),
             softMin: 0,
