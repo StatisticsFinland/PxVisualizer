@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { convertPxGraphDataToChartOptions, EVisualizationType, IQueryVisualizationResponse, defaultTheme, IChartOptions } from "../../../core";
+import { convertPxGraphDataToChartOptions, EVisualizationType, IQueryVisualizationResponse, defaultTheme } from "../../../core";
 
 import Highcharts from 'highcharts';
 // Named import HighchartsReact was added to get pxvisualiser to work in pxgraf-creator.
