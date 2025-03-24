@@ -9,6 +9,7 @@ import { viewToDownloadCSVOption } from "../../../core/tables/csvTable";
 import { generateFilename } from "../../../core/tables/exportingUtils";
 import { TIcon } from "../../../core/types/icon";
 import { viewToDownloadXLSOption } from "../../../core/tables/xlsx/xlsxBuilder";
+import { EVisualizationType } from "../../../core";
 
 const BurgerWrapper = styled.div`
     width: 2.5rem;
@@ -59,6 +60,8 @@ export interface IBurgerMenuProps {
     };
     menuItemDefinitions?: (IFunctionalMenuItem | ILinkMenuItem)[];
     menuIconInheritColor?: boolean;
+    toggleAccessibilityMode?: () => void;
+    accessibilityMode?: boolean;
 }
 
 interface IBaseMenuItem {
@@ -118,7 +121,8 @@ export function calculateExportDimensions(chartRef: HighchartsReactRefObject): {
     return { finalWidth, finalHeight };
 }
 
-export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false}) => {
+
+export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, toggleAccessibilityMode, accessibilityMode }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const menuRef = React.useRef<any>(null);
@@ -165,6 +169,11 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
         if (onClick) onClick();
     }
 
+    const showAccessibilityModeToggle: boolean =
+        !!tableToggle &&
+        !tableToggle.tableMode &&
+        viewData.visualizationSettings.visualizationType != EVisualizationType.ScatterPlot;
+
     return (
         <BurgerWrapper ref={menuRef}>
             <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => {setIsOpen(!isOpen)}}>
@@ -209,6 +218,10 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({viewData, currentChartRe
                                                 }, {}))
                                             } />
                                     </>
+                                }
+                                {
+                                    showAccessibilityModeToggle &&
+                                    <MenuItem isFirst={false} locale={locale} text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]} onClick={() => handleMenuItemClick(toggleAccessibilityMode)} />
                                 }
                                 {
                                     tableToggle &&

@@ -92,6 +92,7 @@ const ReactChart: React.FC<IChartProps> = ({
 
     const [currentChartRef, setCurrentChartRef] = React.useState(chartRef.current);
     const [tableMode, setTableMode] = React.useState(false);
+    const [accessibilityMode, setAccessibilityMode] = React.useState(false);
     const [width, setWidth] = React.useState(0);
 
     const variableSelections = useMemo(() => {
@@ -135,6 +136,10 @@ const ReactChart: React.FC<IChartProps> = ({
         setTableMode(!tableMode);
     }
 
+    const toggleAccessibilityMode = () => {
+        setAccessibilityMode(!accessibilityMode);
+    }
+
     React.useEffect(() => {
         if (chartRef.current) {
             setCurrentChartRef(chartRef.current);
@@ -144,13 +149,13 @@ const ReactChart: React.FC<IChartProps> = ({
     try {
         // Chart
         if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
-            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view);
+            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { accessibilityMode });
             return (
                 <ChartWrapper>
                     {
                         showContextMenu &&
                         <MenuContainer>
-                            <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} />
+                                <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} accessibilityMode={accessibilityMode} toggleAccessibilityMode={toggleAccessibilityMode} />
                         </MenuContainer>
                     }
                     <ChartContainer $tableMode={tableMode}>

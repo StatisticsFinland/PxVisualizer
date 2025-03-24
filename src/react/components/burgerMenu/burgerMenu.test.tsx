@@ -23,28 +23,35 @@ beforeEach(() => {
     mockExportChartLocal.mockClear();
 });
 
+const mockTableToggle = {
+    toggleHandler: jest.fn(),
+    tableMode: false
+}
+
 describe('burgerMenu, functional tests', () => {
     it('Should open the menu with correct menu elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        render(<BurgerMenu locale="fi" viewData={view} />);
-        act(() => {
-            screen.getByRole('button').click();
-        });
-        await waitFor(() => {
-            expect(screen.getAllByRole('button').length).toEqual(3);
-            expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
-            expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
-        });
-    });
-
-    it('Should open the menu with correct custom elements', async () => {
-        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Foo', onClick: jest.fn() }, { text: 'Bar', onClick: jest.fn() }, { text: 'Baz', url: 'foobar.com', isExternal: true }, { text: 'Baz2', url: 'foobar2.com', isExternal: false }]} />);
+        render(<BurgerMenu locale="fi" viewData={view} tableToggle={mockTableToggle} accessibilityMode={false} toggleAccessibilityMode={jest.fn()} />);
         act(() => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
             expect(screen.getAllByRole('button').length).toEqual(5);
+            expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
+            expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
+            expect(screen.getByText("N\u00E4yt\u00E4 taulukko")).toBeTruthy();
+            expect(screen.getByText("N\u00E4yt\u00E4 kuviossa symbolit")).toBeTruthy();
+        });
+    });
+
+    it('Should open the menu with correct custom elements', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Foo', onClick: jest.fn() }, { text: 'Bar', onClick: jest.fn() }, { text: 'Baz', url: 'foobar.com', isExternal: true }, { text: 'Baz2', url: 'foobar2.com', isExternal: false }]} accessibilityMode={false} toggleAccessibilityMode={jest.fn()} tableToggle={mockTableToggle} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            expect(screen.getAllByRole('button').length).toEqual(7);
             expect(screen.getAllByRole('link').length).toEqual(2);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
@@ -54,6 +61,34 @@ describe('burgerMenu, functional tests', () => {
             expect(screen.getByText('Ulkoinen linkki')).toBeTruthy();
             expect(screen.getByText('Baz2')).toBeTruthy();
             expect(screen.getAllByRole('link').length).toBe(2);
+            expect(screen.getByText("N\u00E4yt\u00E4 taulukko")).toBeTruthy();
+            expect(screen.getByText("N\u00E4yt\u00E4 kuviossa symbolit")).toBeTruthy();
+        });
+    });
+
+    it('Should trigger the accessibilityMode function when the menu item is clicked', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        const mockToggleAccessibilityModeFunction = jest.fn();
+        const mockTableToggle = {
+            toggleHandler: jest.fn(),
+            tableMode: false
+        };
+        render(
+            <BurgerMenu
+                locale="fi"
+                viewData={view}
+                tableToggle={mockTableToggle}
+                accessibilityMode={false}
+                toggleAccessibilityMode={mockToggleAccessibilityModeFunction}
+            />
+        );
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            const menuItem = screen.getByText(Translations.toggleAccessibilityModeOn["fi"]);
+            fireEvent.click(menuItem);
+            expect(mockToggleAccessibilityModeFunction).toHaveBeenCalledTimes(1);
         });
     });
 
