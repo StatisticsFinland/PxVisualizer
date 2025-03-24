@@ -2,7 +2,7 @@ import { Options } from "highcharts";
 import { View } from "../types/view";
 import { getFormattedUnits } from "./Utility/formatters";
 import { getTimeSeriesOptions } from "./Utility/timeIntervals";
-import { commonBasicVerticalBarChartOptions, commonYAxisOptions, commonDatalabelsOptions, commonBarOptions } from './chartOptions';
+import { commonBasicVerticalBarChartOptions, commonYAxisOptions, commonDatalabelsOptions } from './chartOptions';
 import { IChartOptions } from "../types/chartOptions";
 
 export const basicVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
@@ -21,9 +21,6 @@ export const basicVerticalBarChartOptions = (view: View, locale: string, options
                     ...commonDatalabelsOptions(view, locale)
                 }
             },
-            column: {
-                ...commonBarOptions
-            }
         },
         exporting: {
             enabled: false

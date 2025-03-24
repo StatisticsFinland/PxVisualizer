@@ -1,6 +1,6 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
-import { commonHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions, commonLegendStyleOptions, commonBarOptions } from './chartOptions';
+import { commonHorizontalBarChartOptions, commonBasicHorizontalBarChartYAxisOptions, commonDatalabelsOptions, commonLegendStyleOptions } from './chartOptions';
 import { buildBarChartSeries } from './Utility/seriesDataBuilder';
 import { IChartOptions } from '../types/chartOptions';
 
@@ -24,9 +24,6 @@ export const groupHorizontalBarChartOptions = (view: View, locale: string, optio
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
                 }
-            },
-            bar: {
-                ...commonBarOptions,
             }
         }
     };

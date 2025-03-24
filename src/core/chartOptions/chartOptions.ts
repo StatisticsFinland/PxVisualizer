@@ -135,7 +135,3 @@ export const commonLegendStyleOptions: LegendOptions = {
         color: 'black',
     }
 };
-
-export const commonBarOptions: PlotBarOptions | PlotColumnOptions = {
-    borderWidth: 0,
-}

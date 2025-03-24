@@ -235,11 +235,15 @@ export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => 
         },
         column: {
             groupPadding: 0.2,
-            pointPadding: 0.01
+            pointPadding: 0.01,
+            borderRadius: 0,
+            borderWidth: 0
         },
         bar: {
             groupPadding: 0.2,
-            pointPadding: 0.01
+            pointPadding: 0.01,
+            borderRadius: 0,
+            borderWidth: 0
         },
         series: {
             animation : false
