@@ -106,15 +106,15 @@ export interface IMenuItemProps {
     bottomSeparator?: boolean;
     isFirst?: boolean;
     isLast?: boolean;
-    index: number;
+    index?: number;
     currentTabIndex?: number;
 }
 
 const getTabIndex = (index: number, currentTabIndex?: number) => {
-    return currentTabIndex === index ? 0 : -1;
+    return currentTabIndex != -1 && currentTabIndex === index ? 0 : -1;
 };
 
-export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuItemProps>(({ text, onClick, url, openNewTab, isExternal, prefixIcon, suffixIcon, locale, index, bottomSeparator = false, isFirst = false, isLast = false, currentTabIndex = -1 }, ref) => {
+export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuItemProps>(({ text, onClick, url, openNewTab, isExternal, prefixIcon, suffixIcon, locale, bottomSeparator = false, isFirst = false, isLast = false, index = -1, currentTabIndex = -1 }, ref) => {
 
     let prefixIconContent: React.ReactNode;
     if (prefixIcon) {
@@ -157,7 +157,7 @@ export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuI
     if (url) {
         return (
             <ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}>
-                <StyledLink ref={ref as React.Ref<HTMLAnchorElement>} href={url} target={openNewTab ? '_blank' : undefined} onKeyDown={handleKeyDown} onClick={handleClick} tabIndex={getTabIndex(index, currentTabIndex)}>
+                <StyledLink id={`menuitem-${index}`} ref={ref as React.Ref<HTMLAnchorElement>} href={url} target={openNewTab ? '_blank' : undefined} onKeyDown={handleKeyDown} onClick={handleClick} tabIndex={getTabIndex(index, currentTabIndex)}>
                     {content}
                 </StyledLink>
             </ListItem>
@@ -166,7 +166,7 @@ export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuI
 
     if (onClick) {
         return (<ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}>
-            <Button ref={ref as React.Ref<HTMLButtonElement>} onClick={onClick} tabIndex={getTabIndex(index, currentTabIndex)}>
+            <Button id={`menuitem-${index}`} ref={ref as React.Ref<HTMLButtonElement>} onClick={onClick} tabIndex={getTabIndex(index, currentTabIndex)}>
                 {content}
                 </Button>
             </ListItem>)
