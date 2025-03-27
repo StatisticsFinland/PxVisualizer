@@ -124,25 +124,57 @@ export function calculateExportDimensions(chartRef: HighchartsReactRefObject): {
 
 export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, toggleAccessibilityMode, accessibilityMode }) => {
     const [isOpen, setIsOpen] = React.useState(false);
+    const [selectedIndex, setSelectedIndex] = React.useState(-1);
 
+    const menuItems = React.useRef(new Map<number, HTMLButtonElement | HTMLAnchorElement | null>());
     const menuRef = React.useRef<any>(null);
     const closeMenu = (e: Event) => {
-        if(menuRef.current && isOpen && !menuRef.current.contains(e.target)) {
-            setIsOpen(false);
-            buttonRef.current?.focus();
-          }
+        if (menuRef.current && isOpen && !menuRef.current.contains(e.target)) {
+            toggleMenuOpen(false);
+        }
     }
+
+    React.useEffect(() => {
+        setFocusToMenuItem();
+    }, [selectedIndex]);
 
     document.addEventListener('mousedown', closeMenu);
     const exportCSV = viewToDownloadCSVOption(viewData, locale);
     const exportXLSX = viewToDownloadXLSOption(viewData, locale);
     const customMenuItemArray = menuItemDefinitions?.map((menuItemDefinition, index) => {
         if ('onClick' in menuItemDefinition) {
-            return <MenuItem isFirst={index === 0} bottomSeparator={index + 1 === menuItemDefinitions.length} locale={locale} prefixIcon={menuItemDefinition.prefixIcon} suffixIcon={menuItemDefinition.suffixIcon} key={`customfmenuitem-${index}`} text={menuItemDefinition.text} onClick={() => handleMenuItemClick(menuItemDefinition.onClick)} />; // NOSONAR
+            return <MenuItem
+                currentTabIndex={selectedIndex}
+                isFirst={index === 0}
+                index={index}
+                bottomSeparator={index + 1 === menuItemDefinitions.length}
+                locale={locale}
+                prefixIcon={menuItemDefinition.prefixIcon}
+                suffixIcon={menuItemDefinition.suffixIcon}
+                key={`customfmenuitem-${index}`}
+                text={menuItemDefinition.text}
+                onClick={() => handleMenuItemClick(menuItemDefinition.onClick)}
+                ref={(el) => menuItems.current.set(index, el)}
+            />; // NOSONAR
         }
 
         if ('url' in menuItemDefinition) {
-            return <MenuItem isFirst={index === 0} bottomSeparator={index + 1 === menuItemDefinitions.length} locale={locale} prefixIcon={menuItemDefinition.prefixIcon} suffixIcon={menuItemDefinition.suffixIcon} isExternal={menuItemDefinition.isExternal} key={`customlmenuitem-${index}`} text={`${menuItemDefinition.text}`} url={menuItemDefinition.url} openNewTab={menuItemDefinition.openNewTab} onClick={() => handleMenuItemClick()} />; // NOSONAR
+            return <MenuItem
+                currentTabIndex={selectedIndex}
+                isFirst={index === 0}
+                index={index}
+                bottomSeparator={index + 1 === menuItemDefinitions.length}
+                locale={locale}
+                prefixIcon={menuItemDefinition.prefixIcon}
+                suffixIcon={menuItemDefinition.suffixIcon}
+                isExternal={menuItemDefinition.isExternal}
+                key={`customlmenuitem-${index}`}
+                text={`${menuItemDefinition.text}`}
+                url={menuItemDefinition.url}
+                openNewTab={menuItemDefinition.openNewTab}
+                onClick={() => handleMenuItemClick()}
+                ref={(el) => menuItems.current.set(index, el)}
+            />; // NOSONAR
         }
     });
 
@@ -156,17 +188,53 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
     }, [isOpen]);
 
     const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-            setIsOpen(false);
-            buttonRef.current?.focus();
+        if (e.key === 'Escape' ||
+        (e.key === 'Tab' && isOpen)) {
+            toggleMenuOpen(false);
+        }
+        if (e.key === 'ArrowDown' && isOpen) {
+            e.preventDefault();
+            setSelectedIndex((prevIndex) => {
+                const nextIndex = prevIndex + 1;
+                const maxIndex = menuItemDefinitions ? menuItemDefinitions.length + 5 : 5;
+                return nextIndex > maxIndex ? 0 : nextIndex;
+            });
+        }
+        if (e.key === 'ArrowUp' && isOpen) {
+            e.preventDefault();
+            setSelectedIndex((prevIndex) => {
+                const nextIndex = prevIndex - 1;
+                const maxIndex = menuItemDefinitions ? menuItemDefinitions.length + 5 : 5;
+                return nextIndex < 0 ? maxIndex : nextIndex;
+            });
         }
     }
 
     const buttonRef = React.useRef<HTMLButtonElement>(null);
     const handleMenuItemClick = (onClick?: () => void) => {
-        setIsOpen(false);
+        toggleMenuOpen(false);
         buttonRef.current?.focus();
         if (onClick) onClick();
+    }
+
+    const toggleMenuOpen = (open: boolean) => {
+        setIsOpen(open);
+        setSelectedIndex(open ? 0 : -1);
+        if (open) {
+            setFocusToMenuItem();
+        }
+        else {
+            buttonRef.current?.focus();
+        }
+    }
+
+    const setFocusToMenuItem = () => {
+        if (selectedIndex === -1) {
+            return;
+        }
+        if (menuItems.current.has(selectedIndex)) {
+            menuItems.current.get(selectedIndex)?.focus();
+        }
     }
 
     const showAccessibilityModeToggle: boolean =
@@ -176,7 +244,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
 
     return (
         <BurgerWrapper ref={menuRef}>
-            <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => {setIsOpen(!isOpen)}}>
+            <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => { toggleMenuOpen(!isOpen) }}>
                 <Icon inheritColor={menuIconInheritColor} icon={isOpen ? 'Times' : 'Bars'} />
             </Hamburger>
             <MenuAnchor>
@@ -185,49 +253,92 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                     <MenuWrapper>
                         <List>
                             {menuItemDefinitions && customMenuItemArray}
-                            <MenuItem isFirst={!menuItemDefinitions} locale={locale} prefixIcon={'Download'} text={exportXLSX.text} onClick={() => handleMenuItemClick(exportXLSX.onClick) } />
-                            <MenuItem isLast={!currentChartRef} bottomSeparator={!!currentChartRef} locale={locale} prefixIcon={'Download'} text={exportCSV.text} onClick={() => handleMenuItemClick(exportCSV.onClick) } />
+                            <MenuItem
+                                index={menuItemDefinitions ? menuItemDefinitions.length : 0}
+                                isFirst={!menuItemDefinitions}
+                                locale={locale}
+                                prefixIcon={'Download'}
+                                text={exportXLSX.text}
+                                onClick={() => handleMenuItemClick(exportXLSX.onClick)}
+                                currentTabIndex={selectedIndex}
+                                ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length : 0, el)}
+                            />
+                            <MenuItem
+                                index={menuItemDefinitions ? menuItemDefinitions.length + 1 : 1}
+                                isLast={!currentChartRef}
+                                bottomSeparator={!!currentChartRef}
+                                locale={locale}
+                                prefixIcon={'Download'}
+                                text={exportCSV.text}
+                                onClick={() => handleMenuItemClick(exportCSV.onClick)}
+                                currentTabIndex={selectedIndex}
+                                ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 1 : 1, el)}
+                            />
                             {
-                                    currentChartRef &&
-                                    <>
-                                        <MenuItem
-                                            locale={locale}
-                                            prefixIcon={'Download'}
-                                            text={Translations.downloadSVG[locale]}
-                                            onClick={() => handleMenuItemClick(() =>
-                                                currentChartRef.chart.exportChartLocal({
-                                                    filename: `${generateFilename(viewData.tableReferenceName)}`,
-                                                    type: "image/svg+xml",
-                                                    sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
-                                                    sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
-                                                    scale: 1
-                                                }, {}))
-                                            } />
-                                        <MenuItem
-                                            isLast={!tableToggle}
-                                            bottomSeparator={!!tableToggle}
-                                            locale={locale}
-                                            prefixIcon={'Download'}
-                                            text={Translations.downloadPNG[locale]}
-                                            onClick={() => handleMenuItemClick(() =>
-                                                currentChartRef.chart.exportChartLocal({
-                                                    filename: `${generateFilename(viewData.tableReferenceName)}`,
-                                                    sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
-                                                    sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
-                                                    scale: 1
-                                                }, {}))
-                                            } />
-                                    </>
-                                }
-                                {
-                                    showAccessibilityModeToggle &&
-                                    <MenuItem isFirst={false} locale={locale} text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]} onClick={() => handleMenuItemClick(toggleAccessibilityMode)} />
-                                }
-                                {
-                                    tableToggle &&
-                                    <MenuItem isLast={true} locale={locale} text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]} onClick={() => handleMenuItemClick(tableToggle.toggleHandler)} />
-                                }
-                            </List>
+                                currentChartRef &&
+                                <>
+                                    <MenuItem
+                                        index={menuItemDefinitions ? menuItemDefinitions.length + 2 : 2}
+                                        locale={locale}
+                                        prefixIcon={'Download'}
+                                        text={Translations.downloadSVG[locale]}
+                                        onClick={() => handleMenuItemClick(() =>
+                                            currentChartRef.chart.exportChartLocal({
+                                                filename: `${generateFilename(viewData.tableReferenceName)}`,
+                                                type: "image/svg+xml",
+                                                sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
+                                                sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
+                                                scale: 1
+                                            }, {}))
+                                        }
+                                        currentTabIndex={selectedIndex}
+                                        ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 2 : 2, el)}
+                                    />
+                                    <MenuItem
+                                        index={menuItemDefinitions ? menuItemDefinitions.length + 3 : 3}
+                                        isLast={!tableToggle}
+                                        bottomSeparator={!!tableToggle}
+                                        locale={locale}
+                                        prefixIcon={'Download'}
+                                        text={Translations.downloadPNG[locale]}
+                                        onClick={() => handleMenuItemClick(() =>
+                                            currentChartRef.chart.exportChartLocal({
+                                                filename: `${generateFilename(viewData.tableReferenceName)}`,
+                                                sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
+                                                sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
+                                                scale: 1
+                                            }, {}))
+                                        }
+                                        currentTabIndex={selectedIndex}
+                                        ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 3 : 3, el)}
+                                    />
+                                </>
+                            }
+                            {
+                                showAccessibilityModeToggle &&
+                                <MenuItem
+                                    index={menuItemDefinitions ? menuItemDefinitions.length + 4 : 4}
+                                    isFirst={false}
+                                    locale={locale}
+                                    text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]}
+                                    onClick={() => handleMenuItemClick(toggleAccessibilityMode)}
+                                    currentTabIndex={selectedIndex}
+                                    ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 4 : 4, el)}
+                                />
+                            }
+                            {
+                                tableToggle &&
+                                <MenuItem
+                                    index={menuItemDefinitions ? menuItemDefinitions.length + 5 : 5}
+                                    isLast={true}
+                                    locale={locale}
+                                    text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]}
+                                    onClick={() => handleMenuItemClick(tableToggle.toggleHandler)}
+                                    currentTabIndex={selectedIndex}
+                                    ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 5 : 5, el)}
+                                />
+                            }
+                        </List>
                     </MenuWrapper>
                 }
             </MenuAnchor>
