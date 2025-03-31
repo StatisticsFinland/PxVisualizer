@@ -144,7 +144,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
     const customMenuItemArray = menuItemDefinitions?.map((menuItemDefinition, index) => {
         if ('onClick' in menuItemDefinition) {
             return <MenuItem
-                currentTabIndex={selectedIndex}
+                tabIndex={getTabIndex(index)}
                 isFirst={index === 0}
                 index={index}
                 bottomSeparator={index + 1 === menuItemDefinitions.length}
@@ -155,13 +155,12 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 text={menuItemDefinition.text}
                 onClick={() => handleMenuItemClick(menuItemDefinition.onClick)}
                 ref={(el) => menuItems.current.set(index, el)}
-                aria-role="menuitem"
             />; // NOSONAR
         }
 
         if ('url' in menuItemDefinition) {
             return <MenuItem
-                currentTabIndex={selectedIndex}
+                tabIndex={getTabIndex(index)}
                 isFirst={index === 0}
                 index={index}
                 bottomSeparator={index + 1 === menuItemDefinitions.length}
@@ -175,12 +174,12 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 openNewTab={menuItemDefinition.openNewTab}
                 onClick={() => handleMenuItemClick()}
                 ref={(el) => menuItems.current.set(index, el)}
-                aria-role="menuitem"
             />; // NOSONAR
         }
     });
 
     useEffect(() => {
+        setSelectedIndex(isOpen ? 0 : -1);
         document.addEventListener('mousedown', closeMenu);
         document.addEventListener('keydown', handleKeyDown);
         return () => {
@@ -215,22 +214,15 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
     const buttonRef = React.useRef<HTMLButtonElement>(null);
     const handleMenuItemClick = (onClick?: () => void) => {
         toggleMenuOpen(false);
-        buttonRef.current?.focus();
         if (onClick) onClick();
     }
 
     const toggleMenuOpen = (open: boolean) => {
         setIsOpen(open);
-        setSelectedIndex(open ? 0 : -1);
-        if (open) {
-            setFocusToMenuItem();
-        }
-        else {
-            buttonRef.current?.focus();
-        }
     }
 
     const setFocusToMenuItem = () => {
+        console.log('setting focus to menu item', selectedIndex);
         if (selectedIndex === -1) {
             return;
         }
@@ -244,27 +236,31 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         !tableToggle.tableMode &&
         viewData.visualizationSettings.visualizationType != EVisualizationType.ScatterPlot;
 
+
+    const getTabIndex = (index: number) => {
+        return selectedIndex != -1 && selectedIndex === index ? 0 : -1;
+    };
+
     return (
         <BurgerWrapper ref={menuRef}>
-            <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => { toggleMenuOpen(!isOpen) } }>
+            <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => { toggleMenuOpen(!isOpen) }} aria-haspopup="menu" aria-controls="menu">
                 <Icon inheritColor={menuIconInheritColor} icon={isOpen ? 'Times' : 'Bars'} />
             </Hamburger>
             <MenuAnchor>
                 {
                     isOpen &&
-                    <MenuWrapper role="menu" aria-label={`${Translations.chartMenuLabel[locale]}`} aria-orientation="vertical" aria-activedescendant={`menuitem-${selectedIndex}`} tabIndex={isOpen ? 0 : -1}>
-                            <List>
+                    <MenuWrapper>
+                            <List id="menu" role="menu" aria-label={`${Translations.chartMenuLabel[locale]}`} aria-orientation="vertical" aria-activedescendant={`menuitem-${selectedIndex}`} tabIndex={isOpen ? 0 : -1}>
                             {menuItemDefinitions && customMenuItemArray}
                             <MenuItem
-                                    index={menuItemDefinitions ? menuItemDefinitions.length : 0}
-                                    isFirst={!menuItemDefinitions}
-                                    locale={locale}
-                                    prefixIcon={'Download'}
-                                    text={exportXLSX.text}
-                                    onClick={() => handleMenuItemClick(exportXLSX.onClick)}
-                                    currentTabIndex={selectedIndex}
-                                    ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length : 0, el)}
-                                    aria-role="menuitem"
+                                index={menuItemDefinitions ? menuItemDefinitions.length : 0}
+                                isFirst={!menuItemDefinitions}
+                                locale={locale}
+                                prefixIcon={'Download'}
+                                text={exportXLSX.text}
+                                onClick={() => handleMenuItemClick(exportXLSX.onClick)}
+                                tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length : 0)}
+                                ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length : 0, el)}
                             />
                             <MenuItem
                                 index={menuItemDefinitions ? menuItemDefinitions.length + 1 : 1}
@@ -274,10 +270,9 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                 prefixIcon={'Download'}
                                 text={exportCSV.text}
                                 onClick={() => handleMenuItemClick(exportCSV.onClick)}
-                                currentTabIndex={selectedIndex}
+                                tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 1 : 1)}
                                 ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 1 : 1, el)}
-                                aria-role="menuitem"
-                            />
+                                />
                             {
                                 currentChartRef &&
                                 <>
@@ -295,9 +290,8 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                                 scale: 1
                                             }, {}))
                                         }
-                                        currentTabIndex={selectedIndex}
+                                        tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 2 : 2)}
                                         ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 2 : 2, el)}
-                                        aria-role="menuitem"
                                     />
                                     <MenuItem
                                         index={menuItemDefinitions ? menuItemDefinitions.length + 3 : 3}
@@ -314,10 +308,9 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                                 scale: 1
                                             }, {}))
                                         }
-                                        currentTabIndex={selectedIndex}
+                                        tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 3 : 3)}
                                         ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 3 : 3, el)}
-                                        aria-role="menuitem"
-                                    />
+                                        />
                                 </>
                             }
                             {
@@ -328,10 +321,9 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                     locale={locale}
                                     text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]}
                                     onClick={() => handleMenuItemClick(toggleAccessibilityMode)}
-                                    currentTabIndex={selectedIndex}
+                                    tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 4 : 4)}
                                     ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 4 : 4, el)}
-                                    aria-role="menuitem"
-                                />
+                                    />
                             }
                             {
                                 tableToggle &&
@@ -341,10 +333,9 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                     locale={locale}
                                     text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]}
                                     onClick={() => handleMenuItemClick(tableToggle.toggleHandler)}
-                                    currentTabIndex={selectedIndex}
+                                    tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 5 : 5)}
                                     ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 5 : 5, el)}
-                                    aria-role="menuitem"
-                                />
+                                    />
                             }
                         </List>
                     </MenuWrapper>
