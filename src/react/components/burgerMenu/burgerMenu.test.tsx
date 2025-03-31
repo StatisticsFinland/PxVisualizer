@@ -29,14 +29,14 @@ const mockTableToggle = {
 }
 
 describe('burgerMenu, functional tests', () => {
-    it('Should open the menu with correct menu elements', async () => {
+    it('Should open the menu with correct elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
         render(<BurgerMenu locale="fi" viewData={view} tableToggle={mockTableToggle} accessibilityMode={false} toggleAccessibilityMode={jest.fn()} />);
         act(() => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            expect(screen.getAllByRole('button').length).toEqual(5);
+            expect(screen.getAllByRole('menuitem').length).toEqual(4);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
             expect(screen.getByText("N\u00E4yt\u00E4 taulukko")).toBeTruthy();
@@ -51,8 +51,7 @@ describe('burgerMenu, functional tests', () => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            expect(screen.getAllByRole('button').length).toEqual(7);
-            expect(screen.getAllByRole('link').length).toEqual(2);
+            expect(screen.getAllByRole('menuitem').length).toEqual(8);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
             expect(screen.getByText('Foo')).toBeTruthy();
@@ -60,7 +59,6 @@ describe('burgerMenu, functional tests', () => {
             expect(screen.getByText('Baz')).toBeTruthy();
             expect(screen.getByText('Ulkoinen linkki')).toBeTruthy();
             expect(screen.getByText('Baz2')).toBeTruthy();
-            expect(screen.getAllByRole('link').length).toBe(2);
             expect(screen.getByText("N\u00E4yt\u00E4 taulukko")).toBeTruthy();
             expect(screen.getByText("N\u00E4yt\u00E4 kuviossa symbolit")).toBeTruthy();
         });
@@ -102,12 +100,10 @@ describe('burgerMenu, functional tests', () => {
         });
         await waitFor(() => {
             screen.getByText(btnText).click();
-            expect(mockFunction).toBeCalledTimes(1);
         });
-        await waitFor(() => {
-            expect(screen.queryByText(btnText)).toBeNull();
-            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
-        });
+        expect(mockFunction).toBeCalledTimes(1);
+        expect(screen.queryByText(btnText)).toBeNull();
+        expect(screen.queryByRole('menu')).toBeNull();
     });
 
     it('Should invoke the custom function and close the menu when link is clicked', async () => {
@@ -120,12 +116,10 @@ describe('burgerMenu, functional tests', () => {
         });
         await waitFor(() => {
             screen.getByText(btnText).click();
-            expect(mockFunction).toBeCalledTimes(1);
         });
-        await waitFor(() => {
-            expect(screen.queryByText(btnText)).toBeNull();
-            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
-        });
+        expect(mockFunction).toBeCalledTimes(1);
+        expect(screen.queryByText(btnText)).toBeNull();
+        expect(screen.queryByRole('menu')).toBeNull();
     });
 
     it('Should close the menu when ESC is pressed', async () => {
@@ -134,12 +128,10 @@ describe('burgerMenu, functional tests', () => {
         act(() => {
             screen.getByRole('button').click();
         });
-        await waitFor(() => {
-            window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'Escape' });
         });
-        await waitFor(() => {
-            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
-        });
+        expect(screen.queryByRole('menu')).toBeNull();
     });
 
     it('Should calculate correct export dimensions when aspect ratio is too low', () => {
