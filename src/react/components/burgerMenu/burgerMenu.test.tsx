@@ -134,6 +134,18 @@ describe('burgerMenu, functional tests', () => {
         expect(screen.queryByRole('menu')).toBeNull();
     });
 
+    it('Should close the menu when TAB is pressed', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'Tab' });
+        });
+        expect(screen.queryByRole('menu')).toBeNull();
+    });
+
     it('Should calculate correct export dimensions when aspect ratio is too low', () => {
         const mockRef = {
             chart: {
@@ -277,6 +289,51 @@ describe('burgerMenu, functional tests', () => {
         await waitFor(() => {
             expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('0');
             expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+    });
+
+    it('should cycle the focus of menu items back to start if down arrow is pressed on the last item', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view}/>);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+    });
+
+    it('should cycle from first to last item if up arrow is pressed on the first item', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' });
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('0');
         });
     });
 });

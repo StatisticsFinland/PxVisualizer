@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { MenuItem } from "./menuItem/menuItem";
+import { IMenuItemProps, MenuItem } from "./menuItem/menuItem";
 import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
 import { View } from "../../../core/types/view";
 import { Translations } from "../../../core/conversion/translations";
@@ -181,6 +181,114 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         }
     });
 
+    const defaultMenuItemsArray = () => {
+        const items = [];
+        let itemIndex = menuItemDefinitions ? menuItemDefinitions.length : 0;
+
+        const createRefCallback = (index: number) => (el: HTMLButtonElement | HTMLAnchorElement | null) => {
+            menuItems.current.set(index, el);
+        };
+
+        items.push(<MenuItem
+            index={itemIndex}
+            isFirst={!menuItemDefinitions}
+            locale={locale}
+            prefixIcon={'Download'}
+            text={exportXLSX.text}
+            onClick={() => handleMenuItemClick(exportXLSX.onClick)}
+            tabIndex={getTabIndex(itemIndex, selectedIndex)}
+            ref={createRefCallback(itemIndex)}
+            key={`xlsx-menu-item`}
+        />);
+
+        itemIndex++;
+        items.push(<MenuItem
+            index={itemIndex}
+            isLast={!currentChartRef}
+            bottomSeparator={!!currentChartRef}
+            locale={locale}
+            prefixIcon={'Download'}
+            text={exportCSV.text}
+            onClick={() => handleMenuItemClick(exportCSV.onClick)}
+            tabIndex={getTabIndex(itemIndex, selectedIndex)}
+            ref={createRefCallback(itemIndex)}
+            key={`csv-menu-item`}
+        />);
+
+        if (currentChartRef) {
+            itemIndex++;
+            items.push(<MenuItem
+                index={itemIndex}
+                locale={locale}
+                prefixIcon={'Download'}
+                text={Translations.downloadSVG[locale]}
+                onClick={() => handleMenuItemClick(() =>
+                    currentChartRef.chart.exportChartLocal({
+                        filename: `${generateFilename(viewData.tableReferenceName)}`,
+                        type: "image/svg+xml",
+                        sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
+                        sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
+                        scale: 1
+                    }, {}))
+                }
+                tabIndex={getTabIndex(itemIndex, selectedIndex)}
+                ref={createRefCallback(itemIndex)}
+                key={`svg-menu-item`}
+            />)
+
+            itemIndex++;
+            items.push(<MenuItem
+                index={itemIndex}
+                isLast={!tableToggle}
+                bottomSeparator={!!tableToggle}
+                locale={locale}
+                prefixIcon={'Download'}
+                text={Translations.downloadPNG[locale]}
+                onClick={() => handleMenuItemClick(() =>
+                    currentChartRef.chart.exportChartLocal({
+                        filename: `${generateFilename(viewData.tableReferenceName)}`,
+                        sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
+                        sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
+                        scale: 1
+                    }, {}))
+                }
+                tabIndex={getTabIndex(itemIndex, selectedIndex)}
+                ref={createRefCallback(itemIndex)}
+                key={`png-menu-item`}
+            />)
+        }
+
+        if (showAccessibilityModeToggle) {
+            itemIndex++;
+            items.push(<MenuItem
+                index={itemIndex}
+                isFirst={false}
+                locale={locale}
+                text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]}
+                onClick={() => handleMenuItemClick(toggleAccessibilityMode)}
+                tabIndex={getTabIndex(itemIndex, selectedIndex)}
+                ref={createRefCallback(itemIndex)}
+                key={`accessibility-mode-toggle`}
+            />)
+        }
+
+        if (tableToggle) {
+            itemIndex++;
+            items.push(<MenuItem
+                index={itemIndex}
+                isLast={true}
+                locale={locale}
+                text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]}
+                onClick={() => handleMenuItemClick(tableToggle.toggleHandler)}
+                tabIndex={getTabIndex(itemIndex, selectedIndex)}
+                ref={createRefCallback(itemIndex)}
+                key={`table-toggle`}
+            />)
+        }
+
+        return items;
+    };
+
     useEffect(() => {
         setSelectedIndex(isOpen ? 0 : -1);
         document.addEventListener('mousedown', closeMenu);
@@ -191,6 +299,11 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         }
     }, [isOpen]);
 
+    const getMenuItemMaxIndex = (): number => {
+        const customMenuItemsCount: number = menuItemDefinitions ? menuItemDefinitions.length : 0;
+        return customMenuItemsCount + defaultMenuItemsArray().length - 1;
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape' ||
         (e.key === 'Tab' && isOpen)) {
@@ -200,7 +313,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
             e.preventDefault();
             setSelectedIndex((prevIndex) => {
                 const nextIndex = prevIndex + 1;
-                const maxIndex = menuItemDefinitions ? menuItemDefinitions.length + 5 : 5;
+                const maxIndex = getMenuItemMaxIndex();
                 return nextIndex > maxIndex ? 0 : nextIndex;
             });
         }
@@ -208,7 +321,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
             e.preventDefault();
             setSelectedIndex((prevIndex) => {
                 const nextIndex = prevIndex - 1;
-                const maxIndex = menuItemDefinitions ? menuItemDefinitions.length + 5 : 5;
+                const maxIndex = getMenuItemMaxIndex();
                 return nextIndex < 0 ? maxIndex : nextIndex;
             });
         }
@@ -233,10 +346,6 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         }
     }
 
-    const getMenuItemIndex = (baseIndex: number) => {
-        return baseIndex + (menuItemDefinitions ? menuItemDefinitions.length : 0);
-    }
-
     const showAccessibilityModeToggle: boolean =
         !!tableToggle &&
         !tableToggle.tableMode &&
@@ -250,96 +359,12 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
             <MenuAnchor>
                 {
                     isOpen &&
-                    <MenuWrapper>
+                        <MenuWrapper>
                             <List id="menu" role="menu" aria-label={`${Translations.chartMenuLabel[locale]}`} aria-orientation="vertical" aria-activedescendant={`menuitem-${selectedIndex}`} tabIndex={isOpen ? 0 : -1}>
-                            {menuItemDefinitions && customMenuItemArray}
-                            <MenuItem
-                                index={getMenuItemIndex(0)}
-                                isFirst={!menuItemDefinitions}
-                                locale={locale}
-                                prefixIcon={'Download'}
-                                text={exportXLSX.text}
-                                onClick={() => handleMenuItemClick(exportXLSX.onClick)}
-                                tabIndex={getTabIndex(getMenuItemIndex(0), selectedIndex)}
-                                ref={(el) => menuItems.current.set(getMenuItemIndex(0), el)}
-                            />
-                            <MenuItem
-                                index={getMenuItemIndex(0)}
-                                isLast={!currentChartRef}
-                                bottomSeparator={!!currentChartRef}
-                                locale={locale}
-                                prefixIcon={'Download'}
-                                text={exportCSV.text}
-                                onClick={() => handleMenuItemClick(exportCSV.onClick)}
-                                tabIndex={getTabIndex(getMenuItemIndex(1), selectedIndex)}
-                                ref={(el) => menuItems.current.set(getMenuItemIndex(1), el)}
-                            />
-                            {
-                                currentChartRef &&
-                                <>
-                                    <MenuItem
-                                        index={getMenuItemIndex(2)}
-                                        locale={locale}
-                                        prefixIcon={'Download'}
-                                        text={Translations.downloadSVG[locale]}
-                                        onClick={() => handleMenuItemClick(() =>
-                                            currentChartRef.chart.exportChartLocal({
-                                                filename: `${generateFilename(viewData.tableReferenceName)}`,
-                                                type: "image/svg+xml",
-                                                sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
-                                                sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
-                                                scale: 1
-                                            }, {}))
-                                        }
-                                        tabIndex={getTabIndex(getMenuItemIndex(2), selectedIndex)}
-                                        ref={(el) => menuItems.current.set(getMenuItemIndex(2), el)}
-                                    />
-                                    <MenuItem
-                                        index={getMenuItemIndex(3)}
-                                        isLast={!tableToggle}
-                                        bottomSeparator={!!tableToggle}
-                                        locale={locale}
-                                        prefixIcon={'Download'}
-                                        text={Translations.downloadPNG[locale]}
-                                        onClick={() => handleMenuItemClick(() =>
-                                            currentChartRef.chart.exportChartLocal({
-                                                filename: `${generateFilename(viewData.tableReferenceName)}`,
-                                                sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
-                                                sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
-                                                scale: 1
-                                            }, {}))
-                                        }
-                                        tabIndex={getTabIndex(getMenuItemIndex(3), selectedIndex)}
-                                        ref={(el) => menuItems.current.set(getMenuItemIndex(3), el)}
-                                        />
-                                </>
-                            }
-                            {
-                                showAccessibilityModeToggle &&
-                                <MenuItem
-                                    index={getMenuItemIndex(4)}
-                                    isFirst={false}
-                                    locale={locale}
-                                    text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]}
-                                    onClick={() => handleMenuItemClick(toggleAccessibilityMode)}
-                                    tabIndex={getTabIndex(getMenuItemIndex(4), selectedIndex)}
-                                    ref={(el) => menuItems.current.set(getMenuItemIndex(4), el)}
-                                    />
-                            }
-                            {
-                                tableToggle &&
-                                <MenuItem
-                                    index={getMenuItemIndex(5)}
-                                    isLast={true}
-                                    locale={locale}
-                                    text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]}
-                                    onClick={() => handleMenuItemClick(tableToggle.toggleHandler)}
-                                    tabIndex={getTabIndex(getMenuItemIndex(5), selectedIndex)}
-                                    ref={(el) => menuItems.current.set(getMenuItemIndex(5), el)}
-                                />
-                            }
-                        </List>
-                    </MenuWrapper>
+                                {menuItemDefinitions && customMenuItemArray}
+                                {defaultMenuItemsArray()}
+                            </List>
+                        </MenuWrapper>
                 }
             </MenuAnchor>
         </BurgerWrapper>
