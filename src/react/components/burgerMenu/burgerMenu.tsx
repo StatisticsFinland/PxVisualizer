@@ -154,7 +154,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 locale={locale}
                 prefixIcon={menuItemDefinition.prefixIcon}
                 suffixIcon={menuItemDefinition.suffixIcon}
-                key={`customfmenuitem-${index}`}
+                key={`customfmenuitem-${menuItemDefinition.text}`}
                 text={menuItemDefinition.text}
                 onClick={() => handleMenuItemClick(menuItemDefinition.onClick)}
                 ref={(el) => menuItems.current.set(index, el)}
@@ -171,7 +171,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 prefixIcon={menuItemDefinition.prefixIcon}
                 suffixIcon={menuItemDefinition.suffixIcon}
                 isExternal={menuItemDefinition.isExternal}
-                key={`customlmenuitem-${index}`}
+                key={`customlmenuitem-${menuItemDefinition.text}`}
                 text={`${menuItemDefinition.text}`}
                 url={menuItemDefinition.url}
                 openNewTab={menuItemDefinition.openNewTab}
@@ -233,6 +233,10 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         }
     }
 
+    const getMenuItemIndex = (baseIndex: number) => {
+        return baseIndex + (menuItemDefinitions ? menuItemDefinitions.length : 0);
+    }
+
     const showAccessibilityModeToggle: boolean =
         !!tableToggle &&
         !tableToggle.tableMode &&
@@ -250,31 +254,31 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                             <List id="menu" role="menu" aria-label={`${Translations.chartMenuLabel[locale]}`} aria-orientation="vertical" aria-activedescendant={`menuitem-${selectedIndex}`} tabIndex={isOpen ? 0 : -1}>
                             {menuItemDefinitions && customMenuItemArray}
                             <MenuItem
-                                index={menuItemDefinitions ? menuItemDefinitions.length : 0}
+                                index={getMenuItemIndex(0)}
                                 isFirst={!menuItemDefinitions}
                                 locale={locale}
                                 prefixIcon={'Download'}
                                 text={exportXLSX.text}
                                 onClick={() => handleMenuItemClick(exportXLSX.onClick)}
-                                tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length : 0, selectedIndex)}
-                                ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length : 0, el)}
+                                tabIndex={getTabIndex(getMenuItemIndex(0), selectedIndex)}
+                                ref={(el) => menuItems.current.set(getMenuItemIndex(0), el)}
                             />
                             <MenuItem
-                                index={menuItemDefinitions ? menuItemDefinitions.length + 1 : 1}
+                                index={getMenuItemIndex(0)}
                                 isLast={!currentChartRef}
                                 bottomSeparator={!!currentChartRef}
                                 locale={locale}
                                 prefixIcon={'Download'}
                                 text={exportCSV.text}
                                 onClick={() => handleMenuItemClick(exportCSV.onClick)}
-                                tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 1 : 1, selectedIndex)}
-                                ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 1 : 1, el)}
-                                />
+                                tabIndex={getTabIndex(getMenuItemIndex(1), selectedIndex)}
+                                ref={(el) => menuItems.current.set(getMenuItemIndex(1), el)}
+                            />
                             {
                                 currentChartRef &&
                                 <>
                                     <MenuItem
-                                        index={menuItemDefinitions ? menuItemDefinitions.length + 2 : 2}
+                                        index={getMenuItemIndex(2)}
                                         locale={locale}
                                         prefixIcon={'Download'}
                                         text={Translations.downloadSVG[locale]}
@@ -287,11 +291,11 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                                 scale: 1
                                             }, {}))
                                         }
-                                        tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 2 : 2, selectedIndex)}
-                                        ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 2 : 2, el)}
+                                        tabIndex={getTabIndex(getMenuItemIndex(2), selectedIndex)}
+                                        ref={(el) => menuItems.current.set(getMenuItemIndex(2), el)}
                                     />
                                     <MenuItem
-                                        index={menuItemDefinitions ? menuItemDefinitions.length + 3 : 3}
+                                        index={getMenuItemIndex(3)}
                                         isLast={!tableToggle}
                                         bottomSeparator={!!tableToggle}
                                         locale={locale}
@@ -305,34 +309,34 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                                                 scale: 1
                                             }, {}))
                                         }
-                                        tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 3 : 3, selectedIndex)}
-                                        ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 3 : 3, el)}
+                                        tabIndex={getTabIndex(getMenuItemIndex(3), selectedIndex)}
+                                        ref={(el) => menuItems.current.set(getMenuItemIndex(3), el)}
                                         />
                                 </>
                             }
                             {
                                 showAccessibilityModeToggle &&
                                 <MenuItem
-                                    index={menuItemDefinitions ? menuItemDefinitions.length + 4 : 4}
+                                    index={getMenuItemIndex(4)}
                                     isFirst={false}
                                     locale={locale}
                                     text={accessibilityMode ? Translations.toggleAccessibilityModeOff[locale] : Translations.toggleAccessibilityModeOn[locale]}
                                     onClick={() => handleMenuItemClick(toggleAccessibilityMode)}
-                                    tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 4 : 4, selectedIndex)}
-                                    ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 4 : 4, el)}
+                                    tabIndex={getTabIndex(getMenuItemIndex(4), selectedIndex)}
+                                    ref={(el) => menuItems.current.set(getMenuItemIndex(4), el)}
                                     />
                             }
                             {
                                 tableToggle &&
                                 <MenuItem
-                                    index={menuItemDefinitions ? menuItemDefinitions.length + 5 : 5}
+                                    index={getMenuItemIndex(5)}
                                     isLast={true}
                                     locale={locale}
                                     text={tableToggle.tableMode ? Translations.toggleTableModeOffText[locale] : Translations.toggleTableModeOnText[locale]}
                                     onClick={() => handleMenuItemClick(tableToggle.toggleHandler)}
-                                    tabIndex={getTabIndex(menuItemDefinitions ? menuItemDefinitions.length + 5 : 5, selectedIndex)}
-                                    ref={(el) => menuItems.current.set(menuItemDefinitions ? menuItemDefinitions.length + 5 : 5, el)}
-                                    />
+                                    tabIndex={getTabIndex(getMenuItemIndex(5), selectedIndex)}
+                                    ref={(el) => menuItems.current.set(getMenuItemIndex(5), el)}
+                                />
                             }
                         </List>
                     </MenuWrapper>
