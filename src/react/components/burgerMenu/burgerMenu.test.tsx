@@ -253,4 +253,30 @@ describe('burgerMenu, functional tests', () => {
             scale: 1
         }, {});
     });
+
+    it('should change focus and tabIndex when up and down arrows are pressed with the menu open', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Item1', onClick: jest.fn() }, { text: 'Item2', onClick: jest.fn() }]} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' }); // window?
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+            expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('0');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' }); // window?
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+    });
 });
