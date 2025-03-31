@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { IMenuItemProps, MenuItem } from "./menuItem/menuItem";
+import { MenuItem } from "./menuItem/menuItem";
 import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
 import { View } from "../../../core/types/view";
 import { Translations } from "../../../core/conversion/translations";
