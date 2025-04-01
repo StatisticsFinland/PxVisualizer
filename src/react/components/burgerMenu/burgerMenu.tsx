@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useId } from "react";
 import styled from "styled-components";
 import { MenuItem } from "./menuItem/menuItem";
 import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
@@ -128,6 +128,7 @@ const getTabIndex = (index: number, selectedIndex: number) => {
 export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartRef, tableToggle, menuItemDefinitions, locale, menuIconInheritColor = false, toggleAccessibilityMode, accessibilityMode }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [selectedIndex, setSelectedIndex] = React.useState(-1);
+    const idPrefix: string = useId();
 
     const menuItems = React.useRef(new Map<number, HTMLButtonElement | HTMLAnchorElement | null>());
     const menuRef = React.useRef<any>(null);
@@ -158,6 +159,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 text={menuItemDefinition.text}
                 onClick={() => handleMenuItemClick(menuItemDefinition.onClick)}
                 ref={(el) => menuItems.current.set(index, el)}
+                idPrefix={idPrefix}
             />; // NOSONAR
         }
 
@@ -177,6 +179,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 openNewTab={menuItemDefinition.openNewTab}
                 onClick={() => handleMenuItemClick()}
                 ref={(el) => menuItems.current.set(index, el)}
+                idPrefix={idPrefix}
             />; // NOSONAR
         }
     });
@@ -199,6 +202,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
             tabIndex={getTabIndex(itemIndex, selectedIndex)}
             ref={createRefCallback(itemIndex)}
             key={`xlsx-menu-item`}
+            idPrefix={idPrefix}
         />);
 
         itemIndex++;
@@ -213,6 +217,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
             tabIndex={getTabIndex(itemIndex, selectedIndex)}
             ref={createRefCallback(itemIndex)}
             key={`csv-menu-item`}
+            idPrefix={idPrefix}
         />);
 
         if (currentChartRef) {
@@ -234,6 +239,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 tabIndex={getTabIndex(itemIndex, selectedIndex)}
                 ref={createRefCallback(itemIndex)}
                 key={`svg-menu-item`}
+                idPrefix={idPrefix}
             />)
 
             itemIndex++;
@@ -255,6 +261,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 tabIndex={getTabIndex(itemIndex, selectedIndex)}
                 ref={createRefCallback(itemIndex)}
                 key={`png-menu-item`}
+                idPrefix={idPrefix}
             />)
         }
 
@@ -269,6 +276,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 tabIndex={getTabIndex(itemIndex, selectedIndex)}
                 ref={createRefCallback(itemIndex)}
                 key={`accessibility-mode-toggle`}
+                idPrefix={idPrefix}
             />)
         }
 
@@ -283,6 +291,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 tabIndex={getTabIndex(itemIndex, selectedIndex)}
                 ref={createRefCallback(itemIndex)}
                 key={`table-toggle`}
+                idPrefix={idPrefix}
             />)
         }
 
@@ -359,8 +368,8 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
             <MenuAnchor>
                 {
                     isOpen &&
-                        <MenuWrapper>
-                            <List id="menu" role="menu" aria-label={`${Translations.chartMenuLabel[locale]}`} aria-orientation="vertical" aria-activedescendant={`menuitem-${selectedIndex}`} tabIndex={isOpen ? 0 : -1}>
+                    <MenuWrapper>
+                            <List id={`${idPrefix}-menu`} role="menu" aria-label={`${Translations.chartMenuLabel[locale]}`} aria-orientation="vertical" aria-activedescendant={`${idPrefix}-menuitem-${selectedIndex}`} tabIndex={isOpen ? 0 : -1}>
                                 {menuItemDefinitions && customMenuItemArray}
                                 {defaultMenuItemsArray()}
                             </List>

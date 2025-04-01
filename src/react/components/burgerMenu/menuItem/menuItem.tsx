@@ -108,9 +108,10 @@ export interface IMenuItemProps {
     isLast?: boolean;
     tabIndex?: number;
     index?: number;
+    idPrefix: string;
 }
 
-export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuItemProps>(({ text, onClick, url, openNewTab, isExternal, prefixIcon, suffixIcon, locale, bottomSeparator = false, isFirst = false, isLast = false, tabIndex = -1, index = -1 }, ref) => {
+export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuItemProps>(({ text, onClick, url, openNewTab, isExternal, prefixIcon, suffixIcon, locale, idPrefix, bottomSeparator = false, isFirst = false, isLast = false, tabIndex = -1, index = -1 }, ref) => {
 
     let prefixIconContent: React.ReactNode;
     if (prefixIcon) {
@@ -153,7 +154,7 @@ export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuI
     if (url) {
         return (
             <ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}>
-                <StyledLink role="menuitem" id={`menuitem-${index}`} ref={ref as React.Ref<HTMLAnchorElement>} href={url} target={openNewTab ? '_blank' : undefined} onKeyDown={handleKeyDown} onClick={handleClick} tabIndex={tabIndex}>
+                <StyledLink role="menuitem" id={`${idPrefix}-menuitem-${index}`} ref={ref as React.Ref<HTMLAnchorElement>} href={url} target={openNewTab ? '_blank' : undefined} onKeyDown={handleKeyDown} onClick={handleClick} tabIndex={tabIndex}>
                     {content}
                 </StyledLink>
             </ListItem>
@@ -162,7 +163,7 @@ export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuI
 
     if (onClick) {
         return (<ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}>
-            <Button role="menuitem" id={`menuitem-${index}`} ref={ref as React.Ref<HTMLButtonElement>} onClick={onClick} tabIndex={tabIndex}>
+            <Button role="menuitem" id={`${idPrefix}-menuitem-${index}`} ref={ref as React.Ref<HTMLButtonElement>} onClick={onClick} tabIndex={tabIndex}>
                 {content}
                 </Button>
             </ListItem>)
