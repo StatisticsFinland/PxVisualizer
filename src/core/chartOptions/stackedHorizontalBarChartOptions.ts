@@ -25,7 +25,7 @@ export const stackedHorizontalBarChartOptions = (view: View, locale: string, opt
         },
         plotOptions: {
             bar: {
-                stacking: 'normal'
+                stacking: 'normal',
             },
             series: {
                 dataLabels: {

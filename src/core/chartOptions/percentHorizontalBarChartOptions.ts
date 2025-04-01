@@ -22,7 +22,7 @@ export const percentHorizontalBarChartOptions = (view: View, locale: string, opt
         },
         plotOptions: {
             bar: {
-                stacking: 'percent'
+                stacking: 'percent',
             },
             series: {
                 dataLabels: {

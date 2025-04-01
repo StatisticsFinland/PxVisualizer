@@ -19,7 +19,7 @@ export const basicVerticalBarChartOptions = (view: View, locale: string, options
                 ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
-                },
+                }
             },
         },
         exporting: {

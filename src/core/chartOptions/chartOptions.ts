@@ -31,7 +31,7 @@ export const commonYAxisOptions: YAxisOptions = {
             color: '#000',
             width: 1
         }
-    ]
+    ],
 }
 
 export const commonDatalabelsOptions = (view: View, locale: string): PlotSeriesDataLabelsOptions => {
@@ -135,4 +135,3 @@ export const commonLegendStyleOptions: LegendOptions = {
         color: 'black',
     }
 };
-

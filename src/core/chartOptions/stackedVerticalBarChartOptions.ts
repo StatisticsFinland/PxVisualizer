@@ -17,7 +17,7 @@ export const stackedVerticalBarChartOptions = (view: View, locale: string, optio
         },
         plotOptions: {
             column: {
-                stacking: 'normal'
+                stacking: 'normal',
             },
             series: {
                 ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),

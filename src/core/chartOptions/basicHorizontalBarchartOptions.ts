@@ -12,7 +12,7 @@ export const basicHorizontalBarChartOptions = (view: View, locale: string, optio
         yAxis: {
             ...commonBasicHorizontalBarChartYAxisOptions(view, locale),
             softMin: 0,
-            max: 100
+            max: 100,
         },
         legend: { enabled: false },
         plotOptions: {
