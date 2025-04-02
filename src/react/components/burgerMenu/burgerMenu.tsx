@@ -362,7 +362,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
 
     return (
         <BurgerWrapper ref={menuRef}>
-            <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => { toggleMenuOpen(!isOpen) }} aria-haspopup="menu" aria-controls="menu">
+            <Hamburger ref={buttonRef} aria-label={`${Translations.chartMenuLabel[locale]}`} aria-expanded={isOpen} onClick={() => { toggleMenuOpen(!isOpen) }} aria-haspopup="menu" aria-controls={`${idPrefix}-menu`}>
                 <Icon inheritColor={menuIconInheritColor} icon={isOpen ? 'Times' : 'Bars'} />
             </Hamburger>
             <MenuAnchor>
