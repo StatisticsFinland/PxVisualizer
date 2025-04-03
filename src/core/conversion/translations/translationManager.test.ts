@@ -193,6 +193,12 @@ const mockTranslationPackage: TTranslationPackage = {
         },
         dataMissing: {
             'foo': 'Tieto puuttuu',
+        },
+        toggleAccessibilityModeOn: {
+            'foo': 'Näytä kuviossa symbolit',
+        },
+        toggleAccessibilityModeOff: {
+            'foo': 'Piilota kuviosta symbolit',
         }
     },
     ArrayTranslations: {

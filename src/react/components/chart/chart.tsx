@@ -6,9 +6,10 @@ import Highcharts from 'highcharts';
 // Named import HighchartsReact was added to get pxvisualiser to work in pxgraf-creator.
 // Could be something to be resolved with microbundle (non-)configuration too?
 import HighchartsReactOfficial, { HighchartsReact } from 'highcharts-react-official';
-import highchartsAccessibility from "highcharts/modules/accessibility.js";
-import highchartsExporting from 'highcharts/modules/exporting.js';
-import highchartsOfflineExporting from 'highcharts/modules/offline-exporting.js';
+import "highcharts/modules/accessibility.js";
+import 'highcharts/modules/exporting.js';
+import 'highcharts/modules/offline-exporting.js';
+import 'highcharts/modules/pattern-fill.js';
 import { BurgerMenu, IFunctionalMenuItem, ILinkMenuItem } from "../burgerMenu/burgerMenu";
 import { extractSelectableVariableValues } from "../../../core/conversion/helpers";
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
@@ -28,9 +29,6 @@ const initializeHighcharts = (locale: string) => {
                 this.box.children[0].remove(); // remove hardcoded "<desc>Created with Highcharts {version number}</desc> from the code"
             }
         });
-        highchartsAccessibility(Highcharts);
-        highchartsExporting(Highcharts);
-        highchartsOfflineExporting(Highcharts);
         Highcharts.setOptions(defaultTheme(locale));
     }
 }
@@ -76,7 +74,17 @@ export interface IChartProps {
     footnote?: string;
 }
 
-const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menuItemDefinitions, selectedVariableCodes = null, showContextMenu = true, menuIconInheritColor = false, showTableTitles, showTableUnits, showTableSources}) => {
+const ReactChart: React.FC<IChartProps> = ({
+    pxGraphData,
+    footnote,
+    locale,
+    menuItemDefinitions,
+    selectedVariableCodes = null,
+    showContextMenu = true,
+    menuIconInheritColor = false,
+    showTableTitles,
+    showTableUnits,
+    showTableSources}) => {
     const validLocale = formatLocale(locale);
     initializeHighcharts(validLocale);
 
@@ -84,6 +92,7 @@ const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menu
 
     const [currentChartRef, setCurrentChartRef] = React.useState(chartRef.current);
     const [tableMode, setTableMode] = React.useState(false);
+    const [accessibilityMode, setAccessibilityMode] = React.useState(false);
     const [width, setWidth] = React.useState(0);
 
     const variableSelections = useMemo(() => {
@@ -127,6 +136,10 @@ const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menu
         setTableMode(!tableMode);
     }
 
+    const toggleAccessibilityMode = () => {
+        setAccessibilityMode(!accessibilityMode);
+    }
+
     React.useEffect(() => {
         if (chartRef.current) {
             setCurrentChartRef(chartRef.current);
@@ -136,13 +149,13 @@ const ReactChart: React.FC<IChartProps> = ({ pxGraphData, footnote, locale, menu
     try {
         // Chart
         if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
-            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view);
+            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { accessibilityMode });
             return (
                 <ChartWrapper>
                     {
                         showContextMenu &&
                         <MenuContainer>
-                            <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} />
+                                <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} accessibilityMode={accessibilityMode} toggleAccessibilityMode={toggleAccessibilityMode} />
                         </MenuContainer>
                     }
                     <ChartContainer $tableMode={tableMode}>

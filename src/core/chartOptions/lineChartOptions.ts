@@ -2,11 +2,13 @@ import { Options } from "highcharts";
 import { View } from "../types/view";
 import { getTimeSeriesOptions, getXAxisOptions } from "./Utility/timeIntervals";
 import { getFormattedUnits, getLegendLabelShorteningFunction, getLineChartToolTipFormatterFunction } from "./Utility/formatters";
-import { buildHighchartSeries } from "./Utility/seriesDataBuilder";
-import { commonChartOptions, commonDatalabelsOptions, commonYAxisOptions } from "./chartOptions";
+import { buildLineChartSeries } from "./Utility/seriesDataBuilder";
+import { commonChartOptions, commonDatalabelsOptions, commonLegendStyleOptions, commonYAxisOptions } from "./chartOptions";
+import { IChartOptions } from "../types/chartOptions";
 
-export const lineChartOptions = (view: View, locale: string): Options => {
+export const lineChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     const cutValueAxis = !view.visualizationSettings?.cutValueAxis ? 0 : undefined;
+    const markerSettings = options?.accessibilityMode ? { enabledThreshold: 3 } : { enabled: false };
     return {
         ...commonChartOptions(view, locale),
         chart: { type: 'line' },
@@ -29,19 +31,18 @@ export const lineChartOptions = (view: View, locale: string): Options => {
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
                 },
-                marker: {
-                    enabled: false
-                }
+                marker: markerSettings,
             },
             series: getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint)
         },
         legend: {
+            ...commonLegendStyleOptions,
             enabled: view.series.length > 1,
             labelFormatter: getLegendLabelShorteningFunction()
         },
-        series: buildHighchartSeries(view, 'line', locale),
+        series: buildLineChartSeries(view, locale),
         exporting: {
-            enabled: false
-        }
+            enabled: false,
+        },
     };
 }

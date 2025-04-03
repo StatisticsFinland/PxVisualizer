@@ -1,5 +1,6 @@
 import { getAxisLabelFormatterFunction } from "../chartOptions/Utility/formatters";
 import { Translations, ArrayTranslations } from "../conversion/translations";
+import { defaultColors } from "./defaultColors";
 
 export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => ({
     accessibility: {
@@ -101,7 +102,7 @@ export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => 
         loading: Translations.loading[locale],
         numericSymbols: null as any // null is not accepted even though it works as disabling the symbols, any as a workaround
     },
-    colors: ['#1a56ec', '#f2644c', '#1b3160', '#9c8d87', '#26625d', '#7791e8', '#8c1131', '#878eaf', '#c73268', '#288c72'], // chart series default colors
+    colors: defaultColors, // chart series default colors
     chart: {
         style: {
             fontFamily: '"Barlow Semi Condensed", Verdana, sans-serif'
@@ -234,11 +235,15 @@ export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => 
         },
         column: {
             groupPadding: 0.2,
-            pointPadding: 0.01
+            pointPadding: 0.01,
+            borderRadius: 0,
+            borderWidth: 0
         },
         bar: {
             groupPadding: 0.2,
-            pointPadding: 0.01
+            pointPadding: 0.01,
+            borderRadius: 0,
+            borderWidth: 0
         },
         series: {
             animation : false

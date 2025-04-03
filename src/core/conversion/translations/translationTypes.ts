@@ -65,6 +65,8 @@ export type TTranslations = {
     externalLink: TMultiLanguageString;
     quarter: TMultiLanguageString;
     dataMissing: TMultiLanguageString;
+    toggleAccessibilityModeOn: TMultiLanguageString;
+    toggleAccessibilityModeOff: TMultiLanguageString;
 }
 
 export type TArrayTranslations = {

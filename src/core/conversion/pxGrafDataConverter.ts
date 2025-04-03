@@ -13,31 +13,33 @@ import { pyramidChartOptions } from "../chartOptions/pyramidChartOptions";
 import { scatterPlotOptions } from "../chartOptions/scatterPlotOptions";
 import { lineChartOptions } from "../chartOptions/lineChartOptions";
 import { View } from "../types/view";
+import { IChartOptions } from '../types/chartOptions';
 
-export const convertPxGraphDataToChartOptions = (locale: string, view: View): Options => {
+export const convertPxGraphDataToChartOptions = (locale: string, view: View, options?: IChartOptions): Options => {
+
     switch (view.visualizationSettings.visualizationType) {
         case EVisualizationType.LineChart:
-            return lineChartOptions(view, locale);
+            return lineChartOptions(view, locale, options);
         case EVisualizationType.VerticalBarChart:
-            return basicVerticalBarChartOptions(view, locale);
+            return basicVerticalBarChartOptions(view, locale, options);
         case EVisualizationType.HorizontalBarChart:
-            return basicHorizontalBarChartOptions(view, locale);
+            return basicHorizontalBarChartOptions(view, locale, options);
         case EVisualizationType.GroupVerticalBarChart:
-            return groupVerticalBarChartOptions(view, locale);
+            return groupVerticalBarChartOptions(view, locale, options);
         case EVisualizationType.GroupHorizontalBarChart:
-            return groupHorizontalBarChartOptions(view, locale);
+            return groupHorizontalBarChartOptions(view, locale, options);
         case EVisualizationType.StackedVerticalBarChart:
-            return stackedVerticalBarChartOptions(view, locale);
+            return stackedVerticalBarChartOptions(view, locale, options);
         case EVisualizationType.StackedHorizontalBarChart:
-            return stackedHorizontalBarChartOptions(view, locale);
+            return stackedHorizontalBarChartOptions(view, locale, options);
         case EVisualizationType.PercentVerticalBarChart:
-            return percentVerticalBarChartOptions(view, locale);
+            return percentVerticalBarChartOptions(view, locale, options);
         case EVisualizationType.PercentHorizontalBarChart:
-            return percentHorizontalBarChartOptions(view, locale);
+            return percentHorizontalBarChartOptions(view, locale, options);
         case EVisualizationType.PieChart:
-            return pieChartOptions(view, locale);
+            return pieChartOptions(view, locale, options);
         case EVisualizationType.PyramidChart:
-            return pyramidChartOptions(view, locale);
+            return pyramidChartOptions(view, locale, options);
         case EVisualizationType.ScatterPlot:
             return scatterPlotOptions(view, locale);
         default:

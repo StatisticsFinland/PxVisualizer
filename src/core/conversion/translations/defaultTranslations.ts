@@ -320,6 +320,16 @@ export const DefaultTranslations: TTranslations = {
         'fi': 'Tieto puuttuu',
         'sv': 'Data saknas',
         'en': 'Missing data'
+    },
+    toggleAccessibilityModeOn: {
+        'fi': 'Näytä kuviossa symbolit',
+        'sv': 'Visa symboler i diagrammet',
+        'en': 'Show symbols in the figure'
+    },
+    toggleAccessibilityModeOff: {
+        'fi': 'Poista kuviosta symbolit',
+        'sv': 'Ta bort symbolerna från diagrammet',
+        'en': 'Remove symbols from the figure'
     }
 }
 

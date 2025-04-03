@@ -2,11 +2,12 @@ import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getLegendLabelShorteningFunction } from './Utility/formatters';
 import { getTimeSeriesOptions } from './Utility/timeIntervals';
-import { commonBasicVerticalBarChartOptions, commonDatalabelsOptions } from './chartOptions';
+import { commonBasicVerticalBarChartOptions, commonDatalabelsOptions, commonLegendStyleOptions } from './chartOptions';
+import { IChartOptions } from '../types/chartOptions';
 
-export const groupVerticalBarChartOptions = (view: View, locale: string): Options => {
+export const groupVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonBasicVerticalBarChartOptions(view, locale),
+        ...commonBasicVerticalBarChartOptions(view, locale, options),
         plotOptions: {
             series: {
                 ...getTimeSeriesOptions(view.visualizationSettings.timeVariableIntervals, view.visualizationSettings.timeSeriesStartingPoint),
@@ -16,6 +17,7 @@ export const groupVerticalBarChartOptions = (view: View, locale: string): Option
             }
         },
         legend: {
+            ...commonLegendStyleOptions,
             enabled: true,
             labelFormatter: getLegendLabelShorteningFunction()
         }
