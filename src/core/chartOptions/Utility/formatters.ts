@@ -1,4 +1,4 @@
-import { AxisLabelsFormatterCallbackFunction, DataLabelsFormatterCallbackFunction, FormatterCallbackFunction, Point, ScreenReaderFormatterCallbackFunction, Series, TooltipFormatterCallbackFunction, TooltipFormatterContextObject } from "highcharts";
+import { AxisLabelsFormatterCallbackFunction, DataLabelsFormatterCallbackFunction, FormatterCallbackFunction, Point, ScreenReaderFormatterCallbackFunction, Series, TooltipFormatterCallbackFunction } from "highcharts";
 import { Translations, GetAllLanguages, ArrayTranslations } from "../../conversion/translations";
 import { IUnitInfo, View } from "../../types/view";
 import { EVisualizationType } from "../../types";
@@ -13,14 +13,14 @@ export function getToolTipFormatterFunction(view: View, locale: string): Tooltip
             tooltipLines.push(`${view.rowVarNames?.map(rvn => rvn[locale]).join(', ')}: ${this.series.name}`);
         }
 
-        if (view.colVarNames && view.colVarNames.length > 0 && this.point.name) {
-            tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${this.point.name}`);
+        if (view.colVarNames && view.colVarNames.length > 0 && this.name) {
+            tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${this.name}`);
         }
 
-        const precision: number = this.point.options.custom?.['precision'] ?? 0;
+        const precision: number = this.options.custom?.['precision'] ?? 0;
         tooltipLines.push(getDataFormattedForChartType(view, this, locale, precision))
 
-        if (this.point.options.custom?.['preliminary']) {
+        if (this.options.custom?.['preliminary']) {
             tooltipLines.push(Translations.preliminaryData[locale]);
         }
 
@@ -81,18 +81,18 @@ export function getAxisLabelShorteningFunction(valueAmount: number | null = null
 /* c8 ignore start */
 export function getDataLabelShorteningFunction(showData: boolean): DataLabelsFormatterCallbackFunction {
     return function () {
-        const value: string = showData ? ` (${Math.round(this.percentage)}%)` : "";
-        return shortenStringValue(this.point.name, 20) + value;
+        const value: string = showData ? ` (${Math.round(this.percentage ?? 0)}%)` : "";
+        return shortenStringValue(this.name, 20) + value;
     }
 }
 /* c8 ignore end */
 
 export function getDataLabelFormatterFunction(locale: string): DataLabelsFormatterCallbackFunction {
     return function () {
-        if (!this.point.y) return '';
+        if (!this.y) return '';
 
-        const precision: number = this.point.options.custom?.['precision'] ?? 0;
-        return formatNumericValue(this.point.y, precision, locale, true);
+        const precision: number = this.options.custom?.['precision'] ?? 0;
+        return formatNumericValue(this.y, precision, locale, true);
     }
 }
 
@@ -149,21 +149,21 @@ export function getScatterPlotTooltipFormatterFunction(view: View, locale: strin
         const colVarName = view.colVarNames?.map(cvn => cvn[locale]).join(', ');
         let renderString = '';
         if (xVarValue && xVarValue.length > 0 && this.series.name) {
-            const rowVar = `${xVarValue}: ${this.point.x.toLocaleString(locale)}<br />`;
+            const rowVar = `${xVarValue}: ${this.x.toLocaleString(locale)}<br />`;
             renderString += rowVar;
         }
 
         if (yVarValue && yVarValue.length > 0 && this.key) {
-            const colVar = `${yVarValue}: ${this.point.y?.toLocaleString(locale)}<br />`;
+            const colVar = `${yVarValue}: ${this.y?.toLocaleString(locale)}<br />`;
             renderString += colVar;
         }
 
         if (colVarName && colVarName.length > 0 && view.columnNameGroups && view.columnNameGroups.length > 0) {
-            const colVar = `${colVarName}: ${view.columnNameGroups[this.point.index].map((cng) => cng[locale]).join(', ')}`;
+            const colVar = `${colVarName}: ${view.columnNameGroups[this.index].map((cng) => cng[locale]).join(', ')}`;
             renderString += colVar;
         }
 
-        if (this.point.options.custom?.['preliminary']) {
+        if (this.options.custom?.['preliminary']) {
             renderString += `<br />${Translations.preliminaryData[locale]}`;
         }
 
@@ -172,7 +172,7 @@ export function getScatterPlotTooltipFormatterFunction(view: View, locale: strin
 }
 /* c8 ignore end */
 
-export function getLineChartToolTipFormatterFunction(view: View, locale: string): TooltipFormatterCallbackFunction {
+export function getLineChartToolTipFormatterFunction(view: View, locale: string): Highcharts.TooltipFormatterCallbackFunction {
     return function () {
         const tooltipLines = [];
 
@@ -184,14 +184,14 @@ export function getLineChartToolTipFormatterFunction(view: View, locale: string)
             }
         }
 
-        if (view.colVarNames && view.colVarNames.length > 0 && this.point.name) {
-            tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${this.point.name}`);
+        if (view.colVarNames && view.colVarNames.length > 0 && this.name) {
+            tooltipLines.push(`${view.colVarNames?.map(cvn => cvn[locale]).join(', ')}: ${this.name}`);
         }
 
-        const precision: number = this.point.options.custom?.['precision'] ?? 0;
+        const precision: number = this.options.custom?.['precision'] ?? 0;
         tooltipLines.push(getDataFormattedForChartType(view, this, locale, precision))
 
-        if (this.point.options.custom?.['preliminary']) {
+        if (this.options.custom?.['preliminary']) {
             tooltipLines.push(Translations.preliminaryData[locale]);
         }
 
@@ -210,7 +210,7 @@ export function getFormattedUnits(unitInfos: IUnitInfo[], locale: string): strin
     else throw new Error('Missing required unit data');
 }
 
-export function getDataFormattedForChartType(view: View, point: TooltipFormatterContextObject | Point, locale: string, precision: number): string {
+export function getDataFormattedForChartType(view: View, point: Point, locale: string, precision: number): string {
     if (point.y === null || point.y === undefined) return '';
     const value = Number(point.y.toFixed(precision));
 

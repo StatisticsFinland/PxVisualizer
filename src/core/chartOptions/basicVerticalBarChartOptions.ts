@@ -3,10 +3,11 @@ import { View } from "../types/view";
 import { getFormattedUnits } from "./Utility/formatters";
 import { getTimeSeriesOptions } from "./Utility/timeIntervals";
 import { commonBasicVerticalBarChartOptions, commonYAxisOptions, commonDatalabelsOptions } from './chartOptions';
+import { IChartOptions } from "../types/chartOptions";
 
-export const basicVerticalBarChartOptions = (view: View, locale: string): Options => {
+export const basicVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonBasicVerticalBarChartOptions(view, locale),
+        ...commonBasicVerticalBarChartOptions(view, locale, options),
         yAxis: {
             ...commonYAxisOptions,
             softMin: 0,
@@ -19,7 +20,7 @@ export const basicVerticalBarChartOptions = (view: View, locale: string): Option
                 dataLabels: {
                     ...commonDatalabelsOptions(view, locale)
                 }
-            }
+            },
         },
         exporting: {
             enabled: false

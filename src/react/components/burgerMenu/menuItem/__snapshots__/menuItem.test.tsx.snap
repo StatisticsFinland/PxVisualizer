@@ -68,6 +68,9 @@ exports[`MenuItem, rendering tests should render 1`] = `
   >
     <button
       class="c1"
+      id="foo-menuitem--1"
+      role="menuitem"
+      tabindex="-1"
     >
       <div
         class="c2"
@@ -162,6 +165,9 @@ exports[`MenuItem, rendering tests should render with correct custom suffix icon
   >
     <button
       class="c1"
+      id="foo-menuitem--1"
+      role="menuitem"
+      tabindex="-1"
     >
       <div
         class="c2"
@@ -276,6 +282,10 @@ exports[`MenuItem, rendering tests should render with correct external icon 1`] 
     <a
       class="c1"
       href="foobar"
+      id="foo-menuitem--1"
+      role="menuitem"
+      tabindex="-1"
+      title="[object Object]"
     >
       <div
         class="c2"
@@ -393,6 +403,9 @@ exports[`MenuItem, rendering tests should render with correct prefix icon 1`] = 
   >
     <button
       class="c1"
+      id="foo-menuitem--1"
+      role="menuitem"
+      tabindex="-1"
     >
       <div
         class="c2"
@@ -505,6 +518,9 @@ exports[`MenuItem, rendering tests should render with correct suffix icon 1`] = 
   >
     <button
       class="c1"
+      id="foo-menuitem--1"
+      role="menuitem"
+      tabindex="-1"
     >
       <div
         class="c2"

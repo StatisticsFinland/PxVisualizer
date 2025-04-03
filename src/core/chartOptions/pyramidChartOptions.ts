@@ -1,9 +1,11 @@
 import { Options } from 'highcharts';
 import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
-import { commonChartOptions, commonDatalabelsOptions, commonYAxisOptions } from './chartOptions';
+import { commonChartOptions, commonDatalabelsOptions, commonLegendStyleOptions, commonYAxisOptions } from './chartOptions';
+import { IChartOptions } from '../types/chartOptions';
+import { buildPatternObject } from './Utility/patternFill';
 
-export const pyramidChartOptions = (view: View, locale: string): Options => {
+export const pyramidChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     const categories = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
     const maxValue = Math.max(...view.series.map(s => Math.max(...s.series.map(dataCell => dataCell.value ?? 0))));
     return {
@@ -39,6 +41,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
             }
         },
         legend: {
+            ...commonLegendStyleOptions,
             enabled: true,
             margin: 30
         },
@@ -47,6 +50,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
                 animation: false,
                 type: 'bar',
                 name: s.rowNameGroup.map(n => n[locale]).join(', '),
+                ...(options?.accessibilityMode && buildPatternObject(i)),
                 data: s.series.map((dataCell, index) => ({
                     y: i === 0 && dataCell.value ? -dataCell.value : dataCell.value,
                     name: view.columnNameGroups[index].map(n => n[locale]).join(', '),
@@ -58,7 +62,7 @@ export const pyramidChartOptions = (view: View, locale: string): Options => {
             series: {
                 stacking: 'normal',
                 dataLabels: {
-                    ...commonDatalabelsOptions
+                    ...commonDatalabelsOptions(view, locale)
                 }
             }
         },

@@ -849,3 +849,210 @@ export const HORIZONTAL_BAR_WITH_LONG_NUMERIC_LABELS: { pxGraphData: IQueryVisua
     selectedVariableCodes: {}
 }
 
+export const HORIZONTAL_BAR_CHART_WITH_ZERO_AND_NEGATIVE: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+    pxGraphData: {
+        tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
+        data: [
+            18.88,
+            0.00,
+            15.38,
+            -15.38,
+            13.23
+        ],
+        missingDataInfo: {},
+        dataNotes: {},
+        metaData: [
+            {
+                code: "Vuosineljännes",
+                name: {
+                    fi: "Vuosineljännes",
+                    sv: "Kvartal",
+                    en: "Quarter"
+                },
+                note: null,
+                type: EVariableType.Time,
+                values: [
+                    {
+                        code: "2022Q4",
+                        name: {
+                            fi: "2022Q4",
+                            sv: "2022Q4",
+                            en: "2022Q4"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    }
+                ]
+            },
+            {
+                code: "Huoneluku",
+                name: {
+                    fi: "Huoneluku",
+                    sv: "Antal rum",
+                    en: "Number of rooms"
+                },
+                note: null,
+                type: EVariableType.Ordinal,
+                values: [
+                    {
+                        code: "00",
+                        name: {
+                            fi: "Yhteensä",
+                            sv: "Totalt",
+                            en: "Total"
+                        },
+                        note: null,
+                        isSum: true,
+                        contentComponent: null
+                    }
+                ]
+            },
+            {
+                code: "Rahoitusmuoto",
+                name: {
+                    fi: "Rahoitusmuoto",
+                    sv: "Finansieringssätt",
+                    en: "Type of funding"
+                },
+                note: null,
+                type: EVariableType.OtherClassificatory,
+                values: [
+                    {
+                        code: "2",
+                        name: {
+                            fi: "Yhteensä",
+                            sv: "Totalt",
+                            en: "Total"
+                        },
+                        note: null,
+                        isSum: true,
+                        contentComponent: null
+                    }
+                ]
+            },
+            {
+                code: "Tiedot",
+                name: {
+                    fi: "Tiedot",
+                    sv: "Uppgifter",
+                    en: "Information"
+                },
+                note: null,
+                type: EVariableType.Content,
+                values: [
+                    {
+                        code: "keskivuokra",
+                        name: {
+                            fi: "Neliövuokra (eur/m2)",
+                            sv: "Kvadratmeterspris (eur/m2)",
+                            en: "Rents per square meter (eur/m2)"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: {
+                            unit: {
+                                fi: "eur / m2",
+                                sv: "eur / m2",
+                                en: "eur / m2"
+                            },
+                            source: {
+                                fi: "PxVisualizer-fi",
+                                sv: "PxVisualizer-sv",
+                                en: "PxVisualizer-en"
+                            },
+                            numberOfDecimals: 2,
+                            lastUpdated: "2023-01-19T06:00:00Z"
+                        }
+                    }
+                ]
+            },
+            {
+                code: "Alue",
+                name: {
+                    fi: "Alue",
+                    sv: "Område",
+                    en: "Region"
+                },
+                note: null,
+                type: EVariableType.Geological,
+                values: [
+                    {
+                        code: "091",
+                        name: {
+                            fi: "Helsinki",
+                            sv: "Helsingfors",
+                            en: "Helsinki"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "853",
+                        name: {
+                            fi: "Turku",
+                            sv: "Åbo",
+                            en: "Turku"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "837",
+                        name: {
+                            fi: "Tampere",
+                            sv: "Tammerfors",
+                            en: "Tampere"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "179",
+                        name: {
+                            fi: "Jyväskylä",
+                            sv: "Jyväskylä",
+                            en: "Jyväskylä"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    },
+                    {
+                        code: "564",
+                        name: {
+                            fi: "Oulu",
+                            sv: "Uleåborg",
+                            en: "Oulu"
+                        },
+                        note: null,
+                        isSum: false,
+                        contentComponent: null
+                    }
+                ]
+            }
+        ],
+        selectableVariableCodes: [],
+        rowVariableCodes: [],
+        columnVariableCodes: [
+            "Alue"
+        ],
+        header: {
+            fi: "Neliövuokra (eur/m2) 2022Q4 muuttujana Alue",
+            sv: "Kvadratmeterspris (eur/m2) 2022Q4 efter Område",
+            en: "Rents per square meter (eur/m2) 2022Q4 by Region"
+        },
+        visualizationSettings: {
+            sorting: "ascending",
+            timeVariableIntervals: ETimeVariableInterval.Quarter,
+            visualizationType: EVisualizationType.HorizontalBarChart,
+            defaultSelectableVariableCodes: null
+        }
+    },
+    selectedVariableCodes: undefined
+}
+
+

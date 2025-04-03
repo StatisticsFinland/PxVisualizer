@@ -23,29 +23,35 @@ beforeEach(() => {
     mockExportChartLocal.mockClear();
 });
 
+const mockTableToggle = {
+    toggleHandler: jest.fn(),
+    tableMode: false
+}
+
 describe('burgerMenu, functional tests', () => {
-    it('Should open the menu with correct menu elements', async () => {
+    it('Should open the menu with correct elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        render(<BurgerMenu locale="fi" viewData={view} />);
+        render(<BurgerMenu locale="fi" viewData={view} tableToggle={mockTableToggle} accessibilityMode={false} toggleAccessibilityMode={jest.fn()} />);
         act(() => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            expect(screen.getAllByRole('button').length).toEqual(3);
+            expect(screen.getAllByRole('menuitem').length).toEqual(4);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
+            expect(screen.getByText("N\u00E4yt\u00E4 taulukko")).toBeTruthy();
+            expect(screen.getByText("N\u00E4yt\u00E4 kuviossa symbolit")).toBeTruthy();
         });
     });
 
     it('Should open the menu with correct custom elements', async () => {
         const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
-        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Foo', onClick: jest.fn() }, { text: 'Bar', onClick: jest.fn() }, { text: 'Baz', url: 'foobar.com', isExternal: true }, { text: 'Baz2', url: 'foobar2.com', isExternal: false }]} />);
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Foo', onClick: jest.fn() }, { text: 'Bar', onClick: jest.fn() }, { text: 'Baz', url: 'foobar.com', isExternal: true }, { text: 'Baz2', url: 'foobar2.com', isExternal: false }]} accessibilityMode={false} toggleAccessibilityMode={jest.fn()} tableToggle={mockTableToggle} />);
         act(() => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            expect(screen.getAllByRole('button').length).toEqual(5);
-            expect(screen.getAllByRole('link').length).toEqual(2);
+            expect(screen.getAllByRole('menuitem').length).toEqual(8);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
             expect(screen.getByText('Foo')).toBeTruthy();
@@ -53,7 +59,34 @@ describe('burgerMenu, functional tests', () => {
             expect(screen.getByText('Baz')).toBeTruthy();
             expect(screen.getByText('Ulkoinen linkki')).toBeTruthy();
             expect(screen.getByText('Baz2')).toBeTruthy();
-            expect(screen.getAllByRole('link').length).toBe(2);
+            expect(screen.getByText("N\u00E4yt\u00E4 taulukko")).toBeTruthy();
+            expect(screen.getByText("N\u00E4yt\u00E4 kuviossa symbolit")).toBeTruthy();
+        });
+    });
+
+    it('Should trigger the accessibilityMode function when the menu item is clicked', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        const mockToggleAccessibilityModeFunction = jest.fn();
+        const mockTableToggle = {
+            toggleHandler: jest.fn(),
+            tableMode: false
+        };
+        render(
+            <BurgerMenu
+                locale="fi"
+                viewData={view}
+                tableToggle={mockTableToggle}
+                accessibilityMode={false}
+                toggleAccessibilityMode={mockToggleAccessibilityModeFunction}
+            />
+        );
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            const menuItem = screen.getByText(Translations.toggleAccessibilityModeOn["fi"]);
+            fireEvent.click(menuItem);
+            expect(mockToggleAccessibilityModeFunction).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -67,12 +100,10 @@ describe('burgerMenu, functional tests', () => {
         });
         await waitFor(() => {
             screen.getByText(btnText).click();
-            expect(mockFunction).toBeCalledTimes(1);
         });
-        await waitFor(() => {
-            expect(screen.queryByText(btnText)).toBeNull();
-            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
-        });
+        expect(mockFunction).toBeCalledTimes(1);
+        expect(screen.queryByText(btnText)).toBeNull();
+        expect(screen.queryByRole('menu')).toBeNull();
     });
 
     it('Should invoke the custom function and close the menu when link is clicked', async () => {
@@ -85,12 +116,10 @@ describe('burgerMenu, functional tests', () => {
         });
         await waitFor(() => {
             screen.getByText(btnText).click();
-            expect(mockFunction).toBeCalledTimes(1);
         });
-        await waitFor(() => {
-            expect(screen.queryByText(btnText)).toBeNull();
-            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
-        });
+        expect(mockFunction).toBeCalledTimes(1);
+        expect(screen.queryByText(btnText)).toBeNull();
+        expect(screen.queryByRole('menu')).toBeNull();
     });
 
     it('Should close the menu when ESC is pressed', async () => {
@@ -99,12 +128,22 @@ describe('burgerMenu, functional tests', () => {
         act(() => {
             screen.getByRole('button').click();
         });
-        await waitFor(() => {
-            window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'Escape' });
         });
-        await waitFor(() => {
-            expect(screen.queryByLabelText('Kuvion valikko')).not.toBeNull();
+        expect(screen.queryByRole('menu')).toBeNull();
+    });
+
+    it('Should close the menu when TAB is pressed', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} />);
+        act(() => {
+            screen.getByRole('button').click();
         });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'Tab' });
+        });
+        expect(screen.queryByRole('menu')).toBeNull();
     });
 
     it('Should calculate correct export dimensions when aspect ratio is too low', () => {
@@ -225,5 +264,76 @@ describe('burgerMenu, functional tests', () => {
             sourceHeight: finalHeight,
             scale: 1
         }, {});
+    });
+
+    it('should change focus and tabIndex when up and down arrows are pressed with the menu open', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} menuItemDefinitions={[{ text: 'Item1', onClick: jest.fn() }, { text: 'Item2', onClick: jest.fn() }]} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' }); // window?
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+            expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('0');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' }); // window?
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+    });
+
+    it('should cycle the focus of menu items back to start if down arrow is pressed on the last item', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view}/>);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+    });
+
+    it('should cycle from first to last item if up arrow is pressed on the first item', async () => {
+        const view = convertPxGrafResponseToView(HORIZONTAL_BAR_CHART_ASCENDING, {});
+        render(<BurgerMenu locale="fi" viewData={view} />);
+        act(() => {
+            screen.getByRole('button').click();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+        });
+        act(() => {
+            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' });
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
+            expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('0');
+        });
     });
 });

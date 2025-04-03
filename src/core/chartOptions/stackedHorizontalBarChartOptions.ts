@@ -3,10 +3,11 @@ import { View } from "../types/view";
 import { getFormattedUnits } from './Utility/formatters';
 import { getLinearSumAxisTickPositionerFunction } from './Utility/tickPositioners';
 import { commonStackedHorizontalBarChartOptions, commonDatalabelsOptions } from './chartOptions';
+import { IChartOptions } from '../types/chartOptions';
 
-export const stackedHorizontalBarChartOptions = (view: View, locale: string): Options => {
+export const stackedHorizontalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonStackedHorizontalBarChartOptions(view, locale),
+        ...commonStackedHorizontalBarChartOptions(view, locale, options),
         yAxis: {
             softMin: 0,
             softMax: 0,
@@ -24,7 +25,7 @@ export const stackedHorizontalBarChartOptions = (view: View, locale: string): Op
         },
         plotOptions: {
             bar: {
-                stacking: 'normal'
+                stacking: 'normal',
             },
             series: {
                 dataLabels: {
