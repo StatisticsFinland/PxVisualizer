@@ -1,5 +1,4 @@
 export const defaultFillPatterns = [
-
     // Grid (Crosshatch)
     'M 0 5 L 10 5 M 5 0 L 5 10',
 
