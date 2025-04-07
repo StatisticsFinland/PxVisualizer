@@ -94,7 +94,7 @@ describe('Highcharts series builder tests', () => {
                         backgroundColor: "#1a56ec",
                         height: 10,
                         path: {
-                            d: "M -2 -2 L 12 12 M -12 -2 L 2 12 M -2 -12 L 12 2",
+                            d: "M 0 5 L 10 5 M 5 0 L 5 10",
                             stroke: "white",
                             strokeWidth: 2,
                         },
@@ -124,7 +124,7 @@ describe('Highcharts series builder tests', () => {
                         backgroundColor: "#f2644c",
                         height: 10,
                         path: {
-                            d: "M -2 12 L 12 -2 M -12 12 L 2 -2 M -2 22 L 12 8",
+                            d: "M 0 0 L 10 10 M 10 0 L 0 10",
                             stroke: "white",
                             strokeWidth: 2,
                         },
@@ -161,7 +161,7 @@ describe('Highcharts series builder tests', () => {
                         backgroundColor: "#1a56ec",
                         height: 10,
                         path: {
-                            d: "M -2 -2 L 12 12 M -12 -2 L 2 12 M -2 -12 L 12 2",
+                            d: "M 0 5 L 10 5 M 5 0 L 5 10",
                             stroke: "white",
                             strokeWidth: 2,
                         },
