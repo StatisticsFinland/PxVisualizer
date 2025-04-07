@@ -315,8 +315,8 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
 
     const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape' ||
-        (e.key === 'Tab' && isOpen)) {
-            toggleMenuOpen(false);
+            (e.key === 'Tab' && isOpen)) {
+            toggleMenuOpen(false, e.key === 'Escape');
         }
         if (e.key === 'ArrowDown' && isOpen) {
             e.preventDefault();
@@ -338,12 +338,15 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
 
     const buttonRef = React.useRef<HTMLButtonElement>(null);
     const handleMenuItemClick = (onClick?: () => void) => {
-        toggleMenuOpen(false);
+        toggleMenuOpen(false, true);
         if (onClick) onClick();
     }
 
-    const toggleMenuOpen = (open: boolean) => {
+    const toggleMenuOpen = (open: boolean, focusToMenuButton: boolean = false) => {
         setIsOpen(open);
+        if (!open && focusToMenuButton) {
+            buttonRef.current?.focus();
+        }
     }
 
     const setFocusToMenuItem = () => {
