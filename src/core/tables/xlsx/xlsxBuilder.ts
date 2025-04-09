@@ -44,7 +44,7 @@ export async function buildMinimalXlsxBlobAsync(view : View, locale: string) : P
         const callback: FlateCallback = (err, data) => {
             if (err) return reject(err);
             const blob = new Blob(
-                [data.buffer],
+                [data.buffer instanceof ArrayBuffer ? data.buffer : new Uint8Array(data)],
                 { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
             );
             return resolve(blob);
