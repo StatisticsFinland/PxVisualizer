@@ -142,6 +142,11 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
         setFocusToMenuItem();
     }, [selectedIndex]);
 
+
+    const createRefCallback = (index: number) => (el: HTMLButtonElement | HTMLAnchorElement | null) => {
+        menuItems.current.set(index, el);
+    };
+
     document.addEventListener('mousedown', closeMenu);
     const exportCSV = viewToDownloadCSVOption(viewData, locale);
     const exportXLSX = viewToDownloadXLSOption(viewData, locale);
@@ -158,7 +163,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 key={`customfmenuitem-${menuItemDefinition.text}`}
                 text={menuItemDefinition.text}
                 onClick={() => handleMenuItemClick(menuItemDefinition.onClick)}
-                ref={(el) => menuItems.current.set(index, el)}
+                ref={createRefCallback(index)}
                 idPrefix={idPrefix}
             />; // NOSONAR
         }
@@ -178,7 +183,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 url={menuItemDefinition.url}
                 openNewTab={menuItemDefinition.openNewTab}
                 onClick={() => handleMenuItemClick()}
-                ref={(el) => menuItems.current.set(index, el)}
+                ref={createRefCallback(index)}
                 idPrefix={idPrefix}
             />; // NOSONAR
         }
@@ -187,10 +192,6 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
     const defaultMenuItemsArray = () => {
         const items = [];
         let itemIndex = menuItemDefinitions ? menuItemDefinitions.length : 0;
-
-        const createRefCallback = (index: number) => (el: HTMLButtonElement | HTMLAnchorElement | null) => {
-            menuItems.current.set(index, el);
-        };
 
         items.push(<MenuItem
             index={itemIndex}

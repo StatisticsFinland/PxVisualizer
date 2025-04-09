@@ -12,7 +12,7 @@ exports[`Rendering test renders chart data correctly 1`] = `
         class="sc-kpOvIu imTYeK"
       >
         <button
-          aria-controls=":r0:-menu"
+          aria-controls="«r0»-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
@@ -145,7 +145,7 @@ exports[`Rendering test renders table data correctly 1`] = `
         class="sc-kpOvIu imTYeK"
       >
         <button
-          aria-controls=":r1:-menu"
+          aria-controls="«r1»-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
@@ -820,7 +820,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
         class="sc-kpOvIu imTYeK"
       >
         <button
-          aria-controls=":r5:-menu"
+          aria-controls="«r5»-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
@@ -1498,7 +1498,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
         class="sc-kpOvIu imTYeK"
       >
         <button
-          aria-controls=":r4:-menu"
+          aria-controls="«r4»-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
@@ -2176,7 +2176,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
         class="sc-kpOvIu imTYeK"
       >
         <button
-          aria-controls=":r2:-menu"
+          aria-controls="«r2»-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
@@ -2856,7 +2856,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
         class="sc-kpOvIu imTYeK"
       >
         <button
-          aria-controls=":r3:-menu"
+          aria-controls="«r3»-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
