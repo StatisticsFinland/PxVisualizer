@@ -3,20 +3,20 @@
 exports[`Rendering test renders chart data correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jlZhew cKEByT"
+    class="sc-jScdur kXkHgn"
   >
     <div
-      class="sc-cwHptR yFBHV"
+      class="sc-dcKlJK eEkQvl"
     >
       <div
-        class="sc-kAyceB geaItU"
+        class="sc-kpOvIu imTYeK"
       >
         <button
           aria-controls=":r0:-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAI fEthAU"
+          class="sc-icnseD Fbljb"
         >
           <svg
             aria-hidden="true"
@@ -40,17 +40,17 @@ exports[`Rendering test renders chart data correctly 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNg jJuqAR"
+          class="sc-jMsorb dfczEB"
         />
       </div>
     </div>
     <div
-      class="sc-jEACwC YycXY"
+      class="sc-jPkiSJ iJnAtF"
     >
       <div />
     </div>
     <div
-      class="sc-cPiKLX jfpCjL"
+      class="sc-cZSric gEMFNV"
     >
       <div
         class="tableChart"
@@ -124,7 +124,7 @@ exports[`Rendering test renders chart data correctly 1`] = `
 exports[`Rendering test renders error component on broken data 1`] = `
 <DocumentFragment>
   <div
-    class="sc-dAlyuH ihBGDz"
+    class="sc-cUiCeM eUmXth"
   >
     <h1>
       Kuviota ei voitu muodostaa
@@ -136,20 +136,20 @@ exports[`Rendering test renders error component on broken data 1`] = `
 exports[`Rendering test renders table data correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jlZhew cKEByT"
+    class="sc-jScdur kXkHgn"
   >
     <div
-      class="sc-cwHptR yFBHV"
+      class="sc-dcKlJK eEkQvl"
     >
       <div
-        class="sc-kAyceB geaItU"
+        class="sc-kpOvIu imTYeK"
       >
         <button
           aria-controls=":r1:-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAI fEthAU"
+          class="sc-icnseD Fbljb"
         >
           <svg
             aria-hidden="true"
@@ -173,7 +173,7 @@ exports[`Rendering test renders table data correctly 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNg jJuqAR"
+          class="sc-jMsorb dfczEB"
         />
       </div>
     </div>
@@ -811,20 +811,20 @@ exports[`Rendering test renders table data correctly 1`] = `
 exports[`Rendering test renders table data correctly when given footnote 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jlZhew cKEByT"
+    class="sc-jScdur kXkHgn"
   >
     <div
-      class="sc-cwHptR yFBHV"
+      class="sc-dcKlJK eEkQvl"
     >
       <div
-        class="sc-kAyceB geaItU"
+        class="sc-kpOvIu imTYeK"
       >
         <button
           aria-controls=":r5:-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAI fEthAU"
+          class="sc-icnseD Fbljb"
         >
           <svg
             aria-hidden="true"
@@ -848,7 +848,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNg jJuqAR"
+          class="sc-jMsorb dfczEB"
         />
       </div>
     </div>
@@ -1489,20 +1489,20 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
 exports[`Rendering test renders table data correctly when sources are on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jlZhew cKEByT"
+    class="sc-jScdur kXkHgn"
   >
     <div
-      class="sc-cwHptR yFBHV"
+      class="sc-dcKlJK eEkQvl"
     >
       <div
-        class="sc-kAyceB geaItU"
+        class="sc-kpOvIu imTYeK"
       >
         <button
           aria-controls=":r4:-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAI fEthAU"
+          class="sc-icnseD Fbljb"
         >
           <svg
             aria-hidden="true"
@@ -1526,7 +1526,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNg jJuqAR"
+          class="sc-jMsorb dfczEB"
         />
       </div>
     </div>
@@ -2167,20 +2167,20 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
 exports[`Rendering test renders table data correctly when titles are forced on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jlZhew cKEByT"
+    class="sc-jScdur kXkHgn"
   >
     <div
-      class="sc-cwHptR yFBHV"
+      class="sc-dcKlJK eEkQvl"
     >
       <div
-        class="sc-kAyceB geaItU"
+        class="sc-kpOvIu imTYeK"
       >
         <button
           aria-controls=":r2:-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAI fEthAU"
+          class="sc-icnseD Fbljb"
         >
           <svg
             aria-hidden="true"
@@ -2204,7 +2204,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </svg>
         </button>
         <div
-          class="sc-jXbUNg jJuqAR"
+          class="sc-jMsorb dfczEB"
         />
       </div>
     </div>
@@ -2847,20 +2847,20 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
 exports[`Rendering test renders table data correctly when units are on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jlZhew cKEByT"
+    class="sc-jScdur kXkHgn"
   >
     <div
-      class="sc-cwHptR yFBHV"
+      class="sc-dcKlJK eEkQvl"
     >
       <div
-        class="sc-kAyceB geaItU"
+        class="sc-kpOvIu imTYeK"
       >
         <button
           aria-controls=":r3:-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAI fEthAU"
+          class="sc-icnseD Fbljb"
         >
           <svg
             aria-hidden="true"
@@ -2884,7 +2884,7 @@ exports[`Rendering test renders table data correctly when units are on 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNg jJuqAR"
+          class="sc-jMsorb dfczEB"
         />
       </div>
     </div>
