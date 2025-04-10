@@ -31,7 +31,7 @@
     "test": "jest",
     "test:ci": "jest --reporters=default --reporters=jest-junit",
     "test:watch": "jest --watchAll=true",
-    "build": "microbundle --globals highcharts/modules/accessibility.js=highchartsAccessibility,highcharts/modules/exporting.js=highchartsExporting,highcharts/modules/export-data.js=highchartsExportData,highcharts/modules/offline-exporting.js=highchartsOfflineExporting",
+    "build": "microbundle --globals highcharts/modules/accessibility.js=highchartsAccessibility,highcharts/modules/exporting.js=highchartsExporting,highcharts/modules/export-data.js=highchartsExportData,highcharts/modules/offline-exporting.js=highchartsOfflineExporting,decimal.js=Decimal",
     "dev": "microbundle watch",
     "storybook": "set NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6006",
     "storybook_legacy": "storybook dev -p 6006",
