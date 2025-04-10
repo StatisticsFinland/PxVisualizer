@@ -30,7 +30,7 @@ exports[`burgerMenu, rendering tests Should render 1`] = `
     class="c0"
   >
     <button
-      aria-controls=":r0:-menu"
+      aria-controls="«r0»-menu"
       aria-expanded="false"
       aria-haspopup="menu"
       aria-label="Kuvion valikko"
