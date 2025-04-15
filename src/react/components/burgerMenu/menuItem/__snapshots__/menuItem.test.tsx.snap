@@ -17,8 +17,7 @@ exports[`MenuItem, rendering tests should render 1`] = `
   font-size: 0.75rem;
 }
 
-.c1:hover {
-  -webkit-text-decoration: underline;
+.c1 :hover {
   text-decoration: underline;
 }
 
@@ -30,30 +29,17 @@ exports[`MenuItem, rendering tests should render 1`] = `
   border-bottom: 0px;
 }
 
-.c0:hover {
+.c0 :hover {
   background-color: #f2f2f2;
 }
 
 .c2 {
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   justify-items: center;
 }
@@ -103,8 +89,7 @@ exports[`MenuItem, rendering tests should render with correct custom suffix icon
   font-size: 0.75rem;
 }
 
-.c1:hover {
-  -webkit-text-decoration: underline;
+.c1 :hover {
   text-decoration: underline;
 }
 
@@ -116,30 +101,17 @@ exports[`MenuItem, rendering tests should render with correct custom suffix icon
   border-bottom: 0px;
 }
 
-.c0:hover {
+.c0 :hover {
   background-color: #f2f2f2;
 }
 
 .c2 {
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   justify-items: center;
 }
@@ -189,15 +161,8 @@ exports[`MenuItem, rendering tests should render with correct custom suffix icon
 exports[`MenuItem, rendering tests should render with correct external icon 1`] = `
 <DocumentFragment>
   .c1 {
-  -webkit-text-decoration: none;
   text-decoration: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 0.5rem 0.7rem;
   min-width: 14rem;
@@ -207,8 +172,7 @@ exports[`MenuItem, rendering tests should render with correct external icon 1`] 
   font-size: 0.75rem;
 }
 
-.c1:hover {
-  -webkit-text-decoration: underline;
+.c1 :hover {
   text-decoration: underline;
 }
 
@@ -220,30 +184,17 @@ exports[`MenuItem, rendering tests should render with correct external icon 1`] 
   border-bottom: 0px;
 }
 
-.c0:hover {
+.c0 :hover {
   background-color: #f2f2f2;
 }
 
 .c2 {
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   justify-items: center;
 }
@@ -265,9 +216,7 @@ exports[`MenuItem, rendering tests should render with correct external icon 1`] 
 }
 
 .c4 {
-  -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
-  -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
@@ -341,8 +290,7 @@ exports[`MenuItem, rendering tests should render with correct prefix icon 1`] = 
   font-size: 0.75rem;
 }
 
-.c1:hover {
-  -webkit-text-decoration: underline;
+.c1 :hover {
   text-decoration: underline;
 }
 
@@ -354,30 +302,17 @@ exports[`MenuItem, rendering tests should render with correct prefix icon 1`] = 
   border-bottom: 0px;
 }
 
-.c0:hover {
+.c0 :hover {
   background-color: #f2f2f2;
 }
 
 .c2 {
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   justify-items: center;
 }
@@ -456,8 +391,7 @@ exports[`MenuItem, rendering tests should render with correct suffix icon 1`] = 
   font-size: 0.75rem;
 }
 
-.c1:hover {
-  -webkit-text-decoration: underline;
+.c1 :hover {
   text-decoration: underline;
 }
 
@@ -469,30 +403,17 @@ exports[`MenuItem, rendering tests should render with correct suffix icon 1`] = 
   border-bottom: 0px;
 }
 
-.c0:hover {
+.c0 :hover {
   background-color: #f2f2f2;
 }
 
 .c2 {
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   justify-items: center;
 }
