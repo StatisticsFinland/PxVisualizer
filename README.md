@@ -4,8 +4,18 @@ PxVisualizer is used to draw visualizations of PxGraf visualization API response
 
 The software is provided as is and Statistics Finland will **not** offer any support for setting up PxVisualizer or solving issues related to it.
 
-**IMPORTANT:** PxVisualizer package uses HighCharts for rendering the visualizations. Please note that commercial use of HighCharts requires a commercial license. Non-commercial use may qualify for a free educational or personal license. Read more about licenses 
+## **IMPORTANT:** 
+
+### HighCharts license
+PxVisualizer package uses HighCharts for rendering the visualizations. Please note that commercial use of HighCharts requires a commercial license. Non-commercial use may qualify for a free educational or personal license. Read more about licenses 
 in the [HighCharts shop](https://shop.highsoft.com/?utm_source=npmjs&utm_medium=referral&utm_campaign=highchartspage&utm_content=licenseinfo).
+
+### HighCharts and Server-Side Rendering
+PxVisualizer uses a module from HighCharts (fill-pattern) that is incompatible with server-side rendering. If you use a framework such as Next.js, you need to ensure that the PxVisualizer exports are only loaded in client side components. This can be done by using dynamic imports with the `ssr: false` option. For example:
+```javascript
+import dynamic from 'next/dynamic';
+const Chart = dynamic(() => import('@statisticsfinland/pxvisualizer').then(mod => mod.Chart), { ssr: false });
+```
 
 ## Implementation
 Implementing a visualization requires importing either the Chart or drawChart component from the PxVisualizer package and passing required and optional props to it. The Chart component will then render the visualization based on the provided data.
