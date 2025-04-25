@@ -219,7 +219,7 @@ export function getDataFormattedForChartType(view: View, point: Point, locale: s
     }
     else if (view.visualizationSettings.visualizationType == EVisualizationType.PercentHorizontalBarChart ||
         view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
-        return `${formatNumericValue(point.percentage ?? null, 1, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
+        return `${formatNumericValue(point.percentage ?? 0, 1, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
     } 
     else {
         return value.toLocaleString(locale) ?? '';
