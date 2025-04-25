@@ -124,14 +124,18 @@ export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => 
         }
     },
     title: {
+        useHTML: true, // HTML needs to be enabled for the title width to be restricted
         style: {
             color: '#000',
             fontSize: '1.25rem',
             fontWeight: '500',
-            textAlign: 'left'
+            textAlign: 'left',
+            maxWidth: 'calc(100% - 4rem)', // Restrict the width to leave space for the BurgerMenu
+            whiteSpace: 'normal', // Allow wrapping
         },
         align: 'left',
-        margin: 45
+        margin: 45,
+        minScale: 1,
     },
     subtitle: {
         style: {
