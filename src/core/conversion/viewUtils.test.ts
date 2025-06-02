@@ -2457,6 +2457,11 @@ describe('line chart view conversion', () => {
                 ],
                 rowVarNames: [
                     {
+                        "en": "Number of rooms",
+                        "fi": "Huoneluku",
+                        "sv": "Antal rum",
+                    },
+                    {
                         "en": "Region",
                         "fi": "Alue",
                         "sv": "Område"
