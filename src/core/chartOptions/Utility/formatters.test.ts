@@ -1,6 +1,6 @@
 import { DataLabelsOptions, Point, Tooltip } from "highcharts";
 import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getLineChartToolTipFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
-import { combinationValuesLinechartViewFixture, simpleQuarterLinechartViewFixture } from "./fixtures/linechartViews";
+import { combinationValuesLinechartViewFixture, multiselectableLineChartViewFixture, simpleQuarterLinechartViewFixture } from "./fixtures/linechartViews";
 import { simpleHorizontalBarchartViewFixture } from "./fixtures/horizontalbarchartViews";
 import { simpleGroupHorizontalBarchartViewFixture } from "./fixtures/grouphorizontalbarchartViews";
 import { View } from "../../types/view";
@@ -294,6 +294,25 @@ describe('getLineChartToolTipFormatterFunction tests', () => {
 
         const formatter = getLineChartToolTipFormatterFunction(combinationValuesLinechartViewFixture, 'fi');
         const expectedtooltipString = "Alue: Helsinki<br/>Huoneluku: Kaksiot<br/>Vuosineljännes: testPointName<br/>";
+        expect(formatter.apply(mockPoint, [mockTooltip])).toEqual(expectedtooltipString);
+    });
+
+    it('The returned formatter function should return tooltip with names of multiselected selectable values', () => {
+        const mockTooltip: Tooltip = {} as unknown as Tooltip;
+        const mockPoint = {
+            series: {
+                name: 'testSeriesName',
+                index: 1
+            },
+            name: 'testPointName',
+            options: {
+                custom: {
+                    "preliminary": false
+                }
+            }
+        } as unknown as Point;
+        const formatter = getLineChartToolTipFormatterFunction(multiselectableLineChartViewFixture, 'fi');
+        const expectedtooltipString = "Huoneluku: Yksiöt<br/>Alue: Turku<br/>Vuosineljännes: testPointName<br/>";
         expect(formatter.apply(mockPoint, [mockTooltip])).toEqual(expectedtooltipString);
     });
 });
