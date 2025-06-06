@@ -64,6 +64,13 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
     const selectableVariables = getSelectableVariables(metaData, selectableVariableCodes);
     const contentVar = getContentVariable(metaData);
     const unsortedSeries = buildSeries(responseObj, selectedValueCodes);
+    // Row variable names are derived from both directionless multiselected selectable and row variables
+    const directionlessMultiselectVarNames = responseObj.selectableVariableCodes.filter(code =>
+        selectedValueAmounts[code] > 1 &&
+        !responseObj.rowVariableCodes.includes(code) &&
+        !responseObj.columnVariableCodes.includes(code));
+    const rowVarNames = getVariableNames(directionlessMultiselectVarNames, metaData)
+        .concat(getVariableNames(responseObj.rowVariableCodes, responseObj.metaData));
 
     return {
         header: responseObj.header,
@@ -73,8 +80,8 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
         sources: getContentProperty(contentVar, selectedValueCodes, (cc) => cc?.source ?? Translations.empty),
         columnNameGroups: unsortedSeries.columnNameGroups,
         series: unsortedSeries.series,
+        rowVarNames: rowVarNames,
         colVarNames: getVariableNames(responseObj.columnVariableCodes, responseObj.metaData),
-        rowVarNames: getVariableNames(responseObj.rowVariableCodes, responseObj.metaData),
         selectableVarNames: getVariableNames(responseObj.selectableVariableCodes, responseObj.metaData),
         visualizationSettings: responseObj.visualizationSettings,
         seriesType: getSeriesType(responseObj.columnVariableCodes, responseObj.metaData)

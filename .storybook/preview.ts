@@ -9,8 +9,19 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+      viewport: {
+          viewports: {
+              website: {
+                  name: 'Website',
+                  styles: {
+                      width: '766px',
+                      height: '600px',
+                  },
+                  type: 'desktop',
+              },
+          },
+      },
   },
-
   tags: ['autodocs']
 };
 
