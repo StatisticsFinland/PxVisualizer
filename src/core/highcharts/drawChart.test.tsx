@@ -1,19 +1,17 @@
-import * as Highcharts from "highcharts";
-import { drawChart } from "./drawChart";
-import { GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE } from "../../react/components/chart/testFixtures/pxGrafResponses";
-
-jest.mock("highcharts", () => {
-    return {
-        chart: jest.fn().mockReturnValue({ mockedChart: true }),
-        setOptions: jest.fn(),
-        __esModule: true,
-    };
-});
+jest.mock("highcharts", () => ({
+    chart: jest.fn().mockReturnValue({ mockedChart: true }),
+    setOptions: jest.fn(),
+    __esModule: true,
+}));
 
 jest.mock("highcharts/modules/pattern-fill.js", () => ({}), { virtual: true });
 jest.mock("highcharts/modules/accessibility.js", () => ({}), { virtual: true });
 jest.mock("highcharts/modules/exporting.js", () => ({}), { virtual: true });
 jest.mock("highcharts/modules/offline-exporting.js", () => ({}), { virtual: true });
+
+import * as Highcharts from "highcharts";
+import { drawChart } from "./drawChart";
+import { GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE } from "../../react/components/chart/testFixtures/pxGrafResponses";
 
 describe('drawChart tests', () => {
     beforeEach(() => {
