@@ -2,25 +2,18 @@ import * as Highcharts from "highcharts";
 import { drawChart } from "./drawChart";
 import { GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE } from "../../react/components/chart/testFixtures/pxGrafResponses";
 
-jest.mock("highcharts/modules/pattern-fill.js", () => ({
-    default: (H: typeof Highcharts) => { }
-}), { virtual: true });
-jest.mock("highcharts/modules/accessibility.js", () => ({
-    default: (H: typeof Highcharts) => { }
-}), { virtual: true });
-jest.mock("highcharts/modules/exporting.js", () => ({
-    default: (H: typeof Highcharts) => { }
-}), { virtual: true });
-jest.mock("highcharts/modules/offline-exporting.js", () => ({
-    default: (H: typeof Highcharts) => { }
-}), { virtual: true });
+jest.mock('highcharts/modules/accessibility.js', () => jest.fn(), { virtual: true });
+jest.mock('highcharts/modules/exporting.js', () => jest.fn(), { virtual: true });
+jest.mock('highcharts/modules/offline-exporting.js', () => jest.fn(), { virtual: true });
+jest.mock('highcharts/modules/pattern-fill.js', () => jest.fn(), { virtual: true });
 
 jest.mock("highcharts", () => ({
     chart: jest.fn().mockReturnValue({ mockedChart: true }),
     setOptions: jest.fn(),
-    animObject: jest.fn(),
-    defaultOptions: {},
-    win: {}
+    SVGRenderer: {},
+    Chart: {},
+    Series: {},
+    Renderer: {}
 }));
 
 describe('drawChart tests', () => {
