@@ -1,6 +1,6 @@
 {
   "name": "@statisticsfinland/pxvisualizer",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Component library for visualizing PxGraf data",
   "main": "./dist/pxv.cjs",
   "jestSonar": {
