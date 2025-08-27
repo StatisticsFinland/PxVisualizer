@@ -2,19 +2,31 @@ import * as Highcharts from "highcharts";
 import { drawChart } from "./drawChart";
 import { GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE } from "../../react/components/chart/testFixtures/pxGrafResponses";
 
+jest.mock("highcharts", () => {
+    const mockHighcharts = {
+        chart: jest.fn().mockReturnValue({ mockedChart: true }),
+        setOptions: jest.fn(),
+        animObject: jest.fn(),
+        SVGRenderer: { prototype: { init: jest.fn() } },
+        wrap: jest.fn(),
+        addEvent: jest.fn(),
+        extend: jest.fn(),
+        merge: jest.fn(),
+        defaultOptions: {},
+        Series: { prototype: {} },
+        seriesTypes: {},
+        time: {},
+        win: {},
+        defined: jest.fn().mockReturnValue(true)
+    };
+
+    return mockHighcharts;
+});
+
 jest.mock('highcharts/modules/accessibility.js', () => jest.fn(), { virtual: true });
 jest.mock('highcharts/modules/exporting.js', () => jest.fn(), { virtual: true });
 jest.mock('highcharts/modules/offline-exporting.js', () => jest.fn(), { virtual: true });
 jest.mock('highcharts/modules/pattern-fill.js', () => jest.fn(), { virtual: true });
-
-jest.mock("highcharts", () => ({
-    chart: jest.fn().mockReturnValue({ mockedChart: true }),
-    setOptions: jest.fn(),
-    SVGRenderer: {},
-    Chart: {},
-    Series: {},
-    Renderer: {}
-}));
 
 describe('drawChart tests', () => {
     beforeEach(() => {
