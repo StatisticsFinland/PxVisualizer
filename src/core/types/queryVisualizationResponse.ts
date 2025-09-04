@@ -30,6 +30,7 @@ export type TVisualizationType =
 | 'LineChart'
 | 'ScatterPlot'
 | 'Table'
+| 'KeyFigure'
 
 
 export enum EVisualizationType {
@@ -45,7 +46,8 @@ export enum EVisualizationType {
     PieChart = 'PieChart',
     LineChart = 'LineChart',
     ScatterPlot = 'ScatterPlot',
-    Table = 'Table'
+    Table = 'Table',
+    KeyFigure = 'KeyFigure'
 }
 
 export type TVariableType =
@@ -128,4 +130,5 @@ export interface IVisualizationSettings {
     markerSize?: number;
     cutYAxis?: boolean;
     showDataPoints?: boolean;
+    showUnit?: boolean;
 }

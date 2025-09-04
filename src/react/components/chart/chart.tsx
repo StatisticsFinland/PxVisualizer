@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { convertPxGraphDataToChartOptions, EVisualizationType, IQueryVisualizationResponse, defaultTheme } from "../../../core";
-
 import Highcharts from 'highcharts';
 // Named import HighchartsReact was added to get pxvisualiser to work in pxgraf-creator.
 // Could be something to be resolved with microbundle (non-)configuration too?
@@ -15,10 +14,12 @@ import { extractSelectableVariableValues } from "../../../core/conversion/helper
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
 import { formatLocale } from "../../../core/chartOptions/Utility/formatters"; 
 import { TableView } from "./tableView";
+import { KeyFigureView } from "./keyFigureView";
 import { GlobalStyle } from "../globalStyle";
 import { View } from "../../../core/types/view";
 import { ErrorInfo } from "./ErrorInfo";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
+import { EVariableType } from "../../../core/types/queryVisualizationResponse";
 
 const initializeHighcharts = (locale: string) => {
     if (typeof Highcharts === 'object') {
@@ -147,8 +148,37 @@ const ReactChart: React.FC<IChartProps> = ({
     }, [chartRef.current]);
 
     try {
+        // Key figure
+        if (view && pxGraphData.visualizationSettings.visualizationType === EVisualizationType.KeyFigure) {
+            const getFirstValueByType = (type: EVariableType) =>
+                pxGraphData.metaData.find(meta => meta.type === type)?.values[0];
+
+            const timeVariableValue: string | undefined = getFirstValueByType(EVariableType.Time)?.name?.[validLocale];
+            const lastUpdated: string | undefined = getFirstValueByType(EVariableType.Content)?.contentComponent?.lastUpdated;
+            if (!timeVariableValue || !lastUpdated) {
+                throw new Error('Time variable or last updated info missing for key figure visualization');
+            }
+
+            return (
+                <ChartWrapper>
+                    {
+                        showContextMenu &&
+                        <MenuContainer>
+                            <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} locale={validLocale} menuIconInheritColor={menuIconInheritColor} />
+                        </MenuContainer>
+                    }
+                    <KeyFigureView
+                        view={view}
+                        locale={validLocale}
+                        timeVariableValue={timeVariableValue}
+                        lastUpdated={lastUpdated}
+                    />
+                </ChartWrapper>
+            );
+        }
+
         // Chart
-        if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
+        if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.KeyFigure) {
             const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { accessibilityMode: accessibilityMode, showTitle: showTitles ?? true });
             return (
                 <ChartWrapper>
