@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KeyFigure render tests Should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="keyFigureChart"
+    id="foobar"
+  >
+    <div
+      class="keyFigure-container"
+    >
+      <div
+        class="keyFigure-title"
+      >
+        Lukumäärä, Vantaa, Yksiöt, Vapaarahoitteinen 2022Q4
+      </div>
+      <div
+        class="keyFigure-value"
+      >
+        <span
+          class="keyFigure-value-main"
+        >
+          2 548
+        </span>
+      </div>
+      <div
+        class="keyFigure-time"
+      >
+        2022 Q4
+      </div>
+      <div
+        class="keyFigure-lastupdated"
+      >
+        2023-10-01T12:00:00Z
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

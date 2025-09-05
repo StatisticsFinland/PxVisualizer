@@ -115,128 +115,6 @@ exports[`Rendering test renders chart data correctly 1`] = `
             </tr>
           </tbody>
         </table>
-        <p>
-          Lähde: PxVisualizer-fi
-        </p>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Rendering test renders chart data correctly with hidden title 1`] = `
-<DocumentFragment>
-  <div
-    class="sc-jScdur kXkHgn"
-  >
-    <div
-      class="sc-dcKlJK eEkQvl"
-    >
-      <div
-        class="sc-kpOvIu imTYeK"
-      >
-        <button
-          aria-controls="«r1»-menu"
-          aria-expanded="false"
-          aria-haspopup="menu"
-          aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
-        >
-          <svg
-            aria-hidden="true"
-            height="29.92mm"
-            viewBox="0 0 113.12 84.82"
-            width="39.91mm"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m56.51,14.13c-16.33,0-32.67.01-49,0-5.37,0-8.89-4.83-6.99-9.59C1.63,1.76,3.77.26,6.76.01c.22-.02.44,0,.66,0,32.74,0,65.49,0,98.23,0,4.3,0,7.45,2.99,7.47,7.01.02,4.11-3.15,7.1-7.6,7.11-16.33.01-32.67,0-49,0Z"
-              style="fill: #1A3061;"
-            />
-            <path
-              d="m56.55,49.47c-16.41,0-32.82.01-49.22,0-3.78,0-6.77-2.56-7.26-6.09-.49-3.53,1.78-6.9,5.35-7.81.77-.2,1.6-.21,2.4-.21,32.52,0,65.04-.01,97.57,0,4.51,0,7.69,2.89,7.74,6.97.04,4.19-3.16,7.14-7.79,7.15-16.26,0-32.52,0-48.78,0Z"
-              style="fill: #1A3061;"
-            />
-            <path
-              d="m56.43,84.82c-16.33,0-32.67,0-49,0-3.68,0-6.45-2.17-7.25-5.56-.73-3.09.92-6.54,3.92-7.84,1.04-.45,2.27-.69,3.41-.69,32.74-.04,65.49-.03,98.23-.02,4.27,0,7.41,3.06,7.39,7.09-.02,4.02-3.17,7.02-7.47,7.02-16.41.02-32.82,0-49.22,0Z"
-              style="fill: #1A3061;"
-            />
-          </svg>
-        </button>
-        <div
-          class="sc-jMsorb dfczEB"
-        />
-      </div>
-    </div>
-    <div
-      class="sc-jPkiSJ iJnAtF"
-    >
-      <div />
-    </div>
-    <div
-      class="sc-cZSric gEMFNV"
-    >
-      <div
-        class="tableChart"
-        id="foobar"
-      >
-        <table
-          tabindex="0"
-        >
-          <thead>
-            <tr>
-              <td
-                colspan="1"
-                rowspan="1"
-              />
-              <th
-                colspan="1"
-                scope="col"
-              >
-                2015Q1
-              </th>
-              <th
-                colspan="1"
-                scope="col"
-              >
-                2015Q2
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th
-                rowspan="1"
-                scope="row"
-              >
-                Vapaarahoitteinen
-              </th>
-              <td>
-                11 096
-              </td>
-              <td>
-                11 625
-              </td>
-            </tr>
-            <tr>
-              <th
-                rowspan="1"
-                scope="row"
-              >
-                ARA
-              </th>
-              <td>
-                4 845
-              </td>
-              <td>
-                5 174
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          Lähde: PxVisualizer-fi
-        </p>
       </div>
     </div>
   </div>
@@ -255,7 +133,7 @@ exports[`Rendering test renders error component on broken data 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Rendering test renders table data correctly 1`] = `
+exports[`Rendering test renders key figure data correctly 1`] = `
 <DocumentFragment>
   <div
     class="sc-jScdur kXkHgn"
@@ -300,17 +178,98 @@ exports[`Rendering test renders table data correctly 1`] = `
       </div>
     </div>
     <div
+      class="keyFigureChart"
+      id="foobar"
+    >
+      <div
+        class="keyFigure-container"
+      >
+        <div
+          class="keyFigure-title"
+        >
+          Avainluku
+        </div>
+        <div
+          class="keyFigure-value"
+        >
+          <span
+            class="keyFigure-value-main"
+          >
+            13 021
+          </span>
+          <span
+            class="keyFigure-unit"
+          >
+             lukumäärä
+          </span>
+        </div>
+        <div
+          class="keyFigure-time"
+        >
+          2022Q4
+        </div>
+        <div
+          class="keyFigure-lastupdated"
+        >
+          2023-01-19T06:00:00Z
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rendering test renders table data correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-jScdur kXkHgn"
+  >
+    <div
+      class="sc-dcKlJK eEkQvl"
+    >
+      <div
+        class="sc-kpOvIu imTYeK"
+      >
+        <button
+          aria-controls="«r1»-menu"
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-label="Kuvion valikko"
+          class="sc-icnseD Fbljb"
+        >
+          <svg
+            aria-hidden="true"
+            height="29.92mm"
+            viewBox="0 0 113.12 84.82"
+            width="39.91mm"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m56.51,14.13c-16.33,0-32.67.01-49,0-5.37,0-8.89-4.83-6.99-9.59C1.63,1.76,3.77.26,6.76.01c.22-.02.44,0,.66,0,32.74,0,65.49,0,98.23,0,4.3,0,7.45,2.99,7.47,7.01.02,4.11-3.15,7.1-7.6,7.11-16.33.01-32.67,0-49,0Z"
+              style="fill: #1A3061;"
+            />
+            <path
+              d="m56.55,49.47c-16.41,0-32.82.01-49.22,0-3.78,0-6.77-2.56-7.26-6.09-.49-3.53,1.78-6.9,5.35-7.81.77-.2,1.6-.21,2.4-.21,32.52,0,65.04-.01,97.57,0,4.51,0,7.69,2.89,7.74,6.97.04,4.19-3.16,7.14-7.79,7.15-16.26,0-32.52,0-48.78,0Z"
+              style="fill: #1A3061;"
+            />
+            <path
+              d="m56.43,84.82c-16.33,0-32.67,0-49,0-3.68,0-6.45-2.17-7.25-5.56-.73-3.09.92-6.54,3.92-7.84,1.04-.45,2.27-.69,3.41-.69,32.74-.04,65.49-.03,98.23-.02,4.27,0,7.41,3.06,7.39,7.09-.02,4.02-3.17,7.02-7.47,7.02-16.41.02-32.82,0-49.22,0Z"
+              style="fill: #1A3061;"
+            />
+          </svg>
+        </button>
+        <div
+          class="sc-jMsorb dfczEB"
+        />
+      </div>
+    </div>
+    <div
       class="tableChart"
       id="foobar"
     >
       <table
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -930,9 +889,6 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
         </tbody>
       </table>
-      <p>
-        Lähde: PxVisualizer-fi
-      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -989,11 +945,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
       <table
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -1616,9 +1567,6 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
       <p>
         Test footnote
       </p>
-      <p>
-        Lähde: PxVisualizer-fi
-      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -1675,11 +1623,6 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
       <table
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -2982,15 +2925,12 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
         </tbody>
       </table>
-      <p>
-        Lähde: PxVisualizer-fi
-      </p>
     </div>
   </div>
 </DocumentFragment>
 `;
 
-exports[`Rendering test renders table data correctly when units and footnote are on 1`] = `
+exports[`Rendering test renders table data correctly when units are on 1`] = `
 <DocumentFragment>
   <div
     class="sc-jScdur kXkHgn"
@@ -3041,11 +2981,6 @@ exports[`Rendering test renders table data correctly when units and footnote are
       <table
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -3667,12 +3602,6 @@ exports[`Rendering test renders table data correctly when units and footnote are
       </table>
       <p>
         Yksikkö: Lukumäärä: lukumäärä, Neliövuokra (eur/m2): eur / m2
-      </p>
-      <p>
-        Test footnote
-      </p>
-      <p>
-        Lähde: PxVisualizer-fi
       </p>
     </div>
   </div>

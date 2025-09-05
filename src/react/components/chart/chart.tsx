@@ -73,6 +73,7 @@ export interface IChartProps {
     showTableUnits?: boolean;
     showTableSources?: boolean;
     footnote?: string;
+    className?: string;
 }
 
 const ReactChart: React.FC<IChartProps> = ({
@@ -85,7 +86,8 @@ const ReactChart: React.FC<IChartProps> = ({
     menuIconInheritColor = false,
     showTitles,
     showTableUnits,
-    showTableSources}) => {
+    showTableSources,
+    className}) => {
     const validLocale = formatLocale(locale);
     initializeHighcharts(validLocale);
 
@@ -172,6 +174,7 @@ const ReactChart: React.FC<IChartProps> = ({
                         locale={validLocale}
                         timeVariableValue={timeVariableValue}
                         lastUpdated={lastUpdated}
+                        className={className}
                     />
                 </ChartWrapper>
             );
@@ -188,7 +191,7 @@ const ReactChart: React.FC<IChartProps> = ({
                                 <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} accessibilityMode={accessibilityMode} toggleAccessibilityMode={toggleAccessibilityMode} />
                         </MenuContainer>
                     }
-                    <ChartContainer $tableMode={tableMode}>
+                    <ChartContainer $tableMode={tableMode} className={className}>
                         <HighchartsReact
                             ref={chartRef}
                             immutable={true}
@@ -196,7 +199,7 @@ const ReactChart: React.FC<IChartProps> = ({
                             options={highChartOptions}
                         />
                     </ChartContainer>
-                    <TableContainer $tableMode={tableMode}>
+                    <TableContainer $tableMode={tableMode} className={className}>
                         <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} />
                     </TableContainer>
                 </ChartWrapper>

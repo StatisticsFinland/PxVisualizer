@@ -60,49 +60,56 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
     }
 }
 
-export function renderHtmlKeyFigure(view: View, locale: string, containerId: string): void {
+export function renderHtmlKeyFigure(view: View, locale: string, containerId: string, timeVariableValue: string, lastUpdated: string, className?: string): void {
     const container = document.getElementById(containerId);
     if (!container) throw new Error("No container with matching id found in the DOM tree");
 
     try {
         // Create the key figure display container
         const keyFigureContainer = document.createElement('div');
-        keyFigureContainer.className = 'keyFigure-container';
-
+        keyFigureContainer.className = className ? `keyFigure-container ${className}` : 'keyFigure-container';
+        
         // Add title if available
         const title = document.createElement('div');
-        title.className = 'keyFigure-title';
+        title.className = className ? `keyFigure-title ${className}` : 'keyFigure-title';
         title.textContent = view.header[locale];
         keyFigureContainer.append(title);
 
         const dataCell = view.series[0].series[0];
         const valueContainer = document.createElement('div');
-        valueContainer.className = 'keyFigure-value';
+        valueContainer.className = className ? `keyFigure-value ${className}` : 'keyFigure-value';
 
         // Format the value or show missing data message
         if (dataCell.value === null) {
             valueContainer.textContent = formatMissingData(dataCell.missingCode, locale, true);
         } else {
-            let formattedValue = formatNumericValue(dataCell.value, dataCell.precision, locale, true);
-                
-            // If show units is enabled, append the unit to the value
+            const valueSpan = document.createElement('span');
+            valueSpan.className = 'keyFigure-value-main';
+            valueSpan.textContent = formatNumericValue(dataCell.value, dataCell.precision, locale, true);
+            valueContainer.append(valueSpan);
+            // If show units is enabled, append the unit to the value in a span
             if (view.visualizationSettings.showUnit && view.units.length > 0) {
                 const unitName = getFormattedUnits(view.units, locale);
-                formattedValue += ` ${unitName}`;
+                const unitSpan = document.createElement('span');
+                unitSpan.className = 'keyFigure-unit';
+                unitSpan.textContent = ` ${unitName}`;
+                valueContainer.append(unitSpan);
             }
-                
-            valueContainer.textContent = formattedValue;
         }
             
         keyFigureContainer.append(valueContainer);
-            
-        // Show preliminary indicator if needed
-        if (dataCell.preliminary) {
-            const preliminaryIndicator = document.createElement('div');
-            preliminaryIndicator.className = 'keyFigure-preliminary';
-            preliminaryIndicator.textContent = Translations.preliminaryData[locale];
-            keyFigureContainer.append(preliminaryIndicator);
-        }
+
+        const timeElem = document.createElement('div');
+        timeElem.className = className ? `keyFigure-time ${className}` : 'keyFigure-time';
+        timeElem.textContent = dataCell.preliminary
+            ? `${timeVariableValue} ${Translations.preliminaryData[locale]}`
+            : timeVariableValue;
+        keyFigureContainer.append(timeElem);
+
+        const lastUpdatedElem = document.createElement('div');
+        lastUpdatedElem.className = className ? `keyFigure-lastupdated ${className}` : 'keyFigure-lastupdated';
+        lastUpdatedElem.textContent = lastUpdated;
+        keyFigureContainer.append(lastUpdatedElem);
 
         container.append(keyFigureContainer);
 

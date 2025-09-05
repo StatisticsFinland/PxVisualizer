@@ -8,27 +8,26 @@ export interface IKeyFigureViewProps {
     locale: string;
     timeVariableValue: string;
     lastUpdated: string;
+    className?: string;
 }
 
-export const KeyFigureView: React.FC<IKeyFigureViewProps> = ({ view, locale, timeVariableValue, lastUpdated }) => {
+export const KeyFigureView: React.FC<IKeyFigureViewProps> = ({ 
+    view, 
+    locale, 
+    timeVariableValue, 
+    lastUpdated,
+    className 
+}) => {
     const uuid = useMemo(() => uuidv4(), [view, locale]);
+
+    const combinedClassName = className
+        ? `keyFigureChart ${className}`
+        : 'keyFigureChart';
 
     React.useEffect(() => {
         document.getElementById(uuid)?.replaceChildren();
-        renderHtmlKeyFigure(view, locale, uuid);
-        // Add time variable, subheader, and last updated info
-        const container = document.getElementById(uuid);
+        renderHtmlKeyFigure(view, locale, uuid, timeVariableValue, lastUpdated, className);
+    }, [view, locale, timeVariableValue, lastUpdated, className]);
 
-        const timeElem = document.createElement('div');
-        timeElem.className = 'keyFigure-time';
-        timeElem.textContent = timeVariableValue;
-        container!.append(timeElem);
-
-        const lastUpdatedElem = document.createElement('div');
-        lastUpdatedElem.className = 'keyFigure-lastupdated';
-        lastUpdatedElem.textContent = lastUpdated;
-        container!.append(lastUpdatedElem);
-    }, [view, locale, timeVariableValue, lastUpdated]);
-
-    return <div className={'keyFigureChart'} id={uuid} />;
+    return <div className={combinedClassName} id={uuid} />;
 }
