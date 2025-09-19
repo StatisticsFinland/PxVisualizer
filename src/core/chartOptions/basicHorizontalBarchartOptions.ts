@@ -6,7 +6,7 @@ import { IChartOptions } from '../types/chartOptions';
 
 export const basicHorizontalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonHorizontalBarChartOptions(view, locale),
+        ...commonHorizontalBarChartOptions(view, locale, options),
         series: buildBarChartSeries(view, locale, false, options?.accessibilityMode),
         chart: { type: 'bar', spacingBottom: 60 },
         yAxis: {
