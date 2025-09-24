@@ -68,7 +68,7 @@ export interface IChartProps {
     showContextMenu?: boolean;
     menuItemDefinitions?: (IFunctionalMenuItem | ILinkMenuItem)[];
     menuIconInheritColor?: boolean;
-    showTableTitles?: boolean;
+    showTitles?: boolean;
     showTableUnits?: boolean;
     showTableSources?: boolean;
     footnote?: string;
@@ -82,7 +82,7 @@ const ReactChart: React.FC<IChartProps> = ({
     selectedVariableCodes = null,
     showContextMenu = true,
     menuIconInheritColor = false,
-    showTableTitles,
+    showTitles,
     showTableUnits,
     showTableSources}) => {
     const validLocale = formatLocale(locale);
@@ -149,7 +149,7 @@ const ReactChart: React.FC<IChartProps> = ({
     try {
         // Chart
         if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
-            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { accessibilityMode: accessibilityMode, showTitle: showTableTitles ?? true });
+            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { accessibilityMode: accessibilityMode, showTitle: showTitles ?? true });
             return (
                 <ChartWrapper>
                     {
@@ -167,7 +167,7 @@ const ReactChart: React.FC<IChartProps> = ({
                         />
                     </ChartContainer>
                     <TableContainer $tableMode={tableMode}>
-                        <TableView showTitles={showTableTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={!!showTableSources} view={view} locale={validLocale} />
+                        <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={!!showTableSources} view={view} locale={validLocale} />
                     </TableContainer>
                 </ChartWrapper>
             );
@@ -183,7 +183,7 @@ const ReactChart: React.FC<IChartProps> = ({
                             <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} locale={validLocale} menuIconInheritColor={menuIconInheritColor} />
                         </MenuContainer>
                     }
-                    <TableView showTitles={showTableTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={!!showTableSources} view={view} locale={validLocale} />
+                    <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={!!showTableSources} view={view} locale={validLocale} />
                 </ChartWrapper>
             );
         }
