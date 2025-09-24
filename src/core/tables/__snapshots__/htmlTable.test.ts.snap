@@ -3542,3 +3542,35 @@ exports[`Html table render tests should match snapshot: Table with row variables
   [36m</p>[39m
 [36m</div>[39m"
 `;
+
+exports[`Html table render tests should match snapshot: Table with source and footnote 1`] = `
+"[36m<div[39m
+  [33mid[39m=[32m"test-6895638450983059889"[39m
+[36m>[39m
+  [36m<table[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<caption[39m
+      [33mclass[39m=[32m"tableChart-caption"[39m
+    [36m>[39m
+      [0mLukumäärä, Vantaa, Yksiöt, Vapaarahoitteinen 2022Q4[0m
+    [36m</caption>[39m
+    [36m<tbody>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m2 548[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+    [36m</tbody>[39m
+  [36m</table>[39m
+  [36m<p>[39m
+    [0mYksikkö: lukumäärä[0m
+  [36m</p>[39m
+  [36m<p>[39m
+    [0mTest footnote[0m
+  [36m</p>[39m
+  [36m<p>[39m
+    [0mLähde: PxVisualizer-fi[0m
+  [36m</p>[39m
+[36m</div>[39m"
+`;

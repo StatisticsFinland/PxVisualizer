@@ -166,7 +166,7 @@ const ReactChart: React.FC<IChartProps> = ({
                             options={highChartOptions}/>
                     </ChartContainer>
                     <TableContainer $tableMode={tableMode}>
-                        <TableView showTitles={showTableTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={!!showTableSources} view={view} locale={validLocale} />
+                        <TableView showTitles={showTableTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} />
                     </TableContainer>
                 </ChartWrapper>
             );
@@ -182,7 +182,7 @@ const ReactChart: React.FC<IChartProps> = ({
                             <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} locale={validLocale} menuIconInheritColor={menuIconInheritColor} />
                         </MenuContainer>
                     }
-                    <TableView showTitles={showTableTitles ?? false} footnote={footnote} showUnits={!!showTableUnits} showSources={!!showTableSources} view={view} locale={validLocale} />
+                    <TableView showTitles={showTableTitles ?? false} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} />
                 </ChartWrapper>
             );
         }
