@@ -9,7 +9,7 @@ export const pyramidChartOptions = (view: View, locale: string, options?: IChart
     const categories = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
     const maxValue = Math.max(...view.series.map(s => Math.max(...s.series.map(dataCell => dataCell.value ?? 0))));
     return {
-        ...commonChartOptions(view, locale),
+        ...commonChartOptions(view, locale, options),
         chart: { type: 'bar' },
         xAxis: {
             categories: categories,

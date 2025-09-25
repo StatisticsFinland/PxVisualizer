@@ -10,7 +10,7 @@ export const lineChartOptions = (view: View, locale: string, options?: IChartOpt
     const cutValueAxis = !view.visualizationSettings?.cutValueAxis ? 0 : undefined;
     const markerSettings = options?.accessibilityMode ? { enabledThreshold: 3 } : { enabled: false };
     return {
-        ...commonChartOptions(view, locale),
+        ...commonChartOptions(view, locale, options),
         chart: { type: 'line' },
         tooltip: {
             formatter: getLineChartToolTipFormatterFunction(view, locale)
