@@ -41,7 +41,7 @@ drawChart(container, pxGraphData, locale);>
 - showContextMenu: boolean - Flag to show or hide the context menu in the visualization.
 - menuItemDefinitions: object[] - Definitions for custom context menu items. These can be either links or run custom functions. The provided object must implement either the IFunctionalMenuItem or ILinkMenuItem interface.
 - menuIconInheritColor: boolean - Flag to inherit the color of the context menu icons from the parent element.
-- showTitles: boolean - Flag to show or hide the titles in the table view.
+- showTitles: boolean - Flag to show or hide the titles in the tables and charts.
 - showTableUnits: boolean - Flag to show or hide the units in the table view.
 - showTableSources: boolean - Flag to show or hide the sources in the table view.
 - footnote: string - Custom footnote to be displayed in the visualization.
