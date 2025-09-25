@@ -4,7 +4,7 @@ import { TABLE_WITH_ONE_CELL } from '../fixtures/table';
 import { EVisualizationType } from '../../core/types/queryVisualizationResponse';
 import React from 'react';
 
-const keyFigureArgs = {
+export const keyFigureArgs = {
     ...TABLE_WITH_ONE_CELL,
     pxGraphData: {
         ...TABLE_WITH_ONE_CELL.pxGraphData,
