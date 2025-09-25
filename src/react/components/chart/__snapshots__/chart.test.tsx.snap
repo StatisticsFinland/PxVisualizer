@@ -115,6 +115,9 @@ exports[`Rendering test renders chart data correctly 1`] = `
             </tr>
           </tbody>
         </table>
+        <p>
+          Lähde: PxVisualizer-fi
+        </p>
       </div>
     </div>
   </div>
@@ -231,6 +234,9 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
             </tr>
           </tbody>
         </table>
+        <p>
+          Lähde: PxVisualizer-fi
+        </p>
       </div>
     </div>
   </div>
@@ -924,6 +930,9 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
         </tbody>
       </table>
+      <p>
+        Lähde: PxVisualizer-fi
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -1606,6 +1615,9 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
       </table>
       <p>
         Test footnote
+      </p>
+      <p>
+        Lähde: PxVisualizer-fi
       </p>
     </div>
   </div>
@@ -2970,6 +2982,9 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
         </tbody>
       </table>
+      <p>
+        Lähde: PxVisualizer-fi
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -3655,6 +3670,9 @@ exports[`Rendering test renders table data correctly when units and footnote are
       </p>
       <p>
         Test footnote
+      </p>
+      <p>
+        Lähde: PxVisualizer-fi
       </p>
     </div>
   </div>
