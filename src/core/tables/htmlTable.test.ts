@@ -3,8 +3,9 @@ import { TABLE_WITH_ONE_CELL, TABLE_WITH_ONLY_ROW_VARIABLES, TABLE_WITH_ROW_AND_
 import { SELECTABLE_TABLE_WITH_MISSING_DATA, TABLE_WITH_ONLY_COLUMN_VARIABLES } from "../conversion/fixtures/tableChart";
 import { extractSelectableVariableValues } from "../conversion/helpers";
 import { convertPxGrafResponseToView } from "../conversion/viewUtils";
-import { renderHtmlTable } from "./htmlTable";
+import { renderHtmlKeyFigure, renderHtmlTable } from "./htmlTable";
 import { SELECTABLE_TABLE_WITH_INVALID_MISSING_DATA } from "./fixtures/pxGrafResponses";
+import { EVisualizationType } from "../types";
 
 describe('Html table render tests', () => {
     it('should match snapshot: Table with column variables only', () => {
@@ -168,29 +169,6 @@ describe('Html table render tests', () => {
         document.body.removeChild(div);
     });
 
-    it('should match snapshot: Table with source and footnote', () => {
-        const mockVarSelections = extractSelectableVariableValues(
-            TABLE_WITH_ONE_CELL.pxGraphData.selectableVariableCodes,
-            TABLE_WITH_ONE_CELL.pxGraphData.metaData,
-            TABLE_WITH_ONE_CELL.pxGraphData.visualizationSettings.defaultSelectableVariableCodes,
-            TABLE_WITH_ONE_CELL.selectedVariableCodes);
-        const mockView = convertPxGrafResponseToView(TABLE_WITH_ONE_CELL.pxGraphData, mockVarSelections);
-        const locale = 'fi';
-
-        const testId = 'test-6895638450983059889';
-
-        const div = document.createElement('div');
-        div.id = testId;
-        document.body.appendChild(div);
-
-        renderHtmlTable(mockView, locale, true, true, true, testId, 'Test footnote');
-
-        const renderedOutput = prettyDOM(div);
-        expect(renderedOutput).toMatchSnapshot();
-
-        document.body.removeChild(div);
-    });
-
     it('should match snapshot: Table with missing data and selectable values', () => {
         const mockVarSelections = extractSelectableVariableValues(
             SELECTABLE_TABLE_WITH_MISSING_DATA.selectableVariableCodes,
@@ -245,5 +223,37 @@ describe('Html table render tests', () => {
         document.body.removeChild(div);
 
         spy.mockRestore();
+    });
+
+    it('should match snapshot: Key figure', () => {
+        const mockVarSelections = extractSelectableVariableValues(
+            TABLE_WITH_ONE_CELL.pxGraphData.selectableVariableCodes,
+            TABLE_WITH_ONE_CELL.pxGraphData.metaData,
+            TABLE_WITH_ONE_CELL.pxGraphData.visualizationSettings.defaultSelectableVariableCodes,
+            TABLE_WITH_ONE_CELL.selectedVariableCodes);
+        const mockView = convertPxGrafResponseToView(TABLE_WITH_ONE_CELL.pxGraphData, mockVarSelections);
+        mockView.visualizationSettings = {
+            ...mockView.visualizationSettings,
+            visualizationType: EVisualizationType.KeyFigure,
+            showUnit: true
+        }
+
+        const locale = 'fi';
+
+        const testId = 'test-49871891798765432';
+
+        const div = document.createElement('div');
+        div.id = testId;
+        document.body.appendChild(div);
+
+        const timeVariableValue = "2022Q4";
+        const lastUpdated = "2023-03-15";
+        
+        renderHtmlKeyFigure(mockView, locale, testId, timeVariableValue, lastUpdated);
+
+        const renderedOutput = prettyDOM(div);
+        expect(renderedOutput).toMatchSnapshot();
+
+        document.body.removeChild(div);
     });
 });

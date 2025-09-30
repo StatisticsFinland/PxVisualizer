@@ -1,7 +1,7 @@
-import { getFormattedUnits } from "../chartOptions/Utility/formatters";
-import { Translations } from "../conversion/translations";
-import { TMultiLanguageString } from "../types/queryVisualizationResponse";
-import { IDataSeries, View } from "../types/view";
+import { getFormattedUnits } from "../../core/chartOptions/Utility/formatters";
+import { Translations } from "../../core/conversion/translations";
+import { TMultiLanguageString } from "../../core/types/queryVisualizationResponse";
+import { IDataSeries, View } from "../../core/types/view";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 
 export function renderHtmlTable(view: View, locale: string, showTitles: boolean, showUnits: boolean, showSources: boolean, containerId: string, footnote?: string): void {
@@ -60,9 +60,71 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
     }
 }
 
+export function renderHtmlKeyFigure(view: View, locale: string, containerId: string, timeVariableValue: string, lastUpdated: string, className?: string): void {
+    const container = document.getElementById(containerId);
+    if (!container) throw new Error("No container with matching id found in the DOM tree");
+
+    try {
+        // Create the key figure display container
+        const keyFigureContainer = document.createElement('div');
+        keyFigureContainer.className = className ? `keyFigure-container ${className}` : 'keyFigure-container';
+        
+        // Add title if available
+        const title = document.createElement('div');
+        title.className = className ? `keyFigure-title ${className}` : 'keyFigure-title';
+        title.textContent = view.header[locale];
+        keyFigureContainer.append(title);
+
+        const dataCell = view.series[0].series[0];
+        const valueContainer = document.createElement('div');
+        valueContainer.className = className ? `keyFigure-value ${className}` : 'keyFigure-value';
+
+        // Format the value or show missing data message
+        if (dataCell.value === null) {
+            valueContainer.textContent = formatMissingData(dataCell.missingCode, locale, true);
+        } else {
+            const valueSpan = document.createElement('span');
+            valueSpan.className = 'keyFigure-value-main';
+            valueSpan.textContent = formatNumericValue(dataCell.value, dataCell.precision, locale, true);
+            valueContainer.append(valueSpan);
+            // If show units is enabled, append the unit to the value in a span
+            if (view.visualizationSettings.showUnit && view.units.length > 0) {
+                const unitName = getFormattedUnits(view.units, locale);
+                const unitSpan = document.createElement('span');
+                unitSpan.className = 'keyFigure-unit';
+                unitSpan.textContent = ` ${unitName}`;
+                valueContainer.append(unitSpan);
+            }
+        }
+            
+        keyFigureContainer.append(valueContainer);
+
+        const timeElem = document.createElement('div');
+        timeElem.className = className ? `keyFigure-time ${className}` : 'keyFigure-time';
+        timeElem.textContent = dataCell.preliminary
+            ? `${timeVariableValue} ${Translations.preliminaryData[locale]}`
+            : timeVariableValue;
+        keyFigureContainer.append(timeElem);
+
+        const lastUpdatedElem = document.createElement('div');
+        lastUpdatedElem.className = className ? `keyFigure-lastupdated ${className}` : 'keyFigure-lastupdated';
+        lastUpdatedElem.textContent = lastUpdated;
+        keyFigureContainer.append(lastUpdatedElem);
+
+        container.append(keyFigureContainer);
+
+    } catch (error) {
+        console.error(error);
+        container.replaceChildren();
+        const errorMessage = document.createElement('h1');
+        errorMessage.append(Translations.graphCreationError[locale]);
+        container.append(errorMessage);
+    }
+}
+
 export function generateTable(view: View, locale: string): HTMLTableElement {
-    const colHeaderRows = view.columnNameGroups[0].length ?? 0;
-    const rowHeaderCols = view.series[0].rowNameGroup.length ?? 0;
+    const colHeaderRows = view.columnNameGroups[0]?.length ?? 0;
+    const rowHeaderCols = view.series[0]?.rowNameGroup.length ?? 0;
 
     const table: HTMLTableElement = Object.assign(document.createElement('table'), { tabIndex: 0 });
 
@@ -140,17 +202,19 @@ function buildDataRows(series: IDataSeries[], locale: string): HTMLTableRowEleme
 }
 
 const compare = (a: TMultiLanguageString, b: TMultiLanguageString) =>
-    Object.keys(a).every(lang => a[lang] == b[lang]);
+    Object.keys(a).every(lang => a[lang] === b[lang]);
 
 const calculateRowSpans = (series: IDataSeries[]): number[] => {
     if (!series[0].rowNameGroup || series[0].rowNameGroup.length === 0) return [];
     const rowSpans: number[] = Array(series[0].rowNameGroup.length).fill(1);
 
     for (let col = 0; col < series[0].rowNameGroup.length; col++) {
+        let span = 1;
         for (let row = 0; row < series.length - 1; row++) {
-            if (compare(series[row].rowNameGroup[col], series[row+1].rowNameGroup[col])) rowSpans[col]++;
+            if (compare(series[row].rowNameGroup[col], series[row+1].rowNameGroup[col])) span++;
             else break;
         }
+        rowSpans[col] = span;
     }
     return rowSpans;
 }
@@ -160,10 +224,12 @@ const calculateColSpans = (columnNameGroups: TMultiLanguageString[][]): number[]
     const colSpans: number[] = Array(columnNameGroups[0].length).fill(1);
 
     for (let row = 0; row < columnNameGroups[0].length; row++) {
+        let span = 1;
         for (let col = 0; col < columnNameGroups.length - 1; col++) {
-            if (compare(columnNameGroups[col][row], columnNameGroups[col + 1][row])) colSpans[row]++;
+            if (compare(columnNameGroups[col][row], columnNameGroups[col + 1][row])) span++;
             else break;
         }
+        colSpans[row] = span;
     }
     return colSpans;
 }

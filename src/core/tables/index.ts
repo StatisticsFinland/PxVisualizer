@@ -1,4 +1,4 @@
-export { renderHtmlTable } from "./htmlTable";
+export { renderHtmlTable, renderHtmlKeyFigure } from "./htmlTable";
 
 export { generateCsv } from "./csvTable";
 export { viewToDownloadCSVOption } from "./csvTable";
