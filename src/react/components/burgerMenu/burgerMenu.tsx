@@ -229,7 +229,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 prefixIcon={'Download'}
                 text={Translations.downloadSVG[locale]}
                 onClick={() => handleMenuItemClick(() =>
-                    currentChartRef.chart.exportChartLocal({
+                    currentChartRef.chart.exporting.exportChart({
                         filename: `${generateFilename(viewData.tableReferenceName)}`,
                         type: "image/svg+xml",
                         sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
@@ -252,7 +252,7 @@ export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ viewData, currentChartR
                 prefixIcon={'Download'}
                 text={Translations.downloadPNG[locale]}
                 onClick={() => handleMenuItemClick(() =>
-                    currentChartRef.chart.exportChartLocal({
+                    currentChartRef.chart.exporting.exportChart({
                         filename: `${generateFilename(viewData.tableReferenceName)}`,
                         sourceWidth: calculateExportDimensions(currentChartRef).finalWidth,
                         sourceHeight: calculateExportDimensions(currentChartRef).finalHeight,
