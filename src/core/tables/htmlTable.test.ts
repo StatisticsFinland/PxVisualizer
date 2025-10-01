@@ -168,6 +168,29 @@ describe('Html table render tests', () => {
         document.body.removeChild(div);
     });
 
+    it('should match snapshot: Table with source and footnote', () => {
+        const mockVarSelections = extractSelectableVariableValues(
+            TABLE_WITH_ONE_CELL.pxGraphData.selectableVariableCodes,
+            TABLE_WITH_ONE_CELL.pxGraphData.metaData,
+            TABLE_WITH_ONE_CELL.pxGraphData.visualizationSettings.defaultSelectableVariableCodes,
+            TABLE_WITH_ONE_CELL.selectedVariableCodes);
+        const mockView = convertPxGrafResponseToView(TABLE_WITH_ONE_CELL.pxGraphData, mockVarSelections);
+        const locale = 'fi';
+
+        const testId = 'test-6895638450983059889';
+
+        const div = document.createElement('div');
+        div.id = testId;
+        document.body.appendChild(div);
+
+        renderHtmlTable(mockView, locale, true, true, true, testId, 'Test footnote');
+
+        const renderedOutput = prettyDOM(div);
+        expect(renderedOutput).toMatchSnapshot();
+
+        document.body.removeChild(div);
+    });
+
     it('should match snapshot: Table with missing data and selectable values', () => {
         const mockVarSelections = extractSelectableVariableValues(
             SELECTABLE_TABLE_WITH_MISSING_DATA.selectableVariableCodes,

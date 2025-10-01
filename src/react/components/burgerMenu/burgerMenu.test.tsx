@@ -18,9 +18,9 @@ describe('burgerMenu, rendering tests', () => {
 });
 
 const viewData = { tableReference: "testTable" } as unknown as View;
-const mockExportChartLocal = jest.fn();
+const mockExportChart = jest.fn();
 beforeEach(() => {
-    mockExportChartLocal.mockClear();
+    mockExportChart.mockClear();
 });
 
 const mockTableToggle = {
@@ -221,10 +221,12 @@ describe('burgerMenu, functional tests', () => {
         expect(finalHeight).toEqual(3000);
     });
 
-    it('should call exportChartLocal with correct parameters for SVG export', () => {
+    it('should call export chart with correct parameters for SVG export', () => {
         const mockRef = {
             chart: {
-                exportChartLocal: mockExportChartLocal,
+                exporting: {
+                    exportChart: mockExportChart,
+                },
                 chartWidth: 800,
                 chartHeight: 400
             }
@@ -235,7 +237,7 @@ describe('burgerMenu, functional tests', () => {
         fireEvent.click(screen.getByText(Translations.downloadSVG["fi"]));
 
         const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
-        expect(mockExportChartLocal).toHaveBeenCalledWith({
+        expect(mockExportChart).toHaveBeenCalledWith({
             filename: generateFilename(viewData.tableReferenceName),
             type: "image/svg+xml",
             sourceWidth: finalWidth,
@@ -244,10 +246,12 @@ describe('burgerMenu, functional tests', () => {
         }, {});
     });
 
-    it('should call exportChartLocal with correct parameters for PNG export', () => {
+    it('should call export chart with correct parameters for PNG export', () => {
         const mockRef = {
             chart: {
-                exportChartLocal: mockExportChartLocal,
+                exporting: {
+                    exportChart: mockExportChart,
+                },
                 chartWidth: 800,
                 chartHeight: 400
             }
@@ -258,7 +262,7 @@ describe('burgerMenu, functional tests', () => {
         fireEvent.click(screen.getByText(Translations.downloadPNG["fi"]));
 
         const { finalWidth, finalHeight } = calculateExportDimensions(mockRef);
-        expect(mockExportChartLocal).toHaveBeenCalledWith({
+        expect(mockExportChart).toHaveBeenCalledWith({
             filename: generateFilename(viewData.tableReferenceName),
             sourceWidth: finalWidth,
             sourceHeight: finalHeight,

@@ -32,3 +32,12 @@ export const OneCell = {
     name: 'One cell',
     args: TABLE_WITH_ONE_CELL,
 } satisfies StoryObj<typeof Chart>;
+
+export const TableWithFootnoteAndSource = {
+    name: 'Table with source and foot note',
+    args: {
+        ...TABLE_WITH_ROW_AND_COLUMN_VARIABLES,
+        showTableSources: true,
+        footnote: 'This is the foot note',
+    },
+} satisfies StoryObj<typeof Chart>;

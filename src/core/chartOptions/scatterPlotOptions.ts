@@ -2,12 +2,13 @@ import { Options } from 'highcharts';
 import { IDataSeries, View } from "../types/view";
 import { getScatterPlotTooltipFormatterFunction } from './Utility/formatters';
 import { commonChartOptions, commonYAxisOptions } from './chartOptions';
+import { IChartOptions } from '../types/chartOptions';
 
-export const scatterPlotOptions = (view: View, locale: string): Options => {
+export const scatterPlotOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     const X_INDEX = 1; const Y_INDEX = 0;
     const cutValueAxis = !view.visualizationSettings?.cutValueAxis ? 0 : undefined;
     return {
-        ...commonChartOptions(view, locale),
+        ...commonChartOptions(view, locale, options),
         chart: { type: 'scatter' },
         xAxis: {
             softMin: 0,
