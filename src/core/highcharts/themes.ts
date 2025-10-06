@@ -27,7 +27,7 @@ export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => 
     exporting: {
         enabled: false,
         fallbackToExportServer: false,
-        allowHTML: true,
+        allowHTML: false,
     },
     lang: {
         accessibility: {
