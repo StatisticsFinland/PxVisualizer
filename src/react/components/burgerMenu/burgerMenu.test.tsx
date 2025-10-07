@@ -101,7 +101,7 @@ describe('burgerMenu, functional tests', () => {
         await waitFor(() => {
             screen.getByText(btnText).click();
         });
-        expect(mockFunction).toBeCalledTimes(1);
+        expect(mockFunction).toHaveBeenCalledTimes(1);
         expect(screen.queryByText(btnText)).toBeNull();
         expect(screen.queryByRole('menu')).toBeNull();
     });
@@ -117,7 +117,7 @@ describe('burgerMenu, functional tests', () => {
         await waitFor(() => {
             screen.getByText(btnText).click();
         });
-        expect(mockFunction).toBeCalledTimes(1);
+        expect(mockFunction).toHaveBeenCalledTimes(1);
         expect(screen.queryByText(btnText)).toBeNull();
         expect(screen.queryByRole('menu')).toBeNull();
     });

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`burgerMenu, rendering tests Should render 1`] = `
 <DocumentFragment>
@@ -30,7 +30,7 @@ exports[`burgerMenu, rendering tests Should render 1`] = `
     class="c0"
   >
     <button
-      aria-controls="«r0»-menu"
+      aria-controls="_r_0_-menu"
       aria-expanded="false"
       aria-haspopup="menu"
       aria-label="Kuvion valikko"

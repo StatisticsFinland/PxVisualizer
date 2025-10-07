@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Worksheet xml generation tests Should generate expected xml output with provided fixture with en locale including special characters 1`] = `
 "<?xml version="1.0" ?>
