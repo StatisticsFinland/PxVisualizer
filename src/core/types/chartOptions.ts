@@ -4,4 +4,5 @@
 export interface IChartOptions {
     accessibilityMode?: boolean;
     showTitle?: boolean;
+    fontFamily?: string;
 }
