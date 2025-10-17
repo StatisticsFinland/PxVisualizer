@@ -16,10 +16,9 @@ import {
 import { SELECTABLE_TABLE_WITH_MISSING_DATA } from './fixtures/tableChart';
 import { ASCENDING, DESCENDING, SUM, REVERSED, NO_SORTING } from './viewSorting';
 import { buildSeries, convertPxGrafResponseToView, convertToRelative } from './viewUtils';
-import { v4 as uuidV4 } from 'uuid'
 
 const createContentComponent = (overrides?: Partial<IContentComponent>) => {
-    const id = uuidV4();
+    const id = Math.random().toString(36).substring(2, 15);
     const defaultContentComponent = {
         unit: { fi: `test-unit-${id}` },
         source: { fi: `test-source-${id}` },
@@ -31,7 +30,7 @@ const createContentComponent = (overrides?: Partial<IContentComponent>) => {
 };
 
 const createVariableValue = (overrides?: Partial<IVariableValueMeta>) => {
-    const id = uuidV4();
+    const id = Math.random().toString(36).substring(2, 15);
     const defaultValueMeta = {
         name: { fi: `test-variable-value-name-${id}` },
         code: `test-variable-value-code-${id}`,
@@ -46,7 +45,7 @@ const createVariableValue = (overrides?: Partial<IVariableValueMeta>) => {
 };
 
 const createVariable = (overrides?: Partial<IVariableMeta>): IVariableMeta => {
-    const id = uuidV4();
+    const id = Math.random().toString(36).substring(2, 15);
     const defaultVariableMeta: IVariableMeta = {
         code: `test-variable-code-${id}`,
         name: { fi: `test-variable-name-${id}` },
@@ -59,7 +58,7 @@ const createVariable = (overrides?: Partial<IVariableMeta>): IVariableMeta => {
 };
 
 const createPxGrafResponse = (overrides?: Partial<IQueryVisualizationResponse>): IQueryVisualizationResponse => {
-    const id = uuidV4();
+    const id = Math.random().toString(36).substring(2, 15);
     const defaultMetaData: IQueryVisualizationResponse = {
         tableReference: { name: `test-table-reference-${id}`, hierarchy: [] },
         data: [],

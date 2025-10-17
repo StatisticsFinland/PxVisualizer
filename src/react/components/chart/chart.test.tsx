@@ -9,7 +9,6 @@ function componentMocker(name: string): React.FC<any> {
 }
 
 jest.mock('uuid', () => ({
-    ...jest.requireActual('uuid'),
     v4: () => 'foobar'
 }));
 

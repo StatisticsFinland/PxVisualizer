@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Html table render tests should match snapshot: Table with column variables only 1`] = `
 "[36m<div[39m
