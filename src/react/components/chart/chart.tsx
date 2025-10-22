@@ -20,7 +20,7 @@ import { View } from "../../../core/types/view";
 import { ErrorInfo } from "./ErrorInfo";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 
-const initializeHighcharts = (locale: string) => {
+const initializeHighcharts = (locale: string, fontFamily?: string) => {
     if (typeof Highcharts === 'object') {
         Highcharts.wrap(Highcharts.SVGRenderer.prototype, 'init', function(this: any, proceed) { // https://stackoverflow.com/questions/53820683/customize-highcharts-desc-tag
             proceed.apply(this, Array.prototype.slice.call(arguments, 1));
@@ -29,7 +29,7 @@ const initializeHighcharts = (locale: string) => {
                 this.box.children[0].remove(); // remove hardcoded "<desc>Created with Highcharts {version number}</desc> from the code"
             }
         });
-        Highcharts.setOptions(defaultTheme(locale));
+        Highcharts.setOptions(defaultTheme(locale, fontFamily));
     }
 }
 
@@ -72,6 +72,7 @@ export interface IChartProps {
     showTableUnits?: boolean;
     showTableSources?: boolean;
     footnote?: string;
+    fontFamily?: string;
 }
 
 const ReactChart: React.FC<IChartProps> = ({
@@ -84,9 +85,10 @@ const ReactChart: React.FC<IChartProps> = ({
     menuIconInheritColor = false,
     showTitles,
     showTableUnits,
-    showTableSources}) => {
+    showTableSources,
+    fontFamily}) => {
     const validLocale = formatLocale(locale);
-    initializeHighcharts(validLocale);
+    initializeHighcharts(validLocale, fontFamily);
 
     const chartRef: React.MutableRefObject<HighchartsReactOfficial.RefObject | null> = React.useRef(null);
 
@@ -149,7 +151,11 @@ const ReactChart: React.FC<IChartProps> = ({
     try {
         // Chart
         if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
-            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { accessibilityMode: accessibilityMode, showTitle: showTitles ?? true });
+            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { 
+                accessibilityMode: accessibilityMode, 
+                showTitle: showTitles ?? true,
+                fontFamily: fontFamily
+            });
             return (
                 <ChartWrapper>
                     {

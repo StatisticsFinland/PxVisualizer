@@ -1,22 +1,22 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Rendering test renders chart data correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jScdur kXkHgn"
+    class="sc-kcLKEh jVCUVu"
   >
     <div
-      class="sc-dcKlJK eEkQvl"
+      class="sc-dntSTA gbAZBm"
     >
       <div
-        class="sc-kpOvIu imTYeK"
+        class="sc-jJLAfE cTICwY"
       >
         <button
-          aria-controls="«r0»-menu"
+          aria-controls="_r_0_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
+          class="sc-hwkwBN gcYXus"
         >
           <svg
             aria-hidden="true"
@@ -40,17 +40,17 @@ exports[`Rendering test renders chart data correctly 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jMsorb dfczEB"
+          class="sc-kNOymR irbqyk"
         />
       </div>
     </div>
     <div
-      class="sc-jPkiSJ iJnAtF"
+      class="sc-kvnevz bwgQhc"
     >
       <div />
     </div>
     <div
-      class="sc-cZSric gEMFNV"
+      class="sc-dFVmKS fwdFhA"
     >
       <div
         class="tableChart"
@@ -127,20 +127,20 @@ exports[`Rendering test renders chart data correctly 1`] = `
 exports[`Rendering test renders chart data correctly with hidden title 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jScdur kXkHgn"
+    class="sc-kcLKEh jVCUVu"
   >
     <div
-      class="sc-dcKlJK eEkQvl"
+      class="sc-dntSTA gbAZBm"
     >
       <div
-        class="sc-kpOvIu imTYeK"
+        class="sc-jJLAfE cTICwY"
       >
         <button
-          aria-controls="«r1»-menu"
+          aria-controls="_r_1_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
+          class="sc-hwkwBN gcYXus"
         >
           <svg
             aria-hidden="true"
@@ -164,17 +164,17 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jMsorb dfczEB"
+          class="sc-kNOymR irbqyk"
         />
       </div>
     </div>
     <div
-      class="sc-jPkiSJ iJnAtF"
+      class="sc-kvnevz bwgQhc"
     >
       <div />
     </div>
     <div
-      class="sc-cZSric gEMFNV"
+      class="sc-dFVmKS fwdFhA"
     >
       <div
         class="tableChart"
@@ -246,7 +246,7 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
 exports[`Rendering test renders error component on broken data 1`] = `
 <DocumentFragment>
   <div
-    class="sc-cUiCeM eUmXth"
+    class="sc-eqYatC bjPEIQ"
   >
     <h1>
       Kuviota ei voitu muodostaa
@@ -258,20 +258,20 @@ exports[`Rendering test renders error component on broken data 1`] = `
 exports[`Rendering test renders table data correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jScdur kXkHgn"
+    class="sc-kcLKEh jVCUVu"
   >
     <div
-      class="sc-dcKlJK eEkQvl"
+      class="sc-dntSTA gbAZBm"
     >
       <div
-        class="sc-kpOvIu imTYeK"
+        class="sc-jJLAfE cTICwY"
       >
         <button
-          aria-controls="«r2»-menu"
+          aria-controls="_r_2_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
+          class="sc-hwkwBN gcYXus"
         >
           <svg
             aria-hidden="true"
@@ -295,7 +295,7 @@ exports[`Rendering test renders table data correctly 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jMsorb dfczEB"
+          class="sc-kNOymR irbqyk"
         />
       </div>
     </div>
@@ -941,20 +941,20 @@ exports[`Rendering test renders table data correctly 1`] = `
 exports[`Rendering test renders table data correctly when given footnote 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jScdur kXkHgn"
+    class="sc-kcLKEh jVCUVu"
   >
     <div
-      class="sc-dcKlJK eEkQvl"
+      class="sc-dntSTA gbAZBm"
     >
       <div
-        class="sc-kpOvIu imTYeK"
+        class="sc-jJLAfE cTICwY"
       >
         <button
-          aria-controls="«r6»-menu"
+          aria-controls="_r_6_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
+          class="sc-hwkwBN gcYXus"
         >
           <svg
             aria-hidden="true"
@@ -978,7 +978,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jMsorb dfczEB"
+          class="sc-kNOymR irbqyk"
         />
       </div>
     </div>
@@ -1627,20 +1627,20 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
 exports[`Rendering test renders table data correctly when sources are on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jScdur kXkHgn"
+    class="sc-kcLKEh jVCUVu"
   >
     <div
-      class="sc-dcKlJK eEkQvl"
+      class="sc-dntSTA gbAZBm"
     >
       <div
-        class="sc-kpOvIu imTYeK"
+        class="sc-jJLAfE cTICwY"
       >
         <button
-          aria-controls="«r5»-menu"
+          aria-controls="_r_5_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
+          class="sc-hwkwBN gcYXus"
         >
           <svg
             aria-hidden="true"
@@ -1664,7 +1664,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jMsorb dfczEB"
+          class="sc-kNOymR irbqyk"
         />
       </div>
     </div>
@@ -2310,20 +2310,20 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
 exports[`Rendering test renders table data correctly when titles are forced on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jScdur kXkHgn"
+    class="sc-kcLKEh jVCUVu"
   >
     <div
-      class="sc-dcKlJK eEkQvl"
+      class="sc-dntSTA gbAZBm"
     >
       <div
-        class="sc-kpOvIu imTYeK"
+        class="sc-jJLAfE cTICwY"
       >
         <button
-          aria-controls="«r3»-menu"
+          aria-controls="_r_3_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
+          class="sc-hwkwBN gcYXus"
         >
           <svg
             aria-hidden="true"
@@ -2347,7 +2347,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </svg>
         </button>
         <div
-          class="sc-jMsorb dfczEB"
+          class="sc-kNOymR irbqyk"
         />
       </div>
     </div>
@@ -2993,20 +2993,20 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
 exports[`Rendering test renders table data correctly when units and footnote are on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-jScdur kXkHgn"
+    class="sc-kcLKEh jVCUVu"
   >
     <div
-      class="sc-dcKlJK eEkQvl"
+      class="sc-dntSTA gbAZBm"
     >
       <div
-        class="sc-kpOvIu imTYeK"
+        class="sc-jJLAfE cTICwY"
       >
         <button
-          aria-controls="«r4»-menu"
+          aria-controls="_r_4_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-icnseD Fbljb"
+          class="sc-hwkwBN gcYXus"
         >
           <svg
             aria-hidden="true"
@@ -3030,7 +3030,7 @@ exports[`Rendering test renders table data correctly when units and footnote are
           </svg>
         </button>
         <div
-          class="sc-jMsorb dfczEB"
+          class="sc-kNOymR irbqyk"
         />
       </div>
     </div>
