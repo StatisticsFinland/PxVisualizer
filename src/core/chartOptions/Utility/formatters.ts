@@ -271,7 +271,8 @@ export function getFormattedLastUpdatedText(lastUpdated: string | undefined, loc
         const date = new Date(lastUpdated);
         if (Number.isNaN(date.getTime())) return undefined;
 
-        const formattedDate: string = Intl.DateTimeFormat(locale).format(date);
+        const dateLocale = locale === 'en' ? 'en-GB' : locale; // Use en-GB for English to get DD/MM/YYYY format if not specified
+        const formattedDate: string = Intl.DateTimeFormat(dateLocale).format(date);
 
         return `${Translations.lastUpdated[locale]}: ${formattedDate}`;
     } catch (error) {

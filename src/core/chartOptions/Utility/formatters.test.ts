@@ -434,9 +434,9 @@ describe('getFormattedLastUpdatedText tests', () => {
      expect(result).toBe('Uppdaterad: 2025-09-23');
     });
 
-    it('should format last updated text correctly for English locale', () => {
-    const result = getFormattedLastUpdatedText('2025-09-23', 'en');
-        expect(result).toBe('Updated: 9/23/2025');
+    it('should format last updated text correctly for English locale to British English', () => {
+        const result = getFormattedLastUpdatedText('2025-09-23', 'en');
+        expect(result).toBe('Updated: 23/09/2025');
     });
 
     it('should return undefined for undefined input', () => {
