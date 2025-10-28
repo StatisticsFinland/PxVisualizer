@@ -17,6 +17,7 @@ import { formatLocale } from "../../../core/chartOptions/Utility/formatters";
 import { TableView } from "./tableView";
 import { GlobalStyle } from "../globalStyle";
 import { View } from "../../../core/types/view";
+import { ITableOptions } from "../../../core/types/tableOptions";
 import { ErrorInfo } from "./ErrorInfo";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 
@@ -92,32 +93,39 @@ const ReactChart: React.FC<IChartProps> = ({
     const validLocale = formatLocale(locale);
     initializeHighcharts(validLocale, fontFamily);
 
-    const chartRef: React.MutableRefObject<HighchartsReactOfficial.RefObject | null> = React.useRef(null);
+  const chartRef: React.MutableRefObject<HighchartsReactOfficial.RefObject | null> = React.useRef(null);
 
-    const [currentChartRef, setCurrentChartRef] = React.useState(chartRef.current);
+  const [currentChartRef, setCurrentChartRef] = React.useState(chartRef.current);
     const [tableMode, setTableMode] = React.useState(false);
     const [accessibilityMode, setAccessibilityMode] = React.useState(false);
     const [width, setWidth] = React.useState(0);
 
     const variableSelections = useMemo(() => {
         try  {
-            return extractSelectableVariableValues(pxGraphData.selectableVariableCodes, pxGraphData.metaData, pxGraphData.visualizationSettings.defaultSelectableVariableCodes, selectedVariableCodes);
-        }
+   return extractSelectableVariableValues(pxGraphData.selectableVariableCodes, pxGraphData.metaData, pxGraphData.visualizationSettings.defaultSelectableVariableCodes, selectedVariableCodes);
+      }
         catch (error: any) {
-            console.error(error);
-            return {};
-        }
+   console.error(error);
+   return {};
+ }
     }, [selectedVariableCodes, pxGraphData]);
 
     const view: View | null = useMemo(() => {
-        try {
-            return convertPxGrafResponseToView(pxGraphData, variableSelections);
-        }
-        catch (error: any) {
+      try {
+      return convertPxGrafResponseToView(pxGraphData, variableSelections);
+  }
+   catch (error: any) {
             console.error(error);
-            return null;
+          return null;
         }
     }, [variableSelections, pxGraphData]);
+
+    const tableOptions: ITableOptions = useMemo(() => ({
+        showTitles: showTitles ?? true,
+        showUnits: !!showTableUnits,
+        showSources: showTableSources ?? true,
+        showLastUpdated: showLastUpdated
+    }), [showTitles, showTableUnits, showTableSources, showLastUpdated]);
 
     // Force rerender on window resize events, so that scaling and scrollboxes work correctly. Feel free to refactor to a more performant or better solution
     let renderTimeOut: NodeJS.Timeout;
@@ -141,20 +149,20 @@ const ReactChart: React.FC<IChartProps> = ({
     }
 
     const toggleAccessibilityMode = () => {
-        setAccessibilityMode(!accessibilityMode);
+   setAccessibilityMode(!accessibilityMode);
     }
 
     React.useEffect(() => {
-        if (chartRef.current) {
-            setCurrentChartRef(chartRef.current);
-        }
-    }, [chartRef.current]);
+   if (chartRef.current) {
+setCurrentChartRef(chartRef.current);
+      }
+}, [chartRef.current]);
 
     try {
         // Chart
         if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
-            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { 
-                accessibilityMode: accessibilityMode, 
+            const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, {
+                accessibilityMode: accessibilityMode,
                 showTitle: showTitles ?? true,
                 fontFamily: fontFamily,
                 showLastUpdated: showLastUpdated
@@ -176,7 +184,7 @@ const ReactChart: React.FC<IChartProps> = ({
                         />
                     </ChartContainer>
                     <TableContainer $tableMode={tableMode}>
-                        <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} showLastUpdated={showLastUpdated} />
+                        <TableView options={tableOptions} footnote={footnote} view={view} locale={validLocale} />
                     </TableContainer>
                 </ChartWrapper>
             );
@@ -189,10 +197,10 @@ const ReactChart: React.FC<IChartProps> = ({
                     {
                         showContextMenu &&
                         <MenuContainer>
-                            <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} locale={validLocale} menuIconInheritColor={menuIconInheritColor} />
+                                <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} locale={validLocale} menuIconInheritColor={menuIconInheritColor} />
                         </MenuContainer>
                     }
-                    <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} showLastUpdated={showLastUpdated} />
+                    <TableView options={tableOptions} footnote={footnote} view={view} locale={validLocale} />
                 </ChartWrapper>
             );
         }

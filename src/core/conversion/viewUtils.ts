@@ -105,6 +105,48 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
     };
 }
 
+/**
+ * Get the last updated date from the content variable values.
+ * @param contentVar Content variable metadata
+ * @param selectedValueCodes Selected selectable value codes if any
+ * @returns Last updated date as a string
+ */
+export function getLastUpdated(
+    contentVar: IVariableMeta,
+    selectedValueCodes: TVariableSelections
+): string {
+    let dates: (string | undefined)[];
+
+    if (contentVar.code in selectedValueCodes) {
+        dates = contentVar.values
+            .filter(v => selectedValueCodes[contentVar.code].includes(v.code))
+            .map(cvv => cvv.contentComponent?.lastUpdated)
+            .filter(onlyUnique);
+    } else {
+        dates = contentVar.values
+            .map(cvv => cvv.contentComponent?.lastUpdated)
+            .filter(onlyUnique);
+    }
+
+    // Filter out undefined values and get the most recent date
+    const validDates = dates.filter((date): date is string => date !== undefined);
+
+    if (validDates.length === 0) {
+        return '';
+    }
+
+    if (validDates.length === 1) {
+        return validDates[0];
+    }
+
+    // Find the most recent date
+    return validDates.reduce((latest, current) => {
+        const latestDate = new Date(latest);
+        const currentDate = new Date(current);
+        return currentDate > latestDate ? current : latest;
+    }, validDates[0]);
+}
+
 function getVariableNames(varCodes: string[], meta: IVariableMeta[]): TMultiLanguageString[] {
     return varCodes.reduce((acc: TMultiLanguageString[], code: string) => {
         const name = meta.find(v => v.code === code)?.name;
@@ -168,42 +210,6 @@ function getContentProperty(
     } else {
         return contentVar.values.map(cvv => extractorFunc(cvv.contentComponent)).filter(onlyUnique);
     }
-}
-
-function getLastUpdated(
-    contentVar: IVariableMeta,
-    selectedValueCodes: TVariableSelections
-): string {
-    let dates: (string | undefined)[];
-
-    if (contentVar.code in selectedValueCodes) {
-        dates = contentVar.values
-            .filter(v => selectedValueCodes[contentVar.code].includes(v.code))
-            .map(cvv => cvv.contentComponent?.lastUpdated)
-            .filter(onlyUnique);
-    } else {
-        dates = contentVar.values
-            .map(cvv => cvv.contentComponent?.lastUpdated)
-            .filter(onlyUnique);
-    }
-
-    // Filter out undefined values and get the most recent date
-    const validDates = dates.filter((date): date is string => date !== undefined);
-
-    if (validDates.length === 0) {
-        return '';
-    }
-
-    if (validDates.length === 1) {
-        return validDates[0];
-    }
-
-    // Find the most recent date
-    return validDates.reduce((latest, current) => {
-        const latestDate = new Date(latest);
-        const currentDate = new Date(current);
-        return currentDate > latestDate ? current : latest;
-    }, '');
 }
 
 function getSeriesType(varCodes: string[], meta: IVariableMeta[]) {

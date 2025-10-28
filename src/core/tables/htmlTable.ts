@@ -2,9 +2,10 @@ import { getFormattedUnits, getFormattedLastUpdatedText } from "../chartOptions/
 import { Translations } from "../conversion/translations";
 import { TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { IDataSeries, View } from "../types/view";
+import { ITableOptions } from "../types/tableOptions";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 
-export function renderHtmlTable(view: View, locale: string, showTitles: boolean, showUnits: boolean, showSources: boolean, containerId: string, footnote?: string, showLastUpdated?: boolean): void {
+export function renderHtmlTable(view: View, locale: string, options: ITableOptions, containerId: string, footnote?: string): void {
 
     const container = document.getElementById(containerId);
     if (!container) throw new Error("No container with matching id found in the DOM tree");
@@ -13,7 +14,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         // Table content
         const table = generateTable(view, locale);
 
-        if (showTitles) {
+        if (options.showTitles) {
             
             const caption = document.createElement('caption');
             caption.textContent = view.header[locale];
@@ -28,7 +29,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         container.append(table);
 
         // Units
-        if (showUnits) {
+        if (options.showUnits) {
             const pUnits = document.createElement('p');
             const unitName = getFormattedUnits(view.units, locale);
             const units: string = `${Translations.unit[locale]}: ${unitName}`;
@@ -44,7 +45,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         }
 
         // Last Updated
-        if (showLastUpdated && view.lastUpdated) {
+        if (options.showLastUpdated && view.lastUpdated) {
             const pLastUpdated = document.createElement('p');
             const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
             if (lastUpdatedText) {
@@ -54,7 +55,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         }
 
         // Sources
-        if (showSources) {
+        if (options.showSources) {
             const pSources = document.createElement('p');
             const sources: string = `${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`;
             pSources.append(sources);

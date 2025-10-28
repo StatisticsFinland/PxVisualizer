@@ -8,3 +8,4 @@ export {
     TVariableType
 } from './queryVisualizationResponse';
 export { IChartOptions } from './chartOptions';
+export { ITableOptions } from './tableOptions';

@@ -1,25 +1,23 @@
 import React, { useMemo } from "react";
 import { View } from "../../../core/types/view";
+import { ITableOptions } from "../../../core/types/tableOptions";
 import { v4 as uuidv4 } from 'uuid';
 import { renderHtmlTable } from "../../../core/tables/htmlTable";
 
 export interface ITableViewProps {
     view: View;
     locale: string;
-    showTitles?: boolean;
-    showUnits?: boolean;
-    showSources?: boolean;
+    options: ITableOptions;
     footnote?: string;
-    showLastUpdated?: boolean;
 }
 
-export const TableView: React.FC<ITableViewProps> = ({ view, locale, footnote, showTitles = true, showUnits = true, showSources = true, showLastUpdated = false }) => {
+export const TableView: React.FC<ITableViewProps> = ({ view, locale, options, footnote }) => {
     const uuid = useMemo(() => uuidv4(), [view, locale]);
 
     React.useEffect(() => {
         document.getElementById(uuid)?.replaceChildren();
-        renderHtmlTable(view, locale, showTitles, showUnits, showSources, uuid, footnote, showLastUpdated);
-    }, [view, locale, showTitles, showUnits, showSources, footnote, showLastUpdated]);
+        renderHtmlTable(view, locale, options, uuid, footnote);
+    }, [view, locale, options, footnote]);
 
     return <div className={'tableChart'} id={uuid} />;
 }
