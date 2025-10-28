@@ -425,13 +425,13 @@ describe('getDataFormattedForChartType tests', () => {
 
 describe('getFormattedLastUpdatedText tests', () => {
     it('should format last updated text correctly for Finnish locale', () => {
-      const result = getFormattedLastUpdatedText('2025-09-23', 'fi');
-   expect(result).toBe('Päivitetty: 23.9.2025');
+        const result = getFormattedLastUpdatedText('2025-09-23', 'fi');
+        expect(result).toBe('Päivitetty: 23.9.2025');
     });
 
     it('should format last updated text correctly for Swedish locale', () => {
         const result = getFormattedLastUpdatedText('2025-09-23', 'sv');
-     expect(result).toBe('Uppdaterad: 2025-09-23');
+        expect(result).toBe('Uppdaterad: 2025-09-23');
     });
 
     it('should format last updated text correctly for English locale to British English', () => {
@@ -446,6 +446,6 @@ describe('getFormattedLastUpdatedText tests', () => {
 
     it('should return undefined for invalid date', () => {
         const result = getFormattedLastUpdatedText('invalid-date', 'fi');
-      expect(result).toBeUndefined();
+        expect(result).toBeUndefined();
     });
 });
