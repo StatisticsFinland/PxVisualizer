@@ -109,12 +109,12 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
  * Get the last updated date from the content variable values.
  * @param contentVar Content variable metadata
  * @param selectedValueCodes Selected selectable value codes if any
- * @returns Last updated date as a string, or empty string if no valid dates are found
+ * @returns Last updated date as a string, or undefined if no valid dates are found
  */
 export function getLastUpdated(
     contentVar: IVariableMeta,
     selectedValueCodes: TVariableSelections
-): string {
+): string | undefined {
     let dates: (string | undefined)[];
 
     if (contentVar.code in selectedValueCodes) {
@@ -132,7 +132,7 @@ export function getLastUpdated(
     const validDates = dates.filter((date): date is string => date !== undefined);
 
     if (validDates.length === 0) {
-        return '';
+        return undefined;
     }
 
     if (validDates.length === 1) {
