@@ -15,7 +15,7 @@ const preview: Preview = {
                   name: 'Website',
                   styles: {
                       width: '766px',
-                      height: '600px',
+                      height: '635px',
                   },
                   type: 'desktop',
               },

@@ -56,6 +56,8 @@ interface ITableContainerProps {
 
 const ChartContainer = styled.div<IChartContainerProps>`
     display: ${p => p.$tableMode ? 'none' : 'block'};
+    min-height: 635px;
+    height: 100%;
 `;
 
 const TableContainer = styled.div<ITableContainerProps>`

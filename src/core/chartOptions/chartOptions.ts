@@ -17,7 +17,9 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
         text: creditsText
     };
 
-    if (options?.showLastUpdated && view.lastUpdated) {
+    const hasLastUpdated = options?.showLastUpdated && view.lastUpdated;
+    
+    if (hasLastUpdated) {
         const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
         if (lastUpdatedText) {
             creditsText = `${lastUpdatedText}<br>${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
@@ -26,15 +28,29 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
                 text: creditsText,
                 useHTML: true,
                 position: {
-                    align: 'left',
-                    verticalAlign: 'bottom',
-                    y: -20
+                    x: 5,
+                    y: -30  // More space needed for two-line credits
                 }
             };
         }
+    } else {
+        // Single line credits, less spacing needed
+        creditsConfig = {
+            enabled: true,
+            text: creditsText,
+            position: {
+                align: 'left',
+                verticalAlign: 'bottom',
+                x: 5,
+                y: -10  // Less space needed for single line
+            }
+        };
     }
 
     return {
+        chart: {
+            spacingBottom: hasLastUpdated ? 50 : 30  // Conditional spacing based on lastUpdated presence
+        },
         accessibility: {
             point: {
                 descriptionFormatter: getScreenReaderFormatterCallbackFunction(view, locale)
