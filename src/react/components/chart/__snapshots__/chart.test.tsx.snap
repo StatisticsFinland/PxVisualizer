@@ -45,7 +45,7 @@ exports[`Rendering test renders chart data correctly 1`] = `
       </div>
     </div>
     <div
-      class="sc-kvnevz bwgQhc"
+      class="sc-kvnevz kmDLNP"
     >
       <div />
     </div>
@@ -169,7 +169,7 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
       </div>
     </div>
     <div
-      class="sc-kvnevz bwgQhc"
+      class="sc-kvnevz kmDLNP"
     >
       <div />
     </div>
@@ -288,7 +288,7 @@ exports[`Rendering test renders chart data correctly with last updated date 1`] 
       </div>
     </div>
     <div
-      class="sc-kvnevz bwgQhc"
+      class="sc-kvnevz kmDLNP"
     >
       <div />
     </div>
