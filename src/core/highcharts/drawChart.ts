@@ -34,7 +34,6 @@ export const drawChart = (
     Highcharts.setOptions(defaultTheme(validLocale, options?.fontFamily));
     const variableSelections = extractSelectableVariableValues(pxGraphData.selectableVariableCodes, pxGraphData.metaData, pxGraphData.visualizationSettings.defaultSelectableVariableCodes, selectedVariableCodes);
     const view = convertPxGrafResponseToView(pxGraphData, variableSelections);
-    
     const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, options);
     return Highcharts.chart(container, highChartOptions);
 }
