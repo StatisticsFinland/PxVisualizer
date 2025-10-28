@@ -72,12 +72,15 @@ function convert(responseObj: IQueryVisualizationResponse, selectedValueCodes: T
     const rowVarNames = getVariableNames(directionlessMultiselectVarNames, metaData)
         .concat(getVariableNames(responseObj.rowVariableCodes, responseObj.metaData));
 
+    const lastUpdated = getLastUpdated(contentVar, selectedValueCodes);
+
     return {
         header: responseObj.header,
         tableReferenceName: responseObj.tableReference.name,
         subheaderValues: getSubheaderValues(selectableVariables, selectedValueCodes, selectedValueAmounts),
         units: getUnitInformation(contentVar, selectedValueCodes),
         sources: getContentProperty(contentVar, selectedValueCodes, (cc) => cc?.source ?? Translations.empty),
+        lastUpdated: lastUpdated,
         columnNameGroups: unsortedSeries.columnNameGroups,
         series: unsortedSeries.series,
         rowVarNames: rowVarNames,
@@ -167,7 +170,43 @@ function getContentProperty(
     }
 }
 
-function getSeriesType (varCodes: string[], meta: IVariableMeta[]) {
+function getLastUpdated(
+    contentVar: IVariableMeta,
+    selectedValueCodes: TVariableSelections
+): string {
+    let dates: (string | undefined)[];
+
+    if (contentVar.code in selectedValueCodes) {
+        dates = contentVar.values
+            .filter(v => selectedValueCodes[contentVar.code].includes(v.code))
+            .map(cvv => cvv.contentComponent?.lastUpdated)
+            .filter(onlyUnique);
+    } else {
+        dates = contentVar.values
+            .map(cvv => cvv.contentComponent?.lastUpdated)
+            .filter(onlyUnique);
+    }
+
+    // Filter out undefined values and get the most recent date
+    const validDates = dates.filter((date): date is string => date !== undefined);
+
+    if (validDates.length === 0) {
+        return '';
+    }
+
+    if (validDates.length === 1) {
+        return validDates[0];
+    }
+
+    // Find the most recent date
+    return validDates.reduce((latest, current) => {
+        const latestDate = new Date(latest);
+        const currentDate = new Date(current);
+        return currentDate > latestDate ? current : latest;
+    }, '');
+}
+
+function getSeriesType(varCodes: string[], meta: IVariableMeta[]) {
     if (varCodes.length > 1 || varCodes.length === 0) {
         return ESeriesType.Nominal;
     }

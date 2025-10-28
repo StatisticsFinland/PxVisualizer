@@ -20,7 +20,7 @@ export default {
 } satisfies Meta;
 
 export const YearSeries = {
-    name: 'Year Series',
+    name: 'Year Series (with last updated)',
     args: LINE_CHART_WITH_YEAR_SERIES,
 } satisfies StoryObj<typeof Chart>;
 

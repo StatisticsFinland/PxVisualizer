@@ -2,7 +2,7 @@ import { EVariableType, EVisualizationType, IQueryVisualizationResponse } from "
 import { ETimeVariableInterval } from "../../core/types/queryVisualizationResponse";
 import { TVariableSelections } from "../../core/types/variableSelections";
 
-export const LINE_CHART_WITH_YEAR_SERIES: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+export const LINE_CHART_WITH_YEAR_SERIES: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined, showLastUpdated: boolean } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         data: [
@@ -2189,7 +2189,8 @@ export const LINE_CHART_WITH_YEAR_SERIES: { pxGraphData: IQueryVisualizationResp
             cutValueAxis: false
         }
     },
-    selectedVariableCodes: undefined
+    selectedVariableCodes: undefined,
+    showLastUpdated: true
 };
 
 export const LINE_CHART_WITH_QUARTER_SERIES: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {

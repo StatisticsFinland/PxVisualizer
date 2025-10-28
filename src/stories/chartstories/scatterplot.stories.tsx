@@ -12,7 +12,7 @@ export default {
 } satisfies Meta;
 
 export const Simple = {
-    name: 'Simple',
+    name: 'Simple (with last updated)',
     args: SCATTER_PLOT,
 } satisfies StoryObj<typeof Chart>;
 

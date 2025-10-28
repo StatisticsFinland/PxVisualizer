@@ -261,10 +261,10 @@ export const GROUP_HORIZONTAL_BAR_CHART_WITH_SELECTABLES: { pxGraphData: IQueryV
             defaultSelectableVariableCodes: null
         },
     },
-    selectedVariableCodes: { 'Alue': ['pks'], 'Huoneluku': ['01'], 'Tiedot': ['lkm'] }
+    selectedVariableCodes: { 'Alue': ['pks'], 'Huoneluku': ['01'], 'Tiedot': ['lkm'] },
 };
 
-export const GROUP_HORIZONTAL_BAR_CHART: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: { [key: string]: string[] } | undefined } = {
+export const GROUP_HORIZONTAL_BAR_CHART: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: { [key: string]: string[] } | undefined, showLastUpdated: boolean } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         data: [
@@ -446,7 +446,8 @@ export const GROUP_HORIZONTAL_BAR_CHART: { pxGraphData: IQueryVisualizationRespo
             timeVariableIntervals: ETimeVariableInterval.Quarter,
         }
     },
-    selectedVariableCodes: undefined
+    selectedVariableCodes: undefined,
+    showLastUpdated: true
 }
 
 export const GROUP_HORIZONTAL_BAR_CHART_WITH_SUM_SORTING: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: { [key: string]: string[] } | undefined } =

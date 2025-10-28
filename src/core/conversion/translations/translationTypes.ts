@@ -67,6 +67,7 @@ export type TTranslations = {
     dataMissing: TMultiLanguageString;
     toggleAccessibilityModeOn: TMultiLanguageString;
     toggleAccessibilityModeOff: TMultiLanguageString;
+    lastUpdated: TMultiLanguageString;
 }
 
 export type TArrayTranslations = {

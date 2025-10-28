@@ -73,6 +73,7 @@ export interface IChartProps {
     showTableSources?: boolean;
     footnote?: string;
     fontFamily?: string;
+    showLastUpdated?: boolean;
 }
 
 const ReactChart: React.FC<IChartProps> = ({
@@ -86,7 +87,8 @@ const ReactChart: React.FC<IChartProps> = ({
     showTitles,
     showTableUnits,
     showTableSources,
-    fontFamily}) => {
+    fontFamily,
+    showLastUpdated = false}) => {
     const validLocale = formatLocale(locale);
     initializeHighcharts(validLocale, fontFamily);
 
@@ -154,7 +156,8 @@ const ReactChart: React.FC<IChartProps> = ({
             const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, { 
                 accessibilityMode: accessibilityMode, 
                 showTitle: showTitles ?? true,
-                fontFamily: fontFamily
+                fontFamily: fontFamily,
+                showLastUpdated: showLastUpdated
             });
             return (
                 <ChartWrapper>
@@ -173,7 +176,7 @@ const ReactChart: React.FC<IChartProps> = ({
                         />
                     </ChartContainer>
                     <TableContainer $tableMode={tableMode}>
-                        <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} />
+                        <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} showLastUpdated={showLastUpdated} />
                     </TableContainer>
                 </ChartWrapper>
             );
@@ -189,7 +192,7 @@ const ReactChart: React.FC<IChartProps> = ({
                             <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} locale={validLocale} menuIconInheritColor={menuIconInheritColor} />
                         </MenuContainer>
                     }
-                    <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} />
+                    <TableView showTitles={showTitles ?? true} footnote={footnote} showUnits={!!showTableUnits} showSources={showTableSources ?? true} view={view} locale={validLocale} showLastUpdated={showLastUpdated} />
                 </ChartWrapper>
             );
         }

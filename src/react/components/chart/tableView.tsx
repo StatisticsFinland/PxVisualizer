@@ -10,15 +10,16 @@ export interface ITableViewProps {
     showUnits?: boolean;
     showSources?: boolean;
     footnote?: string;
+    showLastUpdated?: boolean;
 }
 
-export const TableView: React.FC<ITableViewProps> = ({ view, locale, footnote, showTitles = true, showUnits = true, showSources = true }) => {
+export const TableView: React.FC<ITableViewProps> = ({ view, locale, footnote, showTitles = true, showUnits = true, showSources = true, showLastUpdated = false }) => {
     const uuid = useMemo(() => uuidv4(), [view, locale]);
 
     React.useEffect(() => {
         document.getElementById(uuid)?.replaceChildren();
-        renderHtmlTable(view, locale, showTitles, showUnits, showSources, uuid, footnote);
-    }, [view, locale, showTitles, showUnits, showSources, footnote]);
+        renderHtmlTable(view, locale, showTitles, showUnits, showSources, uuid, footnote, showLastUpdated);
+    }, [view, locale, showTitles, showUnits, showSources, footnote, showLastUpdated]);
 
     return <div className={'tableChart'} id={uuid} />;
 }

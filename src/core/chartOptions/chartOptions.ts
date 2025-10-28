@@ -1,14 +1,39 @@
 import { LegendOptions, Options, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
-import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction } from './Utility/formatters';
-import { Translations } from '../conversion/translations';
+import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction, getFormattedLastUpdatedText } from './Utility/formatters';
 import { getXAxisOptions } from './Utility/timeIntervals';
 import { getLinearAxisTickPositionerFunction } from './Utility/tickPositioners';
 import { IChartOptions } from '../types/chartOptions';
 import { buildBarChartSeries, buildColumnChartSeries } from './Utility/seriesDataBuilder';
+import { Translations } from "../conversion/translations";
 
 export const commonChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     const showTitle: boolean = options?.showTitle ?? true;
+
+    const sourceText = Translations.source[locale];
+    let creditsText = `${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
+    let creditsConfig: any = {
+        enabled: true,
+        text: creditsText
+    };
+
+    if (options?.showLastUpdated && view.lastUpdated) {
+        const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
+        if (lastUpdatedText) {
+            creditsText = `${lastUpdatedText}<br>${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
+            creditsConfig = {
+                enabled: true,
+                text: creditsText,
+                useHTML: true,
+                position: {
+                    align: 'left',
+                    verticalAlign: 'bottom',
+                    y: -20
+                }
+            };
+        }
+    }
+
     return {
         accessibility: {
             point: {
@@ -17,7 +42,7 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
         },
         title: { text: showTitle ? view.header[locale] : undefined },
         subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
-        credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` },
+        credits: creditsConfig,
         tooltip: {
             formatter: getToolTipFormatterFunction(view, locale)
         },

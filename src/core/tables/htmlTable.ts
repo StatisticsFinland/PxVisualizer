@@ -1,10 +1,10 @@
-import { getFormattedUnits } from "../chartOptions/Utility/formatters";
+import { getFormattedUnits, getFormattedLastUpdatedText } from "../chartOptions/Utility/formatters";
 import { Translations } from "../conversion/translations";
 import { TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { IDataSeries, View } from "../types/view";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 
-export function renderHtmlTable(view: View, locale: string, showTitles: boolean, showUnits: boolean, showSources: boolean, containerId: string, footnote?: string): void {
+export function renderHtmlTable(view: View, locale: string, showTitles: boolean, showUnits: boolean, showSources: boolean, containerId: string, footnote?: string, showLastUpdated?: boolean): void {
 
     const container = document.getElementById(containerId);
     if (!container) throw new Error("No container with matching id found in the DOM tree");
@@ -41,6 +41,16 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
             const pFootnote = document.createElement('p');
             pFootnote.append(footnote);
             container.append(pFootnote);
+        }
+
+        // Last Updated
+        if (showLastUpdated && view.lastUpdated) {
+            const pLastUpdated = document.createElement('p');
+            const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
+            if (lastUpdatedText) {
+                pLastUpdated.append(lastUpdatedText);
+                container.append(pLastUpdated);
+            }
         }
 
         // Sources
@@ -160,10 +170,10 @@ const calculateColSpans = (columnNameGroups: TMultiLanguageString[][]): number[]
     const colSpans: number[] = Array(columnNameGroups[0].length).fill(1);
 
     for (let row = 0; row < columnNameGroups[0].length; row++) {
-        for (let col = 0; col < columnNameGroups.length - 1; col++) {
-            if (compare(columnNameGroups[col][row], columnNameGroups[col + 1][row])) colSpans[row]++;
-            else break;
-        }
+      for (let col = 0; col < columnNameGroups.length - 1; col++) {
+       if (compare(columnNameGroups[col][row], columnNameGroups[col + 1][row])) colSpans[row]++;
+      else break;
+  }
     }
     return colSpans;
 }

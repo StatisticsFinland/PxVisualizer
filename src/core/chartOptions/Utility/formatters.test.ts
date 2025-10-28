@@ -1,5 +1,5 @@
 import { DataLabelsOptions, Point, Tooltip } from "highcharts";
-import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getLineChartToolTipFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue } from "./formatters";
+import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getLineChartToolTipFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue, getFormattedLastUpdatedText } from "./formatters";
 import { combinationValuesLinechartViewFixture, multiselectableLineChartViewFixture, simpleQuarterLinechartViewFixture } from "./fixtures/linechartViews";
 import { simpleHorizontalBarchartViewFixture } from "./fixtures/horizontalbarchartViews";
 import { simpleGroupHorizontalBarchartViewFixture } from "./fixtures/grouphorizontalbarchartViews";
@@ -420,5 +420,32 @@ describe('getDataFormattedForChartType tests', () => {
         } as unknown as View;
         const result: string = getDataFormattedForChartType(view, point, 'en', 2);
         expect(result).toBe('12.0% (123.46 kg)');
+    });
+});
+
+describe('getFormattedLastUpdatedText tests', () => {
+    it('should format last updated text correctly for Finnish locale', () => {
+      const result = getFormattedLastUpdatedText('2025-09-23', 'fi');
+   expect(result).toBe('Päivitetty: 23.9.2025');
+    });
+
+    it('should format last updated text correctly for Swedish locale', () => {
+        const result = getFormattedLastUpdatedText('2025-09-23', 'sv');
+     expect(result).toBe('Uppdaterad: 2025-09-23');
+    });
+
+    it('should format last updated text correctly for English locale', () => {
+    const result = getFormattedLastUpdatedText('2025-09-23', 'en');
+        expect(result).toBe('Updated: 9/23/2025');
+    });
+
+    it('should return undefined for undefined input', () => {
+        const result = getFormattedLastUpdatedText(undefined, 'fi');
+        expect(result).toBeUndefined();
+    });
+
+    it('should return undefined for invalid date', () => {
+        const result = getFormattedLastUpdatedText('invalid-date', 'fi');
+      expect(result).toBeUndefined();
     });
 });

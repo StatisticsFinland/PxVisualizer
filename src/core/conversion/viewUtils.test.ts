@@ -912,6 +912,7 @@ describe('horizontal bar chart view conversion', () => {
                         sv: 'PxVisualizer-sv'
                     }
                 ],
+                "lastUpdated": "2023-01-19T06:00:00Z",
                 subheaderValues: [],
                 units: [
                     {
@@ -996,6 +997,7 @@ describe('horizontal bar chart view conversion', () => {
                     fi: 'Tiedot 2022Q4 muuttujina Tiedot, Alue, Huoneluku',
                     sv: 'Uppgifter 2022Q4 efter Uppgifter, Område, Antal rum'
                 },
+                "lastUpdated": "2023-01-19T06:00:00Z",
                 rowVarNames: [],
                 series: [
                     {
@@ -1147,7 +1149,8 @@ describe('horizontal bar chart view conversion', () => {
                         "fi": "PxVisualizer-fi",
                         "sv": "PxVisualizer-sv",
                     },
-                ],
+                ], 
+                lastUpdated: "2022-03-17T06:00:00Z",
                 subheaderValues: [],
                 units: [
                     {
@@ -1214,6 +1217,7 @@ describe('horizontal bar chart view conversion', () => {
                 "fi": "Päästö, tuhatta tonnia CO2-ekv. 2020 muuttujina Päästöluokka, Kasvihuonekaasu",
                 "sv": "Utsläpp, tusen ton CO2-ekv. 2020 efter Utsläppsklass, Växthusgas",
             },
+            lastUpdated: "2022-03-17T06:00:00Z",
             rowVarNames: [
                 {
                     "en": "Emission category",
@@ -1302,7 +1306,6 @@ describe('line chart view conversion', () => {
     it('returns multiline linechart view', () => {
         const resultView: View = convertPxGrafResponseToView(LINE_CHART_WITH_QUARTER_SERIES.pxGraphData, {});
         const expectedView: View = {
-
                 tableReferenceName: "table.px",
                 seriesType: ESeriesType.Time,
                 visualizationSettings: {
@@ -1560,6 +1563,7 @@ describe('line chart view conversion', () => {
                     "fi": "Neliövuokra (eur/m2), Yksiöt, Vapaarahoitteinen 2015Q1-2022Q4 muuttujana Alue",
                     "sv": "Kvadratmeterspris (eur/m2), Enrumslägenhet, Fri finansierad 2015Q1-2022Q4 efter Område",
                 },
+                lastUpdated: "2023-01-19T06:00:00Z",
                 "series": [
                     {
                         "rowNameGroup": [
@@ -1983,6 +1987,7 @@ describe('line chart view conversion', () => {
                     "fi": "Neliövuokra (eur/m2), Vapaarahoitteinen 2015Q1-2022Q4 muuttujina Alue, Huoneluku",
                     "sv": "Kvadratmeterspris (eur/m2), Fri finansierad 2015Q1-2022Q4 efter Område, Antal rum",
                 },
+                lastUpdated: "2023-01-19T06:00:00Z",
                 series: [
                     {
                         rowNameGroup: [
@@ -2707,6 +2712,7 @@ describe('line chart view conversion', () => {
                     "fi": "Neliövuokra (eur/m2), Vapaarahoitteinen 2015Q1-2022Q4 muuttujina Alue, Huoneluku",
                     "sv": "Kvadratmeterspris (eur/m2), Fri finansierad 2015Q1-2022Q4 efter Område, Antal rum",
                 },
+                lastUpdated: "2023-01-19T06:00:00Z",
                 series: [
                     {
                         rowNameGroup: [
