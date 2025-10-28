@@ -109,7 +109,7 @@ export function buildSeries(responseObj: IQueryVisualizationResponse, selectedVa
  * Get the last updated date from the content variable values.
  * @param contentVar Content variable metadata
  * @param selectedValueCodes Selected selectable value codes if any
- * @returns Last updated date as a string
+ * @returns Last updated date as a string, or empty string if no valid dates are found
  */
 export function getLastUpdated(
     contentVar: IVariableMeta,
