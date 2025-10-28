@@ -51,7 +51,6 @@ describe('Rendering test', () => {
             />);
         expect(asFragment()).toMatchSnapshot();
     });
-                
     it('renders table data correctly', () => {
         const { asFragment } = render(
             <Chart
