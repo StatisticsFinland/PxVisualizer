@@ -330,6 +330,11 @@ export const DefaultTranslations: TTranslations = {
         'fi': 'Poista kuviosta symbolit',
         'sv': 'Ta bort symbolerna från diagrammet',
         'en': 'Remove symbols from the figure'
+    },
+    lastUpdated: {
+        'fi': 'Päivitetty',
+        'sv': 'Uppdaterad',
+        'en': 'Updated'
     }
 }
 

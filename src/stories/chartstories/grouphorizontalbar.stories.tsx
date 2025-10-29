@@ -15,7 +15,7 @@ export default {
 } satisfies Meta;
 
 export const Simple = {
-    name: 'Simple',
+    name: 'Simple (with last updated)',
     args: GROUP_HORIZONTAL_BAR_CHART,
 } satisfies StoryObj<typeof Chart>;
 

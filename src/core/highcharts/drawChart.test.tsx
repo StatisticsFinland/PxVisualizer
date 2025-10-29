@@ -20,7 +20,7 @@ describe('drawChart tests', () => {
 
     it('calls Highcharts.chart with correct parameters', () => {
         // Arrange
-        const customOptions = { accessibilityMode: true };
+        const customOptions = { accessibilityMode: true, showUnits: false, showSources: false };
         const selectedVariableCodes = { 'variableCode1': ['value1', 'value2'] };
 
         // Act

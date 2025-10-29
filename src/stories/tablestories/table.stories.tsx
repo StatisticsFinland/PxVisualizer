@@ -14,7 +14,7 @@ export default {
 } satisfies Meta;
 
 export const BAsic = {
-    name: 'Basic',
+    name: 'Basic (with last updated)',
     args: TABLE_WITH_ROW_AND_COLUMN_VARIABLES,
 } satisfies StoryObj<typeof Chart>;
 

@@ -2,7 +2,7 @@ import { EVariableType, EVisualizationType, IQueryVisualizationResponse } from "
 import { ETimeVariableInterval } from "../../core/types/queryVisualizationResponse";
 import { TVariableSelections } from "../../core/types/variableSelections";
 
-export const SCATTER_PLOT: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+export const SCATTER_PLOT: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined, showLastUpdated: boolean } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         data: [
@@ -588,7 +588,8 @@ export const SCATTER_PLOT: { pxGraphData: IQueryVisualizationResponse, selectedV
             defaultSelectableVariableCodes: null
         }
     },
-    selectedVariableCodes: undefined
+    selectedVariableCodes: undefined,
+    showLastUpdated: true
 };
 
 export const SCATTER_PLOT_WITH_SELECTABLES : { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {

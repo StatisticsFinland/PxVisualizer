@@ -2,7 +2,7 @@ import { EVariableType, EVisualizationType, IQueryVisualizationResponse } from "
 import { ETimeVariableInterval } from "../../core/types/queryVisualizationResponse";
 import { TVariableSelections } from "../../core/types/variableSelections";
 
-export const HORIZONTAL_BAR_CHART_ASCENDING: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+export const HORIZONTAL_BAR_CHART_ASCENDING: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined, showLastUpdated: boolean } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         data: [
@@ -205,7 +205,8 @@ export const HORIZONTAL_BAR_CHART_ASCENDING: { pxGraphData: IQueryVisualizationR
             defaultSelectableVariableCodes: null
         }
     },
-    selectedVariableCodes: undefined
+    selectedVariableCodes: undefined,
+    showLastUpdated: true
 }
 
 export const SELECTABLE_HORIZONTAL_BAR_CHART: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {

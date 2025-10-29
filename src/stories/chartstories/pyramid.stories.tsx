@@ -13,7 +13,7 @@ export default {
 } satisfies Meta;
 
 export const Simple = {
-    name: 'Simple',
+    name: 'Simple (with last updated)',
     args: PYRAMID_CHART,
 } satisfies StoryObj<typeof Chart>;
 

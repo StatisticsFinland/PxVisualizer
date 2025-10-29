@@ -11,7 +11,7 @@ export default {
 } satisfies Meta;
 
 export const Ascending = {
-    name: 'Ascending',
+    name: 'Ascending (with last updated)',
     args: HORIZONTAL_BAR_CHART_ASCENDING,
 } satisfies StoryObj<typeof Chart>;
 
