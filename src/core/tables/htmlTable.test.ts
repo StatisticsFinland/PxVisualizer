@@ -5,7 +5,7 @@ import { extractSelectableVariableValues } from "../conversion/helpers";
 import { convertPxGrafResponseToView } from "../conversion/viewUtils";
 import { renderHtmlTable } from "./htmlTable";
 import { SELECTABLE_TABLE_WITH_INVALID_MISSING_DATA } from "./fixtures/pxGrafResponses";
-import { ITableOptions } from "../types/tableOptions";
+import { IChartOptions } from "../types/chartOptions";
 
 describe('Html table render tests', () => {
     it('should match snapshot: Table with column variables only', () => {
@@ -23,8 +23,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -53,8 +53,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -83,8 +83,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -113,8 +113,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: false,
+        const settings: IChartOptions = {
+            showTitle: false,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -143,8 +143,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: false,
             showSources: false,
             showLastUpdated: false
@@ -173,8 +173,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: false,
             showSources: false,
             showLastUpdated: false
@@ -203,8 +203,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -233,8 +233,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -266,8 +266,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -301,8 +301,8 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        const settings: ITableOptions = {
-            showTitles: true,
+        const settings: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false

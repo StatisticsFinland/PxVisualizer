@@ -36,7 +36,7 @@ describe('Rendering test', () => {
             <Chart
                 pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
                 locale={'fi'}
-                showTitles={false}
+                showTitle={false}
                 
             />);
         expect(asFragment()).toMatchSnapshot();
@@ -66,7 +66,7 @@ describe('Rendering test', () => {
             <Chart
                 pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
                 locale={'fi'}
-                showTitles={true}
+                showTitle={true}
             />);
         expect(asFragment()).toMatchSnapshot();
     });

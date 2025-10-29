@@ -2,10 +2,10 @@ import { getFormattedUnits, getFormattedLastUpdatedText } from "../chartOptions/
 import { Translations } from "../conversion/translations";
 import { TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { IDataSeries, View } from "../types/view";
-import { ITableOptions } from "../types/tableOptions";
+import { IChartOptions } from "../types/chartOptions";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 
-export function renderHtmlTable(view: View, locale: string, options: ITableOptions, containerId: string, footnote?: string): void {
+export function renderHtmlTable(view: View, locale: string, options: IChartOptions, containerId: string, footnote?: string): void {
 
     const container = document.getElementById(containerId);
     if (!container) throw new Error("No container with matching id found in the DOM tree");
@@ -14,7 +14,7 @@ export function renderHtmlTable(view: View, locale: string, options: ITableOptio
         // Table content
         const table = generateTable(view, locale);
 
-        if (options.showTitles) {
+        if (options.showTitle) {
             
             const caption = document.createElement('caption');
             caption.textContent = view.header[locale];

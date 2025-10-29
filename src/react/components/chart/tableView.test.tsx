@@ -3,7 +3,7 @@ import { TableView } from "./tableView";
 import { convertPxGrafResponseToView } from "../../../core/conversion/viewUtils";
 import React from "react";
 import { TABLE_WITH_ROW_AND_COLUMN_VARIABLES } from "../../../core/conversion/fixtures/tableChart";
-import { ITableOptions } from "../../../core/types/tableOptions";
+import { IChartOptions } from "../../../core/types/chartOptions";
 
 jest.mock('uuid', () => ({
     v4: () => 'foobar'
@@ -11,8 +11,8 @@ jest.mock('uuid', () => ({
 
 describe('TableView render tests', () => {
     it('Should render correctly', () => {
-        const options: ITableOptions = {
-            showTitles: true,
+        const options: IChartOptions = {
+            showTitle: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false

@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { View } from "../../../core/types/view";
-import { ITableOptions } from "../../../core/types/tableOptions";
+import { IChartOptions } from "../../../core/types/chartOptions";
 import { v4 as uuidv4 } from 'uuid';
 import { renderHtmlTable } from "../../../core/tables/htmlTable";
 
 export interface ITableViewProps {
     view: View;
     locale: string;
-    options: ITableOptions;
+    options: IChartOptions;
     footnote?: string;
 }
 

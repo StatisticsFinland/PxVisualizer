@@ -6,4 +6,6 @@ export interface IChartOptions {
     showTitle?: boolean;
     fontFamily?: string;
     showLastUpdated?: boolean;
+    showUnits: boolean;
+    showSources: boolean;
 }
