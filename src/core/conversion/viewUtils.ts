@@ -140,11 +140,11 @@ export function getLastUpdated(
     }
 
     // Find the most recent date
-    return validDates.reduce((latest, current) => {
-        const latestDate = new Date(latest);
-        const currentDate = new Date(current);
-        return currentDate > latestDate ? current : latest;
-    }, validDates[0]);
+    const dateObjects = validDates.map(dateStr => new Date(dateStr));
+    const latestIndex = dateObjects.reduce((latestIdx, currentDate, currentIdx, arr) => {
+        return currentDate > arr[latestIdx] ? currentIdx : latestIdx;
+    }, 0);
+    return validDates[latestIndex];
 }
 
 function getVariableNames(varCodes: string[], meta: IVariableMeta[]): TMultiLanguageString[] {
