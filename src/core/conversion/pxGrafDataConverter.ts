@@ -41,7 +41,7 @@ export const convertPxGraphDataToChartOptions = (locale: string, view: View, opt
         case EVisualizationType.PyramidChart:
             return pyramidChartOptions(view, locale, options);
         case EVisualizationType.ScatterPlot:
-            return scatterPlotOptions(view, locale);
+            return scatterPlotOptions(view, locale, options);
         default:
             throw new Error('Unsupported chart type');
     }

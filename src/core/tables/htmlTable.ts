@@ -36,19 +36,19 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
             container.append(pUnits);
         }
 
+        // Footnote
+        if (footnote) {
+            const pFootnote = document.createElement('p');
+            pFootnote.append(footnote);
+            container.append(pFootnote);
+        }
+
         // Sources
         if (showSources) {
             const pSources = document.createElement('p');
             const sources: string = `${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`;
             pSources.append(sources);
             container.append(pSources);
-        }
-
-        // Footnote
-        if (footnote) {
-            const pFootnote = document.createElement('p');
-            pFootnote.append(footnote);
-            container.append(pFootnote);
         }
 
     } catch (error) {

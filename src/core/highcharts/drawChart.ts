@@ -31,7 +31,7 @@ export const drawChart = (
 {
     loadHighchartsModules();
     const validLocale = formatLocale(locale);
-    Highcharts.setOptions(defaultTheme(validLocale));
+    Highcharts.setOptions(defaultTheme(validLocale, options?.fontFamily));
     const variableSelections = extractSelectableVariableValues(pxGraphData.selectableVariableCodes, pxGraphData.metaData, pxGraphData.visualizationSettings.defaultSelectableVariableCodes, selectedVariableCodes);
     const view = convertPxGrafResponseToView(pxGraphData, variableSelections);
     const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, options);

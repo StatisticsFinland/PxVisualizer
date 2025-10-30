@@ -9,7 +9,6 @@ function componentMocker(name: string): React.FC<any> {
 }
 
 jest.mock('uuid', () => ({
-    ...jest.requireActual('uuid'),
     v4: () => 'foobar'
 }));
 
@@ -32,6 +31,17 @@ describe('Rendering test', () => {
         expect(asFragment()).toMatchSnapshot();
     });
 
+    it('renders chart data correctly with hidden title', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
+                locale={'fi'}
+                showTitles={false}
+                
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
     it('renders table data correctly', () => {
         const { asFragment } = render(
             <Chart
@@ -46,17 +56,18 @@ describe('Rendering test', () => {
             <Chart
                 pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
                 locale={'fi'}
-                showTableTitles={true}
+                showTitles={true}
             />);
         expect(asFragment()).toMatchSnapshot();
     });
 
-    it('renders table data correctly when units are on', () => {
+    it('renders table data correctly when units and footnote are on', () => {
         const { asFragment } = render(
             <Chart
                 pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
                 locale={'fi'}
                 showTableUnits={true}
+                footnote='Test footnote'
             />);
         expect(asFragment()).toMatchSnapshot();
     });
@@ -82,7 +93,6 @@ describe('Rendering test', () => {
     });
 
     it('renders error component on broken data', () => {
-
         const spy = jest.spyOn(console, "error");
         spy.mockImplementation(() => { });
 

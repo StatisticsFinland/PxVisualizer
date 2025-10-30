@@ -2,7 +2,7 @@ import { getAxisLabelFormatterFunction } from "../chartOptions/Utility/formatter
 import { Translations, ArrayTranslations } from "../conversion/translations";
 import { defaultColors } from "./defaultColors";
 
-export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => ({
+export const defaultTheme: (locale: string, fontFamily?: string) => Highcharts.Options = (locale, fontFamily) => ({
     accessibility: {
         keyboardNavigation: {
             seriesNavigation: {
@@ -27,7 +27,16 @@ export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => 
     exporting: {
         enabled: false,
         fallbackToExportServer: false,
-        allowHTML: true,
+        allowHTML: false,
+        chartOptions: {
+            // Setting fontFamily prevents Highcharts 12.4+ from inlining web fonts in SVG exports,
+            // which was causing extremely large file sizes (1000x larger than before)
+            chart: {
+                style: {
+                    fontFamily: fontFamily || '"Barlow Semi Condensed", Verdana, sans-serif'
+                } as any // Type assertion to work around Highcharts typing limitation
+            }
+        }
     },
     lang: {
         accessibility: {
@@ -106,7 +115,7 @@ export const defaultTheme: (locale: string) => Highcharts.Options = (locale) => 
     colors: defaultColors, // chart series default colors
     chart: {
         style: {
-            fontFamily: '"Barlow Semi Condensed", Verdana, sans-serif'
+            fontFamily: fontFamily ?? '"Barlow Semi Condensed", Verdana, sans-serif'
         },
         spacingBottom: 30,
         spacingLeft: 20, // for tilted labels to fit in the x axis with ellipsis overflow

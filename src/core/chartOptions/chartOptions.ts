@@ -7,14 +7,15 @@ import { getLinearAxisTickPositionerFunction } from './Utility/tickPositioners';
 import { IChartOptions } from '../types/chartOptions';
 import { buildBarChartSeries, buildColumnChartSeries } from './Utility/seriesDataBuilder';
 
-export const commonChartOptions = (view: View, locale: string): Options  => {
+export const commonChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
+    const showTitle: boolean = options?.showTitle ?? true;
     return {
         accessibility: {
             point: {
                 descriptionFormatter: getScreenReaderFormatterCallbackFunction(view, locale)
             }
         },
-        title: { text: view.header[locale] },
+        title: { text: showTitle ? view.header[locale] : undefined },
         subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
         credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` },
         tooltip: {
@@ -65,9 +66,9 @@ export const commonBasicHorizontalBarChartYAxisOptions = (view: View, locale: st
     return yAxisOptions;
 }
 
-export const commonHorizontalBarChartOptions = (view: View, locale: string): Options => {
+export const commonHorizontalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonChartOptions(view, locale),
+        ...commonChartOptions(view, locale, options),
         chart: { type: 'bar' },
         xAxis: {
             categories: view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', ')),
@@ -83,7 +84,7 @@ export const commonHorizontalBarChartOptions = (view: View, locale: string): Opt
 
 export const commonStackedHorizontalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonHorizontalBarChartOptions(view, locale),
+        ...commonHorizontalBarChartOptions(view, locale, options),
         series: buildBarChartSeries(view, locale, true, options?.accessibilityMode),
         legend: {
             ...commonLegendStyleOptions,
@@ -95,9 +96,9 @@ export const commonStackedHorizontalBarChartOptions = (view: View, locale: strin
     };
 }
 
-export const commonVerticalBarChartOptions = (view: View, locale: string): Options => {
+export const commonVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     const result = {
-        ...commonChartOptions(view, locale),
+        ...commonChartOptions(view, locale, options),
         chart: { type: 'column' },
         xAxis: getXAxisOptions(view, locale),
     };
@@ -106,7 +107,7 @@ export const commonVerticalBarChartOptions = (view: View, locale: string): Optio
 
 export const commonBasicVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonVerticalBarChartOptions(view, locale),
+        ...commonVerticalBarChartOptions(view, locale, options),
         series: buildColumnChartSeries(view, locale, false, options?.accessibilityMode),
         yAxis: {
             softMin: 0,
@@ -120,7 +121,7 @@ export const commonBasicVerticalBarChartOptions = (view: View, locale: string, o
 
 export const commonStackedVerticalBarChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonVerticalBarChartOptions(view, locale),
+        ...commonVerticalBarChartOptions(view, locale, options),
         series: buildColumnChartSeries(view, locale, true, options?.accessibilityMode),
         legend: {
             ...commonLegendStyleOptions,
