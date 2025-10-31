@@ -12,7 +12,7 @@ jest.mock('uuid', () => ({
 describe('TableView render tests', () => {
     it('Should render correctly', () => {
         const options: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false

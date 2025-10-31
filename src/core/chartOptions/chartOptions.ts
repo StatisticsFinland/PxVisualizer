@@ -8,7 +8,7 @@ import { buildBarChartSeries, buildColumnChartSeries } from './Utility/seriesDat
 import { Translations } from "../conversion/translations";
 
 export const commonChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
-    const showTitle: boolean = options?.showTitle ?? true;
+    const showTitles: boolean = options?.showTitles ?? true;
 
     const sourceText = Translations.source[locale];
     let creditsText = `${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
@@ -56,7 +56,7 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
                 descriptionFormatter: getScreenReaderFormatterCallbackFunction(view, locale)
             }
         },
-        title: { text: showTitle ? view.header[locale] : undefined },
+        title: { text: showTitles ? view.header[locale] : undefined },
         subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
         credits: creditsConfig,
         tooltip: {
