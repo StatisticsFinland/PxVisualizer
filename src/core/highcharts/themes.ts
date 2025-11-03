@@ -117,7 +117,6 @@ export const defaultTheme: (locale: string, fontFamily?: string) => Highcharts.O
         style: {
             fontFamily: fontFamily ?? '"Barlow Semi Condensed", Verdana, sans-serif'
         },
-        spacingBottom: 30,
         spacingLeft: 20, // for tilted labels to fit in the x axis with ellipsis overflow
         height: (9 / 16 * 100) + '%'
     },

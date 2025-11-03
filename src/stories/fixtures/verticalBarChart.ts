@@ -383,7 +383,7 @@ export const VERTICAL_BAR_CHART_WITH_CUSTOM_MENU_ITEMS: {
     ]
 };
 
-export const VERTICAL_BAR_CHART: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+export const VERTICAL_BAR_CHART: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined, showLastUpdated: boolean } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         columnVariableCodes: ['Vuosi'],
@@ -488,7 +488,8 @@ export const VERTICAL_BAR_CHART: { pxGraphData: IQueryVisualizationResponse, sel
             timeSeriesStartingPoint: '1970-01-01T00:00:00'
         }
     },
-    selectedVariableCodes: undefined
+    selectedVariableCodes: undefined,
+    showLastUpdated: true
 };
 
 export const VERTICAL_BAR_CHART_WITH_EXCESSIVE_PRECISION: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {

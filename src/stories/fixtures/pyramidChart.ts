@@ -2,7 +2,7 @@ import { EVariableType, EVisualizationType, IQueryVisualizationResponse } from "
 import { ETimeVariableInterval } from "../../core/types/queryVisualizationResponse"
 import { TVariableSelections } from "../../core/types/variableSelections"
 
-export const PYRAMID_CHART: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+export const PYRAMID_CHART: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined, showLastUpdated: boolean } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         "data": [
@@ -429,7 +429,8 @@ export const PYRAMID_CHART: { pxGraphData: IQueryVisualizationResponse, selected
             defaultSelectableVariableCodes: null
         }
     },
-    selectedVariableCodes: undefined
+    selectedVariableCodes: undefined,
+    showLastUpdated: true
 }
 
 export const PYRAMID_CHART_LARGE_DATASET: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {

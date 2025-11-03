@@ -14,7 +14,7 @@ export default {
 } satisfies Meta;
 
 export const Simple = {
-    name: 'Simple',
+    name: 'Simple (with last updated)',
     args: STACKED_VERTICAL_BAR_CHART,
 } satisfies StoryObj<typeof Chart>;
 

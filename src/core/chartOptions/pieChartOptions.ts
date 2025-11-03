@@ -7,7 +7,7 @@ import { buildPatternObject } from './Utility/patternFill';
 
 export const pieChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
     return {
-        ...commonChartOptions(view, locale),
+        ...commonChartOptions(view, locale, options),
         chart: { type: 'pie' },
         plotOptions: {
             pie: {

@@ -1,10 +1,11 @@
-import { getFormattedUnits } from "../chartOptions/Utility/formatters";
+import { getFormattedUnits, getFormattedLastUpdatedText } from "../chartOptions/Utility/formatters";
 import { Translations } from "../conversion/translations";
 import { TMultiLanguageString } from "../types/queryVisualizationResponse";
 import { IDataSeries, View } from "../types/view";
+import { IChartOptions } from "../types/chartOptions";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 
-export function renderHtmlTable(view: View, locale: string, showTitles: boolean, showUnits: boolean, showSources: boolean, containerId: string, footnote?: string): void {
+export function renderHtmlTable(view: View, locale: string, options: IChartOptions, containerId: string, footnote?: string): void {
 
     const container = document.getElementById(containerId);
     if (!container) throw new Error("No container with matching id found in the DOM tree");
@@ -13,7 +14,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         // Table content
         const table = generateTable(view, locale);
 
-        if (showTitles) {
+        if (options.showTitles) {
             
             const caption = document.createElement('caption');
             caption.textContent = view.header[locale];
@@ -28,7 +29,7 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
         container.append(table);
 
         // Units
-        if (showUnits) {
+        if (options.showUnits) {
             const pUnits = document.createElement('p');
             const unitName = getFormattedUnits(view.units, locale);
             const units: string = `${Translations.unit[locale]}: ${unitName}`;
@@ -43,8 +44,18 @@ export function renderHtmlTable(view: View, locale: string, showTitles: boolean,
             container.append(pFootnote);
         }
 
+        // Last Updated
+        if (options.showLastUpdated && view.lastUpdated) {
+            const pLastUpdated = document.createElement('p');
+            const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
+            if (lastUpdatedText) {
+                pLastUpdated.append(lastUpdatedText);
+                container.append(pLastUpdated);
+            }
+        }
+
         // Sources
-        if (showSources) {
+        if (options.showSources) {
             const pSources = document.createElement('p');
             const sources: string = `${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`;
             pSources.append(sources);
@@ -160,10 +171,10 @@ const calculateColSpans = (columnNameGroups: TMultiLanguageString[][]): number[]
     const colSpans: number[] = Array(columnNameGroups[0].length).fill(1);
 
     for (let row = 0; row < columnNameGroups[0].length; row++) {
-        for (let col = 0; col < columnNameGroups.length - 1; col++) {
-            if (compare(columnNameGroups[col][row], columnNameGroups[col + 1][row])) colSpans[row]++;
-            else break;
-        }
+      for (let col = 0; col < columnNameGroups.length - 1; col++) {
+       if (compare(columnNameGroups[col][row], columnNameGroups[col + 1][row])) colSpans[row]++;
+      else break;
+  }
     }
     return colSpans;
 }

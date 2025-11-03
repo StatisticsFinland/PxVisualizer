@@ -2,7 +2,7 @@ import { EVariableType, EVisualizationType, IQueryVisualizationResponse } from "
 import { ETimeVariableInterval } from "../../core/types/queryVisualizationResponse";
 import { TVariableSelections } from "../../core/types/variableSelections";
 
-export const PIE_CHART_SELECTABLE_TIME: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined } = {
+export const PIE_CHART_SELECTABLE_TIME: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: TVariableSelections | undefined, showLastUpdated: boolean } = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         data: [
@@ -486,5 +486,6 @@ export const PIE_CHART_SELECTABLE_TIME: { pxGraphData: IQueryVisualizationRespon
             defaultSelectableVariableCodes: null
         }
     },
-    selectedVariableCodes: { Vuosi: ['2007'] }
+    selectedVariableCodes: { Vuosi: ['2007'] },
+    showLastUpdated: true
 };

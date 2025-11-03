@@ -679,7 +679,7 @@ export const TABLE_WITH_ONLY_ROW_VARIABLES: { pxGraphData: IQueryVisualizationRe
     selectedVariableCodes: { 'Vuosineljännes': ['2015Q1'], 'Alue': ['pks'], 'Rahoitusmuoto': ['1'] }
 };
 
-export const TABLE_WITH_ROW_AND_COLUMN_VARIABLES: { pxGraphData: IQueryVisualizationResponse, selectedVariableCodes: {[key: string]: string[]}} = {
+export const TABLE_WITH_ROW_AND_COLUMN_VARIABLES: { pxGraphData: IQueryVisualizationResponse, showLastUpdated: boolean, selectedVariableCodes: {[key: string]: string[]}} = {
     pxGraphData: {
         tableReference: { name: "table.px", hierarchy: ["foo", "bar"] },
         data: [
@@ -1035,5 +1035,6 @@ export const TABLE_WITH_ROW_AND_COLUMN_VARIABLES: { pxGraphData: IQueryVisualiza
             "cutValueAxis": false
         }
     },
-    selectedVariableCodes: { 'Vuosineljännes': ['2015Q1'], 'Alue': ['pks'], 'Rahoitusmuoto': ['1'] }
+    selectedVariableCodes: { 'Vuosineljännes': ['2015Q1'], 'Alue': ['pks'], 'Rahoitusmuoto': ['1'] },
+    showLastUpdated: true
 };

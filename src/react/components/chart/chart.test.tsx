@@ -42,6 +42,16 @@ describe('Rendering test', () => {
         expect(asFragment()).toMatchSnapshot();
     });
 
+    it('renders chart data correctly with last updated date', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
+                locale={'fi'}
+                showLastUpdated={true}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
     it('renders table data correctly', () => {
         const { asFragment } = render(
             <Chart
@@ -88,6 +98,16 @@ describe('Rendering test', () => {
                 pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
                 locale={'fi'}
                 footnote='Test footnote'
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders table data correctly with last updated date', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
+                locale={'fi'}
+                showLastUpdated={true}
             />);
         expect(asFragment()).toMatchSnapshot();
     });

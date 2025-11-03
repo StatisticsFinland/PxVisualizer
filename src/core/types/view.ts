@@ -17,6 +17,7 @@ export interface View {
     subheaderValues: TMultiLanguageString[],
     units: IUnitInfo[],
     sources: TMultiLanguageString[],
+    lastUpdated?: string,
     columnNameGroups: TMultiLanguageString[][],
     series: IDataSeries[],
     colVarNames: TMultiLanguageString[],
