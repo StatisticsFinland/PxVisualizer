@@ -71,7 +71,7 @@ export interface IChartProps {
     showContextMenu?: boolean;
     menuItemDefinitions?: (IFunctionalMenuItem | ILinkMenuItem)[];
     menuIconInheritColor?: boolean;
-    showTitle?: boolean;
+    showTitles?: boolean;
     showTableUnits?: boolean;
     showTableSources?: boolean;
     footnote?: string;
@@ -87,7 +87,7 @@ const ReactChart: React.FC<IChartProps> = ({
     selectedVariableCodes = null,
     showContextMenu = true,
     menuIconInheritColor = false,
-    showTitle,
+    showTitles,
     showTableUnits,
     showTableSources,
     fontFamily,
@@ -123,13 +123,13 @@ const ReactChart: React.FC<IChartProps> = ({
     }, [variableSelections, pxGraphData]);
 
     const options: IChartOptions = useMemo(() => ({
-        showTitle: showTitle ?? true,
+        showTitles: showTitles ?? true,
         showUnits: !!showTableUnits,
         showSources: showTableSources ?? true,
         showLastUpdated: showLastUpdated,
         accessibilityMode: accessibilityMode,
         fontFamily: fontFamily,
-    }), [showTitle, showTableUnits, showTableSources, showLastUpdated, accessibilityMode, fontFamily]);
+    }), [showTitles, showTableUnits, showTableSources, showLastUpdated, accessibilityMode, fontFamily]);
 
     // Force rerender on window resize events, so that scaling and scrollboxes work correctly. Feel free to refactor to a more performant or better solution
     let renderTimeOut: NodeJS.Timeout;

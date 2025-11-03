@@ -24,7 +24,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -54,7 +54,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -84,7 +84,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -114,7 +114,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: false,
+            showTitles: false,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -144,7 +144,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: false,
             showSources: false,
             showLastUpdated: false
@@ -174,7 +174,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: false,
             showSources: false,
             showLastUpdated: false
@@ -204,7 +204,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -234,7 +234,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -267,7 +267,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false
@@ -302,7 +302,7 @@ describe('Html table render tests', () => {
         document.body.appendChild(div);
 
         const settings: IChartOptions = {
-            showTitle: true,
+            showTitles: true,
             showUnits: true,
             showSources: true,
             showLastUpdated: false

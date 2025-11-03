@@ -14,7 +14,7 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
         // Table content
         const table = generateTable(view, locale);
 
-        if (options.showTitle) {
+        if (options.showTitles) {
             
             const caption = document.createElement('caption');
             caption.textContent = view.header[locale];
