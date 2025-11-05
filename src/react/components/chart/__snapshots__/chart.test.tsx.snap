@@ -56,14 +56,16 @@ exports[`Rendering test renders chart data correctly 1`] = `
         class="tableChart"
         id="foobar"
       >
+        <p
+          class="tableChart-title"
+          id="foobar-title"
+        >
+          Lukumäärä, Pääkaupunkiseutu (PKS), Yksiöt 2015Q1-2015Q2 muuttujana Rahoitusmuoto
+        </p>
         <table
+          aria-labelledby="foobar-title"
           tabindex="0"
         >
-          <caption
-            class="tableChart-caption"
-          >
-            Lukumäärä, Pääkaupunkiseutu (PKS), Yksiöt 2015Q1-2015Q2 muuttujana Rahoitusmuoto
-          </caption>
           <thead>
             <tr>
               <td
@@ -299,14 +301,16 @@ exports[`Rendering test renders chart data correctly with last updated date 1`] 
         class="tableChart"
         id="foobar"
       >
+        <p
+          class="tableChart-title"
+          id="foobar-title"
+        >
+          Lukumäärä, Pääkaupunkiseutu (PKS), Yksiöt 2015Q1-2015Q2 muuttujana Rahoitusmuoto
+        </p>
         <table
+          aria-labelledby="foobar-title"
           tabindex="0"
         >
-          <caption
-            class="tableChart-caption"
-          >
-            Lukumäärä, Pääkaupunkiseutu (PKS), Yksiöt 2015Q1-2015Q2 muuttujana Rahoitusmuoto
-          </caption>
           <thead>
             <tr>
               <td
@@ -430,14 +434,16 @@ exports[`Rendering test renders table data correctly 1`] = `
       class="tableChart"
       id="foobar"
     >
+      <p
+        class="tableChart-title"
+        id="foobar-title"
+      >
+        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
+      </p>
       <table
+        aria-labelledby="foobar-title"
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -1113,14 +1119,16 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
       class="tableChart"
       id="foobar"
     >
+      <p
+        class="tableChart-title"
+        id="foobar-title"
+      >
+        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
+      </p>
       <table
+        aria-labelledby="foobar-title"
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -1799,14 +1807,16 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
       class="tableChart"
       id="foobar"
     >
+      <p
+        class="tableChart-title"
+        id="foobar-title"
+      >
+        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
+      </p>
       <table
+        aria-labelledby="foobar-title"
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -2482,14 +2492,16 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
       class="tableChart"
       id="foobar"
     >
+      <p
+        class="tableChart-title"
+        id="foobar-title"
+      >
+        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
+      </p>
       <table
+        aria-labelledby="foobar-title"
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -3165,14 +3177,16 @@ exports[`Rendering test renders table data correctly when units and footnote are
       class="tableChart"
       id="foobar"
     >
+      <p
+        class="tableChart-title"
+        id="foobar-title"
+      >
+        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
+      </p>
       <table
+        aria-labelledby="foobar-title"
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td
@@ -3854,14 +3868,16 @@ exports[`Rendering test renders table data correctly with last updated date 1`] 
       class="tableChart"
       id="foobar"
     >
+      <p
+        class="tableChart-title"
+        id="foobar-title"
+      >
+        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
+      </p>
       <table
+        aria-labelledby="foobar-title"
         tabindex="0"
       >
-        <caption
-          class="tableChart-caption"
-        >
-          Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-        </caption>
         <thead>
           <tr>
             <td

@@ -67,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
         caption-side: top;
     }
 
-    .tableChart-caption {
+    .tableChart-title {
         font-size: 1.25rem;
         font-weight: 500;
         color: #333;
