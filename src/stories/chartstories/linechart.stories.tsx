@@ -49,6 +49,14 @@ export const CombinationSeries = {
     args: LINE_CHART_WITH_COMBINATION_SERIES,
 } satisfies StoryObj<typeof Chart>;
 
+export const CombinationSeriesWithLastUpdated = {
+    name: 'Combination series (with last updated)',
+    args: {
+        ...LINE_CHART_WITH_COMBINATION_SERIES,
+        showLastUpdated: true
+    }
+} satisfies StoryObj<typeof Chart>;
+
 export const NegativeValues = {
     name: 'Negative values',
     args: LINE_CHART_WITH_NEGATIVE_VALUES,

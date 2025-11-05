@@ -42,6 +42,7 @@ export const defaultTheme: (locale: string, fontFamily?: string) => Highcharts.O
         accessibility: {
             thousandsSep: Translations.thousandsSepAccessibility[locale],
             credits: Translations.credits[locale],
+            caption: Translations.credits[locale],
             chartTypes: {
                 barMultiple: Translations.barMultiple[locale],
                 barSingle: Translations.barSingle[locale],
@@ -154,7 +155,7 @@ export const defaultTheme: (locale: string, fontFamily?: string) => Highcharts.O
         },
         align: 'left',
     },
-    credits: {
+    caption: {
         position: {
             align: "left",
             x: 5
