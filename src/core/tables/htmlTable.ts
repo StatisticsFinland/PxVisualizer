@@ -25,7 +25,6 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
                 const subtitle: string = view.subheaderValues.map(value => value[locale]).join(' | ');
                 titleElement.append(document.createElement('br'), subtitle);
             }
-    
             // Set aria-labelledby on the table to reference the title
             table.setAttribute('aria-labelledby', titleId);
             
