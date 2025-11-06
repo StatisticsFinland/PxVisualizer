@@ -29,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "Barlow Semi Condensed", Verdana, sans-serif;
         overflow-x: auto;
         padding-left: 20px;
-        padding-top: 38px;
         padding-right: 20px;
     }
 

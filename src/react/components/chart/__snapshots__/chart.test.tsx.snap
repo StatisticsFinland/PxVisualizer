@@ -3,10 +3,10 @@
 exports[`Rendering test renders chart data correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA dFaLPf"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -129,10 +129,10 @@ exports[`Rendering test renders chart data correctly 1`] = `
 exports[`Rendering test renders chart data correctly with hidden title 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh bzJEPA"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA dFaLPf"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -248,10 +248,10 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
 exports[`Rendering test renders chart data correctly with last updated date 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA dFaLPf"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -389,10 +389,10 @@ exports[`Rendering test renders error component on broken data 1`] = `
 exports[`Rendering test renders table data correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA ihdguK"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -1074,10 +1074,10 @@ exports[`Rendering test renders table data correctly 1`] = `
 exports[`Rendering test renders table data correctly when given footnote 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA ihdguK"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -1762,10 +1762,10 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
 exports[`Rendering test renders table data correctly when sources are on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA ihdguK"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -2447,10 +2447,10 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
 exports[`Rendering test renders table data correctly when titles are forced on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA ihdguK"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -3132,10 +3132,10 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
 exports[`Rendering test renders table data correctly when units and footnote are on 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA ihdguK"
     >
       <div
         class="sc-jJLAfE cTICwY"
@@ -3823,10 +3823,10 @@ exports[`Rendering test renders table data correctly when units and footnote are
 exports[`Rendering test renders table data correctly with last updated date 1`] = `
 <DocumentFragment>
   <div
-    class="sc-kcLKEh drJOuW"
+    class="sc-kcLKEh hhofaT"
   >
     <div
-      class="sc-dntSTA dZkSPK"
+      class="sc-dntSTA ihdguK"
     >
       <div
         class="sc-jJLAfE cTICwY"

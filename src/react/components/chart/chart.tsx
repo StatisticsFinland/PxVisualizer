@@ -33,15 +33,23 @@ const initializeHighcharts = (locale: string, fontFamily?: string) => {
         Highcharts.setOptions(defaultTheme(locale, fontFamily));
     }
 }
+interface IChartWrapperProps {
+    $needsPadding: boolean;
+}
 
-const ChartWrapper = styled.div`
+const ChartWrapper = styled.div<IChartWrapperProps>`
 width: 100%;
 position: relative;
+padding-top: ${p => p.$needsPadding ? '38px' : '0'};
 `;
 
-const MenuContainer = styled.div`
+interface IMenuContainerProps {
+    $adjustHeightToTableTitle: boolean;
+}
+
+const MenuContainer = styled.div<IMenuContainerProps>`
 position: absolute;
-top: 0;
+top: ${p => p.$adjustHeightToTableTitle ? '14px' : '0'};
 right: 0;
 z-index: 1;
 `;
@@ -167,14 +175,14 @@ const ReactChart: React.FC<IChartProps> = ({
         if (view && pxGraphData.visualizationSettings.visualizationType !== EVisualizationType.Table) {
             const highChartOptions = convertPxGraphDataToChartOptions(validLocale, view, options);
             return (
-                <ChartWrapper>
+                <ChartWrapper $needsPadding={options.showTitles !== true && showContextMenu}>
                     {
                         showContextMenu &&
-                        <MenuContainer>
+                        <MenuContainer $adjustHeightToTableTitle={tableMode && options.showTitles === true}>
                                 <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} currentChartRef={currentChartRef} locale={validLocale} tableToggle={{ tableMode: tableMode, toggleHandler: toggleTableMode }} menuIconInheritColor={menuIconInheritColor} accessibilityMode={accessibilityMode} toggleAccessibilityMode={toggleAccessibilityMode} />
                         </MenuContainer>
                     }
-                    <ChartContainer $tableMode={tableMode}>
+                    <ChartContainer $tableMode={tableMode && options.showTitles === true}>
                         <HighchartsReact
                             ref={chartRef}
                             immutable={true}
@@ -182,7 +190,7 @@ const ReactChart: React.FC<IChartProps> = ({
                             options={highChartOptions}
                         />
                     </ChartContainer>
-                    <TableContainer $tableMode={tableMode}>
+                    <TableContainer $tableMode={tableMode && options.showTitles === true}>
                         <TableView options={options} footnote={footnote} view={view} locale={validLocale} />
                     </TableContainer>
                 </ChartWrapper>
@@ -192,10 +200,10 @@ const ReactChart: React.FC<IChartProps> = ({
         // Table
         if (view && pxGraphData.visualizationSettings.visualizationType === EVisualizationType.Table) {
             return (
-                <ChartWrapper>
+                <ChartWrapper $needsPadding={options.showTitles !== true && showContextMenu}>
                     {
                         showContextMenu &&
-                        <MenuContainer>
+                        <MenuContainer $adjustHeightToTableTitle={options.showTitles === true} >
                                 <BurgerMenu menuItemDefinitions={menuItemDefinitions} viewData={view} locale={validLocale} menuIconInheritColor={menuIconInheritColor} />
                         </MenuContainer>
                     }
