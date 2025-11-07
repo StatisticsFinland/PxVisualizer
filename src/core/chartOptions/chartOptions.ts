@@ -12,39 +12,13 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
 
     const sourceText = Translations.source[locale];
     let creditsText = `${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
-    let creditsConfig: any = {
-        enabled: true,
-        text: creditsText
-    };
-
     const hasLastUpdated = options?.showLastUpdated && view.lastUpdated;
     
     if (hasLastUpdated) {
         const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
         if (lastUpdatedText) {
             creditsText = `${lastUpdatedText}<br>${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
-            creditsConfig = {
-                enabled: true,
-                text: creditsText,
-                useHTML: true,
-                position: {
-                    x: 5,
-                    y: -30  // More space needed for two-line credits
-                }
-            };
         }
-    } else {
-        // Single line credits, less spacing needed
-        creditsConfig = {
-            enabled: true,
-            text: creditsText,
-            position: {
-                align: 'left',
-                verticalAlign: 'bottom',
-                x: 5,
-                y: -10  // Less space needed for single line
-            }
-        };
     }
 
     return {
@@ -58,7 +32,8 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
         },
         title: { text: showTitles ? view.header[locale] : undefined },
         subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
-        credits: creditsConfig,
+        credits: { enabled: false },
+        caption: { text: creditsText },
         tooltip: {
             formatter: getToolTipFormatterFunction(view, locale)
         },

@@ -6,14 +6,16 @@ exports[`TableView render tests Should render correctly 1`] = `
     class="tableChart"
     id="foobar"
   >
+    <p
+      class="tableChart-title"
+      id="foobar-title"
+    >
+      Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
+    </p>
     <table
+      aria-labelledby="foobar-title"
       tabindex="0"
     >
-      <caption
-        class="tableChart-caption"
-      >
-        Tiedot 2022Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto
-      </caption>
       <thead>
         <tr>
           <td
