@@ -207,7 +207,7 @@ describe('PxGrafDataConverter tests, VerticalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('fi', mockView);
         expect(result.chart?.type).toBe('column');
         expect(result.title?.text).toBe('Lukumäärä 2015Q1 muuttujina Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('2015Q1 | Pääkaupunkiseutu (PKS) | Vapaarahoitteinen');
     });
 
@@ -217,7 +217,7 @@ describe('PxGrafDataConverter tests, VerticalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('sv', mockView);
         expect(result.chart?.type).toBe('column');
         expect(result.title?.text).toBe('Antal 2015Q1 efter Område, Antal rum, Finansieringssätt');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('2015Q1 | Huvudstadsregionen | Fri finansierad');
     });
 });
@@ -229,7 +229,7 @@ describe('PxGrafDataConverter tests, BasicHorizontalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('fi', mockView);
         expect(result.chart?.type).toBe('bar');
         expect(result.title?.text).toBe('Tiedot 2022Q4 muuttujina Tiedot, Alue, Huoneluku');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('Yksiöt | Lukumäärä');
     });
 
@@ -239,7 +239,7 @@ describe('PxGrafDataConverter tests, BasicHorizontalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('en', mockView);
         expect(result.chart?.type).toBe('bar');
         expect(result.title?.text).toBe('Information 2022Q4 by Information, Region, Number of rooms');
-        expect(result.credits?.text).toBe('Source: PxVisualizer-en');
+        expect(result.caption?.text).toBe('Source: PxVisualizer-en');
         expect(result.subtitle?.text).toBe('One-room flat | Number');
     });
 });
@@ -251,7 +251,7 @@ describe('PxGrafDataConverter tests, GroupHorizontalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('fi', mockView);
         expect(result.chart?.type).toBe('bar');
         expect(result.title?.text).toBe('Tiedot 2015Q1-2015Q2 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('Pääkaupunkiseutu (PKS) | Yksiöt | Lukumäärä');
     });
 
@@ -261,7 +261,7 @@ describe('PxGrafDataConverter tests, GroupHorizontalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('en', mockView);
         expect(result.chart?.type).toBe('bar');
         expect(result.title?.text).toBe('Information 2015Q1-2015Q2 by Information, Region, Number of rooms, Type of funding');
-        expect(result.credits?.text).toBe('Source: PxVisualizer-en');
+        expect(result.caption?.text).toBe('Source: PxVisualizer-en');
         expect(result.subtitle?.text).toBe('Greater Helsinki | One-room flat | Number');
     });
 });
@@ -273,7 +273,7 @@ describe('PxGrafDataConverter tests, PieBarChart', () => {
         const result = convertPxGraphDataToChartOptions('fi', mockView);
         expect(result.chart?.type).toBe('pie');
         expect(result.title?.text).toBe('Lukumäärä, Yksiöt 2022Q4 muuttujana Alue');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('');
     });
 
@@ -283,7 +283,7 @@ describe('PxGrafDataConverter tests, PieBarChart', () => {
         const result = convertPxGraphDataToChartOptions('en', mockView);
         expect(result.chart?.type).toBe('pie');
         expect(result.title?.text).toBe('Number, One-room flat 2022Q4 by Region');
-        expect(result.credits?.text).toBe('Source: PxVisualizer-en');
+        expect(result.caption?.text).toBe('Source: PxVisualizer-en');
         expect(result.subtitle?.text).toBe('');
     });
 });
@@ -295,7 +295,7 @@ describe('PxGrafDataConverter tests, GroupVerticalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('fi', mockView);
         expect(result.chart?.type).toBe('column');
         expect(result.title?.text).toBe('Tiedot 2015Q1-2015Q2 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('Pääkaupunkiseutu (PKS) | Yksiöt | Lukumäärä');
     });
 
@@ -305,7 +305,7 @@ describe('PxGrafDataConverter tests, GroupVerticalBarChart', () => {
         const result = convertPxGraphDataToChartOptions('sv', mockView);
         expect(result.chart?.type).toBe('column');
         expect(result.title?.text).toBe('Uppgifter 2015Q1-2015Q2 efter Uppgifter, Område, Antal rum, Finansieringssätt');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('Huvudstadsregionen | Enrumslägenhet | Antal');
     });
 });
@@ -318,7 +318,7 @@ describe('PxGrafDataConverter tests, StackedVerticalBarChart', () => {
         expect(result.chart?.type).toBe('column');
         expect(result.plotOptions?.column?.stacking).toBe('normal');
         expect(result.title?.text).toBe('Tiedot 2015Q1-2015Q2 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('Pääkaupunkiseutu (PKS) | Yksiöt | Lukumäärä');
     });
 
@@ -329,7 +329,7 @@ describe('PxGrafDataConverter tests, StackedVerticalBarChart', () => {
         expect(result.chart?.type).toBe('column');
         expect(result.plotOptions?.column?.stacking).toBe('normal');
         expect(result.title?.text).toBe('Uppgifter 2015Q1-2015Q2 efter Uppgifter, Område, Antal rum, Finansieringssätt');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('Huvudstadsregionen | Enrumslägenhet | Antal');
     });
 });
@@ -342,7 +342,7 @@ describe('PxGrafDataConverter tests, StackedHorizontalBarChart', () => {
         expect(result.chart?.type).toBe('bar');
         expect(result.plotOptions?.bar?.stacking).toBe('normal');
         expect(result.title?.text).toBe('Tiedot 2015Q1 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('2015Q1 | Pääkaupunkiseutu (PKS) | Yksiöt');
     });
 
@@ -353,7 +353,7 @@ describe('PxGrafDataConverter tests, StackedHorizontalBarChart', () => {
         expect(result.chart?.type).toBe('bar');
         expect(result.plotOptions?.bar?.stacking).toBe('normal');
         expect(result.title?.text).toBe('Uppgifter 2015Q1 efter Uppgifter, Område, Antal rum, Finansieringssätt');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('2015Q1 | Huvudstadsregionen | Enrumslägenhet');
     });
 });
@@ -371,7 +371,7 @@ describe('PxGrafDataConverter tests, PercentVerticalBarChart', () => {
         expect(result.chart?.type).toBe('column');
         expect(result.plotOptions?.column?.stacking).toBe('percent');
         expect(result.title?.text).toBe('Lukumäärä 2021Q4 muuttujina Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('2022Q1 | Yksiöt');
     });
 
@@ -387,7 +387,7 @@ describe('PxGrafDataConverter tests, PercentVerticalBarChart', () => {
         expect(result.chart?.type).toBe('column');
         expect(result.plotOptions?.column?.stacking).toBe('percent');
         expect(result.title?.text).toBe('Antal 2021Q4 efter Område, Antal rum, Finansieringssätt');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('2022Q1 | Enrumslägenhet');
     });
 });
@@ -405,7 +405,7 @@ describe('PxGrafDataConverter tests, PercentHorizontalBarChart', () => {
         expect(result.chart?.type).toBe('bar');
         expect(result.plotOptions?.bar?.stacking).toBe('percent');
         expect(result.title?.text).toBe('Lukumäärä 2022Q4 muuttujina Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('Kaksiot');
     });
 
@@ -421,7 +421,7 @@ describe('PxGrafDataConverter tests, PercentHorizontalBarChart', () => {
         expect(result.chart?.type).toBe('bar');
         expect(result.plotOptions?.bar?.stacking).toBe('percent');
         expect(result.title?.text).toBe('Antal 2022Q4 efter Område, Antal rum, Finansieringssätt');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('Tvårumslägenhet');
     });
 });
@@ -434,7 +434,7 @@ describe('PxGrafDataConverter tests, PyramidChart', () => {
         expect(result.chart?.type).toBe('bar');
         expect(result.plotOptions?.series?.stacking).toBe('normal');
         expect(result.title?.text).toBe('Väestö 31.12. 2020 muuttujina Alue, Ikä, Sukupuoli');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('KOKO MAA | 2020');
     });
 
@@ -445,7 +445,7 @@ describe('PxGrafDataConverter tests, PyramidChart', () => {
         expect(result.chart?.type).toBe('bar');
         expect(result.plotOptions?.series?.stacking).toBe('normal');
         expect(result.title?.text).toBe('Befolkning 31.12. 2020 efter Område, Ålder, Kön');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('HELA LANDET | 2020');
     });
 });
@@ -457,7 +457,7 @@ describe('PxGrafDataConverter tests, ScatterPlot', () => {
         const result = convertPxGraphDataToChartOptions('fi', mockView);
         expect(result.chart?.type).toBe('scatter');
         expect(result.title?.text).toBe('Tiedot 2015Q1-2022Q4 muuttujina Tiedot, Alue, Huoneluku, Rahoitusmuoto');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('Pääkaupunkiseutu (PKS) | Yksiöt | Vapaarahoitteinen');
     });
 
@@ -467,7 +467,7 @@ describe('PxGrafDataConverter tests, ScatterPlot', () => {
         const result = convertPxGraphDataToChartOptions('sv', mockView);
         expect(result.chart?.type).toBe('scatter');
         expect(result.title?.text).toBe('Uppgifter 2015Q1-2022Q4 efter Uppgifter, Område, Antal rum, Finansieringssätt');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('Huvudstadsregionen | Enrumslägenhet | Fri finansierad');
     });
 });
@@ -479,7 +479,7 @@ describe('PxGrafDataConverter tests, LineChart', () => {
         const result = convertPxGraphDataToChartOptions('fi', mockView);
         expect(result.chart?.type).toBe('line');
         expect(result.title?.text).toBe('Neliövuokra (eur/m2), Yksiöt, Vapaarahoitteinen 2015Q1-2022Q4 muuttujana Alue');
-        expect(result.credits?.text).toBe('Lähde: PxVisualizer-fi');
+        expect(result.caption?.text).toBe('Lähde: PxVisualizer-fi');
         expect(result.subtitle?.text).toBe('');
     });
 
@@ -489,7 +489,7 @@ describe('PxGrafDataConverter tests, LineChart', () => {
         const result = convertPxGraphDataToChartOptions('sv', mockView);
         expect(result.chart?.type).toBe('line');
         expect(result.title?.text).toBe('Kvadratmeterspris (eur/m2), Enrumslägenhet, Fri finansierad 2015Q1-2022Q4 efter Område');
-        expect(result.credits?.text).toBe('Källa: PxVisualizer-sv');
+        expect(result.caption?.text).toBe('Källa: PxVisualizer-sv');
         expect(result.subtitle?.text).toBe('');
     });
 });
