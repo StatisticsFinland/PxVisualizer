@@ -15,15 +15,20 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
         const table = generateTable(view, locale);
 
         if (options.showTitles) {
+            const titleId = `${containerId}-title`;
+            const titleElement = document.createElement('p');
+            titleElement.id = titleId;
+            titleElement.textContent = view.header[locale];
+            titleElement.className = 'tableChart-title';
             
-            const caption = document.createElement('caption');
-            caption.textContent = view.header[locale];
             if (view.subheaderValues.length > 0) {
                 const subtitle: string = view.subheaderValues.map(value => value[locale]).join(' | ');
-                caption.append(document.createElement('br'), subtitle);
+                titleElement.append(document.createElement('br'), subtitle);
             }
-            caption.className = 'tableChart-caption';
-            table.prepend(caption);
+            // Set aria-labelledby on the table to reference the title
+            table.setAttribute('aria-labelledby', titleId);
+            
+            container.append(titleElement);
         }
 
         container.append(table);
