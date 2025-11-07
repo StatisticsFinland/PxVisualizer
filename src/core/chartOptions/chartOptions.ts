@@ -60,7 +60,8 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
         subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
         credits: creditsConfig,
         tooltip: {
-            formatter: getToolTipFormatterFunction(view, locale)
+            formatter: getToolTipFormatterFunction(view, locale),
+            stickOnContact: true
         },
         yAxis: [commonYAxisOptions]
     };
