@@ -9,6 +9,6 @@ export default {
 } satisfies Meta;
 
 export const SelectableTime = {
-    name: 'Selectable time',
+    name: 'Selectable time (with last updated)',
     args: PIE_CHART_SELECTABLE_TIME,
 } satisfies StoryObj<typeof Chart>;

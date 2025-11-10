@@ -37,7 +37,49 @@ describe('Rendering test', () => {
                 pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
                 locale={'fi'}
                 showTitles={false}
-                
+
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders chart data correctly with hidden context menu', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
+                locale={'fi'}
+                showContextMenu={false}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders chart data correctly with hidden title and context menu enabled (should add padding)', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
+                locale={'fi'}
+                showTitles={false}
+                showContextMenu={true}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders chart data correctly with hidden title and hidden context menu', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
+                locale={'fi'}
+                showTitles={false}
+                showContextMenu={false}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders chart data correctly with last updated date', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE}
+                locale={'fi'}
+                showLastUpdated={true}
             />);
         expect(asFragment()).toMatchSnapshot();
     });
@@ -57,6 +99,48 @@ describe('Rendering test', () => {
                 pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
                 locale={'fi'}
                 showTitles={true}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders table data correctly with hidden titles', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
+                locale={'fi'}
+                showTitles={false}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders table data correctly with hidden context menu', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
+                locale={'fi'}
+                showContextMenu={false}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders table data correctly with hidden titles and context menu enabled (should add padding)', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
+                locale={'fi'}
+                showTitles={false}
+                showContextMenu={true}
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders table data correctly with hidden titles and hidden context menu', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
+                locale={'fi'}
+                showTitles={false}
+                showContextMenu={false}
             />);
         expect(asFragment()).toMatchSnapshot();
     });
@@ -88,6 +172,16 @@ describe('Rendering test', () => {
                 pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
                 locale={'fi'}
                 footnote='Test footnote'
+            />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('renders table data correctly with last updated date', () => {
+        const { asFragment } = render(
+            <Chart
+                pxGraphData={TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE}
+                locale={'fi'}
+                showLastUpdated={true}
             />);
         expect(asFragment()).toMatchSnapshot();
     });

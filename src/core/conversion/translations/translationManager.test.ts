@@ -199,6 +199,9 @@ const mockTranslationPackage: TTranslationPackage = {
         },
         toggleAccessibilityModeOff: {
             'foo': 'Piilota kuviosta symbolit',
+        },
+        lastUpdated: {
+            'foo': 'Päivitetty: {date}',
         }
     },
     ArrayTranslations: {

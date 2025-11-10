@@ -20,7 +20,7 @@ export default {
 } satisfies Meta;
 
 export const YearSeries = {
-    name: 'Year Series',
+    name: 'Year Series (with last updated)',
     args: LINE_CHART_WITH_YEAR_SERIES,
 } satisfies StoryObj<typeof Chart>;
 
@@ -47,6 +47,14 @@ export const MultiselectableVariable = {
 export const CombinationSeries = {
     name: 'Combination series',
     args: LINE_CHART_WITH_COMBINATION_SERIES,
+} satisfies StoryObj<typeof Chart>;
+
+export const CombinationSeriesWithLastUpdated = {
+    name: 'Combination series (with last updated)',
+    args: {
+        ...LINE_CHART_WITH_COMBINATION_SERIES,
+        showLastUpdated: true
+    }
 } satisfies StoryObj<typeof Chart>;
 
 export const NegativeValues = {

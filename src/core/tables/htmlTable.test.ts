@@ -5,6 +5,7 @@ import { extractSelectableVariableValues } from "../conversion/helpers";
 import { convertPxGrafResponseToView } from "../conversion/viewUtils";
 import { renderHtmlTable } from "./htmlTable";
 import { SELECTABLE_TABLE_WITH_INVALID_MISSING_DATA } from "./fixtures/pxGrafResponses";
+import { IChartOptions } from "../types/chartOptions";
 
 describe('Html table render tests', () => {
     it('should match snapshot: Table with column variables only', () => {
@@ -22,7 +23,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, true, true, testId);
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -45,7 +53,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, true, true, testId);
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -68,7 +83,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, true, true, testId);
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -91,7 +113,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, false, true, true, testId);
+        const settings: IChartOptions = {
+            showTitles: false,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -114,7 +143,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, false, false, testId);
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: false,
+            showSources: false,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -137,7 +173,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, false, false, testId, 'Test footnote');
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: false,
+            showSources: false,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId, 'Test footnote');
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -160,7 +203,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, true, true, testId);
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -183,7 +233,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, true, true, testId, 'Test footnote');
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId, 'Test footnote');
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -209,7 +266,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, true, true, testId);
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();
@@ -237,7 +301,14 @@ describe('Html table render tests', () => {
         div.id = testId;
         document.body.appendChild(div);
 
-        renderHtmlTable(mockView, locale, true, true, true, testId);
+        const settings: IChartOptions = {
+            showTitles: true,
+            showUnits: true,
+            showSources: true,
+            showLastUpdated: false
+        };
+
+        renderHtmlTable(mockView, locale, settings, testId);
 
         const renderedOutput = prettyDOM(div);
         expect(renderedOutput).toMatchSnapshot();

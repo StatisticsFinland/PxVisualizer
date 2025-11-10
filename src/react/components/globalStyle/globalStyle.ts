@@ -29,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "Barlow Semi Condensed", Verdana, sans-serif;
         overflow-x: auto;
         padding-left: 20px;
-        padding-top: 38px;
         padding-right: 20px;
     }
 
@@ -67,7 +66,7 @@ export const GlobalStyle = createGlobalStyle`
         caption-side: top;
     }
 
-    .tableChart-caption {
+    .tableChart-title {
         font-size: 1.25rem;
         font-weight: 500;
         color: #333;

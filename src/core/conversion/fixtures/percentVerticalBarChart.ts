@@ -280,6 +280,7 @@ export const PERCENT_VERTICAL_BAR_CHART_VIEW: View = {
         "sv": "Antal, Helsingfors, Fri finansierad 2021Q2-2022Q4 efter Antal rum",
         "en": "Number, Helsinki, Non subsidised 2021Q2-2022Q4 by Number of rooms"
     },
+    lastUpdated: "2023-01-19T06:00:00Z",
     subheaderValues: [],
     units: [{
         name: {
@@ -843,6 +844,7 @@ export const PERCENT_VERTICAL_BAR_CHART_WITH_SELECTABLES_VIEW: View = {
         "sv": "Antal 2021Q4 efter Område, Antal rum, Finansieringssätt",
         "en": "Number 2021Q4 by Region, Number of rooms, Type of funding"
     },
+    lastUpdated: "2023-01-19T06:00:00Z",
     subheaderValues: [
         {
             "fi": "2022Q1",
@@ -1241,6 +1243,7 @@ export const PERCENT_VERTICAL_BAR_CHART_PIVOTED_WITH_SELECTABLES_VIEW: View = {
         "sv": "Antal 2022Q4 efter Område, Antal rum, Finansieringssätt",
         "en": "Number 2022Q4 by Region, Number of rooms, Type of funding"
     },
+    lastUpdated: "2023-01-19T06:00:00Z",
     subheaderValues: [
         {
             "fi": "Vapaarahoitteinen",

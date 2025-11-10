@@ -15,7 +15,7 @@ import {
 } from './fixtures/percentVerticalBarChart';
 import { SELECTABLE_TABLE_WITH_MISSING_DATA } from './fixtures/tableChart';
 import { ASCENDING, DESCENDING, SUM, REVERSED, NO_SORTING } from './viewSorting';
-import { buildSeries, convertPxGrafResponseToView, convertToRelative } from './viewUtils';
+import { buildSeries, convertPxGrafResponseToView, convertToRelative, getLastUpdated } from './viewUtils';
 
 const createContentComponent = (overrides?: Partial<IContentComponent>) => {
     const id = Math.random().toString(36).substring(2, 15);
@@ -912,6 +912,7 @@ describe('horizontal bar chart view conversion', () => {
                         sv: 'PxVisualizer-sv'
                     }
                 ],
+                "lastUpdated": "2023-01-19T06:00:00Z",
                 subheaderValues: [],
                 units: [
                     {
@@ -996,6 +997,7 @@ describe('horizontal bar chart view conversion', () => {
                     fi: 'Tiedot 2022Q4 muuttujina Tiedot, Alue, Huoneluku',
                     sv: 'Uppgifter 2022Q4 efter Uppgifter, Område, Antal rum'
                 },
+                "lastUpdated": "2023-01-19T06:00:00Z",
                 rowVarNames: [],
                 series: [
                     {
@@ -1147,7 +1149,8 @@ describe('horizontal bar chart view conversion', () => {
                         "fi": "PxVisualizer-fi",
                         "sv": "PxVisualizer-sv",
                     },
-                ],
+                ], 
+                lastUpdated: "2022-03-17T06:00:00Z",
                 subheaderValues: [],
                 units: [
                     {
@@ -1214,6 +1217,7 @@ describe('horizontal bar chart view conversion', () => {
                 "fi": "Päästö, tuhatta tonnia CO2-ekv. 2020 muuttujina Päästöluokka, Kasvihuonekaasu",
                 "sv": "Utsläpp, tusen ton CO2-ekv. 2020 efter Utsläppsklass, Växthusgas",
             },
+            lastUpdated: "2022-03-17T06:00:00Z",
             rowVarNames: [
                 {
                     "en": "Emission category",
@@ -1302,7 +1306,6 @@ describe('line chart view conversion', () => {
     it('returns multiline linechart view', () => {
         const resultView: View = convertPxGrafResponseToView(LINE_CHART_WITH_QUARTER_SERIES.pxGraphData, {});
         const expectedView: View = {
-
                 tableReferenceName: "table.px",
                 seriesType: ESeriesType.Time,
                 visualizationSettings: {
@@ -1560,6 +1563,7 @@ describe('line chart view conversion', () => {
                     "fi": "Neliövuokra (eur/m2), Yksiöt, Vapaarahoitteinen 2015Q1-2022Q4 muuttujana Alue",
                     "sv": "Kvadratmeterspris (eur/m2), Enrumslägenhet, Fri finansierad 2015Q1-2022Q4 efter Område",
                 },
+                lastUpdated: "2023-01-19T06:00:00Z",
                 "series": [
                     {
                         "rowNameGroup": [
@@ -1983,6 +1987,7 @@ describe('line chart view conversion', () => {
                     "fi": "Neliövuokra (eur/m2), Vapaarahoitteinen 2015Q1-2022Q4 muuttujina Alue, Huoneluku",
                     "sv": "Kvadratmeterspris (eur/m2), Fri finansierad 2015Q1-2022Q4 efter Område, Antal rum",
                 },
+                lastUpdated: "2023-01-19T06:00:00Z",
                 series: [
                     {
                         rowNameGroup: [
@@ -2707,6 +2712,7 @@ describe('line chart view conversion', () => {
                     "fi": "Neliövuokra (eur/m2), Vapaarahoitteinen 2015Q1-2022Q4 muuttujina Alue, Huoneluku",
                     "sv": "Kvadratmeterspris (eur/m2), Fri finansierad 2015Q1-2022Q4 efter Område, Antal rum",
                 },
+                lastUpdated: "2023-01-19T06:00:00Z",
                 series: [
                     {
                         rowNameGroup: [
@@ -3597,5 +3603,66 @@ describe('table conversion', () => {
             "Talotyyppi": ["foo"],
             "Huoneluku": ["bar"]
         })).toThrow("Provided selected value code can not be found from the metadata");
+    });
+});
+
+describe('getLastUpdated', () => {
+    it('returns the most recent last updated date from multiple content dimension values', () => {
+        const expectedLastUpdated: string = "2024-05-10T12:00:00";
+        const contentVar: IVariableMeta = {
+            name: {
+                "fi": "Tiedot",
+                "en": "Information",
+            },
+            type: EVariableType.Content,
+            note: null,
+            code: "Tiedot",
+            values: [
+                {
+                    code: "tiedot-1",
+                    name: {
+                        "fi": "Tiedot 1",
+                        "en": "Tiedot 1 en"
+                    },
+                    isSum: false,
+                    note: null,
+                    contentComponent: {
+                        source: {
+                            "fi": "Source 1",
+                            "en": "Source 1 en"
+                        },
+                        unit: {
+                            "fi": "unit 1",
+                            "en": "unit 1 en",
+                        },
+                        numberOfDecimals: 2,
+                        lastUpdated: "2023-05-10T12:00:00" // Older value
+                    }
+                },
+                {
+                    code: "tiedot-2",
+                    name: {
+                        "fi": "Tiedot 2",
+                        "en": "Tiedot 2 en"
+                    },
+                    isSum: false,
+                    note: null,
+                    contentComponent: {
+                        source: {
+                            "fi": "Source 2",
+                            "en": "Source 12 en"
+                        },
+                        unit: {
+                            "fi": "unit 2",
+                            "en": "unit 2 en",
+                        },
+                        numberOfDecimals: 1,
+                        lastUpdated: expectedLastUpdated // Newer, expected value
+                    }
+                }
+            ]
+        };
+        const lastUpdated = getLastUpdated(contentVar, {});
+        expect(lastUpdated).toBe(expectedLastUpdated);
     });
 });

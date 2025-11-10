@@ -222,6 +222,7 @@ export const PERCENT_HORIZONTAL_BAR_CHART_VIEW: View = {
         "sv": "Antal, Enrumslägenhet 2022Q4 efter Område, Finansieringssätt",
         "en": "Number, One-room flat 2022Q4 by Region, Type of funding"
     },
+    lastUpdated: "2023-01-19T06:00:00Z",
     subheaderValues: [],
     units: [
         {
@@ -595,6 +596,7 @@ export const PERCENT_HORIZONTAL_BAR_CHART_WITH_SELECTABLES_VIEW: View = {
         "sv": "Antal 2022Q4 efter Område, Antal rum, Finansieringssätt",
         "en": "Number 2022Q4 by Region, Number of rooms, Type of funding"
     },
+    "lastUpdated": "2023-01-19T06:00:00Z",
     subheaderValues: [
         {
             "fi": "Kaksiot",

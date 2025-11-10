@@ -257,3 +257,26 @@ function parsePlacementSuffix(value: string, locale: string) {
         return `${value}.`;
     }
 }
+
+/**
+ * Formats the last updated text based on the provided date string and locale.
+ * @param lastUpdated Date string representing the last updated date.
+ * @param locale Locale string for formatting the date.
+ * @returns Formatted last updated text or undefined if input is invalid.
+ */
+export function getFormattedLastUpdatedText(lastUpdated: string | undefined, locale: string): string | undefined {
+    if (!lastUpdated) return undefined;
+
+    try {
+        const date = new Date(lastUpdated);
+        if (Number.isNaN(date.getTime())) return undefined;
+
+        const dateLocale = locale === 'en' ? 'en-GB' : locale; // Use en-GB for English to get DD/MM/YYYY format if not specified
+        const formattedDate: string = Intl.DateTimeFormat(dateLocale).format(date);
+
+        return `${Translations.lastUpdated[locale]}: ${formattedDate}`;
+    } catch (error) {
+        console.error('Error formatting date:', error);
+        return undefined;
+    }
+}

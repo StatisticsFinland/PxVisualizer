@@ -3,6 +3,9 @@
  */
 export interface IChartOptions {
     accessibilityMode?: boolean;
-    showTitle?: boolean;
+    showTitles?: boolean;
     fontFamily?: string;
+    showLastUpdated?: boolean;
+    showUnits: boolean;
+    showSources: boolean;
 }

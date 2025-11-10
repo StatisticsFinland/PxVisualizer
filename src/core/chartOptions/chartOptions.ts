@@ -1,23 +1,39 @@
 import { LegendOptions, Options, PlotSeriesDataLabelsOptions, YAxisOptions } from 'highcharts';
 import { View } from "../types/view";
-import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction } from './Utility/formatters';
-import { Translations } from '../conversion/translations';
+import { getAxisLabelShorteningFunction, getFormattedUnits, getToolTipFormatterFunction, getScreenReaderFormatterCallbackFunction, getDataLabelFormatterFunction, getFormattedLastUpdatedText } from './Utility/formatters';
 import { getXAxisOptions } from './Utility/timeIntervals';
 import { getLinearAxisTickPositionerFunction } from './Utility/tickPositioners';
 import { IChartOptions } from '../types/chartOptions';
 import { buildBarChartSeries, buildColumnChartSeries } from './Utility/seriesDataBuilder';
+import { Translations } from "../conversion/translations";
 
 export const commonChartOptions = (view: View, locale: string, options?: IChartOptions): Options => {
-    const showTitle: boolean = options?.showTitle ?? true;
+    const showTitles: boolean = options?.showTitles ?? true;
+
+    const sourceText = Translations.source[locale];
+    let creditsText = `${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
+    const hasLastUpdated = options?.showLastUpdated && view.lastUpdated;
+    
+    if (hasLastUpdated) {
+        const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
+        if (lastUpdatedText) {
+            creditsText = `${lastUpdatedText}<br>${sourceText}: ${view.sources.map(s => s[locale]).join(', ')}`;
+        }
+    }
+
     return {
+        chart: {
+            spacingBottom: hasLastUpdated ? 50 : 30  // Conditional spacing based on lastUpdated presence
+        },
         accessibility: {
             point: {
                 descriptionFormatter: getScreenReaderFormatterCallbackFunction(view, locale)
             }
         },
-        title: { text: showTitle ? view.header[locale] : undefined },
+        title: { text: showTitles ? view.header[locale] : undefined },
         subtitle: { text: view.subheaderValues.map(sv => sv[locale]).join(' | ') },
-        credits: { text: `${Translations.source[locale]}: ${view.sources.map(s => s[locale]).join(', ')}` },
+        credits: { enabled: false },
+        caption: { text: creditsText },
         tooltip: {
             formatter: getToolTipFormatterFunction(view, locale)
         },
