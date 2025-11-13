@@ -35,7 +35,8 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
         credits: { enabled: false },
         caption: { text: creditsText },
         tooltip: {
-            formatter: getToolTipFormatterFunction(view, locale)
+            formatter: getToolTipFormatterFunction(view, locale),
+            stickOnContact: true
         },
         yAxis: [commonYAxisOptions]
     };
