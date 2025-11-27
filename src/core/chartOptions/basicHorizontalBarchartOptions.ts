@@ -14,6 +14,10 @@ export const basicHorizontalBarChartOptions = (view: View, locale: string, optio
             softMin: 0,
             max: 100,
         },
+        caption: {
+            ...commonHorizontalBarChartOptions(view, locale, options).caption,
+            y: 30
+        },
         legend: { enabled: false },
         plotOptions: {
             series: {
