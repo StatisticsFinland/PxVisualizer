@@ -36,6 +36,7 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
         // Units
         if (options.showUnits) {
             const pUnits = document.createElement('p');
+            pUnits.className = 'tableChart-metadata';
             const unitName = getFormattedUnits(view.units, locale);
             const units: string = `${Translations.unit[locale]}: ${unitName}`;
             pUnits.append(units);
@@ -45,6 +46,7 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
         // Footnote
         if (footnote) {
             const pFootnote = document.createElement('p');
+            pFootnote.className = 'tableChart-metadata';
             pFootnote.append(footnote);
             container.append(pFootnote);
         }
@@ -52,6 +54,7 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
         // Last Updated
         if (options.showLastUpdated && view.lastUpdated) {
             const pLastUpdated = document.createElement('p');
+            pLastUpdated.className = 'tableChart-metadata';
             const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
             if (lastUpdatedText) {
                 pLastUpdated.append(lastUpdatedText);
@@ -62,6 +65,7 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
         // Sources
         if (options.showSources) {
             const pSources = document.createElement('p');
+            pSources.className = 'tableChart-metadata';
             const sources: string = `${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`;
             pSources.append(sources);
             container.append(pSources);
