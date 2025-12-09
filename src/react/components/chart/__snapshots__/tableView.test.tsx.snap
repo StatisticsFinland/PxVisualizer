@@ -635,12 +635,13 @@ exports[`TableView render tests Should render correctly 1`] = `
         </tr>
       </tbody>
     </table>
-    <p>
+    <span>
       Yksikkö: Lukumäärä: lukumäärä, Neliövuokra (eur/m2): eur / m2
-    </p>
-    <p>
+    </span>
+    <span>
+      <br />
       Lähde: PxVisualizer-fi
-    </p>
+    </span>
   </div>
 </DocumentFragment>
 `;
