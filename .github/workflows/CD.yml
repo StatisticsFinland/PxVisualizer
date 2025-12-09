@@ -21,7 +21,9 @@ env:
 
 jobs:
   build:
-    permissions: read-all
+    permissions:
+        id-token: write
+        contents: read
     strategy:
       matrix:
         os: [ubuntu-latest]
