@@ -52,5 +52,3 @@ jobs:
 
     - name: Publish
       run: npm publish --tag ${{ env.ENV }} --git-tag-version false
-      env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
