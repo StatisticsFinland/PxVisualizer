@@ -117,11 +117,9 @@ exports[`Rendering test renders chart data correctly 1`] = `
             </tr>
           </tbody>
         </table>
-        <p
-          class="tableChart-metadata"
-        >
+        <span>
           Lähde: PxVisualizer-fi
-        </p>
+        </span>
       </div>
     </div>
   </div>
@@ -206,11 +204,9 @@ exports[`Rendering test renders chart data correctly with hidden context menu 1`
             </tr>
           </tbody>
         </table>
-        <p
-          class="tableChart-metadata"
-        >
+        <span>
           Lähde: PxVisualizer-fi
-        </p>
+        </span>
       </div>
     </div>
   </div>
@@ -327,11 +323,9 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
             </tr>
           </tbody>
         </table>
-        <p
-          class="tableChart-metadata"
-        >
+        <span>
           Lähde: PxVisualizer-fi
-        </p>
+        </span>
       </div>
     </div>
   </div>
@@ -448,11 +442,9 @@ exports[`Rendering test renders chart data correctly with hidden title and conte
             </tr>
           </tbody>
         </table>
-        <p
-          class="tableChart-metadata"
-        >
+        <span>
           Lähde: PxVisualizer-fi
-        </p>
+        </span>
       </div>
     </div>
   </div>
@@ -530,11 +522,9 @@ exports[`Rendering test renders chart data correctly with hidden title and hidde
             </tr>
           </tbody>
         </table>
-        <p
-          class="tableChart-metadata"
-        >
+        <span>
           Lähde: PxVisualizer-fi
-        </p>
+        </span>
       </div>
     </div>
   </div>
@@ -658,16 +648,13 @@ exports[`Rendering test renders chart data correctly with last updated date 1`] 
             </tr>
           </tbody>
         </table>
-        <p
-          class="tableChart-metadata"
-        >
+        <span>
           Päivitetty: 19.1.2023
-        </p>
-        <p
-          class="tableChart-metadata"
-        >
+        </span>
+        <span>
+          <br />
           Lähde: PxVisualizer-fi
-        </p>
+        </span>
       </div>
     </div>
   </div>
@@ -1363,11 +1350,9 @@ exports[`Rendering test renders table data correctly 1`] = `
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -2050,16 +2035,13 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Test footnote
-      </p>
-      <p
-        class="tableChart-metadata"
-      >
+      </span>
+      <span>
+        <br />
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -2742,11 +2724,9 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -3429,11 +3409,9 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -4116,21 +4094,17 @@ exports[`Rendering test renders table data correctly when units and footnote are
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Yksikkö: Lukumäärä: lukumäärä, Neliövuokra (eur/m2): eur / m2
-      </p>
-      <p
-        class="tableChart-metadata"
-      >
+      </span>
+      <span>
+        <br />
         Test footnote
-      </p>
-      <p
-        class="tableChart-metadata"
-      >
+      </span>
+      <span>
+        <br />
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -4774,11 +4748,9 @@ exports[`Rendering test renders table data correctly with hidden context menu 1`
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -5454,11 +5426,9 @@ exports[`Rendering test renders table data correctly with hidden titles 1`] = `
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -6134,11 +6104,9 @@ exports[`Rendering test renders table data correctly with hidden titles and cont
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -6775,11 +6743,9 @@ exports[`Rendering test renders table data correctly with hidden titles and hidd
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>
@@ -7462,16 +7428,13 @@ exports[`Rendering test renders table data correctly with last updated date 1`] 
           </tr>
         </tbody>
       </table>
-      <p
-        class="tableChart-metadata"
-      >
+      <span>
         Päivitetty: 19.1.2023
-      </p>
-      <p
-        class="tableChart-metadata"
-      >
+      </span>
+      <span>
+        <br />
         Lähde: PxVisualizer-fi
-      </p>
+      </span>
     </div>
   </div>
 </DocumentFragment>

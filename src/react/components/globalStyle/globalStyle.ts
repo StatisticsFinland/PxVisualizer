@@ -73,9 +73,4 @@ export const GlobalStyle = createGlobalStyle`
         margin-bottom: 2rem;
         text-align: left;
     }
-
-    .tableChart-metadata {
-        margin-top: 0rem;
-        margin-bottom: 0rem;
-    }
 `;

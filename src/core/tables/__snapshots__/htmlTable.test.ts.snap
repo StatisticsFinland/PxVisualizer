@@ -261,16 +261,13 @@ exports[`Html table render tests should match snapshot: Table with column variab
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mYksikkö: lukumäärä[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mLähde: PxVisualizer-fi[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;
 
@@ -435,16 +432,13 @@ exports[`Html table render tests should match snapshot: Table with missing data 
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mYksikkö: Eur / m2[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mLähde: PxVisualizer-fi[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;
 
@@ -470,16 +464,13 @@ exports[`Html table render tests should match snapshot: Table with only one cell
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mYksikkö: lukumäärä[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mLähde: PxVisualizer-fi[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;
 
@@ -1116,16 +1107,13 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mYksikkö: Lukumäärä: lukumäärä, Neliövuokra (eur/m2): eur / m2[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mLähde: PxVisualizer-fi[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;
 
@@ -1762,11 +1750,9 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mTest footnote[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;
 
@@ -2396,16 +2382,13 @@ exports[`Html table render tests should match snapshot: Table with row and colum
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mYksikkö: Lukumäärä: lukumäärä, Neliövuokra (eur/m2): eur / m2[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mLähde: PxVisualizer-fi[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;
 
@@ -3570,16 +3553,13 @@ exports[`Html table render tests should match snapshot: Table with row variables
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mYksikkö: lukumäärä[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mLähde: PxVisualizer-fi[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;
 
@@ -3605,20 +3585,16 @@ exports[`Html table render tests should match snapshot: Table with source and fo
       [36m</tr>[39m
     [36m</tbody>[39m
   [36m</table>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m<span>[39m
     [0mYksikkö: lukumäärä[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mTest footnote[0m
-  [36m</p>[39m
-  [36m<p[39m
-    [33mclass[39m=[32m"tableChart-metadata"[39m
-  [36m>[39m
+  [36m</span>[39m
+  [36m<span>[39m
+    [36m<br />[39m
     [0mLähde: PxVisualizer-fi[0m
-  [36m</p>[39m
+  [36m</span>[39m
 [36m</div>[39m"
 `;

@@ -33,42 +33,41 @@ export function renderHtmlTable(view: View, locale: string, options: IChartOptio
 
         container.append(table);
 
+        let isFirstMetadata: boolean = true;
+
+        // Helper function to add metadata elements
+        const addMetadata = (text: string) => {
+            const span = document.createElement('span');
+            if (!isFirstMetadata) span.append(document.createElement('br'));
+            span.append(text);
+            container.append(span);
+            isFirstMetadata = false;
+        };
+
         // Units
         if (options.showUnits) {
-            const pUnits = document.createElement('p');
-            pUnits.className = 'tableChart-metadata';
             const unitName = getFormattedUnits(view.units, locale);
             const units: string = `${Translations.unit[locale]}: ${unitName}`;
-            pUnits.append(units);
-            container.append(pUnits);
+            addMetadata(units);
         }
 
         // Footnote
         if (footnote) {
-            const pFootnote = document.createElement('p');
-            pFootnote.className = 'tableChart-metadata';
-            pFootnote.append(footnote);
-            container.append(pFootnote);
+            addMetadata(footnote);
         }
 
         // Last Updated
         if (options.showLastUpdated && view.lastUpdated) {
-            const pLastUpdated = document.createElement('p');
-            pLastUpdated.className = 'tableChart-metadata';
             const lastUpdatedText = getFormattedLastUpdatedText(view.lastUpdated, locale);
             if (lastUpdatedText) {
-                pLastUpdated.append(lastUpdatedText);
-                container.append(pLastUpdated);
+                addMetadata(lastUpdatedText);
             }
         }
 
         // Sources
         if (options.showSources) {
-            const pSources = document.createElement('p');
-            pSources.className = 'tableChart-metadata';
             const sources: string = `${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`;
-            pSources.append(sources);
-            container.append(pSources);
+            addMetadata(sources);
         }
 
     } catch (error) {
