@@ -1,10 +1,12 @@
-export { 
+export type { 
     IQueryVisualizationResponse,
-    EVisualizationType,
     TVisualizationType,
-    ETimeVariableInterval,
     TTimeVariableInterval,
-    EVariableType,
     TVariableType
 } from './queryVisualizationResponse';
-export { IChartOptions } from './chartOptions';
+export {
+    EVisualizationType,
+    ETimeVariableInterval,
+    EVariableType
+} from './queryVisualizationResponse';
+export type { IChartOptions } from './chartOptions';
