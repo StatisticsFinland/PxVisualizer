@@ -48,7 +48,7 @@ export class SeriesBuilder {
             const targetVariableCode: string = this.selectedViewMeta[targetIndex].code;
             const values: IVariableValueMeta[] = completeMap.find(v => v.code === targetVariableCode)?.values as IVariableValueMeta[];
             const targetVariable: IVariableMeta = this.selectedViewMeta.find(v => v.code === targetVariableCode) as IVariableMeta;
-            this.coordinates[variableIndex] = targetVariable.values.map(tv => values.findIndex(v => v === tv));
+            this.coordinates[variableIndex] = targetVariable.values.map(tv => values.indexOf(tv));
         }
     }
 
