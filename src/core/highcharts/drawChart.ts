@@ -10,7 +10,7 @@ import { IChartOptions } from "../types/chartOptions";
 
 // Only load Highcharts modules in a browser environment
 const loadHighchartsModules = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof globalThis.window !== 'undefined') {
         try {
             require('highcharts/modules/pattern-fill.js');
             require('highcharts/modules/accessibility.js');
@@ -26,8 +26,8 @@ export const drawChart = (
     container: string,
     pxGraphData: IQueryVisualizationResponse,
     locale: string,
-    selectedVariableCodes: TVariableSelections | null = null,
-    options: IChartOptions) =>
+    options: IChartOptions,
+    selectedVariableCodes: TVariableSelections | null = null) =>
 {
     loadHighchartsModules();
     const validLocale = formatLocale(locale);

@@ -55,7 +55,7 @@ export function getXAxisOptions(view: View, locale: string): XAxisOptions {
     }
     else {
         const labels: string[] = view.columnNameGroups.map(cng => cng.map(n => n[locale]).join(', '));
-        const numeric: boolean = labels.every(l => !isNaN(parseFloat(l)));
+        const numeric: boolean = labels.every(l => !Number.isNaN(Number.parseFloat(l)));
         if (view.seriesType === ESeriesType.Ordinal && numeric) {
             return getOrdinalOptions(view, locale);
         }

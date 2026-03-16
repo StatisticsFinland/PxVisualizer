@@ -47,7 +47,7 @@ function getColumnLetter(colIndex: number) : string {
     
     // If we run out of letters, we combine new letters after the prevous "prefix" ie. AA, AB, AC etc.
     const prefix = Math.floor(colIndex / 26);
-    const letter = String.fromCharCode(97 + (colIndex % 26)).toUpperCase();
+    const letter = String.fromCodePoint(97 + (colIndex % 26)).toUpperCase();
     
     if (prefix === 0) return letter;
     else return getColumnLetter(prefix - 1) + letter;

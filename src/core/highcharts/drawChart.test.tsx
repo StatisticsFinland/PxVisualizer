@@ -28,8 +28,8 @@ describe('drawChart tests', () => {
             'chart-container',
             GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE,
             'fi',
-            selectedVariableCodes,
-            customOptions
+            customOptions,
+            selectedVariableCodes
         );
         
         // Assert
