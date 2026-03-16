@@ -39,7 +39,7 @@ describe('drawChart tests', () => {
         expect(result).toEqual({ mockedChart: true });
     });
 
-    it('calls Highcharts.chart with correct parameters when called with undefined customOptions', () => {
+    it('calls Highcharts.chart with correct parameters when called without optional parameters', () => {
         // Act
         const result = drawChart(
             'chart-container',
@@ -52,5 +52,5 @@ describe('drawChart tests', () => {
         expect(Highcharts.chart).toHaveBeenCalledTimes(1);
         expect(Highcharts.chart).toHaveBeenCalledWith('chart-container', expect.any(Object));
         expect(result).toEqual({ mockedChart: true });
-    })
+    });
 });
