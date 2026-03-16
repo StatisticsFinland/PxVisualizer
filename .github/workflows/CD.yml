@@ -21,11 +21,13 @@ env:
 
 jobs:
   build:
-    permissions: read-all
+    permissions:
+        id-token: write
+        contents: read
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [21.x]
+        node-version: [24.x]
 
     runs-on: ${{ matrix.os }}
 
@@ -52,5 +54,3 @@ jobs:
 
     - name: Publish
       run: npm publish --tag ${{ env.ENV }} --git-tag-version false
-      env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

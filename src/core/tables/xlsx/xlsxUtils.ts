@@ -6,5 +6,5 @@ export function escapeXmlFunctionChars(input: string): string {
         '"': '&quot;',
         "'": '&apos;'
     };
-    return input.replace(/[&<>"']/g, char => xmlCharMap[char]);
+    return input.replaceAll(/[&<>"']/g, char => xmlCharMap[char]);
 }

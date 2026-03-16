@@ -1,7 +1,7 @@
 import { TranslationManager } from './translationManager';
 import { TTranslations, TArrayTranslations, TTranslationPackage } from './translationTypes';
 
-export { TTranslationPackage } from './translationTypes';
+export type { TTranslationPackage } from './translationTypes';
 
 const Manager = new TranslationManager();
 

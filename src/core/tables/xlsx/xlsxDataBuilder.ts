@@ -19,21 +19,21 @@ export const buildCellRows: (view: View, locale: string) => TCell[][] = (view, l
     const rowHeaderCols = view.series[0]?.rowNameGroup.length ?? 0;
     const gridWidth = (view.series[0]?.series.length ?? 0) + rowHeaderCols;
 
-    // Add header
-    const stringTable: TCell[][] = [buildCellRow([view.header[locale]], 0, gridWidth)];
+    // Build header
+    const headerRow = buildCellRow([view.header[locale]], 0, gridWidth);
 
-    // Add subheader
-    if (view.subheaderValues.length > 0) {
-        stringTable.push(buildCellRow([view.subheaderValues.map(value => value[locale]).join(' | ')], 0, gridWidth));
-    }
+    // Build subheader
+    const subheaderRows = view.subheaderValues.length > 0
+        ? [buildCellRow([view.subheaderValues.map(value => value[locale]).join(' | ')], 0, gridWidth)]
+        : [];
 
-    // Add column variables
-    for (let index = 0; index < colHeaderRows; index++) {
-        stringTable.push(buildCellRow(view.columnNameGroups.map(group => group[index][locale]), rowHeaderCols, gridWidth));
-    }
+    // Build column header rows
+    const columnHeaderRows = Array.from({ length: colHeaderRows }, (_, index) =>
+        buildCellRow(view.columnNameGroups.map(group => group[index][locale]), rowHeaderCols, gridWidth)
+    );
 
-    // Add row variables + data
-    view.series.forEach((serie) => {
+    // Build data rows
+    const dataRows = view.series.map((serie) => {
         let row: (string | number)[] = []
         if (serie.rowNameGroup.length > 0) row = serie.rowNameGroup.map(name => name[locale]);
 
@@ -43,20 +43,26 @@ export const buildCellRows: (view: View, locale: string) => TCell[][] = (view, l
             else return Number(n.value.toFixed(n.precision));
         }));
 
-        stringTable.push(buildCellRow(row, 0, gridWidth));
+        return buildCellRow(row, 0, gridWidth);
     });
 
-    // Add unit information
-    stringTable.push(buildCellRow([`${Translations.unit[locale]}: ${getFormattedUnits(view.units, locale)}`], 0, gridWidth));
+    // Build footer rows
+    const unitRow = buildCellRow([`${Translations.unit[locale]}: ${getFormattedUnits(view.units, locale)}`], 0, gridWidth);
+    const sourceRow = buildCellRow([`${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`], 0, gridWidth);
 
-    // Add source
-    stringTable.push(buildCellRow([`${Translations.source[locale]}: ${view.sources.map(source => source[locale]).join(', ')}`], 0, gridWidth));
-
-    return stringTable;
+    // Combine all rows
+    return [
+        headerRow,
+        ...subheaderRows,
+        ...columnHeaderRows,
+        ...dataRows,
+        unitRow,
+        sourceRow
+    ];
 }
 
 function buildCellRow(data: (number | string)[], startIndex: number, rowLen: number): TCell[] {
-    const cellRow: TCell[] = Array(rowLen);
+    const cellRow: TCell[] = new Array(rowLen);
     for (let i = 0; i < rowLen; i++) {
         if (i >= startIndex && i < startIndex + data.length) cellRow[i] = data[i - startIndex];
         else cellRow[i] = null;
