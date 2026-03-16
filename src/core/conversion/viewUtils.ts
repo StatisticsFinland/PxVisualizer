@@ -121,11 +121,11 @@ export function getLastUpdated(
         dates = contentVar.values
             .filter(v => selectedValueCodes[contentVar.code].includes(v.code))
             .map(cvv => cvv.contentComponent?.lastUpdated)
-            .filter(onlyUnique);
+            .filter((value, index, array) => onlyUnique(value, index, array));
     } else {
         dates = contentVar.values
             .map(cvv => cvv.contentComponent?.lastUpdated)
-            .filter(onlyUnique);
+            .filter((value, index, array) => onlyUnique(value, index, array));
     }
 
     // Filter out undefined values and get the most recent date
@@ -206,9 +206,9 @@ function getContentProperty(
         return contentVar.values
             .filter(v => selectedValueCodes[contentVar.code].includes(v.code))
             .map(cvv => extractorFunc(cvv.contentComponent))
-            .filter(onlyUnique);
+            .filter((value, index, array) => onlyUnique(value, index, array));
     } else {
-        return contentVar.values.map(cvv => extractorFunc(cvv.contentComponent)).filter(onlyUnique);
+        return contentVar.values.map(cvv => extractorFunc(cvv.contentComponent)).filter((value, index, array) => onlyUnique(value, index, array));
     }
 }
 

@@ -229,12 +229,13 @@ exports[`MenuItem, rendering tests should render with correct external icon 1`] 
     class="c0"
   >
     <a
+      aria-label="NAPPI"
       class="c1"
       href="foobar"
       id="foo-menuitem--1"
       role="menuitem"
       tabindex="-1"
-      title="[object Object]"
+      title="NAPPI"
     >
       <div
         class="c2"
