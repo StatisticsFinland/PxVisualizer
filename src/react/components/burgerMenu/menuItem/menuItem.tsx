@@ -32,7 +32,7 @@ const Button = styled(forwardRef<HTMLButtonElement, React.ComponentPropsWithoutR
     }
 `;
 
-const StyledLink = styled(forwardRef<HTMLAnchorElement, React.ComponentPropsWithoutRef<'a'>>((props, ref) => (<a ref={ref} {...props} />)))`
+const StyledLink = styled.a`
     text-decoration: none;
     display: flex;
     align-items: center;
