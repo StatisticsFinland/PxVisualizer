@@ -10,7 +10,7 @@ import { IChartOptions } from "../types/chartOptions";
 
 // Only load Highcharts modules in a browser environment
 const loadHighchartsModules = () => {
-    if (typeof globalThis.window !== 'undefined') {
+    if (globalThis.window !== undefined) {
         try {
             require('highcharts/modules/pattern-fill.js');
             require('highcharts/modules/accessibility.js');
