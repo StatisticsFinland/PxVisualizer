@@ -154,7 +154,7 @@ export const MenuItem = forwardRef<HTMLAnchorElement | HTMLButtonElement, IMenuI
     if (url) {
         return (
             <ListItem $isFirst={isFirst} $isLast={isLast} $separator={bottomSeparator}>
-                <StyledLink role="menuitem" id={`${idPrefix}-menuitem-${index}`} ref={ref as React.Ref<HTMLAnchorElement>} href={url} target={openNewTab ? '_blank' : undefined} title={text} onKeyDown={handleKeyDown} onClick={handleClick} tabIndex={tabIndex}>
+                <StyledLink role="menuitem" id={`${idPrefix}-menuitem-${index}`} ref={ref as React.Ref<HTMLAnchorElement>} href={url} target={openNewTab ? '_blank' : undefined} rel={openNewTab ? 'noopener noreferrer' : undefined} title={text} onKeyDown={handleKeyDown} onClick={handleClick} tabIndex={tabIndex}>
                     {content}
                 </StyledLink>
             </ListItem>

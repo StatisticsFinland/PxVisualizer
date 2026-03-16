@@ -28,8 +28,8 @@ describe('drawChart tests', () => {
             'chart-container',
             GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE,
             'fi',
-            customOptions,
-            selectedVariableCodes
+            selectedVariableCodes,
+            customOptions
         );
         
         // Assert
@@ -38,4 +38,19 @@ describe('drawChart tests', () => {
         expect(Highcharts.chart).toHaveBeenCalledWith('chart-container', expect.any(Object));
         expect(result).toEqual({ mockedChart: true });
     });
+
+    it('calls Highcharts.chart with correct parameters when called with undefined customOptions', () => {
+        // Act
+        const result = drawChart(
+            'chart-container',
+            GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE,
+            'fi'
+        );
+
+        // Assert
+        expect(Highcharts.setOptions).toHaveBeenCalledTimes(1);
+        expect(Highcharts.chart).toHaveBeenCalledTimes(1);
+        expect(Highcharts.chart).toHaveBeenCalledWith('chart-container', expect.any(Object));
+        expect(result).toEqual({ mockedChart: true });
+    })
 });

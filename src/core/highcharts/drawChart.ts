@@ -26,8 +26,8 @@ export const drawChart = (
     container: string,
     pxGraphData: IQueryVisualizationResponse,
     locale: string,
-    options: IChartOptions,
-    selectedVariableCodes: TVariableSelections | null = null) =>
+    selectedVariableCodes: TVariableSelections | null = null,
+    options: IChartOptions | undefined = undefined) =>
 {
     loadHighchartsModules();
     const validLocale = formatLocale(locale);
