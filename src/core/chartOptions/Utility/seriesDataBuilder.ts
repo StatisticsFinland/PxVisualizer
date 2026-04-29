@@ -13,6 +13,7 @@ export const buildBarChartSeries = (view: View, locale: string, reverseOrder: bo
     view.series.map((s, sIndex) => ({
         ...commonSeriesOptions(s, view, locale),
         ...(patternFill && buildPatternObject(sIndex)),
+        colorIndex: sIndex,
         index: reverseOrder ? view.series.length - 1 - sIndex : sIndex,
         type: 'bar',
     }));
@@ -21,6 +22,7 @@ export const buildColumnChartSeries = (view: View, locale: string, reverseOrder:
     view.series.map((s, sIndex) => ({
         ...commonSeriesOptions(s, view, locale),
         ...(patternFill && buildPatternObject(sIndex)),
+        colorIndex: sIndex,
         index: reverseOrder ? view.series.length - 1 - sIndex : sIndex,
         type: 'column'
     }));
