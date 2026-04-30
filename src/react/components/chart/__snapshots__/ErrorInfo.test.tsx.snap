@@ -2,8 +2,14 @@
 
 exports[`Rendering test renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-bdfDLd fkqMrf"
+  .c0 {
+  width: 100%;
+  position: relative;
+  font-family: 'Barlow Semi Condensed';
+}
+
+<div
+    class="c0"
   >
     <h1>
       Kuviota ei voitu muodostaa
