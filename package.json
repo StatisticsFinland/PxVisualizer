@@ -1,6 +1,6 @@
 {
   "name": "@statisticsfinland/pxvisualizer",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "Component library for visualizing PxGraf data",
   "main": "./dist/pxv.cjs",
   "jestSonar": {
@@ -100,6 +100,9 @@
   "overrides": {
     "brace-expansion": "^2.0.3",
     "postcss": "^8.5.10",
-    "serialize-javascript": "^7.0.4"
+    "serialize-javascript": "^7.0.4",
+    "rollup-plugin-typescript2": {
+      "picomatch": "2.3.1"
+    }
   }
 }
