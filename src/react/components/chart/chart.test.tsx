@@ -2,6 +2,7 @@ import React from "react";
 import { Chart } from "./chart";
 import { TOTALLY_BROKEN_CHART_FIXTURE, GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE, TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE } from "./testFixtures/pxGrafResponses";
 import { render } from "@testing-library/react";
+import 'jest-styled-components';
 
 function componentMocker(name: string): React.FC<any> {
     const reactFC = (props: any, ref: any) => <div/>;
