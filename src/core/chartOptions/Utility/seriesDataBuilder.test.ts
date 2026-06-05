@@ -101,6 +101,7 @@ describe('Highcharts series builder tests', () => {
                         width: 10,
                     }
                 },
+                colorIndex: 0,
                 data: [
                     {
                         custom: { "precision": 0, "preliminary": false },
@@ -131,6 +132,7 @@ describe('Highcharts series builder tests', () => {
                         width: 10,
                     },
                 },
+                colorIndex: 1,
                 data: [
                     {
                         custom: { "precision": 0, "preliminary": false },
@@ -168,6 +170,7 @@ describe('Highcharts series builder tests', () => {
                         width: 10,
                     },
                 },
+                colorIndex: 0,
                 data: [
                     {
                         custom: { "precision": 1, "preliminary": false },
@@ -203,6 +206,7 @@ describe('Highcharts series builder tests', () => {
         const expectedSeries = [
             {
                 animation: false,
+                colorIndex: 0,
                 data: [
                     {
                         custom: { "precision": 0, "preliminary": false },
@@ -221,6 +225,7 @@ describe('Highcharts series builder tests', () => {
             },
             {
                 animation: false,
+                colorIndex: 1,
                 data: [
                     {
                         custom: { "precision": 0, "preliminary": false },
@@ -246,6 +251,7 @@ describe('Highcharts series builder tests', () => {
         const expectedSeries = [
             {
                 animation: false,
+                colorIndex: 0,
                 data: [
                     {
                         custom: { "precision": 1, "preliminary": false },
@@ -275,5 +281,43 @@ describe('Highcharts series builder tests', () => {
         ];
 
         expect(buildColumnChartSeries(simpleQuarterVerticalBarchartViewFixture, 'fi')).toEqual(expectedSeries);
+    });
+
+    it('Should keep color assignment stable when horizontal bar series order is reversed', () => {
+        const reversedSeries = buildBarChartSeries(simpleGroupHorizontalBarchartViewFixture, 'fi', true);
+
+        expect(reversedSeries).toMatchObject([
+            {
+                colorIndex: 0,
+                index: 1,
+                name: '2015Q1',
+                type: 'bar'
+            },
+            {
+                colorIndex: 1,
+                index: 0,
+                name: '2015Q2',
+                type: 'bar'
+            }
+        ]);
+    });
+
+    it('Should keep color assignment stable when column series order is reversed', () => {
+        const reversedSeries = buildColumnChartSeries(simpleGroupHorizontalBarchartViewFixture, 'fi', true);
+
+        expect(reversedSeries).toMatchObject([
+            {
+                colorIndex: 0,
+                index: 1,
+                name: '2015Q1',
+                type: 'column'
+            },
+            {
+                colorIndex: 1,
+                index: 0,
+                name: '2015Q2',
+                type: 'column'
+            }
+        ]);
     });
 });

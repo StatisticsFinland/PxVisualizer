@@ -2,21 +2,68 @@
 
 exports[`Rendering test renders chart data correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.c5 {
+  display: block;
+  min-height: 635px;
+  height: 100%;
+}
+
+.c6 {
+  display: none;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO jIKvSS"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_0_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -40,17 +87,17 @@ exports[`Rendering test renders chart data correctly 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
     <div
-      class="sc-jEACwF IbmyP"
+      class="c5"
     >
       <div />
     </div>
     <div
-      class="sc-cPiKLY duqhOP"
+      class="c6"
     >
       <div
         class="tableChart"
@@ -128,16 +175,32 @@ exports[`Rendering test renders chart data correctly 1`] = `
 
 exports[`Rendering test renders chart data correctly with hidden context menu 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  display: block;
+  min-height: 635px;
+  height: 100%;
+}
+
+.c2 {
+  display: none;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-jEACwF IbmyP"
+      class="c1"
     >
       <div />
     </div>
     <div
-      class="sc-cPiKLY duqhOP"
+      class="c2"
     >
       <div
         class="tableChart"
@@ -215,21 +278,68 @@ exports[`Rendering test renders chart data correctly with hidden context menu 1`
 
 exports[`Rendering test renders chart data correctly with hidden title 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev cxBwIz"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 38px;
+}
+
+.c1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.c5 {
+  display: block;
+  min-height: 635px;
+  height: 100%;
+}
+
+.c6 {
+  display: none;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO jIKvSS"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_1_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -253,17 +363,17 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
     <div
-      class="sc-jEACwF IbmyP"
+      class="c5"
     >
       <div />
     </div>
     <div
-      class="sc-cPiKLY duqhOP"
+      class="c6"
     >
       <div
         class="tableChart"
@@ -334,21 +444,68 @@ exports[`Rendering test renders chart data correctly with hidden title 1`] = `
 
 exports[`Rendering test renders chart data correctly with hidden title and context menu enabled (should add padding) 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev cxBwIz"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 38px;
+}
+
+.c1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.c5 {
+  display: block;
+  min-height: 635px;
+  height: 100%;
+}
+
+.c6 {
+  display: none;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO jIKvSS"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_2_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -372,17 +529,17 @@ exports[`Rendering test renders chart data correctly with hidden title and conte
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
     <div
-      class="sc-jEACwF IbmyP"
+      class="c5"
     >
       <div />
     </div>
     <div
-      class="sc-cPiKLY duqhOP"
+      class="c6"
     >
       <div
         class="tableChart"
@@ -453,16 +610,32 @@ exports[`Rendering test renders chart data correctly with hidden title and conte
 
 exports[`Rendering test renders chart data correctly with hidden title and hidden context menu 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  display: block;
+  min-height: 635px;
+  height: 100%;
+}
+
+.c2 {
+  display: none;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-jEACwF IbmyP"
+      class="c1"
     >
       <div />
     </div>
     <div
-      class="sc-cPiKLY duqhOP"
+      class="c2"
     >
       <div
         class="tableChart"
@@ -533,21 +706,68 @@ exports[`Rendering test renders chart data correctly with hidden title and hidde
 
 exports[`Rendering test renders chart data correctly with last updated date 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.c5 {
+  display: block;
+  min-height: 635px;
+  height: 100%;
+}
+
+.c6 {
+  display: none;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO jIKvSS"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_3_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -571,17 +791,17 @@ exports[`Rendering test renders chart data correctly with last updated date 1`] 
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
     <div
-      class="sc-jEACwF IbmyP"
+      class="c5"
     >
       <div />
     </div>
     <div
-      class="sc-cPiKLY duqhOP"
+      class="c6"
     >
       <div
         class="tableChart"
@@ -663,8 +883,14 @@ exports[`Rendering test renders chart data correctly with last updated date 1`] 
 
 exports[`Rendering test renders error component on broken data 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-dAlyuI blGLyF"
+  .c0 {
+  width: 100%;
+  position: relative;
+  font-family: 'Barlow Semi Condensed';
+}
+
+<div
+    class="c0"
   >
     <h1>
       Kuviota ei voitu muodostaa
@@ -675,21 +901,58 @@ exports[`Rendering test renders error component on broken data 1`] = `
 
 exports[`Rendering test renders table data correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO hkzgGr"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_4_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -713,7 +976,7 @@ exports[`Rendering test renders table data correctly 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
@@ -1360,21 +1623,58 @@ exports[`Rendering test renders table data correctly 1`] = `
 
 exports[`Rendering test renders table data correctly when given footnote 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO hkzgGr"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_a_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -1398,7 +1698,7 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
@@ -2049,21 +2349,58 @@ exports[`Rendering test renders table data correctly when given footnote 1`] = `
 
 exports[`Rendering test renders table data correctly when sources are on 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO hkzgGr"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_9_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -2087,7 +2424,7 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
@@ -2734,21 +3071,58 @@ exports[`Rendering test renders table data correctly when sources are on 1`] = `
 
 exports[`Rendering test renders table data correctly when titles are forced on 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO hkzgGr"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_5_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -2772,7 +3146,7 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
@@ -3419,21 +3793,58 @@ exports[`Rendering test renders table data correctly when titles are forced on 1
 
 exports[`Rendering test renders table data correctly when units and footnote are on 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO hkzgGr"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_8_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -3457,7 +3868,7 @@ exports[`Rendering test renders table data correctly when units and footnote are
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
@@ -4112,8 +4523,14 @@ exports[`Rendering test renders table data correctly when units and footnote are
 
 exports[`Rendering test renders table data correctly with hidden context menu 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+<div
+    class="c0"
   >
     <div
       class="tableChart"
@@ -4758,21 +5175,58 @@ exports[`Rendering test renders table data correctly with hidden context menu 1`
 
 exports[`Rendering test renders table data correctly with hidden titles 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev cxBwIz"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 38px;
+}
+
+.c1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO jIKvSS"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_6_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -4796,7 +5250,7 @@ exports[`Rendering test renders table data correctly with hidden titles 1`] = `
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
@@ -5436,21 +5890,58 @@ exports[`Rendering test renders table data correctly with hidden titles 1`] = `
 
 exports[`Rendering test renders table data correctly with hidden titles and context menu enabled (should add padding) 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev cxBwIz"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 38px;
+}
+
+.c1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO jIKvSS"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_7_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -5474,7 +5965,7 @@ exports[`Rendering test renders table data correctly with hidden titles and cont
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
@@ -6114,8 +6605,14 @@ exports[`Rendering test renders table data correctly with hidden titles and cont
 
 exports[`Rendering test renders table data correctly with hidden titles and hidden context menu 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+<div
+    class="c0"
   >
     <div
       class="tableChart"
@@ -6753,21 +7250,58 @@ exports[`Rendering test renders table data correctly with hidden titles and hidd
 
 exports[`Rendering test renders table data correctly with last updated date 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-jlZhev kbxHes"
+  .c2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c3 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c4 {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.c0 {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+}
+
+.c1 {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  z-index: 1;
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-cwHptO hkzgGr"
+      class="c1"
     >
       <div
-        class="sc-kAycey laKZOs"
+        class="c2"
       >
         <button
           aria-controls="_r_b_-menu"
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Kuvion valikko"
-          class="sc-imWYAH bSMHvG"
+          class="c3"
         >
           <svg
             aria-hidden="true"
@@ -6791,7 +7325,7 @@ exports[`Rendering test renders table data correctly with last updated date 1`] 
           </svg>
         </button>
         <div
-          class="sc-jXbUNf cELeVv"
+          class="c4"
         />
       </div>
     </div>
