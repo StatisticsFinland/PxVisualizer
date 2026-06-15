@@ -40,7 +40,7 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
         yAxis: [commonYAxisOptions],
         lang: {
             accessibility: {
-                chartContainerLabel: "{title}" // Reads the title of the chart but omits the 'Highcharts interactive chart' part which is read by default and is redundant in our case
+                chartContainerLabel: view.header[locale] // Reads the title of the chart but omits the 'Highcharts interactive chart' part which is read by default and is redundant in our case
             }
         }
     };
