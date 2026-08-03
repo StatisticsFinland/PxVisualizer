@@ -37,7 +37,12 @@ export const commonChartOptions = (view: View, locale: string, options?: IChartO
         tooltip: {
             formatter: getToolTipFormatterFunction(view, locale)
         },
-        yAxis: [commonYAxisOptions]
+        yAxis: [commonYAxisOptions],
+        lang: {
+            accessibility: {
+                chartContainerLabel: view.header[locale] // Reads the title of the chart but omits the 'Highcharts interactive chart' part which is read by default and is redundant in our case
+            }
+        }
     };
 }
 
