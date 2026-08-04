@@ -1,4 +1,5 @@
-﻿import { ETimeVariableInterval } from "../../types";
+﻿import { describe, expect, it } from '@jest/globals';
+import { ETimeVariableInterval } from "../../types";
 import { EVisualizationType } from "../../types/queryVisualizationResponse";
 import { ESeriesType, View } from "../../types/view";
 import { getTimeSeriesOptions, getXAxisOptions } from "./timeIntervals";
@@ -12,7 +13,7 @@ describe('getTimeSeriesOptions tests', () => {
     });
     it('Should return undefined', () => {
         const result = getTimeSeriesOptions(ETimeVariableInterval.Week, TIME);
-        expect(result).toEqual(undefined);
+        expect(result).toBeUndefined();
     });
     it('Should return correct options when interval is month', () => {
         const result = getTimeSeriesOptions(ETimeVariableInterval.Month, TIME);
@@ -23,11 +24,11 @@ describe('getTimeSeriesOptions tests', () => {
     });
     it('Should return undefined', () => {
         const result = getTimeSeriesOptions(ETimeVariableInterval.Quarter, TIME);
-        expect(result).toEqual(undefined);
+        expect(result).toBeUndefined();
     });
     it('Should return undefined', () => {
         const result = getTimeSeriesOptions(ETimeVariableInterval.HalfYear, TIME);
-        expect(result).toEqual(undefined);
+        expect(result).toBeUndefined();
     });
     it('Should return correct options when interval is year', () => {
         const result = getTimeSeriesOptions(ETimeVariableInterval.Year, TIME);

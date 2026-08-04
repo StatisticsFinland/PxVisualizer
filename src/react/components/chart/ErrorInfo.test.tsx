@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import React from "react";
 import { ErrorInfo } from "./ErrorInfo";
 import { render } from "@testing-library/react";

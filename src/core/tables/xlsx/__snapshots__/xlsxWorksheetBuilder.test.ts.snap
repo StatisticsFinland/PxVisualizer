@@ -10,7 +10,7 @@ exports[`Worksheet xml generation tests Should generate expected xml output with
 </worksheet>"
 `;
 
-exports[`Worksheet xml generation tests Should generate expexted xml output with the provided fixture with en locale 1`] = `
+exports[`Worksheet xml generation tests Should generate expected xml output with the provided fixture with en locale 1`] = `
 "<?xml version="1.0" ?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:mx="http://schemas.microsoft.com/office/mac/excel/2008/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:x14="http://schemas.microsoft.com/office/spreadsheetml/2009/9/main" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac" xmlns:xm="http://schemas.microsoft.com/office/excel/2006/main">
     <cols><col min="1" max="1" width="20"/>,<col min="2" max="2" width="20"/>,<col min="3" max="3" width="20"/>,<col min="4" max="4" width="20"/>,<col min="5" max="5" width="20"/>,<col min="6" max="6" width="20"/></cols>
@@ -20,7 +20,7 @@ exports[`Worksheet xml generation tests Should generate expexted xml output with
 </worksheet>"
 `;
 
-exports[`Worksheet xml generation tests Should generate expexted xml output with the provided fixture with fi locale 1`] = `
+exports[`Worksheet xml generation tests Should generate expected xml output with the provided fixture with fi locale 1`] = `
 "<?xml version="1.0" ?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:mx="http://schemas.microsoft.com/office/mac/excel/2008/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:x14="http://schemas.microsoft.com/office/spreadsheetml/2009/9/main" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac" xmlns:xm="http://schemas.microsoft.com/office/excel/2006/main">
     <cols><col min="1" max="1" width="20"/>,<col min="2" max="2" width="20"/>,<col min="3" max="3" width="20"/>,<col min="4" max="4" width="20"/>,<col min="5" max="5" width="20"/>,<col min="6" max="6" width="20"/></cols>
@@ -30,7 +30,7 @@ exports[`Worksheet xml generation tests Should generate expexted xml output with
 </worksheet>"
 `;
 
-exports[`Worksheet xml generation tests Should generate expexted xml output with the provided fixture with sv locale 1`] = `
+exports[`Worksheet xml generation tests Should generate expected xml output with the provided fixture with sv locale 1`] = `
 "<?xml version="1.0" ?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:mx="http://schemas.microsoft.com/office/mac/excel/2008/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:x14="http://schemas.microsoft.com/office/spreadsheetml/2009/9/main" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac" xmlns:xm="http://schemas.microsoft.com/office/excel/2006/main">
     <cols><col min="1" max="1" width="20"/>,<col min="2" max="2" width="20"/>,<col min="3" max="3" width="20"/>,<col min="4" max="4" width="20"/>,<col min="5" max="5" width="20"/>,<col min="6" max="6" width="20"/></cols>
