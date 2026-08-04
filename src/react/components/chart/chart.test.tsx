@@ -1,3 +1,4 @@
+import { describe, expect, it, jest } from '@jest/globals';
 import React from "react";
 import { Chart } from "./chart";
 import { TOTALLY_BROKEN_CHART_FIXTURE, GROUP_VERTICAL_BAR_CHART_CHART_FIXTURE, TABLE_WITH_ROW_AND_COLUMN_VARIABLES_CHART_FIXTURE } from "./testFixtures/pxGrafResponses";
@@ -14,7 +15,7 @@ jest.mock('uuid', () => ({
 }));
 
 jest.mock('highcharts-react-official', () => {
-    const lib = jest.requireActual("highcharts-react-official");
+    const lib = jest.requireActual<typeof import("highcharts-react-official")>("highcharts-react-official");
     return {
         ...lib,
         HighchartsReact: componentMocker('HighchartsReact')
@@ -188,16 +189,17 @@ describe('Rendering test', () => {
     });
 
     it('renders error component on broken data', () => {
-        const spy = jest.spyOn(console, "error");
-        spy.mockImplementation(() => { });
-
-        const { asFragment } = render(
-            <Chart
-                pxGraphData={TOTALLY_BROKEN_CHART_FIXTURE}
-                locale={'fi'}
-            />);
-        expect(asFragment()).toMatchSnapshot();
-
-        spy.mockRestore();
+        const errorSpy = jest.spyOn(console, "error").mockImplementation(() => undefined);
+        try {
+            const { asFragment } = render(
+                <Chart
+                    pxGraphData={TOTALLY_BROKEN_CHART_FIXTURE}
+                    locale={'fi'}
+                />);
+            expect(asFragment()).toMatchSnapshot();
+            expect(errorSpy).toHaveBeenCalled();
+        } finally {
+            errorSpy.mockRestore();
+        }
     });
 });

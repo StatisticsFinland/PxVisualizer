@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { ETimeVariableInterval, EVariableType, EVisualizationType, IContentComponent, IQueryVisualizationResponse, IVariableMeta, IVariableValueMeta, TMultiLanguageString } from '../types/queryVisualizationResponse';
 import { TVariableSelections } from '../types/variableSelections';
 import { ESeriesType, IDataSeries, View } from '../types/view';
@@ -219,20 +220,20 @@ describe('series metadata', () => {
             // Value 1 in selection
             const selectedValueCodes1: TVariableSelections = { [contentVariable.code]: [contentVariableValue1.code] };
             const { series: rows1 } = buildSeries(pxGrafResponse, selectedValueCodes1);
-            expect(rows1.length).toEqual(1);
+            expect(rows1).toHaveLength(1);
 
             const { series: series1 } = rows1[0];
-            expect(series1.length).toEqual(1);
+            expect(series1).toHaveLength(1);
 
             expect(series1[0].precision).toBe(contentVariableValue1.contentComponent?.numberOfDecimals);
 
             // Value 2 in selection
             const selectedValueCodes2: TVariableSelections = { [contentVariable.code]: [contentVariableValue2.code] };
             const { series: rows2 } = buildSeries(pxGrafResponse, selectedValueCodes2);
-            expect(rows2.length).toEqual(1);
+            expect(rows2).toHaveLength(1);
 
             const { series: series2 } = rows2[0];
-            expect(series2.length).toEqual(1);
+            expect(series2).toHaveLength(1);
 
             expect(series2[0].precision).toBe(contentVariableValue2.contentComponent?.numberOfDecimals);
         });
@@ -259,10 +260,10 @@ describe('series metadata', () => {
             const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
-            expect(rows.length).toEqual(1);
+            expect(rows).toHaveLength(1);
 
             const { series } = rows[0];
-            expect(series.length).toEqual(pxGrafResponse.data.length);
+            expect(series).toHaveLength(pxGrafResponse.data.length);
 
             expect(series[0].precision).toEqual(contentVariable.values[0].contentComponent?.numberOfDecimals);
         });
@@ -290,10 +291,10 @@ describe('series metadata', () => {
             const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
-            expect(rows.length).toEqual(1);
+            expect(rows).toHaveLength(1);
 
             const { series } = rows[0];
-            expect(series.length).toEqual(pxGrafResponse.data.length);
+            expect(series).toHaveLength(pxGrafResponse.data.length);
 
             expect(series[0].precision).toEqual(contentVariable.values[0].contentComponent?.numberOfDecimals);
 
@@ -324,16 +325,16 @@ describe('series metadata', () => {
             const selectedValueCodes1: TVariableSelections = {};
 
             const { series: rows } = buildSeries(pxGrafResponse, selectedValueCodes1);
-            expect(rows.length).toEqual(2);
+            expect(rows).toHaveLength(2);
 
             // Row 1
             const { series: series0 } = rows[0];
-            expect(series0.length).toEqual(1);
+            expect(series0).toHaveLength(1);
             expect(series0[0].precision).toEqual(contentVariable.values[0].contentComponent?.numberOfDecimals);
 
             // Row 2
             const { series: series1 } = rows[1];
-            expect(series1.length).toEqual(1);
+            expect(series1).toHaveLength(1);
             expect(series1[0].precision).toEqual(contentVariable.values[1].contentComponent?.numberOfDecimals);
         });
 

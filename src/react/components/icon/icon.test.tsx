@@ -1,3 +1,4 @@
+import { expect, it } from '@jest/globals';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Icon} from './icon';

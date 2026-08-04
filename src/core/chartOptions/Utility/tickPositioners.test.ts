@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { Axis } from "highcharts";
 import { getLinearAxisTickPositionerFunction, getLinearSumAxisTickPositionerFunction, getOrdinalAxisTickPositionerFunction, getQuarterlySeriesTickPositionerFunction } from "./tickPositioners";
 

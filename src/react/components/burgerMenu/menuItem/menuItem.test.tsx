@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MenuItem } from "./menuItem";
 import React, { act } from "react";
@@ -49,7 +50,7 @@ describe('MenuItem, functional tests', () => {
     it('should render a link that calls onclick function when clicked', () => {
         const btnText = 'PRESSME';
         render(<MenuItem locale={'fi'} text={btnText} url={'foobar.fi'} openNewTab={true} onClick={mockFunction} idPrefix='foo' />);
-        expect(screen.getAllByRole('menuitem').length).toBe(1);
+        expect(screen.getAllByRole('menuitem')).toHaveLength(1);
         screen.getByText(btnText).click();
         expect(mockFunction).toHaveBeenCalledTimes(1);
     });

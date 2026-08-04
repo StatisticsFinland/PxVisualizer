@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { buildLineChartSeries, buildBarChartSeries, buildColumnChartSeries } from "./seriesDataBuilder";
 import { simpleGroupHorizontalBarchartViewFixture } from "./fixtures/grouphorizontalbarchartViews";
 import { simpleQuarterLinechartViewFixture } from "./fixtures/linechartViews";

@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { buildPatternObject } from "./patternFill";
 import { defaultColors } from "../../highcharts/defaultColors";
 import { defaultFillPatterns } from "../../highcharts/fillPatterns";

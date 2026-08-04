@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { escapeXmlFunctionChars } from "./xlsxUtils";
 
 describe('assertion tests', () => {

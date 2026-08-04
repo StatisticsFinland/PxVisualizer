@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { DataLabelsOptions, Point, Tooltip } from "highcharts";
 import { formatLocale, getDataFormattedForChartType, getDataLabelFormatterFunction, getLineChartToolTipFormatterFunction, getToolTipFormatterFunction, parseScreenReaderFriendlyTimePeriods, shortenStringValue, getFormattedLastUpdatedText } from "./formatters";
 import { combinationValuesLinechartViewFixture, multiselectableLineChartViewFixture, simpleQuarterLinechartViewFixture } from "./fixtures/linechartViews";
@@ -56,68 +57,19 @@ describe('shortenStringValue tests', () => {
 });
 
 describe('parseScreenReaderFriendlyTimePeriods', () => {
-    it('Should return parsed month string', () => {
-        const testValue = '2000M1';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'fi');
-        const expected = '2000 tammikuu';
-        expect(result).toEqual(expected);
-    });
-
-    it('Should return parsed month string localized', () => {
-        const testValue = '2000M1';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'en');
-        const expected = '2000 January';
-        expect(result).toEqual(expected);
-    });
-
-    it('Should return parsed quarter string', () => {
-        const testValue = '2000Q1';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'fi');
-        const expected = '2000 1. vuosineljännes';
-        expect(result).toEqual(expected);
-    });
-
-    it('Should return parsed quarter string localized en first', () => {
-        const testValue = '2000Q1';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'en');
-        const expected = '2000 1st. quarter';
-        expect(result).toEqual(expected);
-    });
-    it('Should return parsed quarter string localized en second', () => {
-        const testValue = '2000Q2';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'en');
-        const expected = '2000 2nd. quarter';
-        expect(result).toEqual(expected);
-    });
-    it('Should return parsed quarter string localized en third', () => {
-        const testValue = '2000Q3';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'en');
-        const expected = '2000 3rd. quarter';
-        expect(result).toEqual(expected);
-    });
-    it('Should return parsed quarter string localized en fourth', () => {
-        const testValue = '2000Q4';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'en');
-        const expected = '2000 4th. quarter';
-        expect(result).toEqual(expected);
-    });
-    it('Should not parse if value doesnt match', () => {
-        const testValue = 'foobar';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'fi');
-        const expected = 'foobar';
-        expect(result).toEqual(expected);
-    });
-    it('Should return parsed preliminary quarter string', () => {
-        const testValue = '2000Q2*';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'en');
-        const expected = '2000 2nd. quarter';
-        expect(result).toEqual(expected);
-    });
-    it('Should return parsed preliminary month string', () => {
-        const testValue = '2000M2*';
-        const result = parseScreenReaderFriendlyTimePeriods(testValue, 'en');
-        const expected = '2000 February';
-        expect(result).toEqual(expected);
+    it.each([
+        { testValue: '2000M1', locale: 'fi', expected: '2000 tammikuu' },
+        { testValue: '2000M1', locale: 'en', expected: '2000 January' },
+        { testValue: '2000Q1', locale: 'fi', expected: '2000 1. vuosineljännes' },
+        { testValue: '2000Q1', locale: 'en', expected: '2000 1st. quarter' },
+        { testValue: '2000Q2', locale: 'en', expected: '2000 2nd. quarter' },
+        { testValue: '2000Q3', locale: 'en', expected: '2000 3rd. quarter' },
+        { testValue: '2000Q4', locale: 'en', expected: '2000 4th. quarter' },
+        { testValue: 'foobar', locale: 'fi', expected: 'foobar' },
+        { testValue: '2000Q2*', locale: 'en', expected: '2000 2nd. quarter' },
+        { testValue: '2000M2*', locale: 'en', expected: '2000 February' }
+    ])('parses $testValue for $locale', ({ testValue, locale, expected }) => {
+        expect(parseScreenReaderFriendlyTimePeriods(testValue, locale)).toBe(expected);
     });
 });
 
