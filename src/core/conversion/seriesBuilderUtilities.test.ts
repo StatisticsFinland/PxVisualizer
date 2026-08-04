@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { EVariableType } from "../types";
 import { IVariableMeta } from "../types/queryVisualizationResponse";
 import { TVariableSelections } from "../types/variableSelections";

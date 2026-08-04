@@ -1,3 +1,4 @@
+import { describe, expect, it, jest } from '@jest/globals';
 import React from 'react';
 import { ErrorBoundary } from "./ErrorBoundary";
 import { render } from '@testing-library/react';
@@ -8,13 +9,18 @@ const TestComponent = () => {
 
 describe('ErrorBoundary', () => {
     it('should render the fallback component when an error is thrown', () => {
-        const { getByTestId } = render(
-            <ErrorBoundary fallback={<div data-testid='fallback'>Error</div>}>
-                <TestComponent />
-            </ErrorBoundary>
-        );
-        const fallback = getByTestId('fallback');
-        expect(fallback).toBeTruthy();
+        const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+        try {
+            const { getByTestId } = render(
+                <ErrorBoundary fallback={<div data-testid='fallback'>Error</div>}>
+                    <TestComponent />
+                </ErrorBoundary>
+            );
+            expect(getByTestId('fallback')).toBeTruthy();
+            expect(errorSpy).toHaveBeenCalled();
+        } finally {
+            errorSpy.mockRestore();
+        }
     });
 
     it('should render the children when no error is thrown', () => {

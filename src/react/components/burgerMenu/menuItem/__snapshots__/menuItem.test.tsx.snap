@@ -57,6 +57,7 @@ exports[`MenuItem, rendering tests should render 1`] = `
       id="foo-menuitem--1"
       role="menuitem"
       tabindex="-1"
+      type="button"
     >
       <div
         class="c2"
@@ -140,6 +141,7 @@ exports[`MenuItem, rendering tests should render with correct custom suffix icon
       id="foo-menuitem--1"
       role="menuitem"
       tabindex="-1"
+      type="button"
     >
       <div
         class="c2"
@@ -342,6 +344,7 @@ exports[`MenuItem, rendering tests should render with correct prefix icon 1`] = 
       id="foo-menuitem--1"
       role="menuitem"
       tabindex="-1"
+      type="button"
     >
       <div
         class="c2"
@@ -443,6 +446,7 @@ exports[`MenuItem, rendering tests should render with correct suffix icon 1`] = 
       id="foo-menuitem--1"
       role="menuitem"
       tabindex="-1"
+      type="button"
     >
       <div
         class="c2"

@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { IDataCell } from "../types/view";
 import { formatMissingData, formatNumericValue } from "./tableUtils";
 

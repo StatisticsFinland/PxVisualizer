@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { Translations, ArrayTranslations, GetAllLanguages, TTranslationPackage, AddTranslations } from '../translations'
 
 const mockTranslationPackage: TTranslationPackage = {
