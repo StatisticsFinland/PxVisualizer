@@ -14,7 +14,7 @@ interface ITextWrapperProps {
     $hasPrefixIcon?: boolean;
     $hasSuffixIcon?: boolean;
 }
-const Button = styled(forwardRef<HTMLButtonElement, React.ComponentPropsWithoutRef<'button'>>((props, ref) => (<button ref={ref} {...props} />)))`
+const Button = styled(forwardRef<HTMLButtonElement, React.ComponentPropsWithoutRef<'button'>>((props, ref) => (<button {...props} ref={ref} type="button" />)))`
     background-color: transparent;
     text-align: left;
     border: none;

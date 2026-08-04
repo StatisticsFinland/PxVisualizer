@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { cartesianProduct, compareScalarArrays } from './utilityFunctions';
 
 describe('cartesian function', () => {

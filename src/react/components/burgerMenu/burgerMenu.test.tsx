@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { act, render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { BurgerMenu, calculateExportDimensions } from "./burgerMenu";
 import { HORIZONTAL_BAR_CHART_ASCENDING } from "../../../core/conversion/fixtures/horizontalBarChart";
@@ -36,7 +37,7 @@ describe('burgerMenu, functional tests', () => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            expect(screen.getAllByRole('menuitem').length).toEqual(4);
+            expect(screen.getAllByRole('menuitem')).toHaveLength(4);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
             expect(screen.getByText("N\u00E4yt\u00E4 taulukko")).toBeTruthy();
@@ -51,7 +52,7 @@ describe('burgerMenu, functional tests', () => {
             screen.getByRole('button').click();
         });
         await waitFor(() => {
-            expect(screen.getAllByRole('menuitem').length).toEqual(8);
+            expect(screen.getAllByRole('menuitem')).toHaveLength(8);
             expect(screen.getByText('Lataa taulukko (csv)')).toBeTruthy();
             expect(screen.getByText('Lataa taulukko (xlsx)')).toBeTruthy();
             expect(screen.getByText('Foo')).toBeTruthy();
@@ -128,9 +129,7 @@ describe('burgerMenu, functional tests', () => {
         act(() => {
             screen.getByRole('button').click();
         });
-        act(() => {
-            fireEvent.keyDown(screen.getByRole('button'), { key: 'Escape' });
-        });
+        fireEvent.keyDown(screen.getByRole('button'), { key: 'Escape' });
         expect(screen.queryByRole('menu')).toBeNull();
     });
 
@@ -140,9 +139,7 @@ describe('burgerMenu, functional tests', () => {
         act(() => {
             screen.getByRole('button').click();
         });
-        act(() => {
-            fireEvent.keyDown(screen.getByRole('button'), { key: 'Tab' });
-        });
+        fireEvent.keyDown(screen.getByRole('button'), { key: 'Tab' });
         expect(screen.queryByRole('menu')).toBeNull();
     });
 
@@ -280,16 +277,12 @@ describe('burgerMenu, functional tests', () => {
             expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('0');
             expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('-1');
         });
-        act(() => {
-            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' }); // window?
-        });
+        fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' }); // window?
         await waitFor(() => {
             expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('-1');
             expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('0');
         });
-        act(() => {
-            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' }); // window?
-        });
+        fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' }); // window?
         await waitFor(() => {
             expect(screen.getByText('Item1').closest('button')?.getAttribute('tabIndex')).toBe('0');
             expect(screen.getByText('Item2').closest('button')?.getAttribute('tabIndex')).toBe('-1');
@@ -306,16 +299,12 @@ describe('burgerMenu, functional tests', () => {
             expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
             expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
         });
-        act(() => {
-            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
-        });
+        fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
         await waitFor(() => {
             expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
             expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('0');
         });
-        act(() => {
-            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
-        });
+        fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowDown' });
         await waitFor(() => {
             expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
             expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
@@ -332,9 +321,7 @@ describe('burgerMenu, functional tests', () => {
             expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('0');
             expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
         });
-        act(() => {
-            fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' });
-        });
+        fireEvent.keyDown(screen.getByRole('button'), { key: 'ArrowUp' });
         await waitFor(() => {
             expect(screen.getByText('Lataa taulukko (xlsx)').closest('button')?.getAttribute('tabIndex')).toBe('-1');
             expect(screen.getByText('Lataa taulukko (csv)').closest('button')?.getAttribute('tabIndex')).toBe('0');

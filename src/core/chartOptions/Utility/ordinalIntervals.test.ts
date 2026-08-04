@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { ETimeVariableInterval, EVisualizationType } from "../../types";
 import { ESeriesType, View } from "../../types/view";
 import { getOrdinalOptions } from "./ordinalIntervals";
