@@ -84,9 +84,9 @@ describe('burgerMenu, functional tests', () => {
         act(() => {
             screen.getByRole('button').click();
         });
+        const menuItem = await screen.findByText(Translations.toggleAccessibilityModeOn["fi"]);
+        fireEvent.click(menuItem);
         await waitFor(() => {
-            const menuItem = screen.getByText(Translations.toggleAccessibilityModeOn["fi"]);
-            fireEvent.click(menuItem);
             expect(mockToggleAccessibilityModeFunction).toHaveBeenCalledTimes(1);
         });
     });
