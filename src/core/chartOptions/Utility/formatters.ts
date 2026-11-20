@@ -212,17 +212,17 @@ export function getFormattedUnits(unitInfos: IUnitInfo[], locale: string): strin
 
 export function getDataFormattedForChartType(view: View, point: Point, locale: string, precision: number): string {
     if (point.y === null || point.y === undefined) return '';
-    const value = Number(point.y.toFixed(precision));
+    const value = formatNumericValue(point.y, precision, locale, true);
 
     if (view.visualizationSettings.visualizationType === EVisualizationType.PyramidChart) {
-        return Math.abs(value).toLocaleString(locale);
+        return formatNumericValue(Math.abs(point.y), precision, locale, true);
     }
     else if (view.visualizationSettings.visualizationType == EVisualizationType.PercentHorizontalBarChart ||
         view.visualizationSettings.visualizationType == EVisualizationType.PercentVerticalBarChart) {
-        return `${formatNumericValue(point.percentage ?? 0, 1, locale)}% (${value.toLocaleString(locale)} ${getFormattedUnits(view.units, locale)})`;
+        return `${formatNumericValue(point.percentage ?? 0, 1, locale)}% (${value} ${getFormattedUnits(view.units, locale)})`;
     } 
     else {
-        return value.toLocaleString(locale) ?? '';
+        return value;
     }
 }
 

@@ -270,6 +270,55 @@ describe('getLineChartToolTipFormatterFunction tests', () => {
 });
 
 describe('getDataFormattedForChartType tests', () => {
+    it.each([
+        { value: 7.55, precision: 1, locale: 'fi', expected: '7,6' },
+        { value: -7.55, precision: 1, locale: 'fi', expected: '\u22127,6' },
+        { value: 7.55, precision: 1, locale: 'sv', expected: '7,6' },
+        { value: 7.55, precision: 1, locale: 'en', expected: '7.6' },
+        { value: -7.55, precision: 1, locale: 'en', expected: '-7.6' },
+        { value: 7.54, precision: 1, locale: 'fi', expected: '7,5' },
+        { value: -7.54, precision: 1, locale: 'fi', expected: '\u22127,5' },
+        { value: 7.56, precision: 1, locale: 'fi', expected: '7,6' },
+        { value: 7.5, precision: 0, locale: 'fi', expected: '8' },
+        { value: -7.5, precision: 0, locale: 'fi', expected: '\u22128' },
+        { value: 7.55, precision: 2, locale: 'fi', expected: '7,55' },
+        { value: 1.005, precision: 2, locale: 'en', expected: '1.01' },
+        { value: -1.005, precision: 2, locale: 'en', expected: '-1.01' },
+        { value: 7.5, precision: 2, locale: 'fi', expected: '7,50' },
+        { value: 0, precision: 2, locale: 'en', expected: '0.00' },
+        { value: 1.23455, precision: 4, locale: 'fi', expected: '1,2346' },
+        { value: 1234.55, precision: 1, locale: 'fi', expected: '1\xa0234,6' },
+        { value: -1234.55, precision: 1, locale: 'en', expected: '-1,234.6' }
+    ])('formats $value with precision $precision in $locale as $expected', ({ value, precision, locale, expected }) => {
+        const point = { y: value } as Point;
+        const view = {
+            visualizationSettings: { visualizationType: 'LineChart' }
+        } as View;
+
+        expect(getDataFormattedForChartType(view, point, locale, precision)).toBe(expected);
+    });
+
+    it.each([7.55, -7.55])('rounds pyramid value %s away from zero and displays its absolute value', (value) => {
+        const point = { y: value } as Point;
+        const view = {
+            visualizationSettings: { visualizationType: 'PyramidChart' }
+        } as View;
+
+        expect(getDataFormattedForChartType(view, point, 'fi', 1)).toBe('7,6');
+    });
+
+    it.each(['PercentHorizontalBarChart', 'PercentVerticalBarChart'])(
+        'rounds and localizes percentage and original value for %s', (visualizationType) => {
+            const point = { y: -7.55, percentage: 7.55 } as Point;
+            const view = {
+                units: [{ name: { fi: 'kg' }, unit: { fi: 'kg' } }],
+                visualizationSettings: { visualizationType }
+            } as unknown as View;
+
+            expect(getDataFormattedForChartType(view, point, 'fi', 1)).toBe('7,6% (\u22127,6 kg)');
+        }
+    );
+
     it('should return formatted data for linechart', () => {
         const point: Point = {
             y: 1234.567
