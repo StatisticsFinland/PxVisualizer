@@ -114,6 +114,9 @@ export const defaultTheme: (locale: string, fontFamily?: string) => Highcharts.O
         numericSymbols: null as any // null is not accepted even though it works as disabling the symbols, any as a workaround
     },
     colors: defaultColors, // chart series default colors
+    palette: {
+        colorScheme: 'light' // Highcharts 13 follows the OS dark mode by default
+    },
     chart: {
         style: {
             fontFamily: fontFamily ?? '"Barlow Semi Condensed", Verdana, sans-serif'
